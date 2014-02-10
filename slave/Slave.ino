@@ -1,50 +1,11 @@
-#include "../lib/Period.h"
+//#include "../lib/Period.h"
+#include "Autom.h"
+#include "pins.h"
 
-//pin alloc
-int pin_odo_incD = 0; // == pin 2
-int pin_odo_incG = 1; // == pin 3
-int pin_odo_dirD = 8;
-int pin_odo_dirG = 9;
 
-int pin_mot_cmdD = 5;
-int pin_mot_cmdG = 6;
-int pin_mot_dirD = 10;
-int pin_mot_dirG = 11;
-
-//variables globales
-
-long ticG;
-long ticD;
-int vitesse = 100;
+Autom* slave;
 int dir = 1;
-int signe = 1;
-
-//tics interrupt functions
-void inc_ticG(){
-  int chb = digitalRead(pin_odo_dirG) ;
- if (chb == 1)
-{
-  ticG = ticG + 1;
-}
-  else
-  {
-   ticG = ticG - 1; 
-  }
-}
-
-void inc_ticD(){
-  int chb = digitalRead(pin_odo_dirD) ;
- if (chb == 1)
-{
-  ticD = ticD + 1;
-}
-  else
-  {
-   ticD = ticD - 1; 
-  }
-}
-
-
+int vitesse = 100;
 void print_tic_odo()
 {
     Serial.print(" odoG :");
@@ -55,54 +16,55 @@ void print_tic_odo()
 
 void setup()
 {
-  attachInterrupt(pin_odo_incG, inc_ticG, RISING);
-  attachInterrupt(pin_odo_incD, inc_ticD, RISING);
+  attachInterrupt(PIN_ODO_INCG, inc_ticG, RISING);
+  attachInterrupt(PIN_ODO_INCD, inc_ticD, RISING);
   Serial.begin(9600) ; 
-  pinMode(pin_mot_dirG, OUTPUT);
-  pinMode(pin_mot_dirD, OUTPUT);
-  pinMode(pin_mot_cmdG, OUTPUT);
-  pinMode(pin_mot_cmdD, OUTPUT);
+  pinMode(PIN_MOT_DIRG, OUTPUT);
+  pinMode(PIN_MOT_DIRD, OUTPUT);
+  pinMode(PIN_MOT_CMDG, OUTPUT);
+  pinMode(PIN_MOT_CMDD, OUTPUT);
   int prescalerVal = 0x07;
   //TCCR0B = xxxxx010, frequency is 8 kHz
   TCCR0B &= ~prescalerVal;
   //prescalerVal = 1;
   TCCR0B |= 1;
- 
+  slave = new Autom();
 }
 
 void write_cmd(){
  if (dir == 1)
     {
-       digitalWrite(pin_mot_dirG, LOW);
-       digitalWrite(pin_mot_dirD, HIGH);
+       digitalWrite(PIN_MOT_DIRG, LOW);
+       digitalWrite(PIN_MOT_DIRD, HIGH);
    
     }
     else
     {
-     digitalWrite(pin_mot_dirG, HIGH);
-     digitalWrite(pin_mot_dirD, LOW);
+     digitalWrite(PIN_MOT_DIRG, HIGH);
+     digitalWrite(PIN_MOT_DIRD, LOW);
     
     } 
- analogWrite(pin_mot_cmdG, vitesse);
- analogWrite(pin_mot_cmdD, vitesse);
+ analogWrite(PIN_MOT_CMDG, vitesse);
+ analogWrite(PIN_MOT_CMDD, vitesse);
   
 }
 
 void loop(){
   
-  if (ticD <= -30){
+  /*if (ticD <= -30){
     dir = 1; 
   }
   if (ticD >=0){
     dir = -1;
   }
   print_tic_odo();
+  */
   
-  
- write_cmd();   
- Serial.println(vitesse);
-  Serial.print(dir); 
-  delay(800);
-  
+ //write_cmd();   
+ //Serial.println(vitesse);
+ // Serial.print(dir); 
+  //delay(800);
+    slave->run();
+      
 }
 
