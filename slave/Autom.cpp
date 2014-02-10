@@ -25,12 +25,16 @@ void Coord::forward_translation(float d){
 
 void Coord::write_serial()
 {
-    Serial.print("x");
-    Serial.print(x);
-    Serial.print("x");
-    Serial.print(y);
-    Serial.print("cap");
-    Serial.println(cap);
+    Serial.print("ticG  :");
+    Serial.print(ticG);
+    Serial.print("  ticD  :");
+    Serial.print(ticD);
+    Serial.print("  x  :");
+    Serial.print(int(x));
+    Serial.print("  y :");
+    Serial.print(int(y));
+    Serial.print("  cap:  ");
+    Serial.println(cap * 360 / 3.14);
 }
 
 Coord::Coord():x(0.0), y(0.0), cap(0.0){}
@@ -43,9 +47,9 @@ Autom::Autom():
     real_coord(),
     period_update_coords(10),
     period_pid_loop(30),
-    gain_odo_g(1.0),
-    gain_odo_d(1.0),
-    gain_inter_odos(1/20.0),
+    gain_odo_g(-0.408),
+    gain_odo_d(-0.408),
+    gain_inter_odos(0.00163038),
     last_ticG(0),
     last_ticD(0)
    {}
@@ -61,7 +65,7 @@ void Autom::update_coords(){
     update_cap();
     int delta_ticG = ticG - last_ticG;
     int delta_ticD = ticD - last_ticD;
-    float d = (delta_ticG * gain_odo_d + delta_ticD * gain_odo_d) * 0.5;   
+    float d = (delta_ticG * gain_odo_g + delta_ticD * gain_odo_d) * 0.5;   
     real_coord.forward_translation(d);
     /* maybe add a delta cond on distance to avoid noise ? */
     last_ticD = ticD;
@@ -80,6 +84,7 @@ void Autom::run(){
     {
         period_update_coords.reset();
         update_coords();
+        real_coord.write_serial();
     }
     if (period_pid_loop.is_over())
     {
