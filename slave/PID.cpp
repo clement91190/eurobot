@@ -3,17 +3,21 @@
 PID::PID():last_input(0.),
     I_sum(0.),
     target(0.),
-    Kp(0.),
-    Kd(0.),
-    Ki(0.),
-    minV(-128),
-    maxV(128),
-    inAuto(false)
+    Kp(3.45),  //Ku = 5.75
+    Kd(4.6),
+    Ki(0.6468),
+    minV(-255),
+    maxV(255),
+    inAuto(true)
 {
 }
 
-void PID::setTarget(int target_){
-    target = float(target_);
+void PID::setTarget(float target_){
+    target = target_;
+}
+
+void PID::addToTarget(float dep){
+    target = target + dep;
 }
 
 void PID::setTuning(float Kp_, float Ki_, float Kd_){
@@ -22,8 +26,8 @@ void PID::setTuning(float Kp_, float Ki_, float Kd_){
     Kd = Kd_;
 }
 
-float PID::Compute(float input){
-    if (!inAuto) {return 0.}
+float PID::compute(float input){
+    if (!inAuto) {return 0.;}
     float error = target - input;
     I_sum = I_sum + Ki * error;
     if (I_sum > maxV){
@@ -50,7 +54,7 @@ void PID::setOutputLimit(int max, int min){
 void PID::turn_on(bool on_off, float input)
 {
   inAuto = on_off;
-  init(input)
+  init(input);
 
 }
 

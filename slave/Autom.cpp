@@ -35,6 +35,37 @@ void Autom::reset_tics_odos(){
     ticD = 0;
 }
 
+void Autom::send_cmd(){
+
+ int cmd_g = control.get_cmd_g();
+ int cmd_d = control.get_cmd_d();
+ bool fw_g = control.get_fw_g();
+ bool fw_d = control.get_fw_d();
+
+ //dir logic
+ if (fw_g) digitalWrite(PIN_MOT_DIRG, HIGH);
+ else digitalWrite(PIN_MOT_DIRG, LOW);
+ if (fw_d) digitalWrite(PIN_MOT_DIRD, LOW);
+ else digitalWrite(PIN_MOT_DIRD, HIGH);
+
+ // cmd
+ analogWrite(PIN_MOT_CMDG, cmd_g);
+ analogWrite(PIN_MOT_CMDD, cmd_d);
+ 
+ write_cmd(cmd_g, cmd_d, fw_g, fw_d);
+}
+
+void Autom::write_cmd(int cmd_g, int cmd_d, bool fw_g, bool fw_d){
+    Serial.print(" cmdG  ");
+    Serial.print(cmd_g);
+    Serial.print("  G  ");
+    Serial.print(fw_g);
+    Serial.print("  cmdD  ");
+    Serial.print(cmd_d);
+    Serial.print("  D  ");
+    Serial.print(fw_d);
+}
+
 void Autom::run(){
     /* this is where all the magic happends */
     
@@ -47,6 +78,8 @@ void Autom::run(){
     if (period_pid_loop.is_over())
     {
         period_pid_loop.reset();
+        control.run(real_coord);
+        send_cmd();
         /* add the pid here */
     }
 }

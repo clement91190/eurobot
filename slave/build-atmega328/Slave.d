@@ -9,4 +9,5 @@ build-atmega328/Slave.o: Slave.ino \
  /usr/share/arduino/hardware/arduino/cores/arduino/Printable.h \
  /usr/share/arduino/hardware/arduino/cores/arduino/new.h \
  /usr/share/arduino/hardware/arduino/variants/standard/pins_arduino.h \
- Autom.h Period.h interrupts.h pins.h
+ Autom.h Period.h interrupts.h pins.h Coord.h ControlLoop.h PID.h \
+ Communication.h

@@ -5,10 +5,15 @@ Communication::Communication(Autom* slave_):period_com(50), slave(slave_){
 
 void Communication::treat_orders(){
 // read the serial port and call ... depending on what it received
-
+    
+    if (Serial.available() > 0) {
+        int inByte = Serial.read();
+        if (inByte == 'g'){
+        } 
+    }
 }
 
-void Communicaiton::run(){
+void Communication::run(){
      if (period_com.is_over())
     {
         period_com.reset();

@@ -5,6 +5,7 @@
 
 
 Autom* slave;
+Communication* com;
 int dir = 1;
 int vitesse = 100;
 void print_tic_odo()
@@ -33,23 +34,7 @@ void setup()
   com = new Communication(slave);
 }
 
-void write_cmd(){
- if (dir == 1)
-    {
-       digitalWrite(PIN_MOT_DIRG, LOW);
-       digitalWrite(PIN_MOT_DIRD, HIGH);
-   
-    }
-    else
-    {
-     digitalWrite(PIN_MOT_DIRG, HIGH);
-     digitalWrite(PIN_MOT_DIRD, LOW);
-    
-    } 
- analogWrite(PIN_MOT_CMDG, vitesse);
- analogWrite(PIN_MOT_CMDD, vitesse);
-  
-}
+
 
 void loop(){
   

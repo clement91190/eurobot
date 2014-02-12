@@ -1,6 +1,8 @@
 #ifndef COORD_H
 #define COORD_H
 
+#include "Arduino.h"
+#include "interrupts.h"
 
 class Coord
 /** (x,y,cap) objects **/

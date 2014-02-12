@@ -9,4 +9,4 @@ build-atmega328/Autom.o: Autom.cpp Autom.h Period.h \
  /usr/share/arduino/hardware/arduino/cores/arduino/Printable.h \
  /usr/share/arduino/hardware/arduino/cores/arduino/new.h \
  /usr/share/arduino/hardware/arduino/variants/standard/pins_arduino.h \
- interrupts.h pins.h
+ interrupts.h pins.h Coord.h ControlLoop.h PID.h
