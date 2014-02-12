@@ -1,6 +1,7 @@
 //#include "../lib/Period.h"
 #include "Autom.h"
 #include "pins.h"
+#include "Communication.h"
 
 
 Autom* slave;
@@ -29,6 +30,7 @@ void setup()
   //prescalerVal = 1;
   TCCR0B |= 1;
   slave = new Autom();
+  com = new Communication(slave);
 }
 
 void write_cmd(){
@@ -64,6 +66,8 @@ void loop(){
  //Serial.println(vitesse);
  // Serial.print(dir); 
   //delay(800);
+  
+    com->run();
     slave->run();
       
 }
