@@ -1,0 +1,7 @@
+- finish the communication Class (Serial)
+- plugin the 2 PID loops. 
+- implement a python script for updating and testing gains
+- connect the raspberry pi, + wifi to the slave board + buck + hub
+
+
+
