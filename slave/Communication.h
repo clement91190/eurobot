@@ -4,6 +4,8 @@
 #include "Period.h"
 #include "Arduino.h"
 #include "Autom.h"
+#include <iterator>
+#include <string>
 
 class Communication{
 
