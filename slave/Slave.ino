@@ -1,11 +1,12 @@
 //#include "../lib/Period.h"
 #include "Autom.h"
 #include "pins.h"
-#include "Communication.h"
+#include "OrdersRaspberry.h"
+#include <pnew.cpp>
 
 
 Autom* slave;
-Communication* com;
+OrdersRaspberry* com;
 int dir = 1;
 int vitesse = 100;
 void print_tic_odo()
@@ -31,7 +32,7 @@ void setup()
   //prescalerVal = 1;
   TCCR0B |= 1;
   slave = new Autom();
-  com = new Communication(slave);
+  com = new OrdersRaspberry(slave);
 }
 
 
