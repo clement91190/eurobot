@@ -54,6 +54,7 @@ void ControlLoop::compute_pids(){
     Vector to_target;
     target_position.write_serial();
     to_target = Vector(real_coord, target_position);
+
     switch (bf_type){
         case STOP:
             cmd_cap = 0;
@@ -61,7 +62,7 @@ void ControlLoop::compute_pids(){
         case BFFW:
             //cmd_cap = 0;
             //Serial.println(to_target.scalar(dir));
-            cmd_dep = piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
+            cmd_dep = - piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
             cmd_cap = pidcap.compute(real_coord.get_cap());
             break;
         case BFCAP:
@@ -70,9 +71,10 @@ void ControlLoop::compute_pids(){
             Serial.print ("  CAP  ");
             cmd_cap = pidcap.compute(real_coord.get_cap());
             Serial.print ("  DEP  ");
-            cmd_dep = piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
+            cmd_dep = - piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
 
             Vector(real_coord).write_serial();
+            to_target.write_serial();
             //Serial.println(cmd_cap);
             break;
         case BFXYCAP:
