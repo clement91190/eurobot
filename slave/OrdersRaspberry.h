@@ -2,6 +2,7 @@
 #define _ORDERSRASPBERRY_H
 #include "Period.h"
 #include "Autom.h"
+#include "Arduino.h"
 //#include <stdio.h>
 #include <iterator>
 #include <string>       // std::string
