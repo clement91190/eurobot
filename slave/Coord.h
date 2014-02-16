@@ -23,6 +23,7 @@ class Coord
         void set_x_y_cap(float x_, float y_, float cap_);
         void forward_translation(float d);
         void write_serial();
+        Vector dir();
 };
 
 class Vector

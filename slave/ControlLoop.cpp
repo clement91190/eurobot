@@ -53,20 +53,22 @@ void ControlLoop::compute_pids(){
     
     Vector to_target;
     target_position.write_serial();
+    to_target = Vector(real_coord, target_position);
     switch (bf_type){
         case STOP:
             cmd_cap = 0;
             cmd_dep = 0;
         case BFFW:
-            cmd_cap = 0;
-            to_target = Vector(real_coord, target_position);
+            //cmd_cap = 0;
             //Serial.println(to_target.scalar(dir));
             cmd_dep = -piddep.compute(to_target.scalar(dir)); // the error is a scalar product
+            cmd_cap = pidcap.compute(real_coord.get_cap());
             break;
         case BFCAP:
-            cmd_dep = 0;
+            //cmd_dep = 0;
             //Serial.println(real_coord.get_cap());
             cmd_cap = pidcap.compute(real_coord.get_cap());
+            cmd_dep = -piddep.compute(to_target.scalar(dir)); // the error is a scalar product
             //Serial.println(cmd_cap);
             break;
         case BFXYCAP:

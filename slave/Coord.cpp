@@ -23,6 +23,10 @@ void Coord::forward_translation(float d){
     y = y + d * sin(cap);
 }
 
+Vector Coord::dir(){
+    return Vector(cos(cap), sin(cap));
+}
+
 void Coord::write_serial()
 {
     //Serial.print("ticG  :");
@@ -34,7 +38,7 @@ void Coord::write_serial()
     Serial.print("  y :");
     Serial.print(int(y));
     Serial.print("  cap:  ");
-    Serial.println(cap * 180 / 3.14);
+    Serial.print(cap * 180 / 3.14);
 }
 
 Coord::Coord():x(0.0), y(0.0), cap(0.0){}
