@@ -12,6 +12,19 @@ PID::PID():last_input(0.),
 {
 }
 
+PID::PID(float Kp_, float Ki_, float Kd_)
+    last_input(0.),
+    I_sum(0.),
+    target(0.),
+    Kp(Kp_),  //Ku = 5.75
+    Kd(Ki_),
+    Ki(Kd_),
+    minV(-255),
+    maxV(255),
+    inAuto(true)
+{
+}
+
 void PID::setTarget(float target_){
     target = target_;
 }

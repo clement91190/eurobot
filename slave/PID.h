@@ -20,6 +20,7 @@ class PID
         
     public:
         PID();
+        PID(float Kp_, float Ki_, float Kd_);
         void setTuning(float Kp_, float Ki_, float Kd_);
         void setTarget(float target_);
         void addToTarget(float dep);
