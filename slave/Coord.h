@@ -23,7 +23,6 @@ class Coord
         void set_x_y_cap(float x_, float y_, float cap_);
         void forward_translation(float d);
         void write_serial();
-        Vector dir();
 };
 
 class Vector
@@ -33,13 +32,16 @@ class Vector
         float y;
     public:
         Vector();
+        Vector(float x, float y);
         Vector(Coord u, Coord v);
+        Vector(Coord cap); // use the cap to construct a vector
         float norm();
         void neg();
         void normalize();
         float scalar(Vector u);
         float get_x();
         float get_y();
+        void write_serial();
 };
 
 

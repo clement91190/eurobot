@@ -23,10 +23,6 @@ void Coord::forward_translation(float d){
     y = y + d * sin(cap);
 }
 
-Vector Coord::dir(){
-    return Vector(cos(cap), sin(cap));
-}
-
 void Coord::write_serial()
 {
     //Serial.print("ticG  :");
@@ -68,6 +64,12 @@ void Vector::normalize(){
     y = y / len;
 }
 
+Vector::Vector(Coord cap):x(cos(cap.get_cap())), y(sin(cap.get_cap())){}
+
+
+Vector::Vector(float x_, float y_):x(x_), y(y_){}
+
+
 float Vector::get_x(){return x;}
 float Vector::get_y(){return y;}
 
@@ -75,3 +77,9 @@ float Vector::scalar(Vector u){
    return x * u.get_x() + y * u.get_y(); 
 }
 
+void Vector::write_serial(){
+    Serial.print("vect" );
+    Serial.print(x );
+    Serial.print(" , " );
+    Serial.print(y);
+}

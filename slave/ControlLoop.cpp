@@ -61,20 +61,25 @@ void ControlLoop::compute_pids(){
         case BFFW:
             //cmd_cap = 0;
             //Serial.println(to_target.scalar(dir));
-            cmd_dep = -piddep.compute(to_target.scalar(dir)); // the error is a scalar product
+            cmd_dep = piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
             cmd_cap = pidcap.compute(real_coord.get_cap());
             break;
         case BFCAP:
             //cmd_dep = 0;
             //Serial.println(real_coord.get_cap());
+            Serial.print ("  CAP  ");
             cmd_cap = pidcap.compute(real_coord.get_cap());
-            cmd_dep = -piddep.compute(to_target.scalar(dir)); // the error is a scalar product
+            Serial.print ("  DEP  ");
+            cmd_dep = piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
+
+            Vector(real_coord).write_serial();
             //Serial.println(cmd_cap);
             break;
         case BFXYCAP:
             /* later ! */
             break;
     }
+    Serial.println("");
 }
 
 void ControlLoop::compute_cmds(){

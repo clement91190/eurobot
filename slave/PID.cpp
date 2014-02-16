@@ -47,7 +47,7 @@ float PID::compute(float input){
     Serial.print(" target ");
     Serial.print(target);
     Serial.print(" input ");
-    Serial.println(input);
+    Serial.print(input);
  
     I_sum = I_sum + Ki * error;
     if (I_sum > maxV){
