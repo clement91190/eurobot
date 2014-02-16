@@ -3,6 +3,7 @@
 #include "Period.h"
 #include "Autom.h"
 #include "Arduino.h"
+#include "Coord.h"
 //#include <stdio.h>
 #include <iterator>
 #include <string>       // std::string
@@ -27,6 +28,7 @@ class OrdersRaspberry {
 
 	private:
 	Period period;
+    int serial_count;
 	
 	std::string s;
 	bool treated;

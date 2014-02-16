@@ -31,6 +31,7 @@ class Autom
         void update_coords();
         void reset_tics_odos();
         void run();
+        ControlLoop* get_control();
         
 };
 #endif

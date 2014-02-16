@@ -7,14 +7,14 @@ Autom::Autom():
     period_pid_loop(30),
     gain_odo_g(-0.408),
     gain_odo_d(-0.408),
-    gain_inter_odos(0.00163038),
+    gain_inter_odos(0.0032606),
     last_ticG(0),
     last_ticD(0)
    {}
 
 void Autom::update_cap(){
     /* attention ici, faudra tester la precision*/
-    float cap = (ticD * gain_odo_d - ticG * gain_odo_d) * gain_inter_odos;       
+    float cap = (ticD * gain_odo_d - ticG * gain_odo_g) * gain_inter_odos;       
     real_coord.set_cap(cap);
 }
 
@@ -84,3 +84,6 @@ void Autom::run(){
     }
 }
 
+ControlLoop* Autom::get_control(){
+    return &control;
+}

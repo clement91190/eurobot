@@ -4,7 +4,7 @@
 //
 
 
-OrdersRaspberry::OrdersRaspberry(Autom* slave_) : period(100), slave(slave_)
+OrdersRaspberry::OrdersRaspberry(Autom* slave_) : period(100), slave(slave_), serial_count(0)
 {
     treated=true;
     //s.resize(28);
@@ -25,6 +25,7 @@ void OrdersRaspberry::run()
             executeinstr();
             treated = true;
             stream.str("");
+            serial_count = 0;
             s="";
             //s.resize(28);
         }
@@ -34,14 +35,17 @@ void OrdersRaspberry::run()
 
 void OrdersRaspberry::treatSerial()
 {
-    int serial_count = 0;
+    //int serial_count(0);
     char serial_char;
+    //serial_count = 0;
+    //Serial.println("coucou");
 
     // Ici on traite les différents messages reçus.
     while(Serial.available()>0 && serial_count < 28)
     {
-        delay(1);
+        //delay(8);
         serial_char= Serial.read();
+        //Serial.println(serial_char);
         if (serial_char =='\n')
         {
             Serial.println("Fin de ligne");
@@ -55,11 +59,13 @@ void OrdersRaspberry::treatSerial()
                 treated = false;
             }
             Serial.print("Enregistre : ");
-            Serial.print(serial_count);
-            Serial.println(s.c_str());
+            Serial.print(s.c_str());
+            Serial.print("  serial_count  ");
+            Serial.println(serial_count);
             return;
         }
-        s += serial_char;
+        //Serial.println(serial_count);
+        s = s + serial_char;
         serial_count = serial_count + 1;
     }
 }
@@ -76,14 +82,18 @@ void OrdersRaspberry::executeinstr()
     Serial.print(ordre);
     Serial.print("@");
     Serial.println(ind);
+    
+    std::string temp2;
 
-    int cap = 0;
+
+    std::string cap;
     int x = 0;
     int y = 0;
     int r = 0;
     int v = 0;
     int s=0;
     bool precis;
+    Coord target;
     switch (ordre)
     {
     case 'S' :
@@ -110,8 +120,11 @@ void OrdersRaspberry::executeinstr()
             {
                 Serial.print ("err ");
             }
+            target = Coord(0, 0, 3.14 * atoi(cap.c_str()) / 180.0);
             Serial.print ("BFCap ");
-            Serial.println(cap);
+            Serial.println(atoi(cap.c_str()));
+            Serial.println(BFCAP);
+            slave->get_control()->set_BF(BFCAP, target); 
          //   slave->set<BFCap>(cap,precis);
             break;
         case 4: //BFAvance
@@ -135,7 +148,7 @@ void OrdersRaspberry::executeinstr()
             Serial.print(" ");
             Serial.print(y);
             Serial.print(" ");
-            Serial.print(cap);
+            //Serial.print(cap);
             Serial.print(" ");
             Serial.println(v);
 
@@ -152,7 +165,7 @@ void OrdersRaspberry::executeinstr()
             Serial.print(" ");
             Serial.print(r);
             Serial.print(" ");
-            Serial.print(cap);
+            //Serial.print(cap);
             Serial.print(" ");
             Serial.print(s);
             Serial.print(" ");
@@ -176,7 +189,7 @@ void OrdersRaspberry::executeinstr()
             Serial.print(" ");
             Serial.print(y);
             Serial.print(" ");
-            Serial.print(cap);
+            //Serial.print(cap);
             Serial.println(" ");
           //  slave->setXYCap(x, y ,cap);
             break;

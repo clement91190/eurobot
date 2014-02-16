@@ -3,6 +3,7 @@
 
 #define MANUAL 0
 #define AUTOMATIC 1
+#include"Arduino.h"
 
 class PID
 {
