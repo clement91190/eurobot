@@ -1,9 +1,9 @@
 #include "ControlLoop.h"
 
 ControlLoop::ControlLoop():
-    pidcap(),
-    bf_type(0),
-    piddep(),
+    pidcap(GAIN_KP_CAP, GAIN_KI_CAP, GAIN_KD_CAP),
+    piddep(GAIN_KP_DEP, GAIN_KI_DEP, GAIN_KD_DEP),
+    bf_type(STOP),
     cmd_d(0),
     cmd_g(0),
     fw_d(true),
@@ -29,9 +29,12 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
         case BFFW:
             target_position.forward_translation(target_position_.get_x());
             dir = Vector(real_coord, target_position);
-            d = dir.norm();
+            if (target_position_.get_x() < 0){
+                dir.neg();
+            }
+            //d = dir.norm();
             dir.normalize();    
-            piddep.setTarget(d);
+            piddep.setTarget(0.0);
             break;
         case BFCAP:
             target_position.set_cap(target_position_.get_cap());
@@ -47,7 +50,9 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
 void ControlLoop::compute_pids(){
     /* update cmd_dep ;
      * cmd_cap */
+    
     Vector to_target;
+    target_position.write_serial();
     switch (bf_type){
         case STOP:
             cmd_cap = 0;
@@ -55,7 +60,8 @@ void ControlLoop::compute_pids(){
         case BFFW:
             cmd_cap = 0;
             to_target = Vector(real_coord, target_position);
-            cmd_cap = pidcap.compute(to_target.scalar(dir)); // the error is a scalar product
+            //Serial.println(to_target.scalar(dir));
+            cmd_dep = -piddep.compute(to_target.scalar(dir)); // the error is a scalar product
             break;
         case BFCAP:
             cmd_dep = 0;

@@ -87,7 +87,7 @@ void OrdersRaspberry::executeinstr()
 
 
     std::string cap;
-    int x = 0;
+    std::string x;
     int y = 0;
     int r = 0;
     int v = 0;
@@ -129,18 +129,20 @@ void OrdersRaspberry::executeinstr()
             break;
         case 4: //BFAvance
 
-            stream >> x >>v;
+            stream >> x >> v;
             Serial.println("BFAvance");
             Serial.print(" ");
-            Serial.print(x);
+            Serial.print(atoi(x.c_str()));
             Serial.print(" ");
             Serial.println(v);
+            target = Coord(atoi(x.c_str()), 0, 0);
+            slave->get_control()->set_BF(BFFW, target); 
 
             //vit=determinerVitesse(v);
       //      slave->set<BFAvance>(x , vit );
             break;
         case 5: //BFDroite
-
+            /*
             stream>>x >>y >> cap>> v>>precis;
 
             Serial.println("BFDroite");
@@ -151,13 +153,13 @@ void OrdersRaspberry::executeinstr()
             //Serial.print(cap);
             Serial.print(" ");
             Serial.println(v);
-
+            */
             //vit=determinerVitesse(v);
         //    slave->set<BFDroite>(x,y,cap ,vit,precis);
             break;
         case 6: //BFCercle
             stream>> x >> y >> r >> cap>> s >> v;
-
+            /*
             Serial.println("BFCercle");
             Serial.print(x);
             Serial.print(" ");
@@ -172,7 +174,7 @@ void OrdersRaspberry::executeinstr()
             Serial.println(v);
             //vit=determinerVitesse(v);
          //   slave->set<BFCercle>(x,y,r, cap ,s,  vit);
-            break;
+            break;*/
         case 7: //Recal
             Serial.println("Arret Robot");
          //   slave->set<ARRET_ROBOT>();
@@ -183,6 +185,7 @@ void OrdersRaspberry::executeinstr()
             break;
 
         case 9:
+            /*
             stream>> x >> y >> cap;
             Serial.println("setXYCap");
             Serial.print(x);
@@ -191,7 +194,7 @@ void OrdersRaspberry::executeinstr()
             Serial.print(" ");
             //Serial.print(cap);
             Serial.println(" ");
-          //  slave->setXYCap(x, y ,cap);
+          //  slave->setXYCap(x, y ,cap);*/
             break;
         }
         return;

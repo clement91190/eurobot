@@ -52,7 +52,7 @@ void Autom::send_cmd(){
  analogWrite(PIN_MOT_CMDG, cmd_g);
  analogWrite(PIN_MOT_CMDD, cmd_d);
  
- //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
+  //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
 }
 
 void Autom::write_cmd(int cmd_g, int cmd_d, bool fw_g, bool fw_d){

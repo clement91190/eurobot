@@ -25,10 +25,10 @@ void Coord::forward_translation(float d){
 
 void Coord::write_serial()
 {
-    Serial.print("ticG  :");
-    Serial.print(ticG);
-    Serial.print("  ticD  :");
-    Serial.print(ticD);
+    //Serial.print("ticG  :");
+   // Serial.print(ticG);
+   // Serial.print("  ticD  :");
+   // Serial.print(ticD);
     Serial.print("  x  :");
     Serial.print(int(x));
     Serial.print("  y :");
@@ -53,6 +53,11 @@ float Vector::norm(){
     return sqrt(x*x + y*y);
 }
 
+void Vector::neg(){
+    x = -x;
+    y = -y;
+}
+
 void Vector::normalize(){
     float len = norm();
     x = x / len;
@@ -63,6 +68,6 @@ float Vector::get_x(){return x;}
 float Vector::get_y(){return y;}
 
 float Vector::scalar(Vector u){
-   return x * u.get_x() + y * get_y(); 
+   return x * u.get_x() + y * u.get_y(); 
 }
 

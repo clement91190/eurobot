@@ -12,7 +12,7 @@ PID::PID():last_input(0.),
 {
 }
 
-PID::PID(float Kp_, float Ki_, float Kd_)
+PID::PID(float Kp_, float Ki_, float Kd_):
     last_input(0.),
     I_sum(0.),
     target(0.),
@@ -42,12 +42,12 @@ void PID::setTuning(float Kp_, float Ki_, float Kd_){
 float PID::compute(float input){
     if (!inAuto) {return 0.;}
     float error = target - input;
-    //Serial.print("error");
-    //Serial.print(error);
-   // Serial.print(" target ");
-    //Serial.print(target);
-    //Serial.print(" input ");
-    //Serial.println(input);
+    Serial.print("error");
+    Serial.print(error);
+    Serial.print(" target ");
+    Serial.print(target);
+    Serial.print(" input ");
+    Serial.println(input);
  
     I_sum = I_sum + Ki * error;
     if (I_sum > maxV){

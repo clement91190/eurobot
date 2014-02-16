@@ -34,6 +34,7 @@ class Vector
         Vector();
         Vector(Coord u, Coord v);
         float norm();
+        void neg();
         void normalize();
         float scalar(Vector u);
         float get_x();

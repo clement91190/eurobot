@@ -11,14 +11,18 @@
 #define BFCAP 2
 #define BFXYCAP 3
 
-    
-#define GAIN KP_DEP 3.45
-#define GAIN KD_DEP 4.6
-#define GAIN KI_DEP 0.6468
+     
+//#define GAIN_KP_DEP 3.45
+//#define GAIN_KD_DEP 4.6
+//#define GAIN_KI_DEP 0.6468
 
-#define GAIN KP_CAP 1.0
-#define GAIN KD_CAP 0.
-#define GAIN KI_CAP 0.
+#define GAIN_KP_DEP 0.3
+#define GAIN_KD_DEP 0.1
+#define GAIN_KI_DEP 0.25
+
+#define GAIN_KP_CAP 70.0
+#define GAIN_KD_CAP 20.0
+#define GAIN_KI_CAP 50.0
 
 class ControlLoop
 /* This class gets the updated coordinate, and talk to the 2 PID
