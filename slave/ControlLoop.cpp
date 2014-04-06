@@ -52,7 +52,7 @@ void ControlLoop::compute_pids(){
      * cmd_cap */
     
     Vector to_target;
-    target_position.write_serial();
+    real_coord.write_serial();
     to_target = Vector(real_coord, target_position);
 
     switch (bf_type){

@@ -4,6 +4,7 @@
 //
 //
 
+//-> ok for PMI
 long ticG = 0;
 long ticD = 0;
 
@@ -24,11 +25,11 @@ void inc_ticD(){
     int chb = digitalRead(PIN_ODO_DIRD) ;
     if (chb == 1)
     {
-    ticD = ticD + 1;
+    ticD = ticD - 1;
     }
     else
     {
-    ticD = ticD - 1; 
+    ticD = ticD + 1; 
     }
 }
 

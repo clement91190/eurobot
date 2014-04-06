@@ -26,11 +26,11 @@ void setup()
   pinMode(PIN_MOT_DIRD, OUTPUT);
   pinMode(PIN_MOT_CMDG, OUTPUT);
   pinMode(PIN_MOT_CMDD, OUTPUT);
-  int prescalerVal = 0x07;
+  //int prescalerVal = 0x07;
   //TCCR0B = xxxxx010, frequency is 8 kHz
-  TCCR0B &= ~prescalerVal;
+  //TCCR0B &= ~prescalerVal;
   //prescalerVal = 1;
-  TCCR0B |= 1;
+  //TCCR0B |= 1;
   slave = new Autom();
   com = new OrdersRaspberry(slave);
 }
@@ -44,9 +44,8 @@ void loop(){
   }
   if (ticD >=0){
     dir = -1;
-  }
-  print_tic_odo();
-  */
+  }*/
+  //print_tic_odo();
   
  //write_cmd();   
  //Serial.println(vitesse);

@@ -8,7 +8,7 @@
 class PID
 {
     private: 
-        float last_input;
+        float last_error;
         float I_sum; 
         float target;
         float Kp;

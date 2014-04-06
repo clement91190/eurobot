@@ -1,6 +1,6 @@
 #include "PID.h"
 
-PID::PID():last_input(0.),
+PID::PID():last_error(0.),
     I_sum(0.),
     target(0.),
     Kp(3.45),  //Ku = 5.75
@@ -13,7 +13,7 @@ PID::PID():last_input(0.),
 }
 
 PID::PID(float Kp_, float Ki_, float Kd_):
-    last_input(0.),
+    last_error(0.),
     I_sum(0.),
     target(0.),
     Kp(Kp_),  //Ku = 5.75
@@ -42,26 +42,34 @@ void PID::setTuning(float Kp_, float Ki_, float Kd_){
 float PID::compute(float input){
     if (!inAuto) {return 0.;}
     float error = target - input;
-    Serial.print("error");
-    Serial.print(error);
-    Serial.print(" target ");
-    Serial.print(target);
-    Serial.print(" input ");
-    Serial.print(input);
+    //Serial.print("error");
+    //Serial.print(error);
+   // Serial.print(" target ");
+    //Serial.print(target);
+    //Serial.print(" input ");
+    //Serial.print(input);
  
     I_sum = I_sum + Ki * error;
-    if (I_sum > maxV){
-        I_sum = maxV;}
-    else if (I_sum < minV){
-        I_sum = minV;} 
-    float dinput = input - last_input;
-
-    float out = Kp * error + I_sum - Kd * dinput;
+    //saturation of I term
+    //if (I_sum > maxV){
+    //    I_sum = maxV;}
+    //else if (I_sum < minV){
+    //    I_sum = minV;} 
+    // reset integrator in case of not agree with prop
+    //
+    //if (I_sum * error < 0)
+    //{
+    //    I_sum = 0.;
+    //}
+    float derror = error - last_error;
+    last_error = error;
+    float out = Kp * error + I_sum + Kd * derror;
     if (out > maxV){
-        out = maxV;}
+        out = maxV;
+        I_sum = I_sum - Ki * error;}
     else if (out < minV){
-        out = minV;} 
-    last_input = input;
+        out = minV;
+        I_sum = I_sum - Ki * error;}
     return out;
 } 
 
@@ -80,6 +88,6 @@ void PID::turn_on(bool on_off, float input)
 
 void PID::init(float input)
 {
-    last_input = input;
+    last_error = 0;
     I_sum = 0;
 }

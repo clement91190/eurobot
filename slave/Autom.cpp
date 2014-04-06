@@ -5,9 +5,9 @@ Autom::Autom():
     real_coord(),
     period_update_coords(10),
     period_pid_loop(30),
-    gain_odo_g(-0.408),
-    gain_odo_d(-0.408),
-    gain_inter_odos(0.0032606),
+    gain_odo_g(0.3),
+    gain_odo_d(0.3),
+    gain_inter_odos(0.012),
     last_ticG(0),
     last_ticD(0)
    {}
@@ -39,6 +39,9 @@ void Autom::send_cmd(){
 
  int cmd_g = control.get_cmd_g();
  int cmd_d = control.get_cmd_d();
+// cmd_g = 120;
+//    cmd_d = 120;
+
  bool fw_g = control.get_fw_g();
  bool fw_d = control.get_fw_d();
 
@@ -52,7 +55,8 @@ void Autom::send_cmd(){
  analogWrite(PIN_MOT_CMDG, cmd_g);
  analogWrite(PIN_MOT_CMDD, cmd_d);
  
-  //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
+ //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
+  write_cmd(cmd_g, cmd_d, fw_g, fw_d);
 }
 
 void Autom::write_cmd(int cmd_g, int cmd_d, bool fw_g, bool fw_d){
