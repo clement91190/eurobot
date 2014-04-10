@@ -71,7 +71,8 @@ void ControlLoop::compute_pids(){
             Serial.print ("  CAP  ");
             cmd_cap = pidcap.compute(real_coord.get_cap());
             Serial.print ("  DEP  ");
-            cmd_dep = - piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
+            //cmd_dep = - piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
+            cmd_dep = 0
 
             Vector(real_coord).write_serial();
             to_target.write_serial();
@@ -89,8 +90,8 @@ void ControlLoop::compute_cmds(){
     cmd_g = (cmd_dep / 2) - (cmd_cap / 2);
     cmd_d = (cmd_dep / 2) + (cmd_cap / 2);
       
-    fw_g = cmd_g >= 0;
-    fw_d = cmd_d >= 0;
+    fw_g = cmd_g <= 0;
+    fw_d = cmd_d <= 0;
 
     if (cmd_g <0){ cmd_g = - cmd_g;}
     if (cmd_d <0){ cmd_d = - cmd_d;}

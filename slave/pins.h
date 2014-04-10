@@ -8,9 +8,9 @@
 #define PIN_ODO_DIRD  12
 #define PIN_ODO_DIRG  11
 
-#define PIN_MOT_CMDD  5
-#define PIN_MOT_CMDG  6
-#define PIN_MOT_DIRD  9
-#define PIN_MOT_DIRG  10
+#define PIN_MOT_CMDD  9
+#define PIN_MOT_CMDG  10
+#define PIN_MOT_DIRD  5
+#define PIN_MOT_DIRG  6
 
 #endif
