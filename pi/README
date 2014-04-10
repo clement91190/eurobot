@@ -1,0 +1,19 @@
+Config Raspberry pi: 
+
+NOOBS -> Raspbian
+
+ip static : 
+iface lo inet loopback
+iface eth0 inet static
+address 192.168.0.1
+netmask 255.255.255.0
+gateway 0.0.0.0
+
+TODO:
+internet -> 
+install arduino, iPython
+
+TODO:
+arduino -> test odos, slave, reglages gains.
+
+
