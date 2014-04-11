@@ -16,4 +16,5 @@ install arduino, iPython
 TODO:
 arduino -> test odos, slave, reglages gains.
 
-
+folder pathfinding.
+  -> A* like implementation to give waypoint to slave in order to go to target point.
