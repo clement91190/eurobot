@@ -5,9 +5,9 @@ Autom::Autom():
     real_coord(),
     period_update_coords(10),
     period_pid_loop(30),
-    gain_odo_g(0.3),
-    gain_odo_d(0.3),
-    gain_inter_odos(0.012),
+    gain_odo_g(0.357),
+    gain_odo_d(0.357),
+    gain_inter_odos(0.01309),
     last_ticG(0),
     last_ticD(0)
    {}

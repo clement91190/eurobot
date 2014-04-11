@@ -16,13 +16,13 @@
 //#define GAIN_KD_DEP 4.6
 //#define GAIN_KI_DEP 0.6468
 
-#define GAIN_KP_DEP 0.5
-#define GAIN_KD_DEP 0.2
-#define GAIN_KI_DEP 0.35
+#define GAIN_KP_DEP 1.5
+#define GAIN_KD_DEP 0.0 //0.2
+#define GAIN_KI_DEP 0.0 //0.35
 
-#define GAIN_KP_CAP 90.0
-#define GAIN_KD_CAP 40.0
-#define GAIN_KI_CAP 70.0
+#define GAIN_KP_CAP 100.0  //Ku = 260
+#define GAIN_KI_CAP 0. //52.0 //70.0
+#define GAIN_KD_CAP 18.0 //40.0
 
 class ControlLoop
 /* This class gets the updated coordinate, and talk to the 2 PID
