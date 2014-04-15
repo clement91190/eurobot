@@ -65,16 +65,20 @@ class MAESquare(MAE):
 def main():
     mae = MAESquare()
     mae.draw()
-    time.sleep(1)
+    #time.sleep(1)
+    serr.close()
+    serr.open()
+    print serr.readline()
+    raw_input()	    
     serr.write('S3 0\n')
     print "coucou"
     while True:
         mae.verbose = True
         mae.run()
         if serr.inWaiting() > 0:
-            print "read line"
+            #print "read line"
             transition = serr.readline()
-            print "done ", transition, "red"
+            #print "done ", transition, "red"
             if transition == "AFINI\r\n": 
                 mae.trigger("AFINI")
 
