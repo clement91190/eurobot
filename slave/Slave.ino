@@ -52,11 +52,11 @@ void loop(){
  // Serial.print(dir); 
   //delay(800);
    delay(1);
-   int sensorValue = analogRead(A5);
-   Serial.print(int(sensorValue * 300.0 / 1023 + 100.0));
-   Serial.println( " mm");
-   // com->run();
-    //slave->run();
+   //int sensorValue = analogRead(A5);
+   //Serial.print(int(sensorValue * 300.0 / 1023 + 100.0));
+   //Serial.println( " mm");
+    com->run();
+    slave->run();
       
 }
 
