@@ -2,8 +2,10 @@ import pygraphviz as pgv
 
 
 class State():
-    def __init__(self, name="name of state"):
+    def __init__(self, name=""):
         self.transitions = {}  # dict of transition : "string" -> state
+        if name == "":
+            name = self.__class__.__name__
         self.name = name
 
     def in_code(self):
@@ -66,7 +68,8 @@ class MAE():
             new_state = self.current_state.transitions.get(t, None)
             self.go_to(new_state)
             if new_state is None and self.verbose:
-                print "no transition {} in state {}".format(t, self.current_state)
+                pass
+                #print "no transition {} in state {}".format(t, self.current_state)
 
         self.transitions_to_be_done = [""]
 

@@ -4,6 +4,7 @@ ControlLoop::ControlLoop():
     pidcap(GAIN_KP_CAP, GAIN_KI_CAP, GAIN_KD_CAP, NEAR_ERROR_CAP, DONE_ERROR_CAP),
     piddep(GAIN_KP_DEP, GAIN_KI_DEP, GAIN_KD_DEP, NEAR_ERROR_DEP, DONE_ERROR_DEP),
     bf_type(STOP),
+    asserv_state(DONE),
     cmd_d(0),
     cmd_g(0),
     fw_d(true),
@@ -60,6 +61,7 @@ void ControlLoop::next_asserv_state(){
         case NEAR:
             asserv_state = DONE ;
             Serial.println("AFINI");
+            bf_type = STOP;
             break;
     }
 }
@@ -69,7 +71,7 @@ void ControlLoop::compute_pids(){
      * cmd_cap */
     
     Vector to_target;
-    real_coord.write_serial();
+    //real_coord.write_serial();
     to_target = Vector(real_coord, target_position);
     switch (bf_type){
         case STOP:
@@ -85,7 +87,7 @@ void ControlLoop::compute_pids(){
             cmd_cap = pidcap.compute(real_coord.get_cap());
             if (piddep.check_if_over(asserv_state) && pidcap.check_if_over(asserv_state))
             {
-                
+               next_asserv_state(); 
             }
             break;
         case BFCAP:
@@ -99,14 +101,19 @@ void ControlLoop::compute_pids(){
             cmd_dep = 0;
 
             //Vector(real_coord).write_serial();
-            to_target.write_serial();
+            //to_target.write_serial();
+            if (pidcap.check_if_over(asserv_state))
+            {
+               next_asserv_state(); 
+            }
+        
             //Serial.println(cmd_cap);
             break;
         case BFXYCAP:
             /* later ! */
             break;
     }
-    Serial.println("");
+    //Serial.println("");
 }
 
 void ControlLoop::compute_cmds(){

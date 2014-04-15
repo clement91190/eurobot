@@ -4,7 +4,7 @@
 Autom::Autom():
     real_coord(),
     period_update_coords(10),
-    period_pid_loop(30),
+    period_pid_loop(40),
     gain_odo_g(0.357),
     gain_odo_d(0.357),
     gain_inter_odos(0.01309),
@@ -56,7 +56,7 @@ void Autom::send_cmd(){
  analogWrite(PIN_MOT_CMDD, cmd_d);
  
  //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
-  write_cmd(cmd_g, cmd_d, fw_g, fw_d);
+  //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
 }
 
 void Autom::write_cmd(int cmd_g, int cmd_d, bool fw_g, bool fw_d){
