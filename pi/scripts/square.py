@@ -14,7 +14,7 @@ class Turn1(State):
 
 class Forward1(State):
     def in_code(self):
-        serr.write('S4 500\n')
+        serr.write('S4 250\n')
 
 
 class Turn2(State):
@@ -24,7 +24,7 @@ class Turn2(State):
 
 class Forward2(State):
     def in_code(self):
-        serr.write('S4 500\n')
+        serr.write('S4 250\n')
 
 
 class Turn3(State):
@@ -34,7 +34,7 @@ class Turn3(State):
 
 class Forward3(State):
     def in_code(self):
-        serr.write('S4 500\n')
+        serr.write('S4 250\n')
 
 
 class Turn4(State):
@@ -44,7 +44,7 @@ class Turn4(State):
 
 class Forward4(State):
     def in_code(self):
-        serr.write('S4 500\n')
+        serr.write('S4 250\n')
 
 
 class MAESquare(MAE):
@@ -78,7 +78,7 @@ def main():
         if serr.inWaiting() > 0:
             #print "read line"
             transition = serr.readline()
-            #print "done ", transition, "red"
+            print "done ", transition
             if transition == "AFINI\r\n": 
                 mae.trigger("AFINI")
 
