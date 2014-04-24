@@ -23,23 +23,21 @@ class State():
 
 
 class InitState(State):
-    def __init__(self):
-        State.__init__(self)
-        self.name = "init"
+    def __init__(self, name="init"):
+        State.__init__(self, name)
 
 
 class OutState(State):
-    def __init__(self):
-        State.__init__(self)
-        self.name = "out"
+    def __init__(self, name="out"):
+        State.__init__(self, name)
 
 
 class MAE():
-    def __init__(self, state_list=[InitState()], verbose=False):
+    def __init__(self, state_list=[InitState()], verbose=True):
         self.state_list = state_list
         self.verbose = verbose
         self.reinit_state()
-        self.transitions_to_be_done = []
+        self.transitions_to_be_done = [""]
 
     def reinit_state(self, state=None):
         if state is None:
@@ -49,54 +47,89 @@ class MAE():
         if self.verbose:
             print self.current_state
 
+    def go_to(self, new_state):
+        """ check if new_state is not None and go there """
+        if new_state is not None:
+            if self.verbose:
+                print "transition from {} to {}".format(self.current_state.name, new_state.name)
+            self.current_state.out_code()
+            self.current_state = new_state
+            self.current_state.in_code()
+
     def run(self):
         self.current_state.while_code()
+        # for special out transition for MAEState
+        if isinstance(self.current_state, MAEState) and self.current_state.mae.is_over():
+            new_state = self.current_state.out_transitions.get(self.current_state.mae.current_state, None)
+            self.go_to(new_state)
         for t in self.transitions_to_be_done:
             new_state = self.current_state.transitions.get(t, None)
-            if new_state is not None:
-                if self.verbose:
-                    print "transition from {} to {}".format(self.current_state.name, new_state.name)
-                self.current_state.out_code()
-                self.current_state = new_state
-                self.current_state.in_code()
-            else:
-                print "no such transition"
-        self.transitions_to_be_done = []
+            self.go_to(new_state)
+            if new_state is None and self.verbose:
+                print "no transition {} in state {}".format(t, self.current_state)
+
+        self.transitions_to_be_done = [""]
 
     def trigger(self, transition):
-        if self.current_state.__class__.__name__ == 'MAEState':
+        """ the transition "" is the direct transition """
+        if isinstance(self.current_state, MAEState):
             self.current_state.trigger(transition)
+            if self.current_state.mae.is_over():
+                self.transitions_to_be_done.append("out")
         """ trigger the transition to change state """
         self.transitions_to_be_done.append(transition)
 
     def draw(self, file='mae_render.png'):
         """ draw the mae for debugging purposes """
         graph = pgv.AGraph(directed=True)
-        graph.add_node(self.state_list[0].name, color='red')
         for state in self.state_list:
             for t, s2 in state.transitions.iteritems():
                 graph.add_edge(state.__str__(), s2.__str__(), label=t, arrowhead='diamond')
+            if isinstance(state, MAEState):
+                for out_state, next_state in state.out_transitions.iteritems():
+                    graph.add_edge(state, next_state, label="from_{}".format(out_state), arrowhead="diamond", color="green")
+        for i, state in enumerate(self.state_list):
+            if i == 0:
+                init_node = graph.get_node(state.__str__())
+                init_node.attr['color'] = 'red'
+            if isinstance(state, MAEState):
+                node = graph.get_node(state.__str__())
+                node.attr['color'] = 'green'
+
+            graph.add_node(self.state_list[0].__str__(), color='red')
+
         graph.layout(prog='dot')
         graph.draw(file)
+
+    def is_over(self):
+        return isinstance(self.current, OutState)
 
 
 class MAEState(State):
     """ State with a MAE inside """
     def __init__(self, mae, name="name of MAE STate"):
+        State.__init__(self, name)
         self.mae = mae
         self.name = name
         self.verbose = False
+        self.out_transitions = {}
 
     def in_code(self):
         self.mae.current_state = self.mae.reinit_state()
 
     def while_code(self):
         self.mae.run(self.verbose)
-        if self.mae.current_state.name == "out":
-            self.trigger("out")
 
     def trigger(self, transition):
         self.mae.trigger(transition)
+
+    def add_out_transition(self, out_state_name, next_state):
+        """ add a direct transition from the out_state """
+        for state in self.mae:
+            if isinstance(state, OutState) and state.name == out_state_name:
+                self.out_transition[out_state_name] = next_state
+            else:
+                raise NotImplementedError("no state named {}".format(out_state_name))
 
 
 def debugger(mae):

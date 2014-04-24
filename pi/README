@@ -11,10 +11,12 @@ gateway 0.0.0.0
 
 TODO:
 internet -> 
-install arduino, iPython
+install arduino, iPython, graphviz, libgraphviz-dev, pip
 
 TODO:
 arduino -> test odos, slave, reglages gains.
 
 folder pathfinding.
   -> A* like implementation to give waypoint to slave in order to go to target point.
+
+mae_generator is a generator of state machine, you can trigger a transition and run the state machine. To see the the result using graphviz (install graphviz and pygraphviz) use draw.
