@@ -20,3 +20,16 @@ folder pathfinding.
   -> A* like implementation to give waypoint to slave in order to go to target point.
 
 mae_generator is a generator of state machine, you can trigger a transition and run the state machine. To see the the result using graphviz (install graphviz and pygraphviz) use draw.
+
+
+init the git server on the robot : git init --bare .
+init the repo on the robot : git clone folder
+add remote : git remote add pmi  ssh://pi@192.168.0.49/src/eurobot
+
+ensuite :
+
+upload code on robot :
+git push pmi master (ou branch)
+depuis le robot dans le repo : git pull
+
+

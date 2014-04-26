@@ -1,8 +1,8 @@
 #include "ControlLoop.h"
 
 ControlLoop::ControlLoop():
-    pidcap(GAIN_KP_CAP, GAIN_KI_CAP, GAIN_KD_CAP),
-    piddep(GAIN_KP_DEP, GAIN_KI_DEP, GAIN_KD_DEP),
+    pidcap(GAIN_KP_CAP, GAIN_KI_CAP, GAIN_KD_CAP, NEAR_ERROR_CAP, DONE_ERROR_CAP),
+    piddep(GAIN_KP_DEP, GAIN_KI_DEP, GAIN_KD_DEP, NEAR_ERROR_DEP, DONE_ERROR_DEP),
     bf_type(STOP),
     cmd_d(0),
     cmd_g(0),
@@ -22,6 +22,9 @@ void ControlLoop::bf_avance(float d){
 void ControlLoop::set_BF(int bf_type_, Coord target_position_){
 
     bf_type = bf_type_;
+    asserv_state = FAR; 
+    pidcap.reinit();
+    piddep.reinit();
     float d;
     switch(bf_type){
         case STOP:
@@ -47,6 +50,20 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
 
 }
 
+
+void ControlLoop::next_asserv_state(){
+    switch (asserv_state){
+        case FAR:
+            asserv_state = NEAR ; 
+            Serial.println("NEAR");
+            break;
+        case NEAR:
+            asserv_state = DONE ;
+            Serial.println("AFINI");
+            break;
+    }
+}
+
 void ControlLoop::compute_pids(){
     /* update cmd_dep ;
      * cmd_cap */
@@ -66,6 +83,10 @@ void ControlLoop::compute_pids(){
             //Serial.println(to_target.scalar(dir));
             cmd_dep = - piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
             cmd_cap = pidcap.compute(real_coord.get_cap());
+            if (piddep.check_if_over(asserv_state) && pidcap.check_if_over(asserv_state))
+            {
+                
+            }
             break;
         case BFCAP:
             //Serial.println("coucou BFCAP");
