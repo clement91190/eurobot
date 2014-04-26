@@ -6,11 +6,11 @@
 
 
 
+// type of BF
 #define STOP 0
 #define BFFW 1
 #define BFCAP 2
 #define BFXYCAP 3
-
      
 //#define GAIN_KP_DEP 3.45
 //#define GAIN_KD_DEP 4.6
@@ -18,11 +18,17 @@
 
 #define GAIN_KP_DEP 1.5
 #define GAIN_KD_DEP 0.0 //0.2
-#define GAIN_KI_DEP 0.0 //0.35
+#define GAIN_KI_DEP 0.3 //0.35
+#define NEAR_ERROR_DEP 70.0
+#define DONE_ERROR_DEP  10.0
+
 
 #define GAIN_KP_CAP 100.0  //Ku = 260
 #define GAIN_KI_CAP 0. //52.0 //70.0
 #define GAIN_KD_CAP 18.0 //40.0
+#define NEAR_ERROR_CAP 10.0
+#define DONE_ERROR_CAP  5.0
+
 
 class ControlLoop
 /* This class gets the updated coordinate, and talk to the 2 PID
@@ -34,6 +40,7 @@ class ControlLoop
         Coord target_position;
         Vector dir;
         int bf_type; // see define 
+        int asserv_state; // see define in PID -> FAR, NEAR
         PID pidcap;
         PID piddep;
         int cmd_g;
@@ -57,6 +64,7 @@ class ControlLoop
         void compute_pids();
         void compute_cmds();
         void set_BF(int bf_type_, Coord target_position_);
+        void next_asserv_state();
 };
 
 

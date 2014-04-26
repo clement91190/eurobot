@@ -5,6 +5,11 @@
 #define AUTOMATIC 1
 #include"Arduino.h"
 
+//distance to target
+#define NEAR 1 
+#define FAR 2
+#define DONE 3
+
 class PID
 {
     private: 
@@ -14,13 +19,18 @@ class PID
         float Kp;
         float Ki;
         float Kd;
+        float near_error_value; // pid is in state near if error under near_error_value
+        float done_error_value; //pid is finished if stayed k time with error under done_error_value
+
         int minV;
         int maxV;
         bool inAuto;
+        int arrival_count; // to see when it's over
+        int pid_state; //see define distance to target
         
     public:
         PID();
-        PID(float Kp_, float Ki_, float Kd_);
+        PID(float Kp_, float Ki_, float Kd_, float near_error_value_, float done_error_value_);
         void setTuning(float Kp_, float Ki_, float Kd_);
         void setTarget(float target_);
         void addToTarget(float dep);
@@ -28,6 +38,10 @@ class PID
         void setOutputLimit(int max, int min);
         void turn_on(bool on_off, float input);
         void init(float input);
+        bool check_if_over(int pid_state);
+        void update_pid_state();
+        void set_pid_state(int state);
+        void reinit();
 
 };
 #endif
