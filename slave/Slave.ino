@@ -33,6 +33,7 @@ void setup()
   //TCCR0B |= 1;
   slave = new Autom();
   com = new OrdersRaspberry(slave);
+  Serial.println("SLAVE READY");
 }
 
 
@@ -55,6 +56,7 @@ void loop(){
    //int sensorValue = analogRead(A5);
    //Serial.print(int(sensorValue * 300.0 / 1023 + 100.0));
    //Serial.println( " mm");
+   
     com->run();
     slave->run();
       

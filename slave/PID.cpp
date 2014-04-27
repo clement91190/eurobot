@@ -65,7 +65,7 @@ float PID::compute(float input){
     //}
     float derror = error - last_error;
     last_error = error;
-    float out = Kp * error + I_sum + Kd * derror;
+    float out = Kp * error + I_sum + Kd * derror / 0.04;  //0.04 = period du slave
     if (out > maxV){
         out = maxV;
         I_sum = I_sum - Ki * error;}
@@ -83,30 +83,34 @@ void PID::set_pid_state(int state)
 void PID::reinit()
 {
     pid_state = FAR;
+    arrival_count = 0;
 }
 
 void PID::update_pid_state()
 {
+    float error = abs(last_error);
     switch(pid_state){
         case FAR:
-            if (last_error < near_error_value)
+            if (error < near_error_value)
             {
+                Serial.println("LAST ERROR");
+                Serial.println(last_error);
                 pid_state = NEAR;
             }
             break;
         case NEAR:
-            if (last_error < done_error_value)
+            if (error < done_error_value)
             {
                 arrival_count += 1;
             }
             else
             {
-                if (last_error > near_error_value)
+                if (error > near_error_value)
                 {
                     arrival_count = 0;
                 }
             }
-            if (arrival_count> 10)
+            if (arrival_count> 20)
             {
                 pid_state = DONE; 
             }
@@ -120,7 +124,7 @@ bool PID::check_if_over(int asserv_state)
     /* check if the pid is over or near ( for waypoints ) 
      *-> return true if pid_state is better than asserv_state
      * */
-    
+    update_pid_state(); 
     return pid_state != asserv_state;
 
 }
@@ -139,7 +143,7 @@ void PID::turn_on(bool on_off, float input)
 
 void PID::init(float input)
 {
-    last_error = 0;
-    I_sum = 0;
+    last_error = 0.;
+    I_sum = 0.;
     reinit();
 }
