@@ -85,8 +85,8 @@ void ControlLoop::compute_pids(){
             //cmd_cap = 0;
             //Serial.println(to_target.scalar(dir));
             cmd_dep = - piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
-            cmd_cap = 0; // pidcap.compute(real_coord.get_cap());
-            if (piddep.check_if_over(asserv_state)) // && pidcap.check_if_over(asserv_state))
+            cmd_cap = pidcap.compute(real_coord.get_cap());
+            if (piddep.check_if_over(asserv_state)  && pidcap.check_if_over(asserv_state))
             {
                next_asserv_state(); 
             }
