@@ -4,13 +4,16 @@
 Autom::Autom():
     real_coord(),
     period_update_coords(10),
+    control();
     period_pid_loop(40),
     gain_odo_g(0.357),
     gain_odo_d(0.357),
     gain_inter_odos(0.01309),
     last_ticG(0),
     last_ticD(0)
-   {}
+   {
+    send_cmd()
+   }
 
 void Autom::update_cap(){
     /* attention ici, faudra tester la precision*/
