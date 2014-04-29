@@ -65,7 +65,11 @@ class MAESquare(MAE):
 def main():
     mae = MAESquare()
     mae.draw()
-    time.sleep(1)
+    #time.sleep(1)
+    serr.close()
+    serr.open()
+    print serr.readline()
+    raw_input()
     serr.write('S3 0\n')
     print "coucou"
     while True:
