@@ -27,6 +27,12 @@ PID::PID(float Kp_, float Ki_, float Kd_, float near_error_value_, float done_er
 {
 }
 
+void PID::setMinMax(int v)
+{
+    minV = -v;
+    maxV = v;
+}
+
 void PID::setTarget(float target_){
     target = target_;
 }

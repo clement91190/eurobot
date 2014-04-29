@@ -42,6 +42,7 @@ class PID
         void update_pid_state();
         void set_pid_state(int state);
         void reinit();
+        void setMinMax(int v);
 
 };
 #endif

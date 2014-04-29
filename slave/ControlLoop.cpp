@@ -9,6 +9,7 @@ ControlLoop::ControlLoop():
     cmd_g(0),
     fw_d(true),
     fw_g(true){
+    piddep.setMinMax(100);
 };
 
 void ControlLoop::set_target(Coord coord){
