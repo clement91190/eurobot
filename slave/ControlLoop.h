@@ -16,9 +16,9 @@
 //#define GAIN_KD_DEP 4.6
 //#define GAIN_KI_DEP 0.6468
 
-#define GAIN_KP_DEP 1.
+#define GAIN_KP_DEP 0.9
 #define GAIN_KI_DEP 0. //0.35
-#define GAIN_KD_DEP 0.2 //0.25 //0.2
+#define GAIN_KD_DEP 0.25 //0.25 //0.2
 #define NEAR_ERROR_DEP 70.0
 #define DONE_ERROR_DEP  10.0
 
