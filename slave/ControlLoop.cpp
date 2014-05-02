@@ -8,8 +8,12 @@ ControlLoop::ControlLoop():
     cmd_d(0),
     cmd_g(0),
     fw_d(true),
+    real_coord(),
+    target_position(),
     fw_g(true){
+        
     piddep.setMinMax(100);
+
 };
 
 void ControlLoop::set_target(Coord coord){
@@ -40,6 +44,7 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
             //d = dir.norm();
             dir.normalize();    
             piddep.setTarget(0.0);
+            pidcap.setTarget(target_position.get_cap());
             break;
         case BFCAP:
             target_position.set_cap(target_position_.get_cap());
