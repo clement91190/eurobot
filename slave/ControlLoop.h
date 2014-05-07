@@ -65,6 +65,8 @@ class ControlLoop
         void compute_cmds();
         void set_BF(int bf_type_, Coord target_position_);
         void next_asserv_state();
+        void check_blockage();
+        void check_adversary();
 };
 
 

@@ -157,4 +157,12 @@ bool ControlLoop::get_fw_d(){
     return fw_d;
 }
     
-       
+void ControlLoop::check_blockage()
+{
+    /*code to test if moving when commands are sent*/
+}
+
+void ControlLoop::check_adversary()
+{
+    /**/
+}

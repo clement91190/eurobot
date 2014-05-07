@@ -5,13 +5,19 @@ NOOBS -> Raspbian
 ip static : 
 iface lo inet loopback
 iface eth0 inet static
-address 192.168.0.1
+address 192.168.0.x // 48 -> gros 49, petit
 netmask 255.255.255.0
-gateway 0.0.0.0
+network 192.168.0.254
+broadcast 192.168.0.255
+gateway 192.168.0.254
+
+auto wlan0
+allow-hotplug wlan0
+
 
 TODO:
 internet -> 
-install arduino, iPython, graphviz, libgraphviz-dev, pip
+install arduino, iPython, vim, git, graphviz, libgraphviz-dev, pip
 
 TODO:
 arduino -> test odos, slave, reglages gains.
