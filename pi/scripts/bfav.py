@@ -9,7 +9,7 @@ def main():
     serr.open()
     print serr.readline()
     raw_input()
-    serr.write('S4 350\n')
+    serr.write('S4 -250\n')
     print "coucou"
     while True:
         if serr.inWaiting() > 0:

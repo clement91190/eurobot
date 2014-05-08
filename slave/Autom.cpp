@@ -83,7 +83,7 @@ void Autom::run(){
     {
         period_update_coords.reset();
         update_coords();
-        real_coord.write_serial();
+        //real_coord.write_serial();
     }
     if (period_pid_loop.is_over())
     {
