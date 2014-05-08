@@ -44,10 +44,10 @@
 //#define PinDi_ODO_D_A = 3; //interruption
 //#define PinDi_ODO_D_B = 5;
 
-#define PIN_ODO_INCD  0 // == pin 2
-#define PIN_ODO_INCG  1 // == pin 3
-#define PIN_ODO_DIRD  4
-#define PIN_ODO_DIRG  5
+#define PIN_ODO_INCG  0 // == pin 2
+#define PIN_ODO_INCD  1 // == pin 3
+#define PIN_ODO_DIRG  4
+#define PIN_ODO_DIRD  5
 
 #define PIN_MOT_CMDD  9
 #define PIN_MOT_CMDG  11

@@ -8,7 +8,7 @@ Autom::Autom():
     period_pid_loop(40),
     gain_odo_g(0.357),
     gain_odo_d(0.357),
-    gain_inter_odos(0.01309),
+    gain_inter_odos(0.004299), //0.01309
     last_ticG(0),
     last_ticD(0)
    {
@@ -42,11 +42,14 @@ void Autom::send_cmd(){
 
  int cmd_g = control.get_cmd_g();
  int cmd_d = control.get_cmd_d();
-// cmd_g = 120;
-//    cmd_d = 120;
+ //cmd_g = 20;
+ //cmd_d = 20; // for testing motor signs
 
  bool fw_g = control.get_fw_g();
  bool fw_d = control.get_fw_d();
+
+ //fw_g = true;
+ //fw_d = true;
 
  //dir logic
  if (fw_g) digitalWrite(PIN_MOT_DIRG, HIGH);

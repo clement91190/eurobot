@@ -34,7 +34,7 @@ void Coord::write_serial()
     Serial.print("  y :");
     Serial.print(int(y));
     Serial.print("  cap:  ");
-    Serial.print(cap * 180 / 3.14);
+    Serial.println(cap * 180 / 3.14);
 }
 
 Coord::Coord():x(0.0), y(0.0), cap(0.0){}
