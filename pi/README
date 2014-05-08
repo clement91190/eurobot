@@ -17,7 +17,7 @@ allow-hotplug wlan0
 
 TODO:
 internet -> 
-install arduino, iPython, vim, git, graphviz, libgraphviz-dev, pip
+install arduino, iPython, vim, git, graphviz, libgraphviz-dev, python-pip, python-matplotlib python-scipy
 
 TODO:
 arduino -> test odos, slave, reglages gains.
