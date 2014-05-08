@@ -10,6 +10,10 @@ ControlLoop::ControlLoop():
     fw_d(true),
     real_coord(),
     target_position(),
+    count_not_moving(0),
+    late_pos(),
+    sonard(PIN_AN_SONARG, Coord(10., 10., 5.)),
+    sonarg(PIN_AN_SONARG, Coord(10., 10., 5.)),
     fw_g(true){
         
     piddep.setMinMax(100);
@@ -160,9 +164,34 @@ bool ControlLoop::get_fw_d(){
 void ControlLoop::check_blockage()
 {
     /*code to test if moving when commands are sent*/
+   late_pos.barycentre(real_coord, 0.3);
+   Vector dep = Vector(real_coord, late_pos);
+   if (dep.norm() < 10.0 || abs(real_coord.get_cap() - late_pos.get_cap()) < 5.0)
+   {
+        count_not_moving += 1;
+        
+   }
+   else{
+        count_not_moving = 0;
+   }
+   
+   if (count_not_moving > 5)
+   {
+        Serial.println("BLOC");
+        setBF(STOP, Coord());
+   }
+
+
 }
 
 void ControlLoop::check_adversary()
 {
-    /**/
+    if (sonarg.adv_detected()){
+        if (sonard.adv_detected()){
+            sonarg.mean_adv(sonard.get_adv())
+        }
+        sonarg.write_adv_coord()
+    }
+    else if (sonard.adv_detected())
+        sonard.write_adv_coord()
 }

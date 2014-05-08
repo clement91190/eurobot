@@ -2,6 +2,7 @@
 #define CONTROL_H
 
 #include "Coord.h"
+#include "Sonar.h"
 #include "PID.h"
 
 
@@ -49,6 +50,10 @@ class ControlLoop
         int cmd_cap;
         bool fw_g;
         bool fw_d;
+        int count_not_moving;
+        Coord late_pos; // to check how much we moved lately
+        Sonar sonarg;
+        Sonar sonard;
 
 
     public:

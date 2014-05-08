@@ -1,5 +1,7 @@
 #include "Coord.h"
 
+Coord(const Coord& coord_):x(coord_.get_x()), y(coord_.get_y()), cap(coord_.get_cap()){}
+
 float Coord::get_x(){return x;}
 
 float Coord::get_y(){return y;}
@@ -18,6 +20,12 @@ void Coord::set_x_y_cap(float x_, float y_, float cap_){
  cap = cap_;
 }
 
+bool Coord::is_on_map(){
+    // check if the detected thing is on the map...
+    return true;
+}
+
+
 void Coord::forward_translation(float d){
     x = x + d * cos(cap);
     y = y + d * sin(cap);
@@ -29,17 +37,26 @@ void Coord::write_serial()
    // Serial.print(ticG);
    // Serial.print("  ticD  :");
    // Serial.print(ticD);
-    Serial.print("  x  :");
+    Serial.print("COORD X ");
     Serial.print(int(x));
-    Serial.print("  y :");
+    Serial.print("Y ");
     Serial.print(int(y));
-    Serial.print("  cap:  ");
+    Serial.print("CAP ");
     Serial.println(cap * 180 / 3.14);
 }
 
 Coord::Coord():x(0.0), y(0.0), cap(0.0){}
 
 Coord::Coord(float x_, float y_, float cap_):x(x_), y(y_), cap(cap_){}
+
+void Coord::barycentre(Coord coord2, float rapport){
+    // do a barycenter with point coord2
+    x = x * (1 - rapport) + coord2.get_x() * rapport;
+    y = y * (1 - rapport) + coord2.get_y() * rapport;
+    cap = cap * (1 - rapport) + coord2.get_cap() * rapport;
+
+    
+}
 
 Vector::Vector():x(0.), y(0.){}
 
@@ -65,7 +82,6 @@ void Vector::normalize(){
 }
 
 Vector::Vector(Coord cap):x(cos(cap.get_cap())), y(sin(cap.get_cap())){}
-
 
 Vector::Vector(float x_, float y_):x(x_), y(y_){}
 

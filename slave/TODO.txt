@@ -1,0 +1,8 @@
+- check sign of motor control  --> ok 
+- invert sign of cap --> ok 
+- add blocking detection
+- add adversary detection (send position)
+- add bumper status at start + start in/out transitions
+- add speed max value
+- add reset of coordinates.
+
