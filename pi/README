@@ -18,6 +18,7 @@ allow-hotplug wlan0
 TODO:
 internet -> 
 install arduino, iPython, vim, git, graphviz, libgraphviz-dev, python-pip, python-matplotlib python-scipy
+libdevice-serialport-perl
 
 TODO:
 arduino -> test odos, slave, reglages gains.
@@ -37,5 +38,8 @@ ensuite :
 upload code on robot :
 git push pmi master (ou branch)
 depuis le robot dans le repo : git pull
+
+to compile and upload code on arduino from linux/pi config:
+mv files in the include folder to /usr/lib/avr/include 
 
 
