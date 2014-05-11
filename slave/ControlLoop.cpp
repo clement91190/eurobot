@@ -169,7 +169,7 @@ bool ControlLoop::get_fw_d(){
 void ControlLoop::check_blockage()
 {
     /*code to test if moving when commands are sent*/
-   late_pos.barycentre(real_coord, 0.3);
+    late_pos.barycentre(real_coord, 0.3);
    Vector dep = Vector(real_coord, late_pos);
    if (abs(cmd_dep) + abs(cmd_cap) < 50){
     return;}
@@ -195,8 +195,12 @@ void ControlLoop::check_blockage()
 
 void ControlLoop::check_adversary()
 {
-    if (cmd_dep < 0.)
+    Vector to_target;
+    to_target = Vector(real_coord, target_position);
+   
+    if (to_target.scalar(Vector(real_coord)) <0.)
     {
+        Serial.println("going backward...")
         return;
     }
     if (sonarg.adv_detected()){
