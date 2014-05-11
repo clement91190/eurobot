@@ -16,7 +16,7 @@ ControlLoop::ControlLoop():
     sonarg(PIN_AN_SONARD, Coord(10., 10., 5.)),
     fw_g(true){
     piddep.setMinMax(100);
-    sonard.turn_off();
+    sonarg.turn_off();
 
 };
 
