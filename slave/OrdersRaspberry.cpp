@@ -96,6 +96,11 @@ void OrdersRaspberry::executeinstr()
     Coord target;
     switch (ordre)
     {
+    case 'D' :
+        Serial.println("debug");
+        slave->get_control()->write_debug();
+        break;
+
     case 'S' :
         //Vitesse vit;
         // ordre de type Slave

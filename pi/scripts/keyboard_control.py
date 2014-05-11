@@ -37,12 +37,14 @@ def main():
                     print "droite"
                     cap -= 5
                     serr.write('S3 {}\n'.format(cap))
+                if c == "d":
+                    serr.write('D\n')
                 if c not in ["A", "B", "C", "D"]:
                     print c, "not recognized"
             except IOError: pass
             l = serr.readline()
-            if l != "":
-                print l
+            if l != "" and l!="\n":
+                print "##", l
 
     finally:
         termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)

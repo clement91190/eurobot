@@ -22,6 +22,7 @@ class Sonar
         void write_adv_coord();
         void turn_on();
         void turn_off();
+        void write_debug();
 
 };
 

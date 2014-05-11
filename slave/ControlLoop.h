@@ -74,6 +74,7 @@ class ControlLoop
         void check_adversary();
         void setxycap(Coord new_coord);
         void write_real_coords();
+        void write_debug();
 };
 
 

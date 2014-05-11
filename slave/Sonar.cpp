@@ -32,6 +32,10 @@ void Sonar::turn_off(){
     on = true;
 }
 
+void Sonar::write_debug(){
+    Serial.println(analogRead(pin));
+}
+
 void Sonar::write_adv_coord(){
     Serial.println("ADVD");
     adv.write_serial();

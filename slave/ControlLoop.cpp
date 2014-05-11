@@ -219,3 +219,11 @@ void ControlLoop::write_real_coords()
     real_coord.write_serial();
 
 }
+
+void ControlLoop::write_debug()
+{
+    Serial.print("SonarG");
+    sonarg.write_debug();
+    Serial.print("SonarD");
+    sonard.write_debug();
+}
