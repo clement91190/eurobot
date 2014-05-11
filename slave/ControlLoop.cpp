@@ -200,7 +200,7 @@ void ControlLoop::check_adversary()
    
     if (to_target.scalar(Vector(real_coord)) <0.)
     {
-        Serial.println("going backward...")
+        Serial.println("going backward...");
         return;
     }
     if (sonarg.adv_detected()){
