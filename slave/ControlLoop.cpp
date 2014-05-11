@@ -195,6 +195,10 @@ void ControlLoop::check_blockage()
 
 void ControlLoop::check_adversary()
 {
+    if (cmd_dep < 0.)
+    {
+        return;
+    }
     if (sonarg.adv_detected()){
         if (sonard.adv_detected()){
             sonarg.mean_adv(sonard.get_adv());
@@ -204,6 +208,7 @@ void ControlLoop::check_adversary()
     }
     else if (sonard.adv_detected())
         sonard.write_adv_coord();
+        set_BF(STOP, Coord());
 }
 
 
