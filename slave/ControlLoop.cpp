@@ -12,10 +12,9 @@ ControlLoop::ControlLoop():
     target_position(),
     count_not_moving(0),
     late_pos(),
-    sonard(PIN_AN_SONARG, Coord(10., 10., 5.)),
-    sonarg(PIN_AN_SONARG, Coord(10., 10., 5.)),
+    sonard(PIN_AN_SONARG, Coord(10., -10., -5.)),
+    sonarg(PIN_AN_SONARD, Coord(10., 10., 5.)),
     fw_g(true){
-        
     piddep.setMinMax(100);
 
 };
@@ -178,7 +177,7 @@ void ControlLoop::check_blockage()
    if (count_not_moving > 5)
    {
         Serial.println("BLOC");
-        setBF(STOP, Coord());
+        set_BF(STOP, Coord());
    }
 
 
@@ -188,10 +187,10 @@ void ControlLoop::check_adversary()
 {
     if (sonarg.adv_detected()){
         if (sonard.adv_detected()){
-            sonarg.mean_adv(sonard.get_adv())
+            sonarg.mean_adv(sonard.get_adv());
         }
-        sonarg.write_adv_coord()
+        sonarg.write_adv_coord();
     }
     else if (sonard.adv_detected())
-        sonard.write_adv_coord()
+        sonard.write_adv_coord();
 }

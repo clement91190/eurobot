@@ -14,7 +14,6 @@ class Coord
     public:
         Coord();
         Coord(float x_, float y_, float cap_);
-        Coord(const Coord& coord_);
         float get_x();
         float get_y();
         float get_cap();
@@ -24,7 +23,7 @@ class Coord
         void set_x_y_cap(float x_, float y_, float cap_);
         void forward_translation(float d);
         void write_serial();
-        void barycentre(Coord coord2);
+        void barycentre(Coord coord2, float rapport);
         bool is_on_map();
 };
 

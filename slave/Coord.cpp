@@ -1,6 +1,5 @@
 #include "Coord.h"
 
-Coord(const Coord& coord_):x(coord_.get_x()), y(coord_.get_y()), cap(coord_.get_cap()){}
 
 float Coord::get_x(){return x;}
 

@@ -21,16 +21,16 @@
 //int vitesse = 0;
 
 // bumpers
-#define PIN_AN_START = A2;
-#define PIN_AN_COULEUR = A3;
-#define PIN_DI_STRAT1 = 6;
-#define PIN_DI_STRAT2 = 7;
-#define PIN_AN_BUMPG = A6;
-#define PIN_AN_BUMPD = A7;
+#define PIN_AN_START  A2
+#define PIN_AN_COULEUR  A3
+#define PIN_DI_STRAT1  6
+#define PIN_DI_STRAT2  7
+#define PIN_AN_BUMPG  A6
+#define PIN_AN_BUMPD  A7
 
 // sonar
-#define PIN_AN_SONARG = A1;
-#define PIN_AN_SONARD = A0;
+#define PIN_AN_SONARG  A1
+#define PIN_AN_SONARD  A0
 
 // Moteur
 //#define PinDi_MoteurD_SENS = 8;
