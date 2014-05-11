@@ -16,6 +16,7 @@ ControlLoop::ControlLoop():
     sonarg(PIN_AN_SONARD, Coord(10., 10., 5.)),
     fw_g(true){
     piddep.setMinMax(100);
+    sonard.turn_off();
 
 };
 
@@ -186,6 +187,7 @@ void ControlLoop::check_blockage()
    {
         Serial.println("BLOC");
         set_BF(STOP, Coord());
+        count_not_moving = 0;
    }
 
 

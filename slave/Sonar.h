@@ -10,6 +10,7 @@ class Sonar
 {
    private:
        int pin;
+       bool on;
        Coord dir; // direction and offset of sensor compared to the center of the robot
        Coord adv;
    public:
@@ -19,6 +20,9 @@ class Sonar
         bool mean_adv(Coord adv);
         Coord get_adv();
         void write_adv_coord();
+        void turn_on();
+        void turn_off();
+
 };
 
 

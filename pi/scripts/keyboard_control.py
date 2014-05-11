@@ -4,7 +4,7 @@ import serial
 
 def main(): 
     fd = sys.stdin.fileno()
-    serr = serial.Serial('/dev/ttyUSB0', 9600)
+    serr = serial.Serial('/dev/ttyUSB0', 9600, timeout=0.1)
     serr.close()
     serr.open()
     print serr.readline()
@@ -37,7 +37,13 @@ def main():
                     print "droite"
                     cap -= 5
                     serr.write('S3 {}\n'.format(cap))
+                if c not in ["A", "B", "C", "D"]:
+                    print c, "not recognized"
             except IOError: pass
+            l = serr.readline()
+            if l != "":
+                print l
+
     finally:
         termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
         fcntl.fcntl(fd, fcntl.F_SETFL, oldflags)
