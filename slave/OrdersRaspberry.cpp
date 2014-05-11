@@ -88,7 +88,7 @@ void OrdersRaspberry::executeinstr()
 
     std::string cap;
     std::string x;
-    int y = 0;
+    std::string y;
     int r = 0;
     int v = 0;
     int s=0;
@@ -101,18 +101,27 @@ void OrdersRaspberry::executeinstr()
         // ordre de type Slave
         switch (ind)
         {
-        case 0: //Calcul Gain
-            Serial.println("Reglage Odo");
-    //        slave->reglageOdo();
+        case 0: // set x, y, cap
+            Serial.print("SET X Y CAP :");
+            stream >> x >> y >> cap;
+            
+            slave->get_control()->setxycap(Coord(atoi(x.c_str()), atoi(y.c_str()), 3.14 * atoi(cap.c_str())/ 180.0));
+            Serial.print(atoi(x.c_str()));
+            Serial.print(" ");
+            Serial.print(atoi(y.c_str()));
+            Serial.print(" ");
+            Serial.print(atoi(cap.c_str()));
+            Serial.println(" ");
             break;
 
         case 1: //Recal
-            Serial.println("Recal arriere");
+            Serial.println("GET X Y CAP: ");
+            slave->get_control()->write_real_coords();
       //      slave->set<Recaler>();
             break;
 
         case 2: //Recal
-            Serial.println("Recal avant");
+            Serial.println("Recalage");
         //    slave->set<Recaler>(Marche::AVANT);
             break;
         case 3: //BFCap
@@ -123,7 +132,6 @@ void OrdersRaspberry::executeinstr()
             target = Coord(0, 0, 3.14 * atoi(cap.c_str()) / 180.0);
             Serial.print ("BFCap ");
             Serial.println(atoi(cap.c_str()));
-            Serial.println(BFCAP);
             slave->get_control()->set_BF(BFCAP, target); 
          //   slave->set<BFCap>(cap,precis);
             break;

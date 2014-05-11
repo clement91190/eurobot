@@ -142,6 +142,11 @@ void ControlLoop::run(Coord real_coord_){
     real_coord = real_coord_;
     compute_pids();
     compute_cmds();
+    if (bf_type == BFFW)
+    {
+        check_adversary();
+    }
+    check_blockage();
   }
 
 int ControlLoop::get_cmd_g(){
@@ -165,9 +170,12 @@ void ControlLoop::check_blockage()
     /*code to test if moving when commands are sent*/
    late_pos.barycentre(real_coord, 0.3);
    Vector dep = Vector(real_coord, late_pos);
-   if (dep.norm() < 10.0 || abs(real_coord.get_cap() - late_pos.get_cap()) < 5.0)
+   if (abs(cmd_dep) + abs(cmd_cap) < 50){
+    return;}
+   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 5.0)
    {
         count_not_moving += 1;
+        Serial.println("INC BLOC COUNT");
         
    }
    else{
@@ -190,7 +198,22 @@ void ControlLoop::check_adversary()
             sonarg.mean_adv(sonard.get_adv());
         }
         sonarg.write_adv_coord();
+        set_BF(STOP, Coord());
     }
     else if (sonard.adv_detected())
         sonard.write_adv_coord();
+}
+
+
+void ControlLoop::setxycap(Coord new_coord)
+{
+    real_coord = new_coord;
+    target_position = real_coord;
+
+}
+
+void ControlLoop::write_real_coords()
+{
+    real_coord.write_serial();
+
 }

@@ -20,6 +20,7 @@ bool Sonar::adv_detected(){
 }
 
 void Sonar::write_adv_coord(){
+    Serial.println("ADVD");
     adv.write_serial();
 }
 

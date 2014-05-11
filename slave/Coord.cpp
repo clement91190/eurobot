@@ -36,11 +36,11 @@ void Coord::write_serial()
    // Serial.print(ticG);
    // Serial.print("  ticD  :");
    // Serial.print(ticD);
-    Serial.print("COORD X ");
+    Serial.print("X  Y CAP ");
     Serial.print(int(x));
-    Serial.print("Y ");
+    Serial.print(" ");
     Serial.print(int(y));
-    Serial.print("CAP ");
+    Serial.print(" ");
     Serial.println(cap * 180 / 3.14);
 }
 

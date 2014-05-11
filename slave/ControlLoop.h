@@ -72,6 +72,8 @@ class ControlLoop
         void next_asserv_state();
         void check_blockage();
         void check_adversary();
+        void setxycap(Coord new_coord);
+        void write_real_coords();
 };
 
 
