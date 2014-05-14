@@ -21,6 +21,8 @@ install arduino, iPython, vim, git, graphviz, libgraphviz-dev, python-pip, pytho
 libdevice-serialport-perl
 
 sudo apt-get install arduino iPython vim git graphviz libgraphviz-dev python-pip python-matplotlib python-scipy libdevice-serialport-perl
+sudo apt-get install libcv-dev libcvaux-dev libhighgui-dev python-opencv python-picamera
+    
 sudo rpi-update
 sudo apt-get update && sudo apt-get upgrade
 
