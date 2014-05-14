@@ -79,7 +79,7 @@ def binarry_selection(img, color='R'):
 
 
 def process_img(angle, color='R'):
-    orig = cv2.imread('vision/shotx.png')
+    orig = cv2.imread('vision/shotx.jpg')
     orig = cv2.resize(orig,  (640, 480))
     img = binarry_selection(orig, color)
     centers = get_triangles_barycenter(img)
