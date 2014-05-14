@@ -25,6 +25,10 @@ sudo apt-get install libcv-dev libcvaux-dev libhighgui-dev python-opencv python-
     
 sudo rpi-update
 sudo apt-get update && sudo apt-get upgrade
+git config --global user.email "clem.jambou@gmail.com"
+git config --global user.name "clement91190"
+
+
 
 
 TODO:
