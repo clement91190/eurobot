@@ -20,6 +20,11 @@ internet ->
 install arduino, iPython, vim, git, graphviz, libgraphviz-dev, python-pip, python-matplotlib python-scipy
 libdevice-serialport-perl
 
+sudo apt-get install arduino iPython vim git graphviz libgraphviz-dev python-pip python-matplotlib python-scipy libdevice-serialport-perl
+sudo rpi-update
+sudo apt-get update && sudo apt-get upgrade
+
+
 TODO:
 arduino -> test odos, slave, reglages gains.
 
