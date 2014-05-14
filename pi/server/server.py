@@ -26,7 +26,7 @@ def take_shot():
 
 @app.route('/get_image')
 def get_image():
-    return send_file('vision/shot.jpg', mimetype='image/jpg')
+    return send_file('vision/shotx.jpg', mimetype='image/jpg')
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
 
