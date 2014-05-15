@@ -1,7 +1,7 @@
 #ifndef _ORDERSRASPBERRY_H
 #define _ORDERSRASPBERRY_H
 #include "Period.h"
-#include "Autom.h"
+#include "IO.h"
 #include "Arduino.h"
 #include "Coord.h"
 //#include <stdio.h>
@@ -20,7 +20,7 @@ class OrdersRaspberry {
     //Vitesse determinerVitesse(int v);
 
 	public: 
-	OrdersRaspberry(Autom* slave_);
+	OrdersRaspberry(IO* io_);
 	void run();
 	void treatSerial();
 	void execute();
@@ -33,7 +33,7 @@ class OrdersRaspberry {
 	std::string s;
 	bool treated;
 	std::istringstream stream;	
-    Autom* slave;
+    IO* io;
 	// caractere correspondant a une machine a état	
 };
 #endif

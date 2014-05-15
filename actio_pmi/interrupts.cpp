@@ -20,4 +20,13 @@ void inc_tic_odo(){
     }
 }
 
-
+ 
+ /*
+ interruption capteur couleur
+ */
+void inc_pulse_color() {
+ 
+  // increase pulse count
+    pulse_color = pulse_color + 1;
+ } 
+ 

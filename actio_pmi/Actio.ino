@@ -15,10 +15,9 @@ void setup()
   pinMode(PIN_MOT_DIRD, OUTPUT);
   pinMode(PIN_MOT_CMDG, OUTPUT);
   pinMode(PIN_MOT_CMDD, OUTPUT);
-  
+ */ 
   io = new IO();
-  com = new OrdersRaspberry(slave);
-  */
+  com = new OrdersRaspberry(io);
   Serial.println("ACTIO READY");
 
 }

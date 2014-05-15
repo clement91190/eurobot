@@ -4,7 +4,7 @@
 //
 
 
-OrdersRaspberry::OrdersRaspberry(Autom* slave_) : period(100), slave(slave_), serial_count(0)
+OrdersRaspberry::OrdersRaspberry(IO* io_) : period(100), io(io_), serial_count(0)
 {
     treated=true;
     //s.resize(28);
