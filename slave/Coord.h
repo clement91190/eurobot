@@ -4,6 +4,10 @@
 #include "Arduino.h"
 #include "interrupts.h"
 
+#define PI 3.1415926
+
+float diff_cap(float cap1, float cap2);
+
 class Coord
 /** (x,y,cap) objects **/
 {
@@ -44,6 +48,7 @@ class Vector
         float get_x();
         float get_y();
         void write_serial();
+        float get_angle();
 };
 
 

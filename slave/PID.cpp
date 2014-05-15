@@ -12,7 +12,7 @@ PID::PID():last_error(0.),
 {
 }
 
-PID::PID(float Kp_, float Ki_, float Kd_, float near_error_value_, float done_error_value_):
+PID::PID(bool type_cap_, float Kp_, float Ki_, float Kd_, float near_error_value_, float done_error_value_):
     last_error(0.),
     I_sum(0.),
     target(0.),
@@ -23,7 +23,8 @@ PID::PID(float Kp_, float Ki_, float Kd_, float near_error_value_, float done_er
     done_error_value(done_error_value_),
     minV(-255),
     maxV(255),
-    inAuto(true)
+    inAuto(true),
+    type_cap(type_cap_)
 {
 }
 
@@ -49,7 +50,15 @@ void PID::setTuning(float Kp_, float Ki_, float Kd_){
 
 float PID::compute(float input){
     if (!inAuto) {return 0.;}
-    float error = target - input;
+    float error;
+    if (type_cap)
+    {
+        error = diff_cap(target, input);
+    }
+    else
+    {
+        error = target - input;
+    }
     //Serial.print("error");
     //Serial.print(error);
    // Serial.print(" target ");
@@ -153,3 +162,8 @@ void PID::init(float input)
     I_sum = 0.;
     reinit();
 }
+
+float PID::get_target()
+    {
+        return target;
+    }

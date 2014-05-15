@@ -1,8 +1,8 @@
 #include "ControlLoop.h"
 
 ControlLoop::ControlLoop():
-    pidcap(GAIN_KP_CAP, GAIN_KI_CAP, GAIN_KD_CAP, NEAR_ERROR_CAP, DONE_ERROR_CAP),
-    piddep(GAIN_KP_DEP, GAIN_KI_DEP, GAIN_KD_DEP, NEAR_ERROR_DEP, DONE_ERROR_DEP),
+    pidcap(CAP, GAIN_KP_CAP, GAIN_KI_CAP, GAIN_KD_CAP, NEAR_ERROR_CAP, DONE_ERROR_CAP),
+    piddep(DEP, GAIN_KP_DEP, GAIN_KI_DEP, GAIN_KD_DEP, NEAR_ERROR_DEP, DONE_ERROR_DEP),
     bf_type(STOP),
     asserv_state(DONE),
     cmd_d(0),
@@ -56,6 +56,9 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
             //Serial.println(target_position.get_cap());
             break;
         case BFXYCAP:
+            target_position = target_position_;
+            piddep.setTarget(0.0);
+            pidcap.setTarget(target_position.get_cap());
             break;
     }
 
@@ -121,6 +124,21 @@ void ControlLoop::compute_pids(){
             break;
         case BFXYCAP:
             /* later ! */
+            float B; // see supaero report 2012
+            if (asserv_state == NEAR)
+            {
+                B = 0.;
+            }
+            else
+            {
+                B = 1.0;
+            }
+            cmd_cap = pidcap.compute(real_coord.get_cap() + B * (diff_cap(to_target.get_angle(), target_position.get_cap())));
+            cmd_dep = piddep.compute( to_target.scalar(Vector(real_coord))); // the error is a scalar product
+            if (piddep.check_if_over(asserv_state)  && pidcap.check_if_over(asserv_state))
+            {
+               next_asserv_state(); 
+            }
             break;
     }
     //Serial.println("");

@@ -3,12 +3,16 @@
 
 #define MANUAL 0
 #define AUTOMATIC 1
-#include"Arduino.h"
+#include "Arduino.h"
+#include "Coord.h"
 
 //distance to target
 #define NEAR 1 
 #define FAR 2
 #define DONE 3
+
+#define CAP true
+#define DEP false
 
 class PID
 {
@@ -25,12 +29,13 @@ class PID
         int minV;
         int maxV;
         bool inAuto;
+        bool type_cap; // specific pid for angles (always within[0: 2*PI])
         int arrival_count; // to see when it's over
         int pid_state; //see define distance to target
         
     public:
         PID();
-        PID(float Kp_, float Ki_, float Kd_, float near_error_value_, float done_error_value_);
+        PID(bool type_cap_, float Kp_, float Ki_, float Kd_, float near_error_value_, float done_error_value_);
         void setTuning(float Kp_, float Ki_, float Kd_);
         void setTarget(float target_);
         void addToTarget(float dep);
@@ -43,6 +48,7 @@ class PID
         void set_pid_state(int state);
         void reinit();
         void setMinMax(int v);
+        float get_target();
 
 };
 #endif

@@ -11,7 +11,19 @@ void Coord::set_x(float x_){x = x_;}
 
 void Coord::set_y(float y_){y = y_;}
 
-void Coord::set_cap(float cap_){cap = cap_;}
+void Coord::set_cap(float cap_){
+    cap = cap_;
+
+    // cap always within [0:pi]    
+   if (cap > PI)
+   {
+        cap = cap - PI;
+   }
+   if (cap < 0)
+   {
+        cap = cap + PI;
+   }
+}
 
 void Coord::set_x_y_cap(float x_, float y_, float cap_){
  x = x_;
@@ -41,7 +53,7 @@ void Coord::write_serial()
     Serial.print(" ");
     Serial.print(int(y));
     Serial.print(" ");
-    Serial.println(cap * 180 / 3.14);
+    Serial.println(cap * 180 / PI);
 }
 
 Coord::Coord():x(0.0), y(0.0), cap(0.0){}
@@ -97,4 +109,40 @@ void Vector::write_serial(){
     Serial.print(x );
     Serial.print(" , " );
     Serial.print(y);
+}
+
+float Vector::get_angle(){
+    if (x > 0)
+    {
+        return atan(y / x);
+    }
+    else if (x < 0 )
+    {
+        return PI + atan(y/x);
+    }
+    else if (y > 0)
+    {
+        return PI / 2;
+    }
+    else
+    {
+        return - PI / 2;
+    }
+}
+
+float diff_cap(float cap1, float cap2)
+{
+    float diff = cap1 - cap2;
+    if (diff > PI) 
+    {
+        return diff - 2 * PI;
+    }
+    else if (diff < -PI)
+    {
+        return diff + 2 * PI;
+    }
+    else
+    {
+        return diff;
+    }
 }
