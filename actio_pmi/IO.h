@@ -1,8 +1,11 @@
 #ifndef IO_H
 #define IO_H
 
+#include "Period.h"
 #include "Arduino.h"
+#include <Servo.h>
 #include "interrupts.h"
+#include "pins.h"
 class Switch
 {
     // class for switches
@@ -15,10 +18,12 @@ class Switch
         bool is_on();
         bool is_off();
         void reverse();
-}
+};
 
 #define HAUT -1
 #define BAS 0
+#define TIC_HAUT 100
+#define TIC_BAS 0
 
 class Ascenseur
 {
@@ -31,18 +36,31 @@ class Ascenseur
         int target;
 
     public:
-        Ascenseur(int pin_cmd_mot_, int pin_dir_mot_, int pin_bumper_high_, int pin_bumper_low_);
+        Ascenseur();
         bool is_up();
-        bool is_done();
+        bool is_low();
         void start_asserv(int target_);
         void monte();
         void descend();
         void run();
         void send_monte();
         void send_maintien_p();
-        void send_maintien_m();
+        void send_zeros();
         void send_desc();
-}
+};
+
+class ColorSensor 
+{
+    private:
+        Period period_reset; 
+        int last_count;
+    public:
+        ColorSensor();
+        bool is_red();
+        bool is_yellow();
+        void run();
+    
+};
 
 
 class Pince
@@ -59,25 +77,16 @@ class Pince
         void trigger(int transition);
 
         void ouvrir_pince();
+        void ranger_lateral();
         void serrer_feu_pince();
         void rotation_pince_milieu(); //position de depart
-        void rotation_pince_gauche();
-        void rotation_pince_droite();
+        void rotation_pince_normal();
+        void rotation_pince_retourne();
 
         void run();
         void trigger();
 
-}
-
-class ColorSensor 
-{
-    private:
-    public:
-        CapteurCouleur();
-        void is_red();
-        void is_yellow();
-    
-}
+};
 
 class IO
 /** (x,y,cap) objects **/

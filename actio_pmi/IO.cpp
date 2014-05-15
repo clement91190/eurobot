@@ -1,9 +1,11 @@
+#include "IO.h"
+
 Switch::Switch(int pin_):pin(pin_), reversed(false)
 {
 }
 bool Switch::is_on()
 {
-    if (reverse)
+    if (reversed)
     {
         return (digitalRead(pin) == LOW);
     }
@@ -16,7 +18,7 @@ bool Switch::is_on()
 
 bool Switch::is_off()
 {
-    if (reverse)
+    if (reversed)
     {
         return (digitalRead(pin) == HIGH);
     }
@@ -29,11 +31,12 @@ bool Switch::is_off()
 
 void Switch::reverse()
 {
-    reversed = !reversed
+    reversed = !reversed;
 }
 
-Ascenseur::Ascenseur(int pin_cmd_mot_, int pin_dir_mot_, int pin_bumper_high, int pin_bumper_low__):
-    pin_cmd_mot(pin_cmd_mot_), pin_dir_mot(pin_dir_mot_), bumper_asc_haut(pin_bumper_high_), bumper_asc_bas(pin_bumper_low_)
+Ascenseur::Ascenseur():
+    pin_cmd_mot(PIN_MOT_CMD_ASC), pin_dir_mot(PIN_MOT_DIR_ASC),
+    bumper_asc_haut(PIN_BUMPER_ASC_HAUT), bumper_asc_bas(PIN_BUMPER_ASC_BAS)
 {}
 
 bool Ascenseur::is_up()
@@ -84,7 +87,7 @@ void Ascenseur::run()
         {
           if (tic_odo > TIC_BAS)
             {
-                send_descend();
+                send_desc();
             }
           if (bumper_asc_bas.is_on())
             {
@@ -100,7 +103,7 @@ void Ascenseur::run()
             }
             else if (tic_odo < target - 10 )
             {
-                send_descend();
+                send_desc();
             }
             else if (tic_odo < target)
             {
@@ -114,29 +117,110 @@ void Ascenseur::run()
     }
 }
 
-void Ascenseur::send_monte();
+void Ascenseur::send_monte()
 {
-    digitalWrite(PIN_MOT_ASC_ASC, 0);
+    digitalWrite(PIN_MOT_DIR_ASC, 0);
     analogWrite(PIN_MOT_CMD_ASC, 250);
 }
 
-void Ascenseur::send_maintien_p();
+void Ascenseur::send_maintien_p()
 {
-    digitalWrite(PIN_MOT_ASC_ASC, 0);
+    digitalWrite(PIN_MOT_DIR_ASC, 0);
     analogWrite(PIN_MOT_CMD_ASC, 10);
 }
 
-void Ascenseur::send_desc();
+void Ascenseur::send_desc()
 {
-    digitalWrite(PIN_MOT_ASC_ASC, 1);
+    digitalWrite(PIN_MOT_DIR_ASC, 1);
     analogWrite(PIN_MOT_CMD_ASC, 100);
 }
 
-void Ascenseur::send_zeros();
+void Ascenseur::send_zeros()
 {
-    digitalWrite(PIN_MOT_ASC_ASC, 1);
+    digitalWrite(PIN_MOT_DIR_ASC, 1);
     analogWrite(PIN_MOT_CMD_ASC, 0);
 }
+
+ColorSensor::ColorSensor():
+    period_reset(80)
+{
+   // periode d'echantillonage de remise a 0 pour la lecture de la couleur
+}
+
+bool ColorSensor::is_red()
+{
+   //TODO write constants for red and yellowlast_count
+   return true;
+}
+bool ColorSensor::is_yellow()
+{
+    return false;
+}
+
+void ColorSensor::run()
+{
+    if (period_reset.is_over())
+    {
+        period_reset.reset();
+        last_count = pulse_color;
+        pulse_color = 0;
+    }
+}
+ 
+//PINCE
+//
+
+Pince::Pince():
+    ir_feu(PIN_IR)
+{
+    servo_pince_g.attach(PIN_SERVO_PINCE_G);
+    servo_pince_d.attach(PIN_SERVO_PINCE_D);
+    servo_pince_rot.attach(PIN_SERVO_PINCE_ROT);
+    ir_feu.reverse();
+    ranger_lateral();
+    rotation_pince_milieu();
+ }
+
+void Pince::trigger(int transition)
+{
+ // add things here for MAE
+}
+
+void Pince::run(){
+    asc.run();
+}
+
+void Pince::ranger_lateral()
+{
+    servo_pince_g.writeMicroseconds(1420); //rangement
+    servo_pince_d.writeMicroseconds(1580); //rangement
+}
+void Pince::ouvrir_pince()
+{
+    servo_pince_g.writeMicroseconds(1800); //saisie
+    servo_pince_d.writeMicroseconds(1200); //saisie
+}
+
+void Pince::serrer_feu_pince()
+{
+    servo_pince_g.writeMicroseconds(2200); //saisie
+    servo_pince_d.writeMicroseconds(800); //saisie
+}
+
+void Pince::rotation_pince_milieu() //position de depart
+{
+    servo_pince_rot.writeMicroseconds(1340); //vertical
+}
+void Pince::rotation_pince_normal()
+{
+    servo_pince_rot.writeMicroseconds(2140); //vertical
+}
+
+void Pince::rotation_pince_retourne()
+{
+    servo_pince_rot.writeMicroseconds(560); //vertical
+}
+
 
 // IO
 //

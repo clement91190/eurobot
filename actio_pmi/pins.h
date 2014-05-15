@@ -18,7 +18,7 @@
 #define PIN_SERVO_FRESQUE_G 11
 #define PIN_SERVO_FRESQUE_D 12
 #define PIN_SERVO_FILET_G 9
-#define PIN_SERVO_FILET_G 10
+#define PIN_SERVO_FILET_D 10
 
 //capteur couleur
 #define PIN_COULEUR 1 // interrupt = pin3
