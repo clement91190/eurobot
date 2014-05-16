@@ -204,6 +204,8 @@ void ControlLoop::check_blockage()
    if (count_not_moving > 5)
    {
         Serial.println("#BLOC");
+        write_real_coords();
+
         set_BF(STOP, Coord());
         count_not_moving = 0;
    }
@@ -243,6 +245,7 @@ void ControlLoop::setxycap(Coord new_coord)
 
 void ControlLoop::write_real_coords()
 {
+    Serial.print("#COORD ");
     real_coord.write_serial();
 
 }

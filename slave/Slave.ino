@@ -34,6 +34,7 @@ void setup()
   slave = new Autom();
   com = new OrdersRaspberry(slave);
   Serial.println("#SLAVE READY");
+  write_serial_strat()
 }
 
 void write_serial_strat()
@@ -61,13 +62,13 @@ void loop(){
  //Serial.println(vitesse);
  // Serial.print(dir); 
   //delay(800);
-   delay(1);
    //int sensorValue = analogRead(A5);
    //Serial.print(int(sensorValue * 300.0 / 1023 + 100.0));
    //Serial.println( " mm");
    
     com->run();
     slave->run();
+    delay(1);
       
 }
 
