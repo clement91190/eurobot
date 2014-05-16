@@ -2,7 +2,6 @@
 #define COORD_H
 
 #include "Arduino.h"
-#include "interrupts.h"
 
 //#define PI 3.1415926
 

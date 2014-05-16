@@ -9,12 +9,12 @@ class ColorSensor
     private:
         Period period_reset; 
         int last_count;
+        long* pulse_color;
     public:
-        ColorSensor();
+        ColorSensor(long* pulse_color);
         bool is_red();
         bool is_yellow();
         void run();
     
 };
-
 

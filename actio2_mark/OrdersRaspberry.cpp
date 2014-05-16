@@ -93,7 +93,6 @@ void OrdersRaspberry::executeinstr()
     int v = 0;
     int s=0;
     bool precis;
-    Coord target;
     switch (ordre)
     {
     case 'P' :
@@ -102,62 +101,11 @@ void OrdersRaspberry::executeinstr()
         switch (ind)
         {
         case 0: 
-            Serial.println("init_pince_mae");
+            //Serial.println("init_pince_mae");
             // pince en position de base en bas, ouverte, prete a retourner tout ce qu'elle trouve
             break;
-
-        case 1: 
-            Serial.println("stop pince mae");
-            //met la pince en position basse en attente
-            break;
-
-        case 2: 
-            Serial.println("range pince");
-            //range la pince comme au depart.
-            break;
-
-        case 3: //recal
-            Serial.println("prise du totem");
-            // pince prete a chopper le totem 
-            // des que l'ir le voit
-            break;
-
-        case 4: //recal
-            Serial.println("prise du totem");
-            // pince prete a chopper le totem 
-            // des que l'ir le voit
-            break;
-
-        case 5: //BFCap
-            Serial.println("pince pour pousser les feux");
-            // faire tomber les feux de la bonne couleur
-            break;
-        }
+       }
         return;
-    case 'F' :
-        //Vitesse vit;
-        // ordre de type Slave
-        switch (ind)
-        {
-        case 0: 
-            Serial.println("pose les fresques");
-            io->poser_fresque();
-            break;
-        case 1: 
-            Serial.println("range servos fresques");
-            io->ranger_servo_fresque();
-            break;
-        case 2: 
-            Serial.println("pose les fresques");
-            io->envoi_filet();
-            break;
-        case 3: 
-            Serial.println("shoot le filet");
-            io->ranger_servo_filet();
-            break;
-        }
-        return;
-
     }
 
 

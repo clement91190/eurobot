@@ -6,10 +6,10 @@
 
 //variables globales
 
-extern long tic_odo;
-extern long pulse_color;
+extern long pulse_color_g;
+extern long pulse_color_d;
 
-extern void inc_tic_odo();
-extern void inc_pulse_color();
+extern void inc_pulse_color_g();
+extern void inc_pulse_color_d();
 
 #endif

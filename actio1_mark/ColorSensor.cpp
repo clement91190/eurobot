@@ -1,7 +1,7 @@
 #include "ColorSensor.h"
 
-ColorSensor::ColorSensor():
-    period_reset(80)
+ColorSensor::ColorSensor(long* pulse_color):
+    period_reset(80), pulse_color(pulse_color)
 {
    // periode d'echantillonage de remise a 0 pour la lecture de la couleur
 }
@@ -21,8 +21,8 @@ void ColorSensor::run()
     if (period_reset.is_over())
     {
         period_reset.reset();
-        last_count = pulse_color;
-        pulse_color = 0;
+        last_count = (*pulse_color);
+        (*pulse_color) = 0;
     }
 }
  
