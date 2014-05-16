@@ -1,6 +1,9 @@
+#ifndef COLOR_H
+#define COLOR_H
+
 #include "Period.h"
 #include "Arduino.h"
-#include <Servo.h>
+//#include <Servo.h>
 #include "interrupts.h"
 #include "pins.h"
 
@@ -17,4 +20,5 @@ class ColorSensor
     
 };
 
+#endif
 

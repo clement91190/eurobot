@@ -34,4 +34,6 @@ class Autom
         ControlLoop* get_control();
         
 };
+
+void write_serial_strat();
 #endif

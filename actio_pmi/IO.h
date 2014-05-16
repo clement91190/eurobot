@@ -1,25 +1,13 @@
 #ifndef IO_H
 #define IO_H
 
-#include "Period.h"
+#include <Period.h>
 #include "Arduino.h"
 #include <Servo.h>
 #include "interrupts.h"
 #include "pins.h"
-#include "ColorSensor.h"
-class Switch
-{
-    // class for switches
-    // ie bumper + IR
-    private:
-        int pin;
-        bool reversed;
-    public:
-        Switch(int pin);
-        bool is_on();
-        bool is_off();
-        void reverse();
-};
+#include <Switch.h>
+#include <ColorSensor.h>
 
 #define HAUT -1
 #define BAS 0
