@@ -33,10 +33,19 @@ void setup()
   //TCCR0B |= 1;
   slave = new Autom();
   com = new OrdersRaspberry(slave);
-  Serial.println("SLAVE READY");
+  Serial.println("#SLAVE READY");
 }
 
-
+void write_serial_strat()
+{
+   Serial.print("#COUL ");
+   Serial.println(digitalRead(PIN_AN_COULEUR));
+   Serial.print("#STRAT ");
+   Serial.print(digitalRead(PIN_DI_STRAT1));
+   Serial.print(" ");
+   Serial.println(digitalRead(PIN_DI_STRAT2));
+    
+    }
 
 void loop(){
   

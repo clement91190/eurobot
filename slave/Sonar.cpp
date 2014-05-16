@@ -37,7 +37,7 @@ void Sonar::write_debug(){
 }
 
 void Sonar::write_adv_coord(){
-    Serial.println("ADVD");
+    Serial.print("#ADVD");
     adv.write_serial();
 }
 
