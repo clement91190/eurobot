@@ -17,9 +17,25 @@ class SlaveManager:
 
     def build_pathfinder_map(self, detections=None):
         self.pathfinder = PathFinder()
+        # coordonnee globaux
+        # foyer central
         self.pathfinder.add_circle(1500, 1050, 300)
+
+        #bac fruit
         self.pathfinder.add_rect(300, 0, 800, 400)
         self.pathfinder.add_rect(1650, 0, 800, 400)
+
+        #foyer cotes
+        self.pathfinder.add_circle(0, 1000, 300)
+        self.pathfinder.add_circle(3000, 1000, 300)
+        
+        #bords
+        self.pathfinder.add_rect(0, 0, 100, 2000)
+        self.pathfinder.add_rect(0, 0, 3000, 100) 
+        self.pathfinder.add_rect(2900, 0, 100, 2000)
+        self.pathfinder.add_rect(0, 1900, 3000, 100)
+
+
         
         if detections is not None:
             for (last_time, coords) in detections:
@@ -84,13 +100,11 @@ class SlaveManager:
             if i > 0:
                 sub_states[-2].add_out_transition('out', sub_states[-1])
 
-        
-
         sub_states.append(OutState("end_evitement"))
         sub_states.append(OutState("end_deplacement"))
         sub_states[-3].add_out_transition('out', sub_states[-1])
         for s in sub_states[:-2]:
-            # s.add_advd_transition(sub_states[-2])  evitement stop final
+            s.add_advd_transition(sub_states[-2])  
             s.add_bloc_transition(sub_states[-2])
 
         sub_states[0].add_instant_transition(sub_states[1])

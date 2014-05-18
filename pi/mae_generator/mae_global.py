@@ -74,19 +74,20 @@ class MAERushDebile(MAE):
         self.sf = com_state_factory
 
         init = InitState()
-        speed_change = self.sf.get_setspeed(1)
+        speed_change = self.sf.get_setspeed(2)
         tape = self.sf.get_pmi_tape()
         avance_triangle1 = self.sf.get_bf_fw(Coord(1200))
         out = OutState("end_rush")
-        pipo = State("pipo_sto")
+        pre_out = self.sf.get_setspeed(1)
         
         init.add_instant_transition(tape)
         tape.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_triangle1)
-        avance_triangle1.add_afini_transition(out)
-        avance_triangle1.add_bloc_transition(out)
-        avance_triangle1.add_advd_transition(pipo)
-        self.state_list = [init, speed_change, avance_triangle1, pipo, out]
+        avance_triangle1.add_afini_transition(pre_out)
+        avance_triangle1.add_bloc_transition(pre_out)
+        avance_triangle1.add_advd_transition(pre_out)
+        pre_out.add_instant_transition(out)
+        self.state_list = [init, speed_change, avance_triangle1, pre_out, out]
         self.reinit_state()
 
 
@@ -96,20 +97,21 @@ class MAERushMark(MAE):
         self.sf = com_state_factory
 
         init = InitState()
+        wait = State("wait")
         speed_change = self.sf.get_setspeed(1)
         avance_sortie = self.sf.get_bf_fw(Coord(350))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 120))
         rush = self.sf.get_bf_fw(Coord(700))
         out = OutState("end_rush")
         
-        init.add_instant_transition(speed_change)
+        init.add_instant_transition(wait)
+        wait.add_time_out_transition(3000, speed_change) 
         speed_change.add_instant_transition(avance_sortie)
         avance_sortie.add_afini_transition(tourne)
         tourne.add_afini_transition(rush)
         rush.add_afini_transition(out)
         rush.add_bloc_transition(out)
-        rush.add_advd_transition(out)
-        self.state_list = [init, speed_change, avance_sortie, tourne, rush, out]
+        self.state_list = [init, wait, speed_change, avance_sortie, tourne, rush, out]
         self.reinit_state()
 
 
@@ -180,7 +182,7 @@ class MAEMission(MAE):
 
 if __name__ == "__main__":
     from robot_state import RobotState
-    robot = RobotState("mark", pipo=True)
+    robot = RobotState("debile", pipo=True)
     #mae = robot.mae.game.mae.mae_dep  # MAEGAME
     mae = robot.mae  # MAEGlobal
     #mae = robot.mae.game.mae.mission_state.mae  # MAEMISSION

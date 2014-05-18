@@ -7,7 +7,7 @@ import time
 
 
 from mission_control.debile import mission_fresque, mission_prise_torche_adv
-from mission_control.debile import mission_test, tir_filet
+from mission_control.debile import mission_test, tir_filet, pousse_feu, pose_torche
 
 from mission_control.mark import prise_arbre, vidange_torches, tir_mamouths
 
@@ -66,11 +66,28 @@ class RobotState:
         self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
         self.missions["m_mammouths"].prioritize(20.)
 
-
-
     def init_mission_pmi(self):
-        #self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
-        self.missions["m_filet"] = tir_filet.get_mission(self.com_state_factory)
+
+        #pousse feu
+        #prise torche 
+        #pose torche
+        #pose fresque
+        self.missions["m_torche_adv"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
+        self.missions["m_torche_adv"].prioritize(10.)
+        #tir filet
+        self.missions["m_pousse_feu_loin"] = pousse_feu.get_mission(self.com_state_factory)
+        self.missions["m_pousse_feu_loin"].prioritize(7.)
+       
+        self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
+        self.missions["m_fresque"].prioritize(6.)
+
+        self.missions["m_pose_torche"] = pose_torche.get_mission(self.com_state_factory)
+        self.missions["m_pose_torche"].prioritize(4.)
+    
+        #todo change priority after some time.
+        self.missions["m_tir"] = tir_filet.get_mission(self.com_state_factory)
+        self.missions["m_tir"].prioritize(2.)
+
         #self.missions["m_test1"] = mission_test.get_mission(self.com_state_factory, 1)
         #self.missions["m_test2"] = mission_test.get_mission(self.com_state_factory, 2)
 
@@ -104,7 +121,7 @@ class RobotState:
         self.mae.game.mae.update_dep(self.missions[self.current_mission])
 
     def adversary_detected(self, adv):
-        """ adv is the local coordinate of the adversary (ie vector from robot) """
+        """ adv is the global coordinate of the adversary (ie vector from robot) """
         global_coords = adv  # self.last_position.add_vector(adv) 
         print  "ADVERSARY AT", global_coords
         self.adversary_detection.insert(0, (time.time(), global_coords))
