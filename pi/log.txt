@@ -1,0 +1,7 @@
+WARNING
+missing arduino
+missing arduino
+No Slave
+No actio1
+COUCOU rush
+[93m [MAE] Transition from init to pre_startdebile [0m
