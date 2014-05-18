@@ -1,23 +1,41 @@
 #include "Autom.h"
 /* Autom implementation*/
 
+
+#ifdef PMI
+
+#define GAIN_ODO_D 0.3333333
+#define GAIN_ODO_G 0.3431709
+#define GAIN_ODO_inter 0.0131697
+
+#else
+
+#define GAIN_ODO_G 0.357
+#define GAIN_ODO_D 0.357
+#define GAIN_ODO_inter 0.004299
+
+#endif
+
+
 Autom::Autom():
     real_coord(),
     period_update_coords(10),
     control(),
     period_pid_loop(40),
-    gain_odo_g(0.357),
-    gain_odo_d(0.357),
-#ifdef PMI
-    gain_inter_odos(0.01309),
-#else
-    gain_inter_odos(0.004299), //0.01309
-#endif
+    gain_inter_odos(GAIN_ODO_inter), //0.011971135478867 //0.01309
+    gain_odo_g(GAIN_ODO_G),	//0.357
+    gain_odo_d(GAIN_ODO_D), //0.351618 //0.357
+    //camera(),
     last_ticG(0),
-    last_ticD(0)
+    last_ticD(0),
+    distance_g(0),
+    distance_d(0),
+    tic_total_g(0),
+    tic_total_d(0)
    {
     send_cmd();
    }
+     
 
 void Autom::update_cap(){
     /* attention ici, faudra tester la precision*/
@@ -32,7 +50,14 @@ void Autom::update_coords(){
     int delta_ticG = ticG; //- last_ticG;
     int delta_ticD = ticD; //  - last_ticD;
     reset_tics_odos();
-    float d = (delta_ticG * gain_odo_g + delta_ticD * gain_odo_d) * 0.5;   
+    float d = (delta_ticG * gain_odo_g + delta_ticD * gain_odo_d) * 0.5;
+    
+    //pour test et debug de gain 
+    distance_d += delta_ticD * gain_odo_d;
+    distance_g += delta_ticG * gain_odo_g;
+    tic_total_g += delta_ticG;
+    tic_total_d += delta_ticD;
+        
     real_coord.forward_translation(d);
     /* maybe add a delta cond on distance to avoid noise ? */
     last_ticD = ticD;
@@ -115,13 +140,18 @@ void Autom::run(){
 ControlLoop* Autom::get_control(){
     return &control;
 }
-
+/*
+Camera* Autom::camera_control()
+{
+	return &camera;
+}
+*/
 
 void write_serial_strat()
 {
-   Serial.print("*COUL ");
+   Serial.print("* COUL ");
    Serial.println(digitalRead(PIN_AN_COULEUR));
-   Serial.print("*STRAT ");
+   Serial.print("* STRAT ");
    Serial.print(digitalRead(PIN_DI_STRAT1));
    Serial.print(" ");
    Serial.println(digitalRead(PIN_DI_STRAT2));
@@ -135,3 +165,57 @@ void Autom::setxycap(Coord new_coord)
     get_control()->setxycap(new_coord);
 }
 
+
+void Autom::setxycap_no_x(int y, float cap)
+{
+    real_coord = Coord(real_coord.get_x(), y, cap);
+    get_control()->setxycap(real_coord);
+}
+
+void Autom::setxycap_no_y(int x, float cap)
+{
+    real_coord = Coord(x, real_coord.get_y(), cap);
+    get_control()->setxycap(real_coord);
+}
+
+void Autom::debuggDistanceInit()
+{
+	distance_g = 0;
+	distance_d = 0;
+}
+
+
+float Autom::debuggDistance_g()
+{
+	return distance_g;
+}
+
+float Autom::debuggDistance_d()
+{
+	return distance_d;
+}
+int Autom::debuggTic_g()
+{
+	return tic_total_g;
+}
+
+int Autom::debuggTic_d()
+{
+	return tic_total_d;
+}
+void Autom::debuggTicInit()
+{
+	tic_total_d = 0;
+	tic_total_g = 0;
+}
+
+void Autom::setTuningCap(float Kp, float Ki, float Kd )
+{
+    get_control()->setTuningCap(Kp, Ki, Kd);
+}
+
+void Autom::setTuningDep(float Kp, float Ki, float Kd )
+{
+    get_control()->setTuningDep(Kp, Ki, Kd);
+}
+      

@@ -14,6 +14,10 @@ class Turn1(State):
 
 class Forward1(State):
     def in_code(self):
+        serr.write('S1\n')
+        while serr.inWaiting() > 0:
+            print serr.readline()
+        raw_input()
         serr.write('S4 250\n')
 
 
@@ -79,7 +83,7 @@ def main():
             #print "read line"
             transition = serr.readline()
             print "done ", transition
-            if transition in ["#AFINI\r\n", "#BLOC\r\n"]: 
+            if transition in ["# AFINI\r\n"]:  # , "#BLOC\r\n"]: 
                 mae.trigger("AFINI")
 
     

@@ -2,24 +2,38 @@
 #define IO_H
 
 #include <Period.h>
-#include <Switch.h>
 #include "Arduino.h"
 #include <Servo.h>
 #include "interrupts.h"
 #include "pins.h"
-#include "ColorSensor.h"
+#include "Bras.h"
+#include <SwitchAnalog.h>
 
 class IO
 /** (x,y,cap) objects **/
 {
     private:
-        Servo servo_rot_g;
-        Servo servo_rot_d;
+        Bras brasg;
+        Bras brasd;
+        int couleur;
+        SwitchAnalog ir_central;
+        int bras_prise;
 
     public:
         IO();
+        void write_debug();
         void run();
-        void trigger(int transition);
+
+        void bras_actif();
+        void range_bras();
+        void active_irs();
+        void desactive_irs();
+        void prise_centre(bool ma_coul);
+        void conf_prise_centre();
+        void set_couleur(int coul);
+        void routine_torches();
+        void stop();
+        void pose();
 
 };
 

@@ -89,6 +89,7 @@ void OrdersRaspberry::executeinstr()
     std::string cap;
     std::string x;
     std::string y;
+    std::string z;
     int r = 0;
     int v = 0;
     int s=0;
@@ -96,11 +97,52 @@ void OrdersRaspberry::executeinstr()
     Coord target;
     switch (ordre)
     {
-    case 'D' :
-        Serial.println("debug");
-        slave->get_control()->write_debug();
-        break;
+  /*     
+    case 'C' :
+    //ordre de type camera control
+		switch (ind)
+        {
+			case 0:
+				Serial.print("inclinaison camera par terre");
+				slave->camera_control()->inclinaison_par_terre();
+				break;
+				
+			case 1:
+				Serial.print("inclinaison camera 45deg");
+				slave->camera_control()->inclinaison_mediane();
+			break;
+			
+			case 2:
+				Serial.print("inclinaison camera frontale");
+				slave->camera_control()->inclinaison_frontale();
+			break;
+		}
+        break;*/
 
+    case 'D':
+            Serial.println("debug");
+            slave->get_control()->write_debug();
+         
+        switch (ind)
+        {
+           case 0:
+                Serial.println("Reinit");
+                slave->debuggDistanceInit();
+                slave->debuggTicInit();
+            break;
+
+            case 1:
+                Serial.print("distance gain gauche : ");
+                Serial.println(slave->debuggDistance_g());
+                Serial.print("distance gain droit : ");
+                Serial.println(slave->debuggDistance_d());
+                Serial.print("Tic total droit : ");
+                Serial.println(slave->debuggTic_d());
+                Serial.print("Tic total gauche : ");
+                Serial.println(slave->debuggTic_g());
+            break;
+        }
+        break;
     case 'S' :
         //Vitesse vit;
         // ordre de type Slave
@@ -109,8 +151,26 @@ void OrdersRaspberry::executeinstr()
         case 0: // set x, y, cap
             Serial.print("SET X Y CAP :");
             stream >> x >> y >> cap;
-            
-            slave->setxycap(Coord(atoi(x.c_str()), atoi(y.c_str()), 3.14 * atoi(cap.c_str())/ 180.0));
+          
+            Serial.println(atoi(x.c_str()));
+            if (atoi(x.c_str())== -1)
+            {
+                Serial.println("recal y -> x unknown");
+                slave->setxycap_no_x(atoi(y.c_str()), 3.14 * atoi(cap.c_str())/ 180.0);
+            }
+            else
+            {
+                if (atoi(y.c_str())== -1)
+                {
+                    Serial.println("recal x -> y unknown");
+                    slave->setxycap_no_y(atoi(x.c_str()), 3.14 * atoi(cap.c_str())/ 180.0);
+                }
+                else
+                {
+                    slave->setxycap(Coord(atoi(x.c_str()), atoi(y.c_str()), 3.14 * atoi(cap.c_str())/ 180.0));
+                }
+
+            }
             Serial.print(atoi(x.c_str()));
             Serial.print(" ");
             Serial.print(atoi(y.c_str()));
@@ -122,6 +182,7 @@ void OrdersRaspberry::executeinstr()
         case 1: //Recal
             Serial.println("GET X Y CAP: ");
             slave->get_control()->write_real_coords();
+            
             break;
 
         case 2: //Recal
@@ -201,11 +262,34 @@ void OrdersRaspberry::executeinstr()
          //   slave->set<ARRET_ROBOT>();
             break;
         case 8: //Reprendre
-            Serial.println("Reprendre");
-          //  slave->set<REPRENDRE>();
+            Serial.println(" SET GAINS (DEBUG) ");
+
+            stream>> x >> y >> z >> cap;
+           
+            if (atoi(x.c_str()) == 1 )
+            {
+                Serial.println("setting gains for dep");
+                Serial.println(" Kp KI KV");
+                
+                slave->get_control()-> setTuningDep(atof(y.c_str()), atof(z.c_str()), atof(cap.c_str()));
+                slave->get_control()->write_debug();
+
+            }
+            else
+            {
+                Serial.println(" setting gains for cap");
+                Serial.println(" Kp KI KV");
+                
+                slave->get_control()-> setTuningCap(atof(y.c_str()), atof(z.c_str()), atof(cap.c_str()));
+                slave->get_control()->write_debug();
+
+
+            }
             break;
 
         case 9:
+		
+			//slave->get_control()->debuggDistance_d();
             /*
             stream>> x >> y >> cap;
             Serial.println("setXYCap");

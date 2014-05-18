@@ -7,17 +7,19 @@
 //-> ok for PMI
 long tic_odo = 0;
 long pulse_color = 0;
+int chb = 0;
 
 
 void inc_tic_odo(){
-    int chb = digitalRead(PIN_ODO_DIR) ;
+    chb = digitalRead(PIN_ODO_DIR) ;
+    //Serial.println(chb);
     if (chb == 1)
     {
-    tic_odo = tic_odo - 1;
+    tic_odo++;// = tic_odo - 1;
     }
     else
     {
-    tic_odo = tic_odo + 1; 
+    tic_odo--;// = tic_odo + 1; 
     }
 }
 

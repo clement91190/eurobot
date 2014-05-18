@@ -122,32 +122,29 @@ class Communication:
         if actio1 is None:
             print "No actio1"
 
-
         return slave, actio1
 
     def treat_line(self, line):
-        print bcolors.OKGREEN, "[READ]",  line, bcolors.ENDC
-
         s_line = line.split()
         if s_line[0] == "#":
+            print bcolors.OKGREEN, "[READ TRANS]",  line, bcolors.ENDC
             if s_line[1] in ["BLOC", "AFINI", "ADVD", "NEAR", "START", "STARTIN"]:
                 self.global_mae.trigger(s_line[1])
             else:
                 print "unkown transition", line
         elif s_line[0] == "*":
+            print bcolors.FAIL, "[READ DATA]",  line, bcolors.ENDC
             #parameters
             if s_line[1] == "STRAT":
                 self.robot_state.strat = [int(v) for v in s_line[2:]]
-            elif s_line[2] == "COUL":
-                if int(s_line[1]):
-                    self.robot_state.coul = "rouge" 
-                else:
-                    self.robot_state.coul = "jaune" 
-            elif s_line[2] == "ADVD":
-                self.robot_state.adversary_detection.insert((time.time(), Coord(int(s_line[3]), int(s_line[4]), float(s_line[5]))), 0)
-
-            elif s_line[2] == "COORD":
-                self.robot_state.set_current_position(Coord(int(s_line[3]), int(s_line[4]), float(s_line[5])))
+            elif s_line[1] == "COUL":
+                self.robot_state.set_couleur(int(s_line[2]))
+            elif s_line[1] == "ADVD":
+                self.robot_state.adversary_detected(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])).couleur_relative())
+            elif s_line[1] == "COORD":
+                self.robot_state.set_last_position(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])).couleur_relative())
+        else:
+            print "[CRAP]", s_line
 
     def run(self):
         """ read message and send transitions """
@@ -159,7 +156,7 @@ class Communication:
                     line = self.non_blocking_read_line(ser)
 
     def send(self, arduino, message):
-        print bcolors.HEADER, "[SEND -> ", arduino ," ]", message, bcolors.ENDC
+        print bcolors.HEADER, "[SEND -> ", arduino, " ]", message, bcolors.ENDC
         try:
             self.arduinos[arduino].write(message + "\n")
         except:
@@ -206,4 +203,27 @@ class PipoCommunication:
         self.send("actio2", message)  # most message are in coord.py
 
 
+def init(ser):
+    ser.setDTR(False)
+    time.sleep(1)
+# toss any data already received, see
+# http://pyserial.sourceforge.net/pyserial_api.html#serial.Serial.flushInput
+    ser.flushInput()
+    ser.setDTR(True)
 
+
+def main():
+    ser = serial.Serial('/dev/ttyUSB0')
+    init(ser)
+    print "/dev/ttyUSB0  ->", ser.readline()
+    ser = serial.Serial('/dev/ttyUSB1')
+    init(ser)
+    print "/dev/ttyUSB1  ->", ser.readline()
+    ser = serial.Serial('/dev/ttyUSB2')
+    init(ser)
+    print "/dev/ttyUSB2  ->", ser.readline()
+    
+
+if __name__ == "__main__":
+    main()
+    

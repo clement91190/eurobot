@@ -71,6 +71,7 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
     float d;
     switch(bf_type){
         case STOP:
+            Serial.println("STOP");
             break;
         case BFFW:
             target_position.forward_translation(target_position_.get_x());
@@ -102,10 +103,15 @@ void ControlLoop::next_asserv_state(){
     switch (asserv_state){
         case FAR:
             asserv_state = NEAR ; 
+            write_real_coords();
             Serial.println("# NEAR");
+
+
+            
             break;
         case NEAR:
             asserv_state = DONE ;
+            write_real_coords();
             Serial.println("# AFINI");
             bf_type = STOP;
             break;
@@ -132,7 +138,14 @@ void ControlLoop::compute_pids(){
             cmd_dep = piddep.compute( to_target.scalar(Vector(real_coord))); // the error is a scalar product
             if (asserv_state != NEAR)
             {
-                pidcap.setTarget(to_target.get_angle());
+                if (abs(diff_cap(to_target.get_angle(), target_position.get_cap())) > PI / 2)
+                {
+                    pidcap.setTarget(to_target.get_angle() + PI);
+                }
+                else
+                {
+                    pidcap.setTarget(to_target.get_angle());
+                }
             }
             else
             {
@@ -219,6 +232,7 @@ void ControlLoop::run(Coord real_coord_){
     real_coord = real_coord_;
     compute_pids();
     compute_cmds();
+
     if (bf_type == BFFW)
     {
         check_adversary();
@@ -262,8 +276,8 @@ void ControlLoop::check_blockage()
    
    if (count_not_moving > 15)
    {
-        Serial.println("# BLOC");
         write_real_coords();
+        Serial.println("# BLOC");
 
         set_BF(STOP, Coord());
         count_not_moving = 0;
@@ -289,15 +303,21 @@ void ControlLoop::check_adversary()
         if (sonard.adv_detected()){
             sonarg.mean_adv(sonard.get_adv());
         }
+        write_real_coords();
         sonarg.write_adv_coord();
         set_BF(STOP, Coord());
     }
     else if (sonard.adv_detected())
+    {
+        write_real_coords();
         sonard.write_adv_coord();
         set_BF(STOP, Coord());
+       }
+
 #else
     if (sonarg.adv_detected()){
-       sonarg.write_adv_coord();
+        write_real_coords();
+        sonarg.write_adv_coord();
         set_BF(STOP, Coord());
     }
 #endif 
@@ -305,10 +325,22 @@ void ControlLoop::check_adversary()
 }
 
 
+void ControlLoop::setTuningCap(float Kp, float Ki, float Kd )
+{
+    pidcap.setTuning(Kp, Ki, Kd);
+}
+
+void ControlLoop::setTuningDep(float Kp, float Ki, float Kd )
+{
+    piddep.setTuning(Kp, Ki, Kd);
+}
+     
+
 void ControlLoop::setxycap(Coord new_coord)
 {
     real_coord = Coord(new_coord);
     target_position = Coord(real_coord);
+    write_real_coords();
 }
 
 void ControlLoop::write_real_coords()
@@ -323,6 +355,13 @@ void ControlLoop::write_real_coords()
 
 void ControlLoop::write_debug()
 {
+    Serial.println("GAIN CAP");
+    pidcap.write_debug();
+
+    Serial.println("GAIN DEP");
+    piddep.write_debug();
+
+
     Serial.print("SonarG");
     sonarg.write_debug();
 #ifndef PMI

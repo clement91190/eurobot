@@ -43,6 +43,7 @@ void setup()
   Serial.println("#SLAVE READY");
   write_serial_strat();
   state = ALLUMAGE; 
+  timer = 0;
 }
 
 void loop(){
@@ -65,18 +66,18 @@ void loop(){
    if (state == ALLUMAGE && digitalRead(PIN_AN_START) == 0)
     {
         state = STARTMIS;
-        Serial.println("#STARTIN");
+        Serial.println("# STARTIN");
     }
     if (state == STARTMIS && digitalRead(PIN_AN_START) == 1)
     {
         state = GAME ;
-        Serial.println("#START");
+        Serial.println("# START");
         timer = millis(); 
     }
 
-    if (state == END || (state == GAME && timer > 90000))
+    if (state == END || (state == GAME && timer > 90000 + millis()))
     {
-        Serial.println("End of Game");
+        Serial.println("# ENDG");
         state = END;
         slave->stop();
         

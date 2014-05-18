@@ -9,7 +9,7 @@ ColorSensor::ColorSensor():
 bool ColorSensor::is_red()
 {
    //TODO write constants for red and yellowlast_count
-   return last_count > 1800;
+   return last_count < SEUIL_ROUGE;
 }
 bool ColorSensor::is_yellow()
 {

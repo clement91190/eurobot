@@ -35,8 +35,8 @@ class Mission:
         self.start_coordinate = start_coordinate
         self.mae = mae
         self.priorite = 0
-        self.done = True
-        self.points = 0
+        self.done = False
+        self.points = 1.0
 
     def success(self):
         self.done = True
@@ -52,7 +52,7 @@ class Mission:
 
     def get_score(self, temps_trajet):
         """ temp_trajet est une estimation du temps de trajet a faire en sec """
-        return self.points / temps_trajet + self.prorite
+        return (not self.done, self.points / temps_trajet + self.priorite)
 
 
 

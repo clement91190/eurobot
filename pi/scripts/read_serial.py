@@ -2,7 +2,7 @@ import serial
 
 def main():
 
-    serr = serial.Serial('/dev/ttyUSB0', 9600)
+    serr = serial.Serial('/dev/ttyUSB1', 9600)
     serr.close()
     serr.open()
     while True:

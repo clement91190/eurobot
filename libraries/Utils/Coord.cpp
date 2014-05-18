@@ -131,6 +131,7 @@ float Vector::get_angle(){
 
 float diff_cap(float cap1, float cap2)
 {
+    // un cap est entre -Pi et Pi
     float diff = cap1 - cap2;
     if (diff > PI) 
     {
