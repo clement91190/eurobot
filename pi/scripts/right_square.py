@@ -54,7 +54,8 @@ class Forward4(State):
 class MAESquare(MAE):
     def __init__(self):
         MAE.__init__(self)
-        self.state_list = [Turn1(), Forward1(), Turn2(), Forward2(), Turn3(), Forward3(), Turn4(), Forward4()]
+        #self.state_list = [Turn1(), Forward1(), Turn2(), Forward2(), Turn3(), Forward3(), Turn4(), Forward4()]
+        self.state_list = [Turn1(), Forward1(), Turn4(), Forward2(), Turn3(), Forward3(), Turn2(), Forward4()]
         self.state_list[0].transitions["AFINI"] = self.state_list[1]
         self.state_list[1].transitions["AFINI"] = self.state_list[2]
         self.state_list[2].transitions["AFINI"] = self.state_list[3]

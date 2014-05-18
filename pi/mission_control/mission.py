@@ -45,10 +45,10 @@ class Mission:
         self.done = False
 
     def penalize(self, p):
-        self.prorite -= p
+        self.priorite -= p
 
     def prioritize(self, p):
-        self.prorite += p
+        self.priorite += p
 
     def get_score(self, temps_trajet):
         """ temp_trajet est une estimation du temps de trajet a faire en sec """

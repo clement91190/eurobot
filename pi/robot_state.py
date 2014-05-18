@@ -6,8 +6,10 @@ from slave_manager import SlaveManager
 import time
 
 
-#from mission_control.debile import mission_fresque, mission_prise_torche_adv
-from mission_control.debile import mission_test
+from mission_control.debile import mission_fresque, mission_prise_torche_adv
+from mission_control.debile import mission_test, tir_filet
+
+from mission_control.mark import prise_arbre, vidange_torches, tir_mamouths
 
 
 class bcolors:
@@ -36,10 +38,12 @@ class RobotState:
             self.com = Communication(self, robot)
         else:
             self.com = PipoCommunication()
+        self.init_post_coul()
 
+    def init_post_coul(self):
         self.com_state_factory = ComStateFactory(self.com)
  
-        if robot == "mark":
+        if self.robot == "mark":
             self.init_mission_mark()
         else:
             self.init_mission_pmi()
@@ -55,12 +59,20 @@ class RobotState:
 
     def init_mission_mark(self):
         """ definition of the missions"""
-        pass
+        self.missions["m_torche"] = vidange_torches.get_mission(self.com_state_factory)
+        self.missions["m_torche"].prioritize(2.)
+        self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
+        self.missions["m_arbre1"].prioritize(10.)
+        self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
+        self.missions["m_mammouths"].prioritize(20.)
+
+
 
     def init_mission_pmi(self):
         #self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
-        self.missions["m_test1"] = mission_test.get_mission(self.com_state_factory, 1)
-        self.missions["m_test2"] = mission_test.get_mission(self.com_state_factory, 2)
+        self.missions["m_filet"] = tir_filet.get_mission(self.com_state_factory)
+        #self.missions["m_test1"] = mission_test.get_mission(self.com_state_factory, 1)
+        #self.missions["m_test2"] = mission_test.get_mission(self.com_state_factory, 2)
 
     def set_last_position(self, position):
         self.last_position = position
@@ -93,7 +105,7 @@ class RobotState:
 
     def adversary_detected(self, adv):
         """ adv is the local coordinate of the adversary (ie vector from robot) """
-        global_coords = self.last_position.add_vector(adv) 
+        global_coords = adv  # self.last_position.add_vector(adv) 
         print  "ADVERSARY AT", global_coords
         self.adversary_detection.insert(0, (time.time(), global_coords))
 
@@ -105,15 +117,15 @@ class RobotState:
 
     def mission_done(self):
         print "#### MISSION DONE ###"
-        for t, mis in self.missions.items():
-            mis.to_do()
+        #for t, mis in self.missions.items():
+        #    mis.to_do()
         self.missions[self.current_mission].success()
 
     def mission_failed(self):
         print "#### MISSION DONE ###"
-        for t, mis in self.missions.items():
-            mis.to_do()
-        self.missions[self.current_mission].success()
+        #for t, mis in self.missions.items():
+        #    mis.to_do()
+        self.missions[self.current_mission].penalize(5.)
 
     def set_couleur(self, coul):
         coord.couleur = coul
@@ -121,6 +133,7 @@ class RobotState:
             self.coul = "jaune"
         else:
             self.coul = "rouge"
+        self.init_post_coul()
 
 
 def get_d_dos_cdg(robot="mark"):

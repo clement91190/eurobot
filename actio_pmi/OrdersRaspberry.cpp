@@ -101,6 +101,10 @@ void OrdersRaspberry::executeinstr()
         io->write_debug();
         break;
 
+    case 'S':
+        io->envoi_filet();
+        io->trigger(RANGE);
+        break;
 
     case 'P' :
         //Vitesse vit;

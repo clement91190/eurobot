@@ -20,7 +20,7 @@ ControlLoop::ControlLoop():
 #endif
 
     fw_g(true){
-    piddep.setMinMax(100);
+    set_speed(SLOW);
     //sonarg.turn_off();
     //
 };
@@ -38,8 +38,13 @@ void ControlLoop::set_speed(int speed)
 {
     switch(speed){
         case SLOW:
-            piddep.setMinMax(42);
+       #ifdef PMI
+			piddep.setMinMax(42);
             pidcap.setMinMax(42);
+		#else
+			piddep.setMinMax(60);
+            pidcap.setMinMax(60);
+		#endif
             break;
 
         case MEDIUM:
@@ -48,8 +53,14 @@ void ControlLoop::set_speed(int speed)
             break;
 
         case FAST:
-            piddep.setMinMax(150);
+        #ifdef PMI
+			piddep.setMinMax(150);
             pidcap.setMinMax(150);
+		#else
+			piddep.setMinMax(150);
+            pidcap.setMinMax(150);
+		#endif
+            
             break;
     }
 }
@@ -263,11 +274,11 @@ void ControlLoop::check_blockage()
    Vector dep = Vector(real_coord, late_pos);
    if (abs(cmd_dep) + abs(cmd_cap) < 40){
     return;}
-   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.05)
+   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.005)
    {
-        //Serial.println(abs(real_coord.get_cap() - late_pos.get_cap()));
         count_not_moving += 1;
-        Serial.println("INC BLOC COUNT");
+        Serial.print("INC BLOC COUNT ");
+        Serial.println(100. * abs(real_coord.get_cap() - late_pos.get_cap()));
         
    }
    else{
@@ -299,15 +310,15 @@ void ControlLoop::check_adversary()
 
 #ifndef PMI
 
-    if (sonarg.adv_detected()){
-        if (sonard.adv_detected()){
+    if (sonarg.adv_detected(real_coord)){
+        if (sonard.adv_detected(real_coord)){
             sonarg.mean_adv(sonard.get_adv());
         }
         write_real_coords();
         sonarg.write_adv_coord();
         set_BF(STOP, Coord());
     }
-    else if (sonard.adv_detected())
+    else if (sonard.adv_detected(real_coord))
     {
         write_real_coords();
         sonard.write_adv_coord();
@@ -315,7 +326,7 @@ void ControlLoop::check_adversary()
        }
 
 #else
-    if (sonarg.adv_detected()){
+    if (sonarg.adv_detected(real_coord)){
         write_real_coords();
         sonarg.write_adv_coord();
         set_BF(STOP, Coord());

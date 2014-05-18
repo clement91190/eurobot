@@ -57,28 +57,61 @@ class Communication:
 
     def init_arduinos_mark(self):
         """ return the 3 correct serial connection """
-        ser1 = serial.Serial('/dev/ttyUSB0', 9600)
-        ser2 = serial.Serial('/dev/ttyUSB1', 9600)
-        ser3 = serial.Serial('/dev/ttyUSB2', 9600)
+        ser1 = ser2 = ser3 = None
 
-        ser1.close()
-        ser1.open()
+        try:
+            ser1 = serial.Serial('/dev/ttyUSB0', 9600)
+            # Toggle DTR to reset Arduino
+            ser1.setDTR(False)
+            time.sleep(1)
+# toss any data already received, see
+# http://pyserial.sourceforge.net/pyserial_api.html#serial.Serial.flushInput
+            ser1.flushInput()
+            ser1.setDTR(True)
+        except:
+            pass
+        try:
 
-        ser2.close()
-        ser2.open()
+            ser2 = serial.Serial('/dev/ttyUSB1', 9600)
+            ser2.setDTR(False)
+            time.sleep(1)
+# toss any data already received, see
+# http://pyserial.sourceforge.net/pyserial_api.html#serial.Serial.flushInput
+            ser2.flushInput()
+            ser2.setDTR(True)
 
-        ser3.close()
-        ser3.open()
-    
+        except:
+            print "WARNING"
+ 
+        try:
+
+            ser3 = serial.Serial('/dev/ttyUSB2', 9600)
+            ser3.setDTR(False)
+            time.sleep(1)
+# toss any data already received, see
+# http://pyserial.sourceforge.net/pyserial_api.html#serial.Serial.flushInput
+            ser3.flushInput()
+            ser3.setDTR(True)
+
+        except:
+            print "WARNING"
+   
         d = {}
         d[self.get_serial_name(ser1)] = ser1
         d[self.get_serial_name(ser2)] = ser2
         d[self.get_serial_name(ser3)] = ser3
         d[None] = None
 
-        slave = d[welcome_messages[0]]
-        actio1 = d[welcome_messages[1]]
-        actio2 = d[welcome_messages[2]]
+
+        slave = d.get(welcome_messages[0], None)
+        actio1 = d.get(welcome_messages[1], None)
+        actio2 = d.get(welcome_messages[2], None)
+        if slave is None:
+            print "No Slave"
+        if actio1 is None:
+            print "No actio1"
+        if actio2 is None:
+            print "No actio2"
 
         return slave, actio1, actio2
 

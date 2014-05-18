@@ -28,14 +28,19 @@ float Sonar::get_dist(){
 #endif
 }
 
-bool Sonar::adv_detected(){
+bool Sonar::adv_detected(Coord pos_robot){
     if (!on) return false;
     float d = get_dist();
     if (10 < d && d < 500.0)
     {
         adv = Coord(dir);
         adv.forward_translation(d) ;
-        return adv.is_on_map();
+        Coord res = Coord(
+            adv.get_x() * cos(pos_robot.get_cap()) + adv.get_y() * sin(pos_robot.get_cap()),
+            adv.get_y() * cos(pos_robot.get_cap()) + adv.get_x() * sin(pos_robot.get_cap()),
+            pos_robot.get_cap());
+
+        return res.is_on_map();
     }
     return false;
 }

@@ -18,7 +18,7 @@ class MAEGlobal(MAE):
         pre_start = MAEState(MAEPrestart(com_state_factory), "pre_start" + self.robot_state.robot)
 
         game = self.game = MAEState(MAEGame(com_state_factory, slave_manager, robot_state), "game")
-        end = State("end")
+        end = com_state_factory.get_stop(self.robot_state.robot)
         self.state_list = [init, pre_start, game, end]
         init.add_instant_transition(pre_start)
         pre_start.transitions["START"] = game
@@ -76,7 +76,7 @@ class MAERushDebile(MAE):
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
         tape = self.sf.get_pmi_tape()
-        avance_triangle1 = self.sf.get_bf_fw(Coord(800))
+        avance_triangle1 = self.sf.get_bf_fw(Coord(1200))
         out = OutState("end_rush")
         
         init.add_instant_transition(tape)
@@ -96,14 +96,14 @@ class MAERushMark(MAE):
 
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
-        avance_sortie = self.sf.get_bf_fw(Coord(500))
+        avance_sortie = self.sf.get_bf_fw(Coord(350))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 120))
-        rush = self.sf.get_bf_fw(Coord(500))
+        rush = self.sf.get_bf_fw(Coord(700))
         out = OutState("end_rush")
         
         init.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_sortie)
-        avance_sortie.add_afini(tourne)
+        avance_sortie.add_afini_transition(tourne)
         tourne.add_afini_transition(rush)
         rush.add_afini_transition(out)
         rush.add_bloc_transition(out)
@@ -179,7 +179,7 @@ class MAEMission(MAE):
 
 if __name__ == "__main__":
     from robot_state import RobotState
-    robot = RobotState("debile", pipo=True)
+    robot = RobotState("mark", pipo=True)
     #mae = robot.mae.game.mae.mae_dep  # MAEGAME
     mae = robot.mae  # MAEGlobal
     #mae = robot.mae.game.mae.mission_state.mae  # MAEMISSION

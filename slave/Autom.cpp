@@ -4,15 +4,15 @@
 
 #ifdef PMI
 
-#define GAIN_ODO_D 0.3333333
-#define GAIN_ODO_G 0.3431709
-#define GAIN_ODO_inter 0.0131697
+#define GAIN_ODO_G 0.338409475
+#define GAIN_ODO_D 0.337609723
+#define GAIN_ODO_inter 0.01263733
 
 #else
 
-#define GAIN_ODO_G 0.357
-#define GAIN_ODO_D 0.357
-#define GAIN_ODO_inter 0.004299
+#define GAIN_ODO_G 0.337495781
+#define GAIN_ODO_D 0.336927224
+#define GAIN_ODO_inter 0.004676491
 
 #endif
 
