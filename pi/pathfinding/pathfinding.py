@@ -1,4 +1,5 @@
 import numpy as np
+from utils.coord import Coord
 import math
 #x is always the first indice, y second !
 
@@ -12,6 +13,7 @@ class PathFinder():
         self.nj = self.Y / self.size_of_square
         self.map = np.zeros((self.ni, self.nj), dtype="uint8")
         self.arrival = (1000, 1000, 0)
+        self.start = (1000, 1000, 0)
         self.waypoints = []
         self.estimate = lambda (i, j): np.sqrt((self.arrival[0] / self.size_of_square - i) ** 2 + (self.arrival[1] / self.size_of_square - j) ** 2)
         self.cost = lambda (i0, j0), (i1, j1): np.sqrt((i0 - i1) ** 2 + (j0 - j1) ** 2) + max(self.map[i0, j0], self.map[i1, j1])
@@ -57,6 +59,7 @@ class PathFinder():
     def find_waypoints(self, (x0, y0, cap0), (x1, y1, cap1)):
         """ return a list of waypoint (x, y ,cap) to go from p0 to p1 -> see A* wikipedia"""
         self.arrival = (x1, y1, cap1)
+        self.start = (x0, y0, cap0)
         i0, j0 = (x0 / self.size_of_square, y0 / self.size_of_square)  # TODO find something better ?
         ind = self.to_ind(i0, j0)
         self.open_set.add(ind)
@@ -81,14 +84,79 @@ class PathFinder():
                             self.open_set.add(n)
         print " no way"
 
+
     def reconstruct_path(self, current_node):
         if current_node in self.came_from.keys():
             return  self.reconstruct_path(self.came_from[current_node]) + [self.from_ind(self.came_from[current_node])]
         else:
             return [self.from_ind(current_node)]
+   
+    def get_intermediate_points(self, (i0, j0), (i1, j1)):
+        """ return the set of points that are on the segment (i0, j0) (i1, j1), without extremities """
     
-    def smooth_waypoints(self):
-        pass
+        intermediate = []
+        if  (i0, j0) == (i1, j1):
+            return intermediate
+        if abs(i1 - i0) >= abs(j1 - j0):
+            if i0 > i1:
+                i0, i1 = i1, i0
+                j0, j1 = j1, j0
+            for i in range(i0, i1 + 1):
+                j = (j0 * (i1 - i) + j1 * (i - i0))  * 1.0 / (i1 - i0)
+                if j == int(j):
+                    intermediate.append((i, int(j)))
+                else:
+#                    print "coucou"
+                    intermediate.append((i, int(j)))
+                    intermediate.append((i, 1 + int(j)))
+        else:
+            if j0 > j1:
+                i0, i1 = i1, i0
+                j0, j1 = j1, j0
+          
+            for j in range(j0, j1 + 1):
+                i = (i0 * (j1 - j) + i1 * (j - j0)) * 1.0 / (j1 - j0)
+                if i == int(i):
+                    intermediate.append((int(i), j))
+                else:
+  #                  print "coucou"
+                    intermediate.append((int(i), j))
+                    intermediate.append((int(i) + 1 , j))
+ 
+#        print intermediate
+#        raw_input()
+        return intermediate
+
+    def is_segment_safe(self, (i0, j0), (i1, j1)):
+        """ return true if all the intermediate between i0, j0 are zero. """
+    
+        intermediate = self.get_intermediate_points((i0, j0), (i1, j1))
+        for (i, j) in intermediate:
+            if self.map[i, j] > 0:
+                return False
+        return True
+
+    def get_smooth_waypoints(self):
+        smoothed_waypoints = []
+        w0 = self.waypoints[0]
+        for i, w in enumerate(self.waypoints[1:]):
+            if not self.is_segment_safe((w0[0], w0[1]), (w[0], w[1])):
+                smoothed_waypoints.append(self.waypoints[i])
+                w0 = self.waypoints[i]
+
+        self.waypoints = smoothed_waypoints
+        print smoothed_waypoints
+        smoothed_waypoints = [Coord(*self.start)]
+
+        for w in self.waypoints:
+            smoothed_waypoints.append(Coord(w[0] * self.size_of_square, w[1] * self.size_of_square, 0))
+
+        smoothed_waypoints.append(Coord(*self.arrival))
+
+        for i, w in enumerate(smoothed_waypoints[:-1]):
+            w.set_cap_toward(smoothed_waypoints[i + 1])
+            
+        return smoothed_waypoints
 
     def __str__(self):
 
@@ -98,7 +166,7 @@ class PathFinder():
 
         for i in range(self.ni):
             for j in range(self.nj):
-                if self.map[i, j] > 0 :
+                if self.map[i, j] > 0:
                     way[i, j] = 2
         return """ map (waypoints -> 1 , obstactle ->2 ) :
 {}
@@ -109,6 +177,8 @@ def main():
     p = PathFinder()
     p.add_circle(1500, 1000, 400)
     p.find_waypoints((0, 1000, 0), (2200, 1000, 0))
+    print p
+    print p.get_smooth_waypoints()
     print p
 
 if __name__ == "__main__":

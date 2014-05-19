@@ -89,3 +89,6 @@ class Communication:
         except:
             print "CONNECTION PROBLEM"
 
+    def send_slave(message):
+        self.send("slave", message)
+

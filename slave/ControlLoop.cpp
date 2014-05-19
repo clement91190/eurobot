@@ -12,12 +12,17 @@ ControlLoop::ControlLoop():
     target_position(),
     count_not_moving(0),
     late_pos(),
-    sonard(PIN_AN_SONARG, Coord(10., -10., -5.)),
-    sonarg(PIN_AN_SONARD, Coord(10., 10., 5.)),
+#ifdef PMI
+    sonarg(PIN_AN_SONARG, Coord(0., 0., 0.)),
+#else
+    sonarg(PIN_AN_SONARG, Coord(10., 10., 5.)),
+    sonard(PIN_AN_SONARD, Coord(10., -10., -5.)),
+#endif
+
     fw_g(true){
     piddep.setMinMax(100);
-    sonarg.turn_off();
-
+    //sonarg.turn_off();
+    //
 };
 
 void ControlLoop::set_target(Coord coord){
@@ -189,9 +194,9 @@ void ControlLoop::check_blockage()
     /*code to test if moving when commands are sent*/
     late_pos.barycentre(real_coord, 0.3);
    Vector dep = Vector(real_coord, late_pos);
-   if (abs(cmd_dep) + abs(cmd_cap) < 50){
+   if (abs(cmd_dep) + abs(cmd_cap) < 40){
     return;}
-   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 5.0)
+   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 2.0)
    {
         count_not_moving += 1;
         Serial.println("INC BLOC COUNT");
@@ -201,7 +206,7 @@ void ControlLoop::check_blockage()
         count_not_moving = 0;
    }
    
-   if (count_not_moving > 5)
+   if (count_not_moving > 15)
    {
         Serial.println("#BLOC");
         write_real_coords();
@@ -223,6 +228,9 @@ void ControlLoop::check_adversary()
         Serial.println("going backward...");
         return;
     }
+
+#ifndef PMI
+
     if (sonarg.adv_detected()){
         if (sonard.adv_detected()){
             sonarg.mean_adv(sonard.get_adv());
@@ -233,6 +241,13 @@ void ControlLoop::check_adversary()
     else if (sonard.adv_detected())
         sonard.write_adv_coord();
         set_BF(STOP, Coord());
+#else
+    if (sonarg.adv_detected()){
+       sonarg.write_adv_coord();
+        set_BF(STOP, Coord());
+    }
+#endif 
+
 }
 
 
@@ -254,6 +269,8 @@ void ControlLoop::write_debug()
 {
     Serial.print("SonarG");
     sonarg.write_debug();
+#ifndef PMI
     Serial.print("SonarD");
     sonard.write_debug();
+#endif
 }

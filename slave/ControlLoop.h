@@ -4,6 +4,7 @@
 #include "Coord.h"
 #include "Sonar.h"
 #include "PID.h"
+#include "pins.h"
 
 
 
@@ -16,6 +17,9 @@
 //#define GAIN_KP_DEP 3.45
 //#define GAIN_KD_DEP 4.6
 //#define GAIN_KI_DEP 0.6468
+
+
+#ifdef PMI
 
 #define GAIN_KP_DEP 1.1 
 #define GAIN_KI_DEP 0. //0.35
@@ -30,6 +34,22 @@
 #define NEAR_ERROR_CAP 8.0 * 3.14 / 180.0 
 #define DONE_ERROR_CAP  4.0 * 3.14 / 180.0 
 
+#else
+
+#define GAIN_KP_DEP 1.1 
+#define GAIN_KI_DEP 0. //0.35
+#define GAIN_KD_DEP 0. //10. //95 //0.25 //0.2
+#define NEAR_ERROR_DEP 70.0
+#define DONE_ERROR_DEP  10.0
+
+
+#define GAIN_KP_CAP 160.0  //Ku = 260
+#define GAIN_KI_CAP 0. //52.0 //70.0
+#define GAIN_KD_CAP 0.5 //18.0 //40.0
+#define NEAR_ERROR_CAP 8.0 * 3.14 / 180.0 
+#define DONE_ERROR_CAP  4.0 * 3.14 / 180.0 
+
+#endif
 
 class ControlLoop
 /* This class gets the updated coordinate, and talk to the 2 PID
@@ -53,7 +73,9 @@ class ControlLoop
         int count_not_moving;
         Coord late_pos; // to check how much we moved lately
         Sonar sonarg;
+#ifndef PMI        
         Sonar sonard;
+#endif
 
 
     public:

@@ -79,7 +79,7 @@ def main():
             #print "read line"
             transition = serr.readline()
             print "done ", transition
-            if transition == "AFINI\r\n": 
+            if transition in ["#AFINI\r\n", "#BLOC\r\n"]: 
                 mae.trigger("AFINI")
 
     

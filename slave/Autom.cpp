@@ -8,7 +8,11 @@ Autom::Autom():
     period_pid_loop(40),
     gain_odo_g(0.357),
     gain_odo_d(0.357),
+#ifdef PMI
+    gain_inter_odos(0.01309),
+#else
     gain_inter_odos(0.004299), //0.01309
+#endif
     last_ticG(0),
     last_ticD(0)
    {
@@ -52,12 +56,20 @@ void Autom::send_cmd(){
  //fw_d = true;
 
  //dir logic
+#ifdef PMI
+ if (!fw_g) digitalWrite(PIN_MOT_DIRG, HIGH);
+ else digitalWrite(PIN_MOT_DIRG, LOW);
+ if (!fw_d) digitalWrite(PIN_MOT_DIRD, LOW);
+ else digitalWrite(PIN_MOT_DIRD, HIGH);
+
+
+#else
  if (fw_g) digitalWrite(PIN_MOT_DIRG, HIGH);
  else digitalWrite(PIN_MOT_DIRG, LOW);
  if (fw_d) digitalWrite(PIN_MOT_DIRD, LOW);
  else digitalWrite(PIN_MOT_DIRD, HIGH);
-
- // cmd
+#endif
+  // cmd
  analogWrite(PIN_MOT_CMDG, cmd_g);
  analogWrite(PIN_MOT_CMDD, cmd_d);
  

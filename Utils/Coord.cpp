@@ -14,14 +14,14 @@ void Coord::set_y(float y_){y = y_;}
 void Coord::set_cap(float cap_){
     cap = cap_;
 
-    // cap always within [0:pi]    
-   if (cap > PI)
+    // cap always within [0: 2* pi]    
+   if (cap > 2 * PI)
    {
-        cap = cap - PI;
+        cap = cap - 2 * PI;
    }
    if (cap < 0)
    {
-        cap = cap + PI;
+        cap = cap + 2 * PI;
    }
 }
 

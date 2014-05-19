@@ -1,7 +1,9 @@
-#import pygraphviz as pgv
+import pygraphviz as pgv
 
 
 class State():
+    """ class implemeting the state of a state machine 
+        To create a state machine, have all state inherit from this one."""
     def __init__(self, name=""):
         self.transitions = {}  # dict of transition : "string" -> state
         if name == "":
@@ -20,6 +22,9 @@ class State():
         """ code to be processed periodicly while in the state """
         pass
 
+    def add_transition(self, trigger, new_state):
+        self.transitions[trigger] = new_state
+
     def __str__(self):
         return self.name
 
@@ -35,6 +40,10 @@ class OutState(State):
 
 
 class MAE():
+    """ implementation of state machines
+        requires a set of state (inherit from State)
+
+    """
     def __init__(self, state_list=[InitState()], verbose=True):
         self.state_list = state_list
         self.verbose = verbose
@@ -84,26 +93,26 @@ class MAE():
 
     def draw(self, file='mae_render.png'):
         """ draw the mae for debugging purposes """
-        #graph = pgv.AGraph(directed=True)
-        #for state in self.state_list:
-        #    for t, s2 in state.transitions.iteritems():
-        ##        graph.add_edge(state.__str__(), s2.__str__(), label=t, arrowhead='diamond')
-        #    if isinstance(state, MAEState):
-        #        for out_state, next_state in state.out_transitions.iteritems():
-        #            graph.add_edge(state, next_state, label="from_{}".format(out_state), arrowhead="diamond", color="green")
-        #for i, state in enumerate(self.state_list):
-        #    if i == 0:
-        #        init_node = graph.get_node(state.__str__())
-         #       init_node.attr['color'] = 'red'
-         #   if isinstance(state, MAEState):
-         #       node = graph.get_node(state.__str__())
-         #       node.attr['color'] = 'green'#
+        graph = pgv.AGraph(directed=True)
+        for state in self.state_list:
+            for t, s2 in state.transitions.iteritems():
+                graph.add_edge(state.__str__(), s2.__str__(), label=t, arrowhead='diamond')
+            if isinstance(state, MAEState):
+                for out_state, next_state in state.out_transitions.iteritems():
+                    graph.add_edge(state, next_state, label="from_{}".format(out_state), arrowhead="diamond", color="green")
+        for i, state in enumerate(self.state_list):
+            if i == 0:
+                init_node = graph.get_node(state.__str__())
+                init_node.attr['color'] = 'red'
+            if isinstance(state, MAEState):
+                node = graph.get_node(state.__str__())
+                node.attr['color'] = 'green'
 
-#            graph.add_node(self.state_list[0].__str__(), color='red')
-#
- #       graph.layout(prog='dot')
-  #      graph.draw(file)
-	pass
+            graph.add_node(self.state_list[0].__str__(), color='red')
+
+        graph.layout(prog='dot')
+        graph.draw(file)
+
     def is_over(self):
         return isinstance(self.current, OutState)
 
@@ -127,12 +136,13 @@ class MAEState(State):
         self.mae.trigger(transition)
 
     def add_out_transition(self, out_state_name, next_state):
-        """ add a direct transition from the out_state """
-        for state in self.mae:
+        """ add a direct transition from the out_state inside the MAEState to the next state """
+        for state in self.mae.state_list:
             if isinstance(state, OutState) and state.name == out_state_name:
-                self.out_transition[out_state_name] = next_state
-            else:
-                raise NotImplementedError("no state named {}".format(out_state_name))
+                self.out_transitions[out_state_name] = next_state
+                return
+        print "##states", [(isinstance(s, OutState), s.name) for s in self.mae.state_list]
+        raise NotImplementedError("no state named {}".format(out_state_name))
 
 
 def debugger(mae):
