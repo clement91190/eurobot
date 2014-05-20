@@ -37,6 +37,13 @@ class ComStateFactory:
         self.count += 1
         return SendSlaveState(coord.setxycap(), self.com, self.count) 
 
+    def get_setspeed(self, speed):
+        self.count += 1
+        return SendSlaveState("S7 {}".format(speed), self.com, self.count) 
+
+
+
+
 
 
 

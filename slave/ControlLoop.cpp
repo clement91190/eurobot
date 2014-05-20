@@ -226,7 +226,7 @@ void ControlLoop::check_blockage()
     return;}
    if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.05)
    {
-        Serial.println(abs(real_coord.get_cap() - late_pos.get_cap()));
+        //Serial.println(abs(real_coord.get_cap() - late_pos.get_cap()));
         count_not_moving += 1;
         Serial.println("INC BLOC COUNT");
         
@@ -254,7 +254,7 @@ void ControlLoop::check_adversary()
    
     if (to_target.scalar(Vector(real_coord)) <0.)
     {
-        Serial.println("going backward...");
+    //Serial.println("going backward...");
         return;
     }
 
@@ -288,7 +288,7 @@ void ControlLoop::setxycap(Coord new_coord)
 
 void ControlLoop::write_real_coords()
 {
-    Serial.print("#COORD ");
+    Serial.print("*COORD ");
     real_coord.write_serial();
     Serial.print("theorique");
     target_position.write_serial();

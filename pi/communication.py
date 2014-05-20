@@ -1,12 +1,12 @@
 import serial 
+import time
 
-welcome_messages = ["#SLAVE READY\n", "#ACTIO1 READY\n", "#ACTIO2 READY\n"]
+welcome_messages = ["#SLAVE READY\r\n", "#ACTIO1 READY\r\n", "#ACTIO2 READY\r\n"]
 
 
 class Communication:
-    def __init__(self, global_mae, robot="mark"):
+    def __init__(self, robot="mark"):
 
-        self.global_mae = global_mae
         if robot == "mark":
             self.slave, self.actio1, self.actio2 = self.init_arduinos_mark()
             self.serials = [self.slave, self.actio1, self.actio2]
@@ -21,6 +21,9 @@ class Communication:
                 "slave": self.slave,
                 "actio1": self.actio1}
 
+    def set_global_mae(self, global_mae):
+        self.global_mae = global_mae
+            
     def non_blocking_read_line(self, ser):
         """ careful, assert that everything is writen line by line """
         if ser.inWaiting():
@@ -28,11 +31,17 @@ class Communication:
 
     def get_serial_name(self, serr):
         """ done when initializing the boards. """
+        if serr is None:
+            print "missing arduino"
+            return None
         while True:
             line = self.non_blocking_read_line(serr)
             if line in welcome_messages:
                 return line
             else:
+                print line
+                time.sleep(0.4)
+   #             raw_input()
                 print "weird reading... check connection"
 
     def init_arduinos_mark(self):
@@ -64,26 +73,49 @@ class Communication:
 
     def init_arduinos_debile(self):
         """ return the 3 correct serial connection """
-        ser1 = serial.Serial('/dev/ttyUSB0', 9600)
-        ser2 = serial.Serial('/dev/ttyUSB1', 9600)
+        ser1 = ser2 = None
 
-        ser1.close()
-        ser1.open()
+        try:
+            ser1 = serial.Serial('/dev/ttyUSB0', 9600)
+            # Toggle DTR to reset Arduino
+            ser1.setDTR(False)
+            time.sleep(1)
+# toss any data already received, see
+# http://pyserial.sourceforge.net/pyserial_api.html#serial.Serial.flushInput
+            ser1.flushInput()
+            ser1.setDTR(True)
+        except:
+            pass
+        try:
 
-        ser2.close()
-        ser2.open()
-    
+            ser2 = serial.Serial('/dev/ttyUSB1', 9600)
+            ser2.setDTR(False)
+            time.sleep(1)
+# toss any data already received, see
+# http://pyserial.sourceforge.net/pyserial_api.html#serial.Serial.flushInput
+            ser2.flushInput()
+            ser2.setDTR(True)
+
+        except:
+            print "WARNING"
+        
         d = {}
         d[self.get_serial_name(ser1)] = ser1
         d[self.get_serial_name(ser2)] = ser2
         d[None] = None
 
-        slave = d[welcome_messages[0]]
-        actio1 = d[welcome_messages[1]]
+        slave = d.get(welcome_messages[0], None)
+        actio1 = d.get(welcome_messages[1], None)
+        if slave is None:
+            print "No Slave"
+        if actio1 is None:
+            print "No actio1"
+
 
         return slave, actio1
 
     def treat_line(self, line):
+        print line
         if line[0] == "#":
             if line == "#BLOC\r\n":
                 self.global_mae.trigger("BLOC")
@@ -94,19 +126,21 @@ class Communication:
                 self.global_mae.trigger("AFINI")
             elif line == "#NEAR\r\n":
                 self.global_mae.trigger("NEAR")
+            elif line == "#START\r\n":
+                self.global_mae.trigger("START")
+            elif line == "#STARTIN\r\n":
+                self.global_mae.trigger("STARTIN")
             else:
                 print "unkown transition", line
 
     def run(self):
         """ read message and send transitions """
         for ser in self.serials:
-            line = self.non_blocking_read_line(ser)
-            while line is not None:
-                self.treat_line(line)
+            if ser is not None:
                 line = self.non_blocking_read_line(ser)
-
-
-
+                while line is not None:
+                    self.treat_line(line)
+                    line = self.non_blocking_read_line(ser)
             
 
     def send(self, arduino, message):

@@ -62,12 +62,12 @@ void loop(){
    //int sensorValue = analogRead(A5);
    //Serial.print(int(sensorValue * 300.0 / 1023 + 100.0));
    //Serial.println( " mm");
-   if (state == ALLUMAGE && digitalRead(PIN_AN_START) == 1)
+   if (state == ALLUMAGE && digitalRead(PIN_AN_START) == 0)
     {
         state = STARTMIS;
         Serial.println("#STARTIN");
     }
-    if (state == STARTMIS && digitalRead(PIN_AN_START) == 0)
+    if (state == STARTMIS && digitalRead(PIN_AN_START) == 1)
     {
         state = GAME ;
         Serial.println("#START");

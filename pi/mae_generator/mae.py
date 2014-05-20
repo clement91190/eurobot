@@ -73,7 +73,8 @@ class MAE():
         else:
             raise NotImplementedError("multiple input not implemented yet")
         if self.verbose:
-            print self.current_state
+            print "$$reinit"
+            print "$$", self.current_state
 
     def go_to(self, new_state):
         """ check if new_state is not None and go there """
@@ -85,6 +86,8 @@ class MAE():
             self.current_state.in_code()
 
     def run(self):
+
+       # print self.current_state
         self.current_state.while_code()
         # for special out transition for MAEState
         if isinstance(self.current_state, MAEState) and self.current_state.mae.is_over():
@@ -131,7 +134,7 @@ class MAE():
         graph.draw(file)
 
     def is_over(self):
-        return isinstance(self.current, OutState)
+        return isinstance(self.current_state, OutState)
 
 
 class MAEState(State):
@@ -144,10 +147,10 @@ class MAEState(State):
         self.out_transitions = {}
 
     def in_code(self):
-        self.mae.current_state = self.mae.reinit_state()
+        self.mae.reinit_state()
 
     def while_code(self):
-        self.mae.run(self.verbose)
+        self.mae.run()
 
     def trigger(self, transition):
         self.mae.trigger(transition)
