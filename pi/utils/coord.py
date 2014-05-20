@@ -16,11 +16,14 @@ class Coord:
     def bf_cap(self):
         return "S3 {}".format(self.cap)
 
-    def bf_dep(self):
+    def bf_fw(self):
         return "S4 {}".format(self.x)
 
     def bf_droite(self):
         return "S5 {} {} {}".format(self.x, self.y, self.cap)
+
+    def setxycap(self):
+        return "S0 {} {} {}".format(self.x, self.y, self.cap)
 
     def to_tuple(self):
         return (self.x, self.y, self.cap)

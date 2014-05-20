@@ -25,6 +25,23 @@ class State():
     def add_transition(self, trigger, new_state):
         self.transitions[trigger] = new_state
 
+    def add_bloc_transition(self, new_state):
+        self.add_transition("BLOC", new_state)
+
+    def add_advd_transition(self, new_state):
+        self.add_transition("ADVD", new_state)
+
+    def add_afini_transition(self, new_state):
+        self.add_transition("AFINI", new_state)
+
+    def add_instant_transition(self, new_state):
+        self.add_transition("", new_state)
+
+    def add_near_transition(self, new_state):
+        self.add_transition("NEAR", new_state)
+
+        
+
     def __str__(self):
         return self.name
 
@@ -147,11 +164,14 @@ class MAEState(State):
 
 def debugger(mae):
     mae.draw()
+    import os
+    os.system("xdg-open mae_render.png")
     while True:
         mae.verbose = True
         mae.run()
         transition = raw_input()
         mae.trigger(transition)
+        
     
 
 

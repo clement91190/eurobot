@@ -8,7 +8,7 @@
 long ticG = 0;
 long ticD = 0;
 
-#ifdef PMI 
+#ifdef PROUT 
 void inc_ticG(){
     int chb;
     chb = digitalRead(PIN_ODO_DIRG);

@@ -1,25 +1,16 @@
 """ file to handle all the movements of the slave. """
 
+from mae_generator.mae import OutState, MAE, MAEState
 from pathfinding.pathfinding import PathFinder
-from mae_generator.mae import State, OutState, MAE, MAEState
 from utils.coord import Coord
-
-
-class SendSlaveState(State):
-    def __init__(self, message, com):
-        State.__init__(self, "slave step: " + message)
-        self.com = com
-        self.message = message
-
-    def in_code(self):
-        self.com.send_slave(self.message)
+from com_state_factory import ComStateFactory
 
 
 class SlaveManager:
-    def __init__(self, com):
+    def __init__(self, com_state_factory):
         self.pathfinder = PathFinder()
         self.pathfinder.add_circle(1500, 1050, 200)
-        self.com = com
+        self.state_factory = com_state_factory
         self.current_position = Coord()
         self.movement_mae = None
 
@@ -32,8 +23,7 @@ class SlaveManager:
         states = [] 
         #TODO chose different options
         
-        states.append(SendSlaveState(coords_to.bf_droite(), self.com))
-
+        states.append( self.state_factory.get_bf_droite(coords_to)) 
         states.append(OutState())
         states[-2].add_transition(precision, states[-1])
         return MAE(states)
@@ -68,10 +58,13 @@ class SlaveManager:
 
     def set_current_position(self, coord):
         self.current_position = coord
+
+    def recaler(self):
+        self.com.send_slave("S1")
                 
             
 def main():
-    manager = SlaveManager("pipo com")
+    manager = SlaveManager(ComStateFactory("pipo com"))
     manager.set_current_position(Coord(0, 1000, 0))
     mae = manager.go_to_pathfinder(Coord(2200, 1000, 0))
     mae.draw()

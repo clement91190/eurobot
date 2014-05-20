@@ -22,14 +22,16 @@ Autom::Autom():
 void Autom::update_cap(){
     /* attention ici, faudra tester la precision*/
     float cap = (ticD * gain_odo_d - ticG * gain_odo_g) * gain_inter_odos;       
-    real_coord.set_cap(cap);
+    real_coord.set_cap(real_coord.get_cap() + cap);
+    //Serial.println(ticG);
 }
 
 void Autom::update_coords(){
     /* peut etre prendre la moyenne des caps ou autre technique d'integration? */ 
     update_cap();
-    int delta_ticG = ticG - last_ticG;
-    int delta_ticD = ticD - last_ticD;
+    int delta_ticG = ticG; //- last_ticG;
+    int delta_ticD = ticD; //  - last_ticD;
+    reset_tics_odos();
     float d = (delta_ticG * gain_odo_g + delta_ticD * gain_odo_d) * 0.5;   
     real_coord.forward_translation(d);
     /* maybe add a delta cond on distance to avoid noise ? */
@@ -56,7 +58,7 @@ void Autom::send_cmd(){
  //fw_d = true;
 
  //dir logic
-#ifdef PMI
+#ifdef PROUT
  if (!fw_g) digitalWrite(PIN_MOT_DIRG, HIGH);
  else digitalWrite(PIN_MOT_DIRG, LOW);
  if (!fw_d) digitalWrite(PIN_MOT_DIRD, LOW);
@@ -75,6 +77,11 @@ void Autom::send_cmd(){
  
  //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
   //write_cmd(cmd_g, cmd_d, fw_g, fw_d);
+}
+void Autom::stop()
+{
+    analogWrite(PIN_MOT_CMDG, 0);
+    analogWrite(PIN_MOT_CMDD, 0);
 }
 
 void Autom::write_cmd(int cmd_g, int cmd_d, bool fw_g, bool fw_d){
@@ -121,4 +128,10 @@ void write_serial_strat()
     
     }
 
+
+void Autom::setxycap(Coord new_coord)
+{
+    real_coord = new_coord;
+    get_control()->setxycap(new_coord);
+}
 

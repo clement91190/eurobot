@@ -31,6 +31,8 @@ class Autom
         void update_coords();
         void reset_tics_odos();
         void run();
+        void stop();
+        void setxycap(Coord real_coord);
         ControlLoop* get_control();
         
 };

@@ -61,6 +61,9 @@ class MAEMission(MAE):
         MAE.__init__(self)
         self.state_list = [InitState("init"), OutState("end_mission"), OutState("evitement")]
         self.reinit_state()
+       
+
+
 
 
 if __name__ == "__main__":

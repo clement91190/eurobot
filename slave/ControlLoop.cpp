@@ -34,8 +34,36 @@ void ControlLoop::bf_avance(float d){
     piddep.addToTarget(d);
 }
 
-void ControlLoop::set_BF(int bf_type_, Coord target_position_){
+void ControlLoop::set_speed(int speed)
+{
+    switch(speed){
+        case SLOW:
+            piddep.setMinMax(42);
+            pidcap.setMinMax(42);
+            break;
 
+        case MEDIUM:
+            piddep.setMinMax(80);
+            pidcap.setMinMax(80);
+            break;
+
+        case FAST:
+            piddep.setMinMax(150);
+            pidcap.setMinMax(150);
+            break;
+    }
+}
+
+
+void ControlLoop::recaler(){
+    set_speed(SLOW);
+    set_BF(BFFW, Coord(-1000, 0, 0));
+}
+
+
+void ControlLoop::set_BF(int bf_type_, Coord target_position_){
+    
+    count_not_moving = 0;
     bf_type = bf_type_;
     asserv_state = FAR; 
     pidcap.reinit();
@@ -196,8 +224,9 @@ void ControlLoop::check_blockage()
    Vector dep = Vector(real_coord, late_pos);
    if (abs(cmd_dep) + abs(cmd_cap) < 40){
     return;}
-   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 2.0)
+   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 1.0)
    {
+        Serial.println(abs(real_coord.get_cap() - late_pos.get_cap()));
         count_not_moving += 1;
         Serial.println("INC BLOC COUNT");
         
@@ -253,15 +282,16 @@ void ControlLoop::check_adversary()
 
 void ControlLoop::setxycap(Coord new_coord)
 {
-    real_coord = new_coord;
-    target_position = real_coord;
-
+    real_coord = Coord(new_coord);
+    target_position = Coord(real_coord);
 }
 
 void ControlLoop::write_real_coords()
 {
     Serial.print("#COORD ");
     real_coord.write_serial();
+    Serial.print("theorique");
+    target_position.write_serial();
 
 }
 

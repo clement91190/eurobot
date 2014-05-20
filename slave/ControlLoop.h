@@ -17,6 +17,11 @@
 //#define GAIN_KP_DEP 3.45
 //#define GAIN_KD_DEP 4.6
 //#define GAIN_KI_DEP 0.6468
+//
+
+#define SLOW 0
+#define MEDIUM 1
+#define FAST 2
 
 
 #ifdef PMI
@@ -97,6 +102,8 @@ class ControlLoop
         void setxycap(Coord new_coord);
         void write_real_coords();
         void write_debug();
+        void set_speed(int speed);
+        void recaler();
 };
 
 

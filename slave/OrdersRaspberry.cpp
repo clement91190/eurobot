@@ -110,7 +110,7 @@ void OrdersRaspberry::executeinstr()
             Serial.print("SET X Y CAP :");
             stream >> x >> y >> cap;
             
-            slave->get_control()->setxycap(Coord(atoi(x.c_str()), atoi(y.c_str()), 3.14 * atoi(cap.c_str())/ 180.0));
+            slave->setxycap(Coord(atoi(x.c_str()), atoi(y.c_str()), 3.14 * atoi(cap.c_str())/ 180.0));
             Serial.print(atoi(x.c_str()));
             Serial.print(" ");
             Serial.print(atoi(y.c_str()));
@@ -122,11 +122,11 @@ void OrdersRaspberry::executeinstr()
         case 1: //Recal
             Serial.println("GET X Y CAP: ");
             slave->get_control()->write_real_coords();
-      //      slave->set<Recaler>();
             break;
 
         case 2: //Recal
             Serial.println("Recalage");
+            slave->get_control()->recaler();
         //    slave->set<Recaler>(Marche::AVANT);
             break;
         case 3: //BFCap
@@ -155,18 +155,20 @@ void OrdersRaspberry::executeinstr()
       //      slave->set<BFAvance>(x , vit );
             break;
         case 5: //BFDroite
-            /*
-            stream>>x >>y >> cap>> v>>precis;
+            
+            stream>>x >>y >> cap>> v;
 
             Serial.println("BFDroite");
-            Serial.print(x);
+            Serial.print(atoi(x.c_str()));
             Serial.print(" ");
-            Serial.print(y);
+            Serial.print(atoi(y.c_str()));
             Serial.print(" ");
-            //Serial.print(cap);
-            Serial.print(" ");
-            Serial.println(v);
-            */
+            Serial.print(atoi(cap.c_str()));
+            //Serial.print(" ");
+            //Serial.println(v);
+
+            target = Coord(atoi(x.c_str()), atoi(y.c_str()), 3.14 * atoi(cap.c_str())/ 180.0);
+            slave->get_control()->set_BF(BFXYCAP, target); 
             //vit=determinerVitesse(v);
         //    slave->set<BFDroite>(x,y,cap ,vit,precis);
             break;
@@ -188,8 +190,14 @@ void OrdersRaspberry::executeinstr()
             //vit=determinerVitesse(v);
          //   slave->set<BFCercle>(x,y,r, cap ,s,  vit);
             break;*/
-        case 7: //Recal
-            Serial.println("Arret Robot");
+        case 7: //set speed
+            Serial.println("Set speed");
+            stream >> x;
+            Serial.print("speed ");
+            Serial.println(atoi(x.c_str()));
+
+            slave->get_control()->set_speed(atoi(x.c_str()));
+
          //   slave->set<ARRET_ROBOT>();
             break;
         case 8: //Reprendre
@@ -211,16 +219,6 @@ void OrdersRaspberry::executeinstr()
             break;
         }
         return;
-/*
-#ifdef PRINCIPAL
-    case 'B' :
-
-        //ordre pour les MAE BRAS
-      	switch (ind)
-	{
-	case 1: //StartGato
-    }		
-	return;*/
     }
 
 

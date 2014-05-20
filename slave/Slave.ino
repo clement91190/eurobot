@@ -6,10 +6,16 @@
 #include <pnew.cpp>
 
 
+#define ALLUMAGE 0
+#define STARTMIS 1
+#define GAME 2
+#define END 3
+
 Autom* slave;
 OrdersRaspberry* com;
-int dir = 1;
-int vitesse = 100;
+int state;
+long timer;
+
 void print_tic_odo()
 {
     Serial.print(" odoG :");
@@ -36,6 +42,7 @@ void setup()
   com = new OrdersRaspberry(slave);
   Serial.println("#SLAVE READY");
   write_serial_strat();
+  state = ALLUMAGE; 
 }
 
 void loop(){
@@ -55,10 +62,33 @@ void loop(){
    //int sensorValue = analogRead(A5);
    //Serial.print(int(sensorValue * 300.0 / 1023 + 100.0));
    //Serial.println( " mm");
+   if (state == ALLUMAGE && digitalRead(PIN_AN_START) == 1)
+    {
+        state = STARTMIS;
+        Serial.println("#STARTIN");
+    }
+    if (state == STARTMIS && digitalRead(PIN_AN_START) == 0)
+    {
+        state = GAME ;
+        Serial.println("#START");
+        timer = millis(); 
+    }
+
+    if (state == GAME && timer > 90000)
+    {
+        state = END;
+        slave->stop();
+        
+        }
+    else
+        {
+        com->run();
+        slave->run();
+        }
+
    
-    com->run();
-    slave->run();
-    delay(1);
+
+   delay(1);
       
 }
 

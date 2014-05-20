@@ -19,15 +19,15 @@
 #define PIN_DI_STRAT2  A6
 #define PIN_SERVO_CAM  6
 
-#define PIN_ODO_INCG  1 // == pin 2
-#define PIN_ODO_INCD  0 // == pin 3
-#define PIN_ODO_DIRG  5
-#define PIN_ODO_DIRD  4
+#define PIN_ODO_INCD  1 // == pin 2
+#define PIN_ODO_INCG  0 // == pin 3
+#define PIN_ODO_DIRD  5
+#define PIN_ODO_DIRG  4
 
-#define PIN_MOT_CMDD  11
-#define PIN_MOT_CMDG  9
-#define PIN_MOT_DIRD  10
-#define PIN_MOT_DIRG  8
+#define PIN_MOT_CMDG  11
+#define PIN_MOT_CMDD  9
+#define PIN_MOT_DIRG  10
+#define PIN_MOT_DIRD  8
 
 
 

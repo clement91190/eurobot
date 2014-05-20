@@ -4,15 +4,19 @@ welcome_messages = ["#SLAVE READY\n", "#ACTIO1 READY\n", "#ACTIO2 READY\n"]
 
 
 class Communication:
-    def __init__(self, robot="mark"):
+    def __init__(self, global_mae, robot="mark"):
+
+        self.global_mae = global_mae
         if robot == "mark":
             self.slave, self.actio1, self.actio2 = self.init_arduinos_mark()
+            self.serials = [self.slave, self.actio1, self.actio2]
             self.arduinos = {
                 "slave": self.slave,
                 "actio1": self.actio1,
                 "actio2": self.actio2}
         else:
             self.slave, self.actio1 = self.init_arduinos_debile()
+            self.serials = [self.slave, self.actio1]
             self.arduinos = {
                 "slave": self.slave,
                 "actio1": self.actio1}
@@ -79,9 +83,31 @@ class Communication:
 
         return slave, actio1
 
+    def treat_line(self, line):
+        if line[0] == "#":
+            if line == "#BLOC\r\n":
+                self.global_mae.trigger("BLOC")
+            elif line[:5] == "#ADVD":
+                #TODO add read adversary position
+                self.global_mae.trigger("ADVD")
+            elif line == "#AFINI\r\n":
+                self.global_mae.trigger("AFINI")
+            elif line == "#NEAR\r\n":
+                self.global_mae.trigger("NEAR")
+            else:
+                print "unkown transition", line
+
     def run(self):
         """ read message and send transitions """
-        #TODO
+        for ser in self.serials:
+            line = self.non_blocking_read_line(ser)
+            while line is not None:
+                self.treat_line(line)
+                line = self.non_blocking_read_line(ser)
+
+
+
+            
 
     def send(self, arduino, message):
         try:
@@ -89,6 +115,14 @@ class Communication:
         except:
             print "CONNECTION PROBLEM"
 
-    def send_slave(message):
-        self.send("slave", message)
+    #defintion of all the send function related to slave.
+    
+    def send_slave(self, message):
+        self.send("slave", message)  # most message are in coord.py
+
+    def recaler(self):
+        self.send_slave("S1")
+
+
+
 
