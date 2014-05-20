@@ -74,13 +74,14 @@ void loop(){
         timer = millis(); 
     }
 
-    if (state == GAME && timer > 90000)
+    if (state == END || (state == GAME && timer > 90000))
     {
+        Serial.println("End of Game");
         state = END;
         slave->stop();
         
         }
-    else
+    else 
         {
         com->run();
         slave->run();

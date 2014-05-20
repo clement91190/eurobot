@@ -166,7 +166,7 @@ void ControlLoop::compute_pids(){
             {
                 B = 1.0;
             }
-            cmd_cap = pidcap.compute(real_coord.get_cap() + B * (diff_cap(to_target.get_angle(), target_position.get_cap())));
+            cmd_cap = pidcap.compute(real_coord.get_cap() - B * (diff_cap(to_target.get_angle(), target_position.get_cap())));
             cmd_dep = piddep.compute( to_target.scalar(Vector(real_coord))); // the error is a scalar product
             if (piddep.check_if_over(asserv_state)  && pidcap.check_if_over(asserv_state))
             {
@@ -224,7 +224,7 @@ void ControlLoop::check_blockage()
    Vector dep = Vector(real_coord, late_pos);
    if (abs(cmd_dep) + abs(cmd_cap) < 40){
     return;}
-   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 1.0)
+   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.05)
    {
         Serial.println(abs(real_coord.get_cap() - late_pos.get_cap()));
         count_not_moving += 1;
