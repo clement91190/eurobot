@@ -11,12 +11,14 @@ class ColorSensor
 {
     private:
         Period period_reset; 
-        int last_count;
+        float last_count;
+        long last_time;
     public:
         ColorSensor();
         bool is_red();
         bool is_yellow();
         void run();
+        void write_debug();
     
 };
 

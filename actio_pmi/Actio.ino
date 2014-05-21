@@ -8,14 +8,10 @@ OrdersRaspberry* com;
 
 void setup()
 {
-  /*attachInterrupt(PIN_ODO_INCG, inc_ticG, RISING);
-  attachInterrupt(PIN_ODO_INCD, inc_ticD, RISING);
-  Serial.begin(9600) ; 
-  pinMode(PIN_MOT_DIRG, OUTPUT);
-  pinMode(PIN_MOT_DIRD, OUTPUT);
-  pinMode(PIN_MOT_CMDG, OUTPUT);
-  pinMode(PIN_MOT_CMDD, OUTPUT);
- */ 
+
+  attachInterrupt(PIN_ODO_INC, inc_tic_odo, RISING);         
+  attachInterrupt(PIN_COULEUR, inc_pulse_color, RISING);         
+  Serial.begin(9600);
   io = new IO();
   com = new OrdersRaspberry(io);
   Serial.println("ACTIO READY");
@@ -44,6 +40,7 @@ void loop(){
    //Serial.println( " mm");
    
     com->run();
+    io->run();
       
 }
 

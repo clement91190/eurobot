@@ -96,43 +96,56 @@ void OrdersRaspberry::executeinstr()
     Coord target;
     switch (ordre)
     {
+
+    case 'D':
+        io->write_debug();
+        break;
+
+
     case 'P' :
         //Vitesse vit;
         // ordre de type Slave
         switch (ind)
         {
         case 0: 
-            Serial.println("init_pince_mae");
+            Serial.println("PINCE -> BAS");
             // pince en position de base en bas, ouverte, prete a retourner tout ce qu'elle trouve
+            io->trigger(T_BAS);
             break;
 
         case 1: 
-            Serial.println("stop pince mae");
+            Serial.println("PINCE -> TAPE");
+            io->trigger(TAPE);
             //met la pince en position basse en attente
             break;
 
         case 2: 
-            Serial.println("range pince");
+            Serial.println("PINCE -> RANGE");
+            io->trigger(RANGE);
             //range la pince comme au depart.
             break;
 
         case 3: //recal
-            Serial.println("prise du totem");
+            Serial.println("PINCE -> ACTIF FEU");
+            io->trigger(T_ACTIF_FEU);
             // pince prete a chopper le totem 
             // des que l'ir le voit
             break;
 
         case 4: //recal
-            Serial.println("prise du totem");
+            Serial.println("PINCE-> ACTIF TORCHE");
+            io->trigger(T_ACTIF_TORCHE);
             // pince prete a chopper le totem 
             // des que l'ir le voit
             break;
 
-        case 5: //BFCap
-            Serial.println("pince pour pousser les feux");
-            // faire tomber les feux de la bonne couleur
+        case 5: //recal
+            Serial.println("PINCE-> POSE");
+            io->trigger(POSE);
+            // pince prete a chopper le totem 
+            // des que l'ir le voit
             break;
-        }
+       }
         return;
     case 'F' :
         //Vitesse vit;

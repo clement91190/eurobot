@@ -6,6 +6,7 @@
 
 //-> ok for PMI
 long tic_odo = 0;
+long pulse_color = 0;
 
 
 void inc_tic_odo(){
@@ -25,7 +26,6 @@ void inc_tic_odo(){
  interruption capteur couleur
  */
 void inc_pulse_color() {
- 
   // increase pulse count
     pulse_color = pulse_color + 1;
  } 
