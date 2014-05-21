@@ -159,7 +159,7 @@ class MAEState(State):
         """ add a direct transition from the out_state inside the MAEState to the next state """
         for state in self.mae.state_list:
             if isinstance(state, OutState) and state.name == out_state_name:
-                self.out_transitions[out_state_name] = next_state
+                self.out_transitions[state] = next_state
                 return
         print "##states", [(isinstance(s, OutState), s.name) for s in self.mae.state_list]
         raise NotImplementedError("no state named {}".format(out_state_name))

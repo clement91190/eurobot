@@ -146,12 +146,12 @@ class PathFinder():
 
         self.waypoints = smoothed_waypoints
         print smoothed_waypoints
-        smoothed_waypoints = [Coord(*self.start)]
+        smoothed_waypoints = [Coord(self.start[0] - self.X /2 , self.start[1], self.start[2])]
 
         for w in self.waypoints:
-            smoothed_waypoints.append(Coord(w[0] * self.size_of_square, w[1] * self.size_of_square, 0))
+            smoothed_waypoints.append(Coord(w[0] * self.size_of_square - self.X / 2, w[1] * self.size_of_square, 0))
 
-        smoothed_waypoints.append(Coord(*self.arrival))
+        smoothed_waypoints.append(Coord(self.arrival[0] - self.X / 2, self.arrival[1], self.arrival[2]))
 
         for i, w in enumerate(smoothed_waypoints[:-1]):
             w.set_cap_toward(smoothed_waypoints[i + 1])

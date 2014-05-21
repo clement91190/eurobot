@@ -16,7 +16,7 @@ class MAEPrestart(MAE):
         avance_plac_y = self.sf.get_bf_fw(Coord(550))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 180))
         recalx = self.sf.get_recaler()
-        set_x0 = self.sf.get_setxycap(Coord(600, d_dos_cdg, 0))  # TODO change this with real state of the robot 
+        set_x0 = self.sf.get_setxycap(Coord(1500 - d_dos_cdg, 550 + d_dos_cdg , 180))  # TODO change this with real state of the robot 
         out = OutState()
 
         #transitions

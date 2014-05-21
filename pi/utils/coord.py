@@ -8,10 +8,10 @@ class Coord:
         self.cap = cap
 
     def __str__(self):
-        return "({} {})".format(self.x, self.y)
+        return "({} {} {})".format(self.x, self.y, self.cap)
 
     def __repr__(self):
-        return " ({} {})".format(self.x, self.y)
+        return " ({} {} {})".format(self.x, self.y, self.cap)
 
     def bf_cap(self):
         return "S3 {}".format(self.cap)

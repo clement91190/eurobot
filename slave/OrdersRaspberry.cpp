@@ -158,12 +158,12 @@ void OrdersRaspberry::executeinstr()
             
             stream>>x >>y >> cap>> v;
 
-            Serial.println("BFDroite");
+            Serial.print ("BFDroite ");
             Serial.print(atoi(x.c_str()));
             Serial.print(" ");
             Serial.print(atoi(y.c_str()));
             Serial.print(" ");
-            Serial.print(atoi(cap.c_str()));
+            Serial.println(atoi(cap.c_str()));
             //Serial.print(" ");
             //Serial.println(v);
 

@@ -1,6 +1,6 @@
 """ file to handle all the movements of the slave. """
 
-from mae_generator.mae import OutState, MAE, MAEState
+from mae_generator.mae import InitState, OutState, MAE, MAEState
 from pathfinding.pathfinding import PathFinder
 from utils.coord import Coord
 from com_state_factory import ComStateFactory
@@ -10,8 +10,10 @@ class SlaveManager:
     def __init__(self, com_state_factory):
         self.pathfinder = PathFinder()
         self.pathfinder.add_circle(1500, 1050, 200)
+        self.pathfinder.add_rect(300, 0, 800, 400)
+        self.pathfinder.add_rect(1650, 0, 800, 400)
         self.state_factory = com_state_factory
-        self.current_position = Coord()
+        self.current_position = Coord(0, 200, 0)
         self.movement_mae = None
 
     def go_to_direct_from(self, coords_from,  coords_to, precision="NEAR"):
@@ -22,10 +24,11 @@ class SlaveManager:
 
         states = [] 
         #TODO chose different options
-        
-        states.append( self.state_factory.get_bf_droite(coords_to)) 
+        states.append(InitState())
+        states.append(self.state_factory.get_bf_droite(coords_to)) 
         states.append(OutState())
         states[-2].add_transition(precision, states[-1])
+        states[0].add_instant_transition(states[1])
         return MAE(states)
 
     def go_to_pathfinder(self, coords):
@@ -33,12 +36,16 @@ class SlaveManager:
          best waypoints"""
 
         sub_states = []
+        coords = Coord(coords.x + 1500, coords.y, coords.cap)
+        current_position = Coord(self.current_position.x + 1500, self.current_position.y, self.current_position.cap)
         self.pathfinder.find_waypoints(
-            self.current_position.to_tuple(), 
+            current_position.to_tuple(), 
             coords.to_tuple())
         waypoints = self.pathfinder.get_smooth_waypoints()
         print waypoints
         print len(waypoints)
+        sub_states.append(InitState())
+        
         for i, w in enumerate(waypoints[:-1]):
             if i == len(waypoints) - 2:
                 # for the last part of the movement, we want to be precise
@@ -53,8 +60,13 @@ class SlaveManager:
             if i > 0:
                 sub_states[-2].add_out_transition('out', sub_states[-1])
 
+        sub_states.append(OutState("end_deplacement"))
+        sub_states[-2].add_out_transition('out', sub_states[-1])
+
+        sub_states[0].add_instant_transition(sub_states[1])
+
         #self.movement_mae = MAE(sub_states)
-        return MAE(sub_states)
+        return sub_states
 
     def set_current_position(self, coord):
         self.current_position = coord

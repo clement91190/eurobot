@@ -158,16 +158,33 @@ void ControlLoop::compute_pids(){
         case BFXYCAP:
             /* later ! */
             float B; // see supaero report 2012
-            if (asserv_state == NEAR)
+            B = max(min(2.0, abs(to_target.norm()) / 50.0), 0.1); 
+            if (count_not_moving > 4)
             {
                 B = 0.;
+            }
+
+
+            /*if (asserv_state == NEAR)
+            {
+                B = 3.0;
             }
             else
             {
                 B = 1.0;
-            }
+            }*/
+
+      //      float input;
             cmd_cap = pidcap.compute(real_coord.get_cap() - B * (diff_cap(to_target.get_angle(), target_position.get_cap())));
-            cmd_dep = piddep.compute( to_target.scalar(Vector(real_coord))); // the error is a scalar product
+        /*    if (to_target.scalar(Vector(real_coord)) > 0)
+            {
+               input = to_target.norm(); 
+            }
+            else
+            {
+                input = -to_target.norm();
+            }*/
+            cmd_dep = piddep.compute(to_target.scalar(Vector(real_coord))); // the error is a scalar product
             if (piddep.check_if_over(asserv_state)  && pidcap.check_if_over(asserv_state))
             {
                next_asserv_state(); 
