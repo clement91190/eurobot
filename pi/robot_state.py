@@ -5,7 +5,7 @@ from mae_generator.mae_global import MAEGlobal
 from slave_manager import SlaveManager
 import time
 
-from mission_control import mission_fresque
+from mission_control import mission_fresque, mission_prise_torche_adv
 
 
 class RobotState:
@@ -40,7 +40,8 @@ class RobotState:
         pass
 
     def init_mission_pmi(self):
-        self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
+        #self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
+        self.missions["m_torche"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
 
     def set_position(self, position):
         self.position = position
@@ -56,6 +57,8 @@ class RobotState:
     def choose_mission(self):
         """ update current_mission """
         self.current_mission = self.missions.keys()[0] 
+
+        print "------------------- Mission Choice:", self.current_mission, "  ---------------- "
         self.mae.game.mae.update_dep(self.missions[self.current_mission])
 
     def start(self):

@@ -14,7 +14,7 @@ void setup()
   Serial.begin(9600);
   io = new IO();
   com = new OrdersRaspberry(io);
-  Serial.println("ACTIO READY");
+  Serial.println("#ACTIO READY");
 
 }
 

@@ -60,6 +60,7 @@ class PathFinder():
         """ return a list of waypoint (x, y ,cap) to go from p0 to p1 -> see A* wikipedia"""
         self.arrival = (x1, y1, cap1)
         self.start = (x0, y0, cap0)
+        print "A * PATHFINDER  ", self.start, "  -> ", self.arrival
         i0, j0 = (x0 / self.size_of_square, y0 / self.size_of_square)  # TODO find something better ?
         ind = self.to_ind(i0, j0)
         self.open_set.add(ind)

@@ -25,7 +25,21 @@ class SlaveManager:
         states = [] 
         #TODO chose different options
         states.append(InitState())
-        states.append(self.state_factory.get_bf_droite(coords_to)) 
+        coord_dep = coords_from.get_coords_to(coords_to)
+        
+        bfcap2 = self.state_factory.get_bf_cap(coords_to)
+        if coord_dep.norm() > 10:
+            #sinon petit deplacement, donc 1 seul bfcap.
+            bfcap1 = self.state_factory.get_bf_cap(coord_dep)
+            bfav = self.state_factory.get_bf_fw(Coord(coord_dep.norm()))
+            bfcap1.add_transition(precision, bfav)
+            bfav.add_transition(precision, bfcap2)
+            states.append(bfcap1)
+            states.append(bfav)
+
+        states.append(bfcap2)
+
+        #states.append(self.state_factory.get_bf_droite(coords_to)) 
         states.append(OutState())
         states[-2].add_transition(precision, states[-1])
         states[0].add_instant_transition(states[1])

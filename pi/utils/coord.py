@@ -7,6 +7,15 @@ class Coord:
         self.y = y 
         self.cap = cap
 
+    def norm(self):
+        return math.sqrt(self.x ** 2 + self.y ** 2)
+ 
+    def get_coords_to(self, coord2):
+        "get a vector dx, dy cap = direction"
+        dx = coord2.x - self.x
+        dy = coord2.y - self.y
+        return Coord(dx, dy, math.degrees(math.atan2(dy, dx)))
+
     def __str__(self):
         return "({} {} {})".format(self.x, self.y, self.cap)
 

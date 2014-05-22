@@ -1,7 +1,7 @@
 import serial 
 import time
 
-welcome_messages = ["#SLAVE READY\r\n", "#ACTIO1 READY\r\n", "#ACTIO2 READY\r\n"]
+welcome_messages = ["#SLAVE READY\r\n", "#ACTIO READY\r\n", "#ACTIO2 READY\r\n"]
 
 
 class Communication:

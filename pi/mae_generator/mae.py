@@ -1,6 +1,8 @@
 import pygraphviz as pgv
 import time
 
+debug = True
+
 
 class State():
     """ class implemeting the state of a state machine 
@@ -172,6 +174,8 @@ class MAEState(State):
         self.out_transitions = {}
 
     def in_code(self):
+        if debug:
+            self.mae.draw()
         self.mae.reinit_state()
 
     def while_code(self):

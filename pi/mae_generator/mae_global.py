@@ -28,7 +28,6 @@ class MAEGame(MAE):
         rush = MAEState(MAERush(com_state_factory), "rush")
         choix_mission = ChoixMissionState(robot_state)
         self.mae_dep = mae_dep = MAEDepMission(slave_manager)
-        mae_dep.update_dep()
         self.deplacement_mission = deplacement_mission = MAEState(mae_dep, "deplacement_mission")
         #evitement = MAEState(MAEEvitement(), "evitement")
         mission = self.mission_state = MAEState(MAEMission(robot_state), "mission")
@@ -59,17 +58,13 @@ class MAERush(MAE):
 
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
-        avance_triangle1 = self.sf.get_bf_fw(Coord(1600))
-        tourne = self.sf.get_bf_cap(Coord(0, 0, 90))
-        avance = self.sf.get_bf_fw(Coord(-400))
+        avance_triangle1 = self.sf.get_bf_fw(Coord(1700))
         out = OutState("end_rush")
         
         init.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_triangle1)
-        avance_triangle1.add_afini_transition(tourne)
-        tourne.add_afini_transition(avance)
-        avance.add_afini_transition(out)
-        self.state_list = [init, speed_change, avance_triangle1, tourne, avance, out]
+        avance_triangle1.add_afini_transition(out)
+        self.state_list = [init, speed_change, avance_triangle1, out]
         self.reinit_state()
 
 
@@ -93,9 +88,6 @@ class MAEDepMission(MAE):
             self.state_list = self.slave_manager.go_to_pathfinder(mission.start_coordinate)
         else:
             self.state_list = self.slave_manager.go_to_pathfinder(Coord(1200, 200, 90))
-        self.draw()
-        import os
-        os.system("xdg-open mae_render.png")
         self.reinit_state()
 
 

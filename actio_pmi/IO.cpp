@@ -466,7 +466,7 @@ void Pince::in_state_func()
             slt();
             break;
         case INTERMEDIAIRE_SORTIE :
-            set_time_out(500, trigger_to_be);
+            set_time_out(400, trigger_to_be);
             a1();
             slo();
             scv();
