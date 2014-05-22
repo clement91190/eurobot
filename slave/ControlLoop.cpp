@@ -102,11 +102,11 @@ void ControlLoop::next_asserv_state(){
     switch (asserv_state){
         case FAR:
             asserv_state = NEAR ; 
-            Serial.println("#NEAR");
+            Serial.println("# NEAR");
             break;
         case NEAR:
             asserv_state = DONE ;
-            Serial.println("#AFINI");
+            Serial.println("# AFINI");
             bf_type = STOP;
             break;
     }
@@ -254,7 +254,7 @@ void ControlLoop::check_blockage()
    
    if (count_not_moving > 15)
    {
-        Serial.println("#BLOC");
+        Serial.println("# BLOC");
         write_real_coords();
 
         set_BF(STOP, Coord());
