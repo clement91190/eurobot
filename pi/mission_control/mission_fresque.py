@@ -1,4 +1,4 @@
-from mission_control.mission import Mission, SuccessOut
+from mission_control.mission import Mission, SuccessOut, FailOut
 from utils.coord import Coord
 from mae_generator.mae import MAE, InitState, debugger
 import robot_state
@@ -21,6 +21,7 @@ class MAEFRESQUE(MAE):
         avance = self.sf.get_bf_fw(Coord(100))
         rentre_fresque = self.sf.get_pmi_fresque_in()
         out = SuccessOut()
+        out2 = FailOut()
 
         #transitions
         init.add_instant_transition(recaly)
@@ -33,7 +34,7 @@ class MAEFRESQUE(MAE):
         rentre_fresque.add_instant_transition(out)
 
         self.state_list = [ 
-            init, recaly, set_y0, pose_fresque, avance, rentre_fresque, out]
+            init, recaly, set_y0, pose_fresque, avance, rentre_fresque, out, out2]
         self.reinit_state()
 
 

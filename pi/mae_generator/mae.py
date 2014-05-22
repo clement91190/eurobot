@@ -126,6 +126,9 @@ class MAE():
 
     def trigger(self, transition):
         """ the transition "" is the direct transition """
+
+        if transition is None:
+            return
         if isinstance(self.current_state, MAEState):
             self.current_state.trigger(transition)
             if self.current_state.mae.is_over():

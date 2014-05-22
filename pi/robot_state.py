@@ -1,5 +1,5 @@
 from utils.coord import Coord
-from communication import Communication 
+from communication import Communication, PipoCommunication 
 from com_state_factory import ComStateFactory
 from mae_generator.mae_global import MAEGlobal
 from slave_manager import SlaveManager
@@ -10,29 +10,37 @@ from mission_control import mission_fresque
 
 class RobotState:
     """ class to store all the data regarding the state of the robot ( and the other robot) + its environment """
-    def __init__(self, robot="mark"):
+    def __init__(self, robot="mark", pipo=False):
         self.position = Coord()
         self.d_dos_cdg = 100 
-        self.missions = []
+        self.missions = {}
+        self.current_mission = None
         self.robot = robot
+        if not pipo:
+            self.com = Communication(robot)
+        else:
+            self.com = PipoCommunication()
+
+        self.com_state_factory = ComStateFactory(self.com)
+ 
         if robot == "mark":
             self.init_mission_mark()
         else:
             self.init_mission_pmi()
 
-        self.com = Communication(robot)
-        self.com_state_factory = ComStateFactory(self.com)
         self.mae = MAEGlobal(
             self.com_state_factory,
             SlaveManager(self.com_state_factory),
-            self.missions)
+            self)  # disgusting but whatever
+
+        self.com.set_global_mae(self.mae)
 
     def init_mission_mark(self):
         """ definition of the missions"""
         pass
 
     def init_mission_pmi(self):
-        self.missions.append(mission_fresque.get_mission(self.com_state_factory))
+        self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
 
     def set_position(self, position):
         self.position = position
@@ -44,6 +52,11 @@ class RobotState:
     def get_data_from_server(self):
         """ get the data from the other robot """
         pass
+
+    def choose_mission(self):
+        """ update current_mission """
+        self.current_mission = self.missions.keys()[0] 
+        self.mae.game.mae.update_dep(self.missions[self.current_mission])
 
     def start(self):
         while True:
