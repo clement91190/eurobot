@@ -154,9 +154,40 @@ class Communication:
     def send_slave(self, message):
         self.send("slave", message)  # most message are in coord.py
 
-    def recaler(self):
-        self.send_slave("S1")
+    def send_actio1(self, message):
+        self.send("actio1", message)  # most message are in coord.py
 
+    def send_actio2(self, message):
+        self.send("actio2", message)  # most message are in coord.py
+
+
+class PipoCommunication:
+    """ for debugging purposes, simulate communication """
+    def __init__(self):
+        print "WARNING PIPO COM"
+
+    def set_global_mae(self, global_mae):
+        self.global_mae = global_mae
+ 
+    def run(self):
+        time.sleep(0.1)
+        t = raw_input()
+        if t != "":
+            self.global_mae.trigger(t)
+
+    def send(self, arduino, message):
+        print "##SEND## ", message, " @ ", arduino
+
+    #defintion of all the send function related to slave.
+    
+    def send_slave(self, message):
+        self.send("slave", message)  # most message are in coord.py
+
+    def send_actio1(self, message):
+        self.send("actio1", message)  # most message are in coord.py
+
+    def send_actio2(self, message):
+        self.send("actio2", message)  # most message are in coord.py
 
 
 

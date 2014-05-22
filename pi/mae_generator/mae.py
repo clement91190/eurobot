@@ -1,4 +1,5 @@
 import pygraphviz as pgv
+import time
 
 
 class State():
@@ -9,6 +10,9 @@ class State():
         if name == "":
             name = self.__class__.__name__
         self.name = name
+        self.time_out = None
+        self.dt = 0
+        self.time_out_on = False
 
     def in_code(self):
         """ code to be processed when arriving in the state """
@@ -21,6 +25,10 @@ class State():
     def while_code(self):
         """ code to be processed periodicly while in the state """
         pass
+
+    def start_time_out(self):
+        self.time_out_on = True
+        self.time_out = time.time() + 0.001 * self.dt
 
     def add_transition(self, trigger, new_state):
         self.transitions[trigger] = new_state
@@ -40,8 +48,19 @@ class State():
     def add_near_transition(self, new_state):
         self.add_transition("NEAR", new_state)
 
-        
+    def add_time_out_transition(self, dt, new_state):
+        """ transition that will be done in dt milliseconds. """
+        self.dt = dt
+        self.add_transition("TIME_OUT", new_state)
 
+    def contains_time_out(self):
+        return "TIME_OUT" in self.transitions.keys()
+
+    def is_time_out_over(self):
+        if self.time_out_on and time.time() > self.time_out:
+            return True
+        return False
+        
     def __str__(self):
         return self.name
 
@@ -83,10 +102,13 @@ class MAE():
                 print "transition from {} to {}".format(self.current_state.name, new_state.name)
             self.current_state.out_code()
             self.current_state = new_state
+            if self.current_state.contains_time_out():
+                self.current_state.start_time_out()
             self.current_state.in_code()
 
     def run(self):
-
+        if self.current_state.is_time_out_over():
+            self.trigger("TIME_OUT")
        # print self.current_state
         self.current_state.while_code()
         # for special out transition for MAEState
@@ -113,7 +135,7 @@ class MAE():
 
     def draw(self, file='mae_render.png'):
         """ draw the mae for debugging purposes """
-        graph = pgv.AGraph(directed=True)
+        graph = pgv.AGraph(directed=True, strict=False)
         for state in self.state_list:
             for t, s2 in state.transitions.iteritems():
                 graph.add_edge(state.__str__(), s2.__str__(), label=t, arrowhead='diamond')
