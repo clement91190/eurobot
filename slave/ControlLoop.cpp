@@ -313,8 +313,9 @@ void ControlLoop::setxycap(Coord new_coord)
 
 void ControlLoop::write_real_coords()
 {
-    Serial.print("*COORD ");
+    Serial.print("* COORD ");
     real_coord.write_serial();
+
     Serial.print("theorique");
     target_position.write_serial();
 

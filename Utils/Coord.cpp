@@ -48,7 +48,6 @@ void Coord::write_serial()
    // Serial.print(ticG);
    // Serial.print("  ticD  :");
    // Serial.print(ticD);
-    Serial.print("X  Y CAP ");
     Serial.print(int(x));
     Serial.print(" ");
     Serial.print(int(y));

@@ -7,7 +7,6 @@ import time
 
 from mission_control import mission_fresque, mission_prise_torche_adv
 
-
 class RobotState:
     """ class to store all the data regarding the state of the robot ( and the other robot) + its environment """
     def __init__(self, robot="mark", pipo=False):
@@ -34,9 +33,11 @@ class RobotState:
         else:
             self.init_mission_pmi()
 
+        self.slave_manager = SlaveManager(self.com_state_factory)
+
         self.mae = MAEGlobal(
             self.com_state_factory,
-            SlaveManager(self.com_state_factory),
+            self.slave_manager,
             self)  # disgusting but whatever
 
         self.com.set_global_mae(self.mae)
@@ -49,8 +50,9 @@ class RobotState:
         #self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
         self.missions["m_torche"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
 
-    def set_position(self, position):
-        self.position = position
+    def set_last_position(self, position):
+        self.last_position = position
+        self.slave_manager.set_current_position = position 
 
     def post_on_server(self):
         """ perform a post request to the server to update its data """
@@ -62,7 +64,12 @@ class RobotState:
 
     def choose_mission(self):
         """ update current_mission """
-        self.current_mission = self.missions.keys()[0] 
+        traject_time = self.slave_manager.evaluate_time_to_missions({trans: self.missions[trans] for trans in self.missions.keys()})
+        scores = {trans: self.missions[trans].get_score(time) for trans, dt in traject_time.items()}
+        print "mission scores "
+        print scores
+        self.current_mission = min(scores.items(), key=lambda i, j: j)[0]
+        #self.current_mission = self.missions.keys()[0] 
 
         print "------------------- Mission Choice:", self.current_mission, "  ---------------- "
         self.mae.game.mae.update_dep(self.missions[self.current_mission])

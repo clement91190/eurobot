@@ -147,7 +147,7 @@ class Communication:
                 self.robot_state.adversary_detection.insert((time.time(), Coord(int(s_line[3]), int(s_line[4]), float(s_line[5]))), 0)
 
             elif s_line[2] == "COORD":
-                self.last_position = Coord(int(s_line[3]), int(s_line[4]), float(s_line[5]))
+                self.robot_state.set_current_position(Coord(int(s_line[3]), int(s_line[4]), float(s_line[5])))
 
     def run(self):
         """ read message and send transitions """

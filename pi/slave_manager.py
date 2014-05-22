@@ -51,7 +51,6 @@ class SlaveManager:
 
         sub_states = []
         coords = Coord(coords.x + 1500, coords.y, coords.cap)
-        current_position = Coord(self.current_position.x + 1500, self.current_position.y, self.current_position.cap)
         self.pathfinder.find_waypoints(
             current_position.to_tuple(), 
             coords.to_tuple())
@@ -83,11 +82,30 @@ class SlaveManager:
         return sub_states
 
     def set_current_position(self, coord):
-        self.current_position = coord
+        self.current_position = Coord(coord.x + 1500, coord.y, coord.cap)
 
     def recaler(self):
         self.com.send_slave("S1")
+
+    def evaluate_time_to_missions(self, dict_coords):
+        """ dict_coords : "trans" -> coords of starting_point """
+        res = {}
+        for trans, coord_ in dict_coords:
+            coords = Coord(coord_.x + 1500, coord_.y, coord_.cap)
+            self.pathfinder.find_waypoints(
+                self.current_position.to_tuple(), 
+                coords.to_tuple())
+            waypoints = self.pathfinder.get_smooth_waypoints()
+            dt = 0
+            for i, w in enumerate(waypoints[:-1]):
+                dt +=  0.5 + (w.get_coords_to(waypoints[i])).norm()
+            res[trans] = dt
+        return res
                 
+            
+            
+
+
             
 def main():
     manager = SlaveManager(ComStateFactory("pipo com"))
