@@ -34,6 +34,18 @@ class Mission:
     def __init__(self, name, start_coordinate, mae):
         self.start_coordinate = start_coordinate
         self.mae = mae
+        self.priorite = 0
+        self.done = True
+        self.points = 0
+
+    def success(self):
+        self.done = True
+
+    def to_do(self):
+        self.done = False
+
+    def penalize(self, p):
+        self.prorite -= p
 
 
 
