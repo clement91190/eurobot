@@ -1,11 +1,22 @@
 import serial 
 import time
+from utils.coord import Coord
 
 welcome_messages = ["#SLAVE READY\r\n", "#ACTIO READY\r\n", "#ACTIO2 READY\r\n"]
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+
 class Communication:
-    def __init__(self, robot="mark"):
+    def __init__(self, robot_state, robot="mark"):
+        self.robot_state = robot_state
 
         if robot == "mark":
             self.slave, self.actio1, self.actio2 = self.init_arduinos_mark()
@@ -115,23 +126,28 @@ class Communication:
         return slave, actio1
 
     def treat_line(self, line):
-        print line
-        if line[0] == "#":
-            if line == "#BLOC\r\n":
-                self.global_mae.trigger("BLOC")
-            elif line[:5] == "#ADVD":
-                #TODO add read adversary position
-                self.global_mae.trigger("ADVD")
-            elif line == "#AFINI\r\n":
-                self.global_mae.trigger("AFINI")
-            elif line == "#NEAR\r\n":
-                self.global_mae.trigger("NEAR")
-            elif line == "#START\r\n":
-                self.global_mae.trigger("START")
-            elif line == "#STARTIN\r\n":
-                self.global_mae.trigger("STARTIN")
+        print bcolors.OKGREEN, "[READ]",  line, bcolors.ENDC
+
+        s_line = line.split()
+        if s_line[0] == "#":
+            if s_line[1] in ["BLOC", "AFINI", "ADVD", "NEAR", "START", "STARTIN"]:
+                self.global_mae.trigger(s_line[1])
             else:
                 print "unkown transition", line
+        elif s_line[0] == "*":
+            #parameters
+            if s_line[1] == "STRAT":
+                self.robot_state.strat = [int(v) for v in s_line[2:]]
+            elif s_line[2] == "COUL":
+                if int(s_line[1]):
+                    self.robot_state.coul = "rouge" 
+                else:
+                    self.robot_state.coul = "jaune" 
+            elif s_line[2] == "ADVD":
+                self.robot_state.adversary_detection.insert((time.time(), Coord(int(s_line[3]), int(s_line[4]), float(s_line[5]))), 0)
+
+            elif s_line[2] == "COORD":
+                self.last_position = Coord(int(s_line[3]), int(s_line[4]), float(s_line[5]))
 
     def run(self):
         """ read message and send transitions """
@@ -141,9 +157,9 @@ class Communication:
                 while line is not None:
                     self.treat_line(line)
                     line = self.non_blocking_read_line(ser)
-            
 
     def send(self, arduino, message):
+        print bcolors.HEADER, "[SEND -> ", arduino ," ]", message, bcolors.ENDC
         try:
             self.arduinos[arduino].write(message + "\n")
         except:

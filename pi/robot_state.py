@@ -13,6 +13,12 @@ class RobotState:
     def __init__(self, robot="mark", pipo=False):
         self.position = Coord()
         self.d_dos_cdg = 100 
+        self.strat = []
+        self.coul = "rouge"
+        self.adversary_detection = []
+        self.last_position = (0,0,0)
+
+
         self.missions = {}
         self.current_mission = None
         self.robot = robot
