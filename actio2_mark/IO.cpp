@@ -1,12 +1,19 @@
 #include "IO.h"
 // IO
+// IO Mark Zero
 //
 //
-//
-
-
-IO::IO()
+Pile::Pile(int cote)
 {
+	
+	
+}
+
+
+
+IO::IO(): pile_gauche(GAUCHE), pile_droite(DROITE)
+{
+
     servo_benne_c.attach(PIN_SERVO_BENNE_C);
     servo_benne_g.attach(PIN_SERVO_BENNE_G);
     servo_benne_d.attach(PIN_SERVO_BENNE_D);
@@ -17,10 +24,6 @@ IO::IO()
     servo_tacle_g.attach(PIN_SERVO_TACLE_G);
     servo_tacle_d.attach(PIN_SERVO_TACLE_D);
 
-    servo_pile_av_g.attach(PIN_SERVO_PILE_AVG);
-    servo_pile_av_d.attach(PIN_SERVO_PILE_AVD);
-    servo_pile_ar_g.attach(PIN_SERVO_PILE_ARG);
-    servo_pile_ar_d.attach(PIN_SERVO_PILE_ARD);
 }
   
 

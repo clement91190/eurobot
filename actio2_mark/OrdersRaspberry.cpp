@@ -1,7 +1,7 @@
 #include "OrdersRaspberry.h"
 
 //Fichier de définition des fonction pour les ordre reçu depuis la Gumstix
-//
+//Order for the big robot
 
 
 OrdersRaspberry::OrdersRaspberry(IO* io_) : period(100), io(io_), serial_count(0)
@@ -101,6 +101,8 @@ void OrdersRaspberry::executeinstr()
         switch (ind)
         {
         case 0: 
+			Serial.println("pose les fresques");
+            //io->poser_fresque();
             //Serial.println("init_pince_mae");
             // pince en position de base en bas, ouverte, prete a retourner tout ce qu'elle trouve
             break;

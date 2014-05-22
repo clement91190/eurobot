@@ -2,3 +2,5 @@
 *.hex
 *.swp
 *.o
+*.gch
+*.pyc
