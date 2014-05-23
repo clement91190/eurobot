@@ -122,7 +122,6 @@ class Communication:
         if actio1 is None:
             print "No actio1"
 
-
         return slave, actio1
 
     def treat_line(self, line):
@@ -138,16 +137,16 @@ class Communication:
             #parameters
             if s_line[1] == "STRAT":
                 self.robot_state.strat = [int(v) for v in s_line[2:]]
-            elif s_line[2] == "COUL":
-                if int(s_line[1]):
+            elif s_line[1] == "COUL":
+                if int(s_line[2]):
                     self.robot_state.coul = "rouge" 
                 else:
                     self.robot_state.coul = "jaune" 
-            elif s_line[2] == "ADVD":
-                self.robot_state.adversary_detection.insert((time.time(), Coord(int(s_line[3]), int(s_line[4]), float(s_line[5]))), 0)
+            elif s_line[1] == "ADVD":
+                self.robot_state.adversary_detection.insert((time.time(), Coord(int(s_line[2]), int(s_line[3]), float(s_line[4]))), 0)
 
-            elif s_line[2] == "COORD":
-                self.robot_state.set_current_position(Coord(int(s_line[3]), int(s_line[4]), float(s_line[5])))
+            elif s_line[1] == "COORD":
+                self.robot_state.set_current_position(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])))
 
     def run(self):
         """ read message and send transitions """
@@ -159,7 +158,7 @@ class Communication:
                     line = self.non_blocking_read_line(ser)
 
     def send(self, arduino, message):
-        print bcolors.HEADER, "[SEND -> ", arduino ," ]", message, bcolors.ENDC
+        print bcolors.HEADER, "[SEND -> ", arduino, " ]", message, bcolors.ENDC
         try:
             self.arduinos[arduino].write(message + "\n")
         except:

@@ -8,6 +8,15 @@ import time
 from mission_control import mission_fresque, mission_prise_torche_adv
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+
 class RobotState:
     """ class to store all the data regarding the state of the robot ( and the other robot) + its environment """
     def __init__(self, robot="mark", pipo=False):
@@ -64,14 +73,14 @@ class RobotState:
 
     def choose_mission(self):
         """ update current_mission """
-        traject_time = self.slave_manager.evaluate_time_to_missions({trans: self.missions[trans] for trans in self.missions.keys()})
-        scores = {trans: self.missions[trans].get_score(time) for trans, dt in traject_time.items()}
+        traject_time = self.slave_manager.evaluate_time_to_missions({trans: self.missions[trans].start_coordinate for trans in self.missions.keys()})
+        scores = {trans: self.missions[trans].get_score(dt) for trans, dt in traject_time.items()}
         print "mission scores "
         print scores
-        self.current_mission = min(scores.items(), key=lambda i, j: j)[0]
+        self.current_mission = min(scores.items(), key=lambda (i, j): j)[0]
         #self.current_mission = self.missions.keys()[0] 
 
-        print "------------------- Mission Choice:", self.current_mission, "  ---------------- "
+        print bcolors.WARNING, "------------------- Mission Choice:", self.current_mission, "  ---------------- ", bcolors.ENDC
         self.mae.game.mae.update_dep(self.missions[self.current_mission])
 
     def start(self):

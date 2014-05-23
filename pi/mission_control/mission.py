@@ -52,7 +52,7 @@ class Mission:
 
     def get_score(self, temps_trajet):
         """ temp_trajet est une estimation du temps de trajet a faire en sec """
-        return self.points / temps_trajet + self.prorite
+        return self.points / temps_trajet + self.priorite
 
 
 

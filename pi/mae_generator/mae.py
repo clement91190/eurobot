@@ -3,6 +3,15 @@ import time
 debug = True
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+
 class State():
     """ class implemeting the state of a state machine 
         To create a state machine, have all state inherit from this one."""
@@ -93,14 +102,15 @@ class MAE():
         else:
             raise NotImplementedError("multiple input not implemented yet")
         if self.verbose:
-            print "$$reinit"
-            print "$$", self.current_state
+            #print "$$reinit"
+            #print "$$", self.current_state
+            pass
 
     def go_to(self, new_state):
         """ check if new_state is not None and go there """
         if new_state is not None:
             if self.verbose:
-                print "transition from {} to {}".format(self.current_state.name, new_state.name)
+                print bcolors.WARNING, "[MAE] Transition from {} to {}".format(self.current_state.name, new_state.name), bcolors.ENDC
             self.current_state.out_code()
             self.current_state = new_state
             if self.current_state.contains_time_out():

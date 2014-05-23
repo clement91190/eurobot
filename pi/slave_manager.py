@@ -32,7 +32,7 @@ class SlaveManager:
             #sinon petit deplacement, donc 1 seul bfcap.
             bfcap1 = self.state_factory.get_bf_cap(coord_dep)
             bfav = self.state_factory.get_bf_fw(Coord(coord_dep.norm()))
-            bfcap1.add_transition(precision, bfav)
+            bfcap1.add_near_transition(bfav)
             bfav.add_transition(precision, bfcap2)
             states.append(bfcap1)
             states.append(bfav)
@@ -52,7 +52,7 @@ class SlaveManager:
         sub_states = []
         coords = Coord(coords.x + 1500, coords.y, coords.cap)
         self.pathfinder.find_waypoints(
-            current_position.to_tuple(), 
+            self.current_position.to_tuple(), 
             coords.to_tuple())
         waypoints = self.pathfinder.get_smooth_waypoints()
         print waypoints
@@ -90,7 +90,7 @@ class SlaveManager:
     def evaluate_time_to_missions(self, dict_coords):
         """ dict_coords : "trans" -> coords of starting_point """
         res = {}
-        for trans, coord_ in dict_coords:
+        for trans, coord_ in dict_coords.items():
             coords = Coord(coord_.x + 1500, coord_.y, coord_.cap)
             self.pathfinder.find_waypoints(
                 self.current_position.to_tuple(), 
