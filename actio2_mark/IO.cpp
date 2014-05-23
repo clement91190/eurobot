@@ -149,7 +149,7 @@ void Pile::trigger(int transition)
            
            //etat de check de pile
         case ETAT_VIDANGE_STANDBY :
-            if (transition == PILE_VIDE)
+            if (transition == PILE_VIDE || transition == STOP)
             {
                 state = ETAT_ATTENTE;
             }
