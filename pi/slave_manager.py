@@ -84,9 +84,6 @@ class SlaveManager:
     def set_current_position(self, coord):
         self.current_position = Coord(coord.x + 1500, coord.y, coord.cap)
 
-    def recaler(self):
-        self.com.send_slave("S1")
-
     def evaluate_time_to_missions(self, dict_coords):
         """ dict_coords : "trans" -> coords of starting_point """
         res = {}
@@ -101,12 +98,8 @@ class SlaveManager:
                 dt +=  0.5 + (w.get_coords_to(waypoints[i])).norm()
             res[trans] = dt
         return res
-                
-            
-            
+           
 
-
-            
 def main():
     manager = SlaveManager(ComStateFactory("pipo com"))
     manager.set_current_position(Coord(0, 1000, 0))

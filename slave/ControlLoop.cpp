@@ -316,6 +316,7 @@ void ControlLoop::setxycap(Coord new_coord)
 {
     real_coord = Coord(new_coord);
     target_position = Coord(real_coord);
+    write_real_coords();
 }
 
 void ControlLoop::write_real_coords()

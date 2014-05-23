@@ -5,7 +5,8 @@ from mae_generator.mae_global import MAEGlobal
 from slave_manager import SlaveManager
 import time
 
-from mission_control import mission_fresque, mission_prise_torche_adv
+
+from mission_control.debile import mission_fresque, mission_prise_torche_adv
 
 
 class bcolors:
@@ -61,7 +62,7 @@ class RobotState:
 
     def set_last_position(self, position):
         self.last_position = position
-        self.slave_manager.set_current_position = position 
+        self.slave_manager.set_current_position(position)
 
     def post_on_server(self):
         """ perform a post request to the server to update its data """

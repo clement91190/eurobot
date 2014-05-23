@@ -110,6 +110,7 @@ class MAE():
         """ check if new_state is not None and go there """
         if new_state is not None:
             if self.verbose:
+                #raw_input()
                 print bcolors.WARNING, "[MAE] Transition from {} to {}".format(self.current_state.name, new_state.name), bcolors.ENDC
             self.current_state.out_code()
             self.current_state = new_state

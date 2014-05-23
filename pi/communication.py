@@ -125,15 +125,15 @@ class Communication:
         return slave, actio1
 
     def treat_line(self, line):
-        print bcolors.OKGREEN, "[READ]",  line, bcolors.ENDC
-
         s_line = line.split()
         if s_line[0] == "#":
+            print bcolors.OKGREEN, "[READ TRANS]",  line, bcolors.ENDC
             if s_line[1] in ["BLOC", "AFINI", "ADVD", "NEAR", "START", "STARTIN"]:
                 self.global_mae.trigger(s_line[1])
             else:
                 print "unkown transition", line
         elif s_line[0] == "*":
+            print bcolors.FAIL, "[READ DATA]",  line, bcolors.ENDC
             #parameters
             if s_line[1] == "STRAT":
                 self.robot_state.strat = [int(v) for v in s_line[2:]]
@@ -146,7 +146,10 @@ class Communication:
                 self.robot_state.adversary_detection.insert((time.time(), Coord(int(s_line[2]), int(s_line[3]), float(s_line[4]))), 0)
 
             elif s_line[1] == "COORD":
-                self.robot_state.set_current_position(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])))
+                self.robot_state.set_last_position(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])))
+        else:
+            print "[CRAP]", s_line
+
 
     def run(self):
         """ read message and send transitions """

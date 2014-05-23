@@ -8,8 +8,8 @@ class SendSlaveState(State):
         self.message = message
 
     def in_code(self):
-        self.com.send_slave("S1")
         self.com.send_slave(self.message)
+        self.com.send_slave("S1")
 
 
 class SendActioPMIState(State):
