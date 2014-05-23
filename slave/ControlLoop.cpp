@@ -71,6 +71,7 @@ void ControlLoop::set_BF(int bf_type_, Coord target_position_){
     float d;
     switch(bf_type){
         case STOP:
+            Serial.println("STOP");
             break;
         case BFFW:
             target_position.forward_translation(target_position_.get_x());
@@ -226,6 +227,7 @@ void ControlLoop::run(Coord real_coord_){
     real_coord = real_coord_;
     compute_pids();
     compute_cmds();
+
     if (bf_type == BFFW)
     {
         check_adversary();
