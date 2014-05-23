@@ -103,10 +103,15 @@ void ControlLoop::next_asserv_state(){
     switch (asserv_state){
         case FAR:
             asserv_state = NEAR ; 
+            write_real_coords();
             Serial.println("# NEAR");
+
+
+            
             break;
         case NEAR:
             asserv_state = DONE ;
+            write_real_coords();
             Serial.println("# AFINI");
             bf_type = STOP;
             break;
@@ -271,8 +276,8 @@ void ControlLoop::check_blockage()
    
    if (count_not_moving > 15)
    {
-        Serial.println("# BLOC");
         write_real_coords();
+        Serial.println("# BLOC");
 
         set_BF(STOP, Coord());
         count_not_moving = 0;
@@ -298,15 +303,18 @@ void ControlLoop::check_adversary()
         if (sonard.adv_detected()){
             sonarg.mean_adv(sonard.get_adv());
         }
+        write_real_coords();
         sonarg.write_adv_coord();
         set_BF(STOP, Coord());
     }
     else if (sonard.adv_detected())
+        write_real_coords();
         sonard.write_adv_coord();
         set_BF(STOP, Coord());
 #else
     if (sonarg.adv_detected()){
-       sonarg.write_adv_coord();
+        write_real_coords();
+        sonarg.write_adv_coord();
         set_BF(STOP, Coord());
     }
 #endif 
