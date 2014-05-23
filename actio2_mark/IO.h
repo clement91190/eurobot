@@ -78,7 +78,6 @@ class Pile
         int pile_cote;
         long t_over;
         bool time_out_on;
-        int trigger_to_be;
         int state;
         Period period_run;
         int getCote();
@@ -96,7 +95,7 @@ class Pile
         void in_state_func();
         void run();
         void trigger(int transition);
-        void set_time_out(int dt_, int trigger);
+        void set_time_out(int dt_);
         void reset_time_out();
         bool is_time_out();
 	

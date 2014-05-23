@@ -90,7 +90,7 @@ int Pile::estPleine()
 
 void Pile::etatMaster()
 {
-	String debut = "* PILE ";
+	String debut = "* PILE";
 	String cote;
 	String fin ;
 	if(pile_cote == GAUCHE)
@@ -121,12 +121,6 @@ void Pile::trigger(int transition)
  //
  //
  //
-     if (transition == EJECTION || transition == VIDANGE )
-    {
-         Serial.print("new trigger to be ");
-         Serial.println(transition);
-        trigger_to_be = transition;
-    }
 
 
   int old_state;
@@ -185,7 +179,7 @@ void Pile::trigger(int transition)
    
    if (old_state != state)
     {
-        Serial.print("new state: ");
+        Serial.print("[ACTIO2] new state: ");
         Serial.println(state);
 
         reset_time_out();
@@ -193,13 +187,12 @@ void Pile::trigger(int transition)
     }
 }
 
-void Pile::set_time_out(int dt_, int trigger)
+void Pile::set_time_out(int dt_)
 {
     t_over = millis() + dt_;
     time_out_on = true;
-    trigger_to_be = trigger;
-    Serial.print("time_out for trigger ");
-    Serial.println(trigger);
+    Serial.print("time_out set");
+
 }
 
 //reset les times out
@@ -228,7 +221,7 @@ void Pile::in_state_func()
             break;
             
         case ETAT_EJECTION :
-			set_time_out(500, TIME_OUT);
+			set_time_out(500);
             open();
             break;
             
@@ -238,12 +231,12 @@ void Pile::in_state_func()
             break;
             
         case ETAT_VIDANGE_OUVERTURE :
-			set_time_out(500, TIME_OUT);
+			set_time_out(500);
             open();
             break;
             
         case ETAT_VIDANGE_FERMETURE : 
-            set_time_out(300, TIME_OUT);
+            set_time_out(300);
             close();
             break;
     }
@@ -266,7 +259,7 @@ void Pile::run(){
         
         if (is_time_out())
         {
-            trigger(trigger_to_be);
+            trigger(TIME_OUT);
         }
         
 		//depuis instruction PI, a verif

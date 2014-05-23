@@ -238,7 +238,7 @@ void OrdersRaspberry::executeinstr()
         case 2: 
 			Serial.println("consultation de la pile droite");
             io->pile_droite_etatMaster();
-            // renvoi "* PILE D 0", ou "* PILE D 1" si un feux est dispo
+            // renvoi "* PILED 0", ou "* PILED 1" si un feux est dispo
             break;
             
         case 3: 
@@ -256,7 +256,7 @@ void OrdersRaspberry::executeinstr()
         case 5: 
 			Serial.println("consultation de la pile gauche");
             io->pile_gauche_etatMaster();
-            // renvoi "* PILE G 0", ou "* PILE G 1" si un feux est dispo
+            // renvoi "* PILEG 0", ou "* PILEG 1" si un feux est dispo
             break;
        }
         return;
