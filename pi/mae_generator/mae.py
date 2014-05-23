@@ -1,4 +1,3 @@
-import pygraphviz as pgv
 import time
 
 debug = True
@@ -140,25 +139,29 @@ class MAE():
 
     def draw(self, file='mae_render.png'):
         """ draw the mae for debugging purposes """
-        graph = pgv.AGraph(directed=True, strict=False)
-        for state in self.state_list:
-            for t, s2 in state.transitions.iteritems():
-                graph.add_edge(state.__str__(), s2.__str__(), label=t, arrowhead='diamond')
-            if isinstance(state, MAEState):
-                for out_state, next_state in state.out_transitions.iteritems():
-                    graph.add_edge(state, next_state, label="from_{}".format(out_state), arrowhead="diamond", color="green")
-        for i, state in enumerate(self.state_list):
-            if i == 0:
-                init_node = graph.get_node(state.__str__())
-                init_node.attr['color'] = 'red'
-            if isinstance(state, MAEState):
-                node = graph.get_node(state.__str__())
-                node.attr['color'] = 'green'
+        try:
+            import pygraphviz as pgv
+            graph = pgv.AGraph(directed=True, strict=False)
+            for state in self.state_list:
+                for t, s2 in state.transitions.iteritems():
+                    graph.add_edge(state.__str__(), s2.__str__(), label=t, arrowhead='diamond')
+                if isinstance(state, MAEState):
+                    for out_state, next_state in state.out_transitions.iteritems():
+                        graph.add_edge(state, next_state, label="from_{}".format(out_state), arrowhead="diamond", color="green")
+            for i, state in enumerate(self.state_list):
+                if i == 0:
+                    init_node = graph.get_node(state.__str__())
+                    init_node.attr['color'] = 'red'
+                if isinstance(state, MAEState):
+                    node = graph.get_node(state.__str__())
+                    node.attr['color'] = 'green'
 
-            graph.add_node(self.state_list[0].__str__(), color='red')
+                graph.add_node(self.state_list[0].__str__(), color='red')
 
-        graph.layout(prog='dot')
-        graph.draw(file)
+            graph.layout(prog='dot')
+            graph.draw(file)
+        except:
+            print "can't draw"
 
     def is_over(self):
         return isinstance(self.current_state, OutState)
