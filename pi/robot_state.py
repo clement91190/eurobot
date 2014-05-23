@@ -7,6 +7,7 @@ import time
 
 from mission_control import mission_fresque, mission_prise_torche_adv
 
+
 class RobotState:
     """ class to store all the data regarding the state of the robot ( and the other robot) + its environment """
     def __init__(self, robot="mark", pipo=False):
@@ -15,14 +16,13 @@ class RobotState:
         self.strat = []
         self.coul = "rouge"
         self.adversary_detection = []
-        self.last_position = (0,0,0)
-
+        self.last_position = (0, 0, 0)
 
         self.missions = {}
         self.current_mission = None
         self.robot = robot
         if not pipo:
-            self.com = Communication(robot)
+            self.com = Communication(self, robot)
         else:
             self.com = PipoCommunication()
 
