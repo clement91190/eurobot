@@ -206,4 +206,27 @@ class PipoCommunication:
         self.send("actio2", message)  # most message are in coord.py
 
 
+def init(ser):
+    ser.setDTR(False)
+    time.sleep(1)
+# toss any data already received, see
+# http://pyserial.sourceforge.net/pyserial_api.html#serial.Serial.flushInput
+    ser.flushInput()
+    ser.setDTR(True)
 
+
+def main():
+    ser = serial.Serial('/dev/ttyUSB0')
+    init(ser)
+    print "/dev/ttyUSB0  ->", ser.readline()
+    ser = serial.Serial('/dev/ttyUSB1')
+    init(ser)
+    print "/dev/ttyUSB1  ->", ser.readline()
+    ser = serial.Serial('/dev/ttyUSB2')
+    init(ser)
+    print "/dev/ttyUSB2  ->", ser.readline()
+    
+
+if __name__ == "__main__":
+    main()
+    

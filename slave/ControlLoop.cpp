@@ -132,7 +132,14 @@ void ControlLoop::compute_pids(){
             cmd_dep = piddep.compute( to_target.scalar(Vector(real_coord))); // the error is a scalar product
             if (asserv_state != NEAR)
             {
-                pidcap.setTarget(to_target.get_angle());
+                if (abs(diff_cap(to_target.get_angle(), target_position.get_cap())) > PI / 2)
+                {
+                    pidcap.setTarget(to_target.get_angle() + PI);
+                }
+                else
+                {
+                    pidcap.setTarget(to_target.get_angle());
+                }
             }
             else
             {
