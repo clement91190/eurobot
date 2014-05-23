@@ -7,6 +7,11 @@ class Coord:
         self.y = y 
         self.cap = cap
 
+    def add_vector(self, coord2):
+        xx = self.x + coord2.x * math.cos(math.radians(self.cap)) + coord2.y * math.sin(math.radians(self.cap))
+        yy = self.y + coord2.y * math.cos(math.radians(self.cap)) + coord2.x * math.sin(math.radians(self.cap))
+        return Coord(int(xx), int(yy), 0)
+
     def norm(self):
         return math.sqrt(self.x ** 2 + self.y ** 2)
  
@@ -14,7 +19,7 @@ class Coord:
         "get a vector dx, dy cap = direction"
         dx = coord2.x - self.x
         dy = coord2.y - self.y
-        return Coord(dx, dy, math.degrees(math.atan2(dy, dx)))
+        return Coord(dx, dy, int(math.degrees(math.atan2(dy, dx))))
 
     def __str__(self):
         return "({} {} {})".format(self.x, self.y, self.cap)
@@ -23,16 +28,16 @@ class Coord:
         return " ({} {} {})".format(self.x, self.y, self.cap)
 
     def bf_cap(self):
-        return "S3 {}".format(self.cap)
+        return "S3 {}".format(int(self.cap))
 
     def bf_fw(self):
-        return "S4 {}".format(self.x)
+        return "S4 {}".format(int(self.x))
 
     def bf_droite(self):
-        return "S5 {} {} {}".format(self.x, self.y, self.cap)
+        return "S5 {} {} {}".format(int(self.x), int(self.y), int(self.cap))
 
     def setxycap(self):
-        return "S0 {} {} {}".format(self.x, self.y, self.cap)
+        return "S0 {} {} {}".format(int(self.x), int(self.y), int(self.cap))
 
     def to_tuple(self):
         return (self.x, self.y, self.cap)

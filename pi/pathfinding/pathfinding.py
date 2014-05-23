@@ -40,12 +40,13 @@ class PathFinder():
         """ add a circle on the map, centered on point (x,y) with radius r """
         for i in range(int(math.floor(1.0 * (x - r) / self.size_of_square)), int(math.ceil(1.0 * (x + r) / self.size_of_square) + 1)):
             d = i * self.size_of_square - x
-            delta_y = np.sqrt(r ** 2 - d ** 2)
-            for j in range(int(math.floor(1.0 * (y - delta_y) / self.size_of_square)), int(math.ceil(1.0 * (y + delta_y) / self.size_of_square) + 1)):
-                try:
-                    self.map[i, j] = fil
-                except:
-                    pass
+            if r ** 2 - d ** 2 >= 0:
+                delta_y = np.sqrt(r ** 2 - d ** 2)
+                for j in range(int(math.floor(1.0 * (y - delta_y) / self.size_of_square)), int(math.ceil(1.0 * (y + delta_y) / self.size_of_square) + 1)):
+                    try:
+                        self.map[i, j] = fil
+                    except:
+                        pass
 
     def neighbours(self, ind):
         n_set = set([])
@@ -56,10 +57,19 @@ class PathFinder():
                     n_set.add(self.to_ind(i, j))
         return n_set
 
+    def reinit(self):
+        self.g_score = {}
+        self.came_from = {}
+        self.open_set = set([])  # store all the points that have been estimated
+        self.closed_set = set([])
+        self.f_score = {}
+        self.waypoints = {}
+
     def find_waypoints(self, (x0, y0, cap0), (x1, y1, cap1)):
         """ return a list of waypoint (x, y ,cap) to go from p0 to p1 -> see A* wikipedia"""
         self.arrival = (x1, y1, cap1)
         self.start = (x0, y0, cap0)
+        self.reinit()
         print "A * PATHFINDER  ", self.start, "  -> ", self.arrival
         i0, j0 = (x0 / self.size_of_square, y0 / self.size_of_square)  # TODO find something better ?
         ind = self.to_ind(i0, j0)
