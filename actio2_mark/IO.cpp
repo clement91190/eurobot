@@ -67,6 +67,26 @@ void Pile::open()
 	}
 }
 
+     
+
+
+
+//affiche les valeurs des IRs
+void Pile::debugIr()
+{
+	if(pile_cote == GAUCHE)
+	{
+		val_ir = analogRead(PIN_IRG);
+		Serial.print("IR Gauche : " );
+		Serial.println(val_ir);
+	}
+	else
+	{
+        val_ir = analogRead(PIN_IRD);
+        Serial.print("IR Droite : " );
+		Serial.println(val_ir);
+	}
+}
 
 //regarde si il reste qqchose dans la pile
 int Pile::estPleine()
@@ -74,10 +94,14 @@ int Pile::estPleine()
 	if(pile_cote == GAUCHE)
 	{
 		val_ir = analogRead(PIN_IRG);
+		//Serial.print("IR Gauche : " );
+		//Serial.println(val_ir);
 	}
 	else
 	{
-        val_ir = analogRead(PIN_IRG);
+        val_ir = analogRead(PIN_IRD);
+        //Serial.print("IR Droite : " );
+		//Serial.println(val_ir);
 	}
 	int k = 0;
 	if(val_ir > SEUIL_IR)
@@ -161,7 +185,11 @@ void Pile::trigger(int transition)
             
             //etat d'ejection programme
         case ETAT_VIDANGE_OUVERTURE :
-            if (transition == TIME_OUT)
+            if(transition == STOP)
+            {
+				state = ETAT_ATTENTE;
+			}
+            else if (transition == TIME_OUT)
             {
                  state = ETAT_VIDANGE_FERMETURE;
             }
@@ -169,7 +197,11 @@ void Pile::trigger(int transition)
             
             //etat de refermeture
         case ETAT_VIDANGE_FERMETURE :
-            if (transition == TIME_OUT)
+            if(transition == STOP)
+            {
+				state = ETAT_ATTENTE;
+			}
+            else if (transition == TIME_OUT)
                 {
                     state = ETAT_VIDANGE_STANDBY;
                 }
@@ -231,12 +263,12 @@ void Pile::in_state_func()
             break;
             
         case ETAT_VIDANGE_OUVERTURE :
-			set_time_out(500);
+			set_time_out(400);
             open();
             break;
             
         case ETAT_VIDANGE_FERMETURE : 
-            set_time_out(300);
+            set_time_out(400);
             close();
             break;
     }
@@ -290,8 +322,10 @@ IO::IO(): pile_gauche(GAUCHE), pile_droite(DROITE)
     
     tacle_gauche_fermeture();
     tacle_droite_fermeture();
-    canon_droite_enclenche();
-    canon_gauche_enclenche();
+    //canon_droite_enclenche();
+    //canon_gauche_enclenche();
+    canon_droite_tir();
+    canon_gauche_tir();
     benne_centrale_close();
     benne_rateau_bas();
 
@@ -352,7 +386,7 @@ void IO::benne_centrale_close()
 }
 void IO::benne_centrale_gerbe()
 {
-	servo_benne_c.writeMicroseconds(BENNE_C_CLOSE);
+	servo_benne_c.writeMicroseconds(BENNE_C_OPEN);
 }
 void IO::benne_rateau_bas()
 {
@@ -400,3 +434,9 @@ void IO::pile_droite_etatMaster()
 {
 	pile_droite.etatMaster();
 }
+
+void IO::pile_debugIr()
+{
+	pile_droite.debugIr();
+	pile_gauche.debugIr();
+}   

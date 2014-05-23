@@ -258,12 +258,18 @@ void OrdersRaspberry::executeinstr()
             io->pile_gauche_etatMaster();
             // renvoi "* PILEG 0", ou "* PILEG 1" si un feux est dispo
             break;
+            
+    case 8:
+            Serial.println("DEBUG des IRs");
+            io->pile_debugIr();
+            //affiche les valeurs des IR pour Debugage des seuils
+            break;
 	case 9: 
 		Serial.println("STOP les piles");
 		io->pile_gauche_trigger(STOP);
 		io->pile_droite_trigger(STOP);
 		//arrete le processus de vidange pour  la fin de match
-
+		break;
        }
         return;
     }

@@ -48,7 +48,7 @@
 #define GAUCHE 0
 #define DROITE 1
 
-#define SEUIL_IR 350 //truc si sup a
+#define SEUIL_IR 450 //truc si sup a
 
 
 // STATES OF MAE PILE
@@ -86,7 +86,7 @@ class Pile
         
 
 	public:
-
+		
 		Pile(int cote);
         int estPleine(); 	//1 si qqchose sinon 0
         void etatMaster();	//P4 G P5 D
@@ -98,6 +98,7 @@ class Pile
         void set_time_out(int dt_);
         void reset_time_out();
         bool is_time_out();
+        void debugIr();
 	
 };
 
@@ -126,6 +127,7 @@ class IO
         void pile_droite_trigger(int transition);
         void pile_gauche_etatMaster();
         void pile_droite_etatMaster();
+        void pile_debugIr();
         
         //tacle droite
         void tacle_droite_fermeture();		//T0
