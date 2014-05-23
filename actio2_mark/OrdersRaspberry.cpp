@@ -95,16 +95,168 @@ void OrdersRaspberry::executeinstr()
     bool precis;
     switch (ordre)
     {
-    case 'P' :
-        //Vitesse vit;
-        // ordre de type Slave
+    case 'T' :
+        // ordre de type Tacle Laterale
+        switch (ind)
+        {
+			
+			
+        case 0: 
+			Serial.println("fermeture tacle droite");
+            io->tacle_droite_fermeture();
+            // tacle droite fermee
+            break;
+            
+        case 1: 
+			Serial.println("mi ouveture tacle droite");
+            io->tacle_droite_miOuverture();
+            // tacle droite mi ouverte pour rush de depart
+            break;
+            
+        case 2: 
+			Serial.println("grande ouverture tacle droite");
+            io->tacle_droite_ouverture();
+            // tacle droite grande ouverte pour racler les feux en hauteur
+            break;
+            
+        case 3: 
+			Serial.println("fermeture tacle gauche");
+            io->tacle_gauche_fermeture();
+            // tacle gauche fermee
+            break;
+            
+        case 4: 
+			Serial.println("mi ouveture tacle gauche");
+            io->tacle_gauche_miOuverture();
+            // tacle gauche mi ouverte pour rush de depart
+            break;
+            
+        case 5: 
+			Serial.println("grande ouverture tacle gauche");
+            io->tacle_gauche_ouverture();
+            // tacle gauche grande ouverte pour racler les feux en hauteur
+            break;
+       }
+       return;
+       
+       
+       
+       case 'C' :
+        // ordre de type Canon a Mammouth
         switch (ind)
         {
         case 0: 
-			Serial.println("pose les fresques");
-            //io->poser_fresque();
-            //Serial.println("init_pince_mae");
-            // pince en position de base en bas, ouverte, prete a retourner tout ce qu'elle trouve
+			Serial.println("chargement du canon droit");
+            io->canon_droite_enclenche();
+            // armement du canon droit
+            break;
+            
+        case 1: 
+			Serial.println("mise à feux du canon droit, extermination de mamouths!!!");
+            io->canon_droite_tir();
+            // tir de la rampe droite
+            break;
+            
+        case 2: 
+			Serial.println("repos du canon droit, pour refroidir un peu...");
+            io->canon_droite_repos();
+            // repos de la rampe droite
+            break;
+            
+        case 3: 
+			Serial.println("chargement du canon gauche");
+            io->canon_gauche_enclenche();
+            // armement du canon gauche
+            break;
+            
+        case 4: 
+			Serial.println("mise à feux du canon gauche, extermination de mamouths!!!");
+            io->canon_gauche_tir();
+            // tir de la rampe gauche
+            break;
+            
+        case 5: 
+			Serial.println("repos du canon gauche, pour refroidir un peu...");
+            io->canon_gauche_repos();
+            // repos de la rampe gauche
+            break;
+       }
+       return;
+       
+       case 'R' :
+        // ordre de type Rateau a fruit moisis
+        switch (ind)
+        {
+        case 0: 
+			Serial.println("rateau bas, pas chapeau bas monsieur");
+            io->benne_rateau_bas();
+            // rateau en position de rangement initial
+            break;
+            
+        case 1: 
+			Serial.println("rateau mi haut");
+            io->benne_rateau_mileu();	
+            // rateau en position a mi hauteur pour passer au dessus des rembardes
+            break;
+            
+        case 2: 
+			Serial.println("rateau haut");
+            io->benne_rateau_haut();
+            // rateau en position haute pour la cueillette de fruitmouth
+            break;
+            
+        case 3: 
+			Serial.println("benne fermée");
+            io->benne_centrale_close();
+            // benne fermée pour recevoir les fruits
+            break;
+            
+        case 4: 
+			Serial.println("benne qui gerbe, :p");
+            io->benne_centrale_gerbe();
+            // benne ouverte pour deverser les fruits dans les bacs
+            break;
+       }
+       return;
+       
+       case 'P' :
+        // ordre de type Pile de stockage laterale
+        switch (ind)
+        {
+        case 0: 
+			Serial.println("Ejection d'un feux sur la pile droite");
+            io->pile_droite_trigger(EJECTION);
+            // ejection d'un feux de la pile droite, en mode aveugle
+            break;
+            
+        case 1: 
+			Serial.println("Vidange automatique de la pile droite");
+            io->pile_droite_trigger(VIDANGE);
+            // ejection automatique de la pile droite complete
+            break;
+            
+        case 2: 
+			Serial.println("consultation de la pile droite");
+            io->pile_droite_etatMaster();
+            // renvoi "* PILE D 0", ou "* PILE D 1" si un feux est dispo
+            break;
+            
+        case 3: 
+			Serial.println("Ejection d'un feux sur la pile gauche");
+            io->pile_gauche_trigger(EJECTION);
+            // ejection d'un feux de la pile droite, en mode aveugle
+            break;
+            
+        case 4: 
+			Serial.println("Vidange automatique de la pile gauche");
+            io->pile_gauche_trigger(VIDANGE);
+            // ejection automatique de la pile droite complete
+            break;
+            
+        case 5: 
+			Serial.println("consultation de la pile gauche");
+            io->pile_gauche_etatMaster();
+            // renvoi "* PILE G 0", ou "* PILE G 1" si un feux est dispo
             break;
        }
         return;

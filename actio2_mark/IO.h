@@ -51,27 +51,54 @@
 #define SEUIL_IR 350 //truc si sup a
 
 
+// STATES OF MAE PILE
+#define ETAT_ATTENTE 0
+#define ETAT_EJECTION 1
+#define ETAT_VIDANGE_STANDBY 2
+#define ETAT_VIDANGE_OUVERTURE 3
+#define ETAT_VIDANGE_FERMETURE 4
+
+//transition MAE PILE
+#define TIME_OUT 0
+#define EJECTION 1
+#define VIDANGE 2
+#define PILE_VIDE 3
+#define PILE_PLEINE 4
+
+
 
 class Pile
 /** pile de stockage objects **/
 {
 	private:
-	Servo servo_pile_av_g;
-        Servo servo_pile_av_d;
-        Servo servo_pile_ar_g;
-        Servo servo_pile_ar_d;
+		Servo servo_pile_av;
+        Servo servo_pile_ar;
         
-        int val_ir_g;
-        int val_ir_d;
+        int val_ir;
+        int pile_cote;
+        long t_over;
+        bool time_out_on;
+        int trigger_to_be;
+        int state;
+        Period period_run;
+        int getCote();
+        void open();
+        void close();
         
 
 	public:
+
 		Pile(int cote);
-        int estPleine(); 		//1 si qqchose sinon 0
-        void etatMaster();
-        void ejection();
-        void vidange();
+        int estPleine(); 	//1 si qqchose sinon 0
+        void etatMaster();	//P4 G P5 D
+        //void ejection(); 	//P0 G P1 D
+        //void vidange();		//P2 G P3 D
+        void in_state_func();
         void run();
+        void trigger(int transition);
+        void set_time_out(int dt_, int trigger);
+        void reset_time_out();
+        bool is_time_out();
 	
 };
 
@@ -95,6 +122,11 @@ class IO
         
     public:
         IO();
+        void run();
+        void pile_gauche_trigger(int transition);
+        void pile_droite_trigger(int transition);
+        void pile_gauche_etatMaster();
+        void pile_droite_etatMaster();
         
         //tacle droite
         void tacle_droite_fermeture();		//T0
@@ -115,6 +147,14 @@ class IO
         void canon_gauche_enclenche();		//C3
         void canon_gauche_tir();			//C4
         void canon_gauche_repos();			//C5
+        
+        //Benne & rateaux
+        void benne_centrale_close();		//R0
+        void benne_centrale_gerbe();		//R1
+        void benne_rateau_bas();			//R2
+        void benne_rateau_mileu();			//R3	
+        void benne_rateau_haut();			//R4
+        
          
 
 };
