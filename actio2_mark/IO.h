@@ -64,7 +64,7 @@
 #define VIDANGE 2
 #define PILE_VIDE 3
 #define PILE_PLEINE 4
-
+#define STOP 5
 
 
 class Pile
