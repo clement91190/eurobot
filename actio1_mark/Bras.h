@@ -34,6 +34,7 @@ class Ascenseur
         is_up();
         monte();
         go_to(float pos_cm);
+        bool is_near();
         void write_debug();
         bool run();
         void stop();
@@ -70,6 +71,12 @@ class Bras
         Period period_run;
         bool mon_ir_actif;
 
+        // master order color
+        bool coul_to_be_on; // next time in attente -> next_coul<- next_coul_to_be
+        bool next_coul_on;
+        bool next_coul;
+        bool next_coul_to_be
+
 
     public:
         Bras(int cote);
@@ -104,7 +111,10 @@ class Bras
         void set_to_be_done(int trigger_attente);
         void active_ir();
         void desactive_ir();
+        void call_for_help();
 
+        void set_to_be_next_coul(bool macoul);
+        void next_coul(bool macoul);
 };
 
 
@@ -138,17 +148,18 @@ class Bras
 #define T_ACTIF_NOMINAL 2 
 
 #define T_PRISE_VERTICAL 3
-#define T_COOL_NOT_OK 4
-#define T_COOL_NOT_OK_MASTER 4
-#define T_COOL_OK_MASTER 5
-#define T_MON_IR 6
-#define T_ASC_ARRIVE 7
-#define T_ASC_PRESQUE_ARRIVE 8
-#define T_BUMP_HAUT 9
-#define T_CAPT_PRESSION_ON 10 
-#define T_PRISE_COPAIN 11 
-#define T_CALL_FOR_HELP 11 
-#define T_PRISE_VERT 11 
+#define T_COUL_NOT_OK 4
+#define T_COUL_NOT_OK_MASTER 5
+#define T_COUL_OK_MASTER 6
+#define T_COUL_OK 7
+#define T_MON_IR 8
+#define T_ASC_ARRIVE 8
+#define T_ASC_PRESQUE_ARRIVE 9
+#define T_BUMP_HAUT 10
+#define T_CAPT_PRESSION_ON 11
+#define T_PRISE_COPAIN 12
+#define T_CALL_FOR_HELP 13 
+#define T_PRISE_VERT 14
 //#define POSE 1 
 
 

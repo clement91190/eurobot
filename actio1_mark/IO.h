@@ -23,7 +23,7 @@ class IO
         void write_debug();
         void run();
 
-        void bras_attente();
+        void bras_actif();
         void range_bras();
         void active_irs();
         void desactive_irs();

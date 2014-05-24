@@ -28,7 +28,7 @@ void Ascenseur::stop()
 
 }
 
-bool run()
+bool Ascenseur::run()
 {
     if (recal_up)
     {
@@ -63,12 +63,12 @@ bool run()
     }
 }
 
-void is_near()
+bool Ascenseur::is_near()
 {
-    return abs(asc.distanceToGo <= NEAR);
+    return (abs(asc.distanceToGo()) <= NEAR);
 }
 
-void go_to(float pos_cm){
+void Ascenseur::go_to(float pos_cm){
     recal_up = false;
     if (pos_cm == 0.)
     {
@@ -102,7 +102,7 @@ void Ascenseur::write_debug()
 Bras::Bras(int cote_): period_run(50), time_out_on(false), state(RANGE_DEPART)
 {
 
-    cote = cote_
+    cote = cote;_
     if (cote == GAUCHE)
     {
         servo_rot.attach(PIN_SERVO_ROT_G);
@@ -306,16 +306,16 @@ void Bras::trigger(int transition)
         case RANGE_DEPART :
            if (transition == T_ACTIF_NOMINAL)
            {
-            state = INT_RANGE2;
+            state = INT2_RANGE;
            }
            break;
         case INT_RANGE :
             if (transition == T_BUMP_HAUT)
            {
-            state = INT_RANGE2;
+            state = INT2_RANGE;
            }
             break;
-        case INT_RANGE2 :
+        case INT2_RANGE :
             if (transition == T_RANGE)
            {
             state = RANGE_DEPART;
@@ -356,11 +356,11 @@ void Bras::trigger(int transition)
             break;
 
         case PRISE_LAT :
-             if (transition == T_COOL_OK) // ou pression ? 
+             if (transition == T_COUL_OK) // ou pression ? 
            {
             state = MONTE;
            }
-             else if (transition == T_COOL_NOT_OK)
+             else if (transition == T_COUL_NOT_OK)
            {
             state = MONTE_ECH;
            }
@@ -419,11 +419,11 @@ void Bras::trigger(int transition)
             break;
         
         case PRISE_VERT :
-            if (transition == T_COOL_OK_MASTER) // peut etre declenchee par le master 
+            if (transition == T_COUL_OK_MASTER) // peut etre declenchee par le master 
            {
             state = MONTE; 
            }
-            else if (transition == T_COOL_NOT_OK_MASTER)
+            else if (transition == T_COUL_NOT_OK_MASTER)
             {
             state = MONTE_ECH;
             }
@@ -454,7 +454,10 @@ if (state >= 10 && (transition == RANGE || transition == TAPE))
 
 void Bras::run(){
     col.run();
-    asc.run();
+    if (asc.run())
+    {
+        trigger(T_ASC_ARRIVE)
+    }
 
     
     if (period_run.is_over())
@@ -464,12 +467,76 @@ void Bras::run(){
                 trigger_attente_on = false;
                 trigger(trigger_attente);
             }
-        
 
+
+        if (state == ATTENTE_ACTIF && coul_to_be_on){
+                coul_to_be_on = false;
+                next_coul = next_coul_to_be
+                next_coul_on = true;
+            }
+
+        if ((state == PRISE_VERT || state == PRISE_LAT) && next_coul_on)
+            {
+                next_coul_on = false;
+                if (next_coul)
+                    {
+                        trigger(T_COUL_OK_MASTER)
+                    }
+               else
+               {
+                        trigger(T_COUL_NOT_OK_MASTER)
+               }
         
-    }
+        }
+
+
+
+        if (mon_ir_actif && ir.is_on())
+        {
+            trigger(T_MON_IR);
+        }
+
+
+        if (asc.is_up())
+            {
+                trigger(T_BUMP_HAUT);
+            }
+
+        if (is_time_out())
+        {
+            trigger(trigger_to_be);
+        }
+
+        if (asc.is_near())
+        {
+           trigger(T_ASC_PRESQUE_ARRIVE)
+        }
+        if (couleur == ROUGE)
+        {
+            if (col.is_red())
+            {
+                trigger(T_COUL_OK);
+            }
+            else if (col.is_yellow())
+            {
+                trigger(T_COUL_NOT_OK);
+            }
+        }
+        else
+        {
+            if (col.is_yellow())
+            {
+                trigger(T_COUL_OK);
+            }
+            else if (col.is_red())
+            {
+                trigger(T_COUL_NOT_OK);
+            }
+        }
+
 
   
+    }
 }
 
 void Bras::set_time_out(int dt_, int trigger)
@@ -626,20 +693,23 @@ void Bras::is_in_attente():
     return state == ATTENTE_ACTIF; 
 }
 
-void set_to_be_done(int trigger_attente_)
+void Bras::set_to_be_done(int trigger_attente_)
 {
     trigger_attente = trigger_attente_;
     trigger_attente_on = true;
 }
 
-void active_ir()
+void Bras::active_ir()
 {
     mon_ir_actif = true;
 }
 
-void desactive_ir()
+void Bras::desactive_ir()
 {
     mon_ir_actif = false;
 }
 
-
+void Bras::call_for_help()
+{
+    autre_bras->set_to_be_done(T_CALL_FOR_HELP);
+}
