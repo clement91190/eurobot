@@ -116,7 +116,7 @@ void OrdersRaspberry::executeinstr()
         case 1: 
             Serial.println("PINCE -> TAPE");
             io->trigger(TAPE);
-            //met la pince en position basse en attente
+            //position de la pince fermee verticale pour pousser les feux verticaux en rush initial
             break;
 
         case 2: 
@@ -161,11 +161,11 @@ void OrdersRaspberry::executeinstr()
             io->ranger_servo_fresque();
             break;
         case 2: 
-            Serial.println("pose les fresques");
+            Serial.println("tir de filet");
             io->envoi_filet();
             break;
         case 3: 
-            Serial.println("shoot le filet");
+            Serial.println("chargement de filet");
             io->ranger_servo_filet();
             break;
         }

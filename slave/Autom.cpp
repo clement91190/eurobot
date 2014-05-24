@@ -6,12 +6,14 @@ Autom::Autom():
     period_update_coords(10),
     control(),
     period_pid_loop(40),
-    gain_odo_g(0.357),
-    gain_odo_d(0.357),
 #ifdef PMI
-    gain_inter_odos(0.01309),
+    gain_inter_odos(0.01221554616), //0.011971135478867 //0.01309
+    gain_odo_g(0.353412),	//0.357
+    gain_odo_d(0.35250146), //0.351618 //0.357
 #else
     gain_inter_odos(0.004299), //0.01309
+    gain_odo_g(0.357),	
+    gain_odo_d(0.357),
 #endif
     last_ticG(0),
     last_ticD(0)
