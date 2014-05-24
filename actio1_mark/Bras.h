@@ -36,6 +36,7 @@ class Ascenseur
         go_to(float pos_cm);
         void write_debug();
         bool run();
+        void stop();
 }
 
 //position de l'ascenseur
@@ -57,13 +58,25 @@ class Bras
         SwitchAnalog ir;
         int pin_pompe;
         int cote;
+        Bras* autre_bras;
+
+        //state machine
+        int state;
+        int trigger_attente;
+        bool trigger_attente_on;
+        int trigger_to_be;
+        bool time_out_on;
+        long t_over;
+        Period period_run;
+        bool mon_ir_actif;
+
 
     public:
         Bras(int cote);
         void run();
         void trigger(int transition);
         void write_debug();
-        void set_autre_bras(Bras* autre_bras);
+        void set_autre_bras(Bras* autre_bras_);
 
         //all movement methods
 
@@ -85,6 +98,12 @@ class Bras
         
         void po(); //pompe ouverte
         void pf(); //pompe fermee
+
+        void stop();
+        bool is_in_attente();
+        void set_to_be_done(int trigger_attente);
+        void active_ir();
+        void desactive_ir();
 
 };
 
@@ -128,10 +147,10 @@ class Bras
 #define T_BUMP_HAUT 9
 #define T_CAPT_PRESSION_ON 10 
 #define T_PRISE_COPAIN 11 
+#define T_CALL_FOR_HELP 11 
+#define T_PRISE_VERT 11 
 //#define POSE 1 
 
 
-#define ROUGE 0
-#define JAUNE 0
 
 #endif

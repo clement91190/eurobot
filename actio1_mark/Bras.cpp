@@ -20,6 +20,14 @@ void Ascenseur::monte()
     recal_up = true;
 }
 
+void Ascenseur::stop()
+{
+    pap.setCurrentPosition(0);
+    pap.moveTo(0);
+    pap.run();
+
+}
+
 bool run()
 {
     if (recal_up)
@@ -91,7 +99,7 @@ void Ascenseur::write_debug()
 //BRAS
 //
 
-Bras::Bras(int cote_):
+Bras::Bras(int cote_): period_run(50), time_out_on(false), state(RANGE_DEPART)
 {
 
     cote = cote_
@@ -282,7 +290,7 @@ void Bras::trigger(int transition)
  //
  //
  //
-     if (transition == T_BAS|| transition == RANGE || transition == TAPE || transition == T_ACTIF_FEU || transition == T_ACTIF_TORCHE || transition == POSE)
+     if (transition == T_RANGE|| transition == T_ACTIF_NOMINAL || transition == T_ACTIF_TORCHE || transition == POSE)
     {
          Serial.print("new trigger to be ");
          Serial.println(transition);
@@ -318,10 +326,18 @@ void Bras::trigger(int transition)
             }
             break;
         case ATTENTE_ACTIF :
-            if (transition == T_MON_IR)
+            if (transition == T_MON_IR && mon_ir_actif)
            {
             state = DESCENTE_LAT;
            }
+            else if (transition == T_CALL_FOR_HELP)
+            {
+             state = PRISE_COPAIN;
+            }
+            else if (transition == T_PRISE_VERT)
+            {
+             state = SEND_MINE;
+            }
             break;
 
         case DESCENTE_LAT :
@@ -438,8 +454,22 @@ if (state >= 10 && (transition == RANGE || transition == TAPE))
 
 void Bras::run(){
     col.run();
-    pince
-   
+    asc.run();
+
+    
+    if (period_run.is_over())
+    {
+        period_run.reset();
+        if (state == ATTENTE_ACTIF && trigger_attente_on){
+                trigger_attente_on = false;
+                trigger(trigger_attente);
+            }
+        
+
+        
+    }
+
+  
 }
 
 void Bras::set_time_out(int dt_, int trigger)
@@ -580,58 +610,36 @@ void Bras::in_state_func()
     }
 }
 
-// IO
-//
-//
-//
-IO::IO():pince()
+void Bras::set_autre_bras(Bras * autre_bras_)
 {
-    servo_fresque_g.attach(PIN_SERVO_FRESQUE_G);
-    servo_fresque_d.attach(PIN_SERVO_FRESQUE_D);
-    //ranger_servo_fresque();
-    poser_fresque();
-
-    servo_filet_g.attach(PIN_SERVO_FILET_G);
-    servo_filet_d.attach(PIN_SERVO_FILET_D);
-    ranger_servo_filet();
+  autre_bras = autre_bras_; 
 }
 
-void IO::poser_fresque()
+void Bras::stop()
 {
-    servo_fresque_g.writeMicroseconds(1500);
-    servo_fresque_d.writeMicroseconds(1500);
+   pf();
+   asc.stop();
 }
 
-void IO::ranger_servo_fresque()
+void Bras::is_in_attente():
 {
-    servo_fresque_g.writeMicroseconds(1900);
-    servo_fresque_d.writeMicroseconds(1100);
+    return state == ATTENTE_ACTIF; 
+}
+
+void set_to_be_done(int trigger_attente_)
+{
+    trigger_attente = trigger_attente_;
+    trigger_attente_on = true;
+}
+
+void active_ir()
+{
+    mon_ir_actif = true;
+}
+
+void desactive_ir()
+{
+    mon_ir_actif = false;
 }
 
 
-void IO::envoi_filet()
-{
-       servo_filet_g.writeMicroseconds(1600); //ouverture
-       servo_filet_d.writeMicroseconds(1400); //ouverture
-}
-
-void IO::ranger_servo_filet()
-{
-       servo_filet_g.writeMicroseconds(1100); //ouverture
-       servo_filet_d.writeMicroseconds(1900); //ouverture
-}
-   
-void IO::run()
-{
-    pince.run();
-}
-
-void IO::trigger(int transition)
-{
-    pince.trigger(transition);
-}
-
-void IO::write_debug()
-{
-    pince.write_debug();
-}
