@@ -17,6 +17,7 @@ class IO
         Bras brasd;
         int couleur;
         SwitchAnalog ir_central;
+        int bras_prise;
 
     public:
         IO();
@@ -28,6 +29,7 @@ class IO
         void active_irs();
         void desactive_irs();
         void prise_centre(bool ma_coul);
+        void conf_prise_centre();
         void set_couleur(int coul);
         void routine_torches();
         void stop();

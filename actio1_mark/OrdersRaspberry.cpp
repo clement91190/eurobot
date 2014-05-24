@@ -96,14 +96,70 @@ void OrdersRaspberry::executeinstr()
     Coord target;
     switch (ordre)
     {
-    case 'P' :
+     case 'S':
+        Serial.println("STOP tout ");
+        io->stop();
+
+    case 'D':
+        Serial.println(" debug");
+        io->write_debug();
+
+    case 'C':
+        switch (ind)
+        {
+            case 0:
+                Serial.println ("couleur rouge");
+                io->set_couleur(0);
+            break;
+        
+            case 1:
+                Serial.println("couleur jaune");
+                io->set_couleur(1);
+            break;
+        
+        }
+        break;
+
+    case 'B' :
         //Vitesse vit;
         // ordre de type Slave
         switch (ind)
         {
-        case 0: 
-            //Serial.println("init_pince_mae");
-            // pince en position de base en bas, ouverte, prete a retourner tout ce qu'elle trouve
+         case 0: 
+            Serial.println("Aller a etat attente ");
+            io->bras_actif();
+            break;
+
+        case 1: 
+            Serial.println("Ranger");
+            io->range_bras();
+            break;
+
+
+        case 2: 
+            Serial.println(" activation automatique des irs");
+            io->active_irs();
+            break;
+
+
+        case 3: 
+            Serial.println("desactive irs");
+            io->desactive_irs();
+            break;
+
+
+        case 4: 
+            Serial.println("Prise centre");
+            stream >> x;
+            Serial.println("de ma couleur ? ");
+            Serial.println(atoi(x.c_str()));
+            io->prise_centre(atoi(x.c_str()));
+            break;
+
+
+        case 5: 
+            Serial.println("confirme prise");
+            io->conf_prise_centre();
             break;
        }
         return;

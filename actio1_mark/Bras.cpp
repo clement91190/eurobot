@@ -30,6 +30,9 @@ void Ascenseur::stop()
 
 bool Ascenseur::run()
 {
+    bool fini;
+    fini = pap.run();
+    
     if (recal_up)
     {
         if (is_up())
@@ -40,14 +43,12 @@ bool Ascenseur::run()
         }
         else
         {
-            pap.move(-10 * signe);
+            pap.move(-100 * signe);
             return false;
         }
     }
 
-    bool fini;
-    fini = pap.run();
-    if (fini && recal_up_to_be)
+   if (fini && recal_up_to_be)
     {
 
     recal_up_to_be = false;
@@ -74,7 +75,7 @@ void Ascenseur::go_to(float pos_cm){
     {
         recal_up_to_be = true;
     }
-    pap.moveTo(signe * int(RAPPORTCM * pos_cm / MICROSTEPPING));
+    pap.moveTo(signe * int(RAPPORTCM * pos_cm * MICROSTEPPING));
 }
 
 
@@ -108,10 +109,10 @@ Bras::Bras(int cote_,
         long* pulse_color): 
     period_run(50),
     cote(cote_),
-    time_out_on(false), state(RANGE_DEPART), coul_to_be_on(false), next_coul_on(false),
+    time_out_on(false), state(INT_RANGE), coul_to_be_on(false), next_coul_on(false),
     asc(pin_pap_step, pin_pap_dir, pin_bump_asc, cote_),
-    ir(pin_ir, seuil_ir),
-    col(pulse_color)
+    ir(pin_ir, seuil_ir), mon_ir_actif(false), trigger_to_be(T_RANGE),
+    col(pulse_color), trigger_autre_on(false), couleur(ROUGE)
 {
     if (cote == GAUCHE)
     {
@@ -128,23 +129,25 @@ Bras::Bras(int cote_,
         pinMode(pin_pompe, OUTPUT);
     }
 
+    ir.reverse();
     scn();
+    spb();
     pf();
     asc.monte();
-    while(!asc.run()){
-        delay(1);
-    }
-    scr();
+
+    //while(!asc.run()){
+    //    delay(1);
+    //}
  }
 
 void Bras::po()
 {
-    digitalWrite(pin_pompe, LOW);
+    digitalWrite(pin_pompe, HIGH);
 }
 
 void Bras::pf()
 {
-    digitalWrite(pin_pompe, LOW);
+    digitalWrite(pin_pompe, HIGH);
 }
 
 void Bras::a0() // asc  haut = ranger
@@ -215,15 +218,28 @@ void Bras::spr()
     }
 }
 
+void Bras::scl()
+{
+    if (cote == GAUCHE)
+    {
+        servo_rot.writeMicroseconds(2200); 
+    }
+    else
+    {
+        servo_rot.writeMicroseconds(600); 
+    }
+}
+
+
 void Bras::scr()
 {
     if (cote == GAUCHE)
     {
-        servo_retourne.writeMicroseconds(2200); 
+        servo_rot.writeMicroseconds(2000); 
     }
     else
     {
-        servo_retourne.writeMicroseconds(600); 
+        servo_rot.writeMicroseconds(800); 
     }
 }
 
@@ -232,11 +248,11 @@ void Bras::scv()
 {
     if (cote == GAUCHE)
     {
-        servo_retourne.writeMicroseconds(700); 
+        servo_rot.writeMicroseconds(700); 
     }
     else
     {
-        servo_retourne.writeMicroseconds(2200); 
+        servo_rot.writeMicroseconds(2200); 
     }
 }
 
@@ -245,24 +261,25 @@ void Bras::scn()
 {
     if (cote == GAUCHE)
     {
-        servo_retourne.writeMicroseconds(1000); 
+        servo_rot.writeMicroseconds(1000); 
     }
     else
     {
-        servo_retourne.writeMicroseconds(1800); 
+        servo_rot.writeMicroseconds(1800); 
     }
 }
 
 
 void Bras::sce()
 {
+    
     if (cote == GAUCHE)
     {
-        servo_retourne.writeMicroseconds(750); 
+        servo_rot.writeMicroseconds(750); 
     }
     else
     {
-        servo_retourne.writeMicroseconds(2050); 
+        servo_rot.writeMicroseconds(2050); 
     }
 }
 
@@ -324,10 +341,17 @@ void Bras::trigger(int transition)
            {
             state = RANGE_DEPART;
            }
-            else if (transition == T_ACTIF_NOMINAL)
+            else if (transition == T_ACTIF_NOMINAL || transition == TIME_OUT)
             {
-                state = ATTENTE_ACTIF; 
+                state = GO_ATTENTE; 
             }
+            break;
+
+        case GO_ATTENTE:
+            if (transition == T_ASC_PRESQUE_ARRIVE)
+            {
+                state = ATTENTE_ACTIF;
+            }   
             break;
         case ATTENTE_ACTIF :
             if (transition == T_MON_IR && mon_ir_actif)
@@ -352,7 +376,7 @@ void Bras::trigger(int transition)
             break;
 
         case DESCENTE_POMPE_LAT :
-            if (transition == T_ASC_ARRIVE) // ou pression ? 
+            if (transition == T_ASC_PRESQUE_ARRIVE) // ou pression ? 
            {
             state = PRISE_LAT;
            }
@@ -428,13 +452,21 @@ void Bras::trigger(int transition)
            }
             else if (transition == T_COUL_NOT_OK_MASTER)
             {
-            state = MONTE_ECH;
+            state = MONTE_ECH_VERT;
             }
             break;
 
+         case MONTE_ECH_VERT :
+            if (transition == T_ASC_PRESQUE_ARRIVE) // peut etre declenchee par le master 
+           {
+            state = RETOURNE_ECH; 
+           }
+            break;
+     
         case PRISE_COPAIN :
-            if (transition == T_ASC_ARRIVE)
+            if (transition == T_ASC_PRESQUE_ARRIVE)
              {
+                prise_copain();
                 state = MONTE; 
              }
             break;
@@ -447,8 +479,12 @@ if (state >= 10 && (transition == T_RANGE))
    }
    if (old_state != state)
     {
-        Serial.print("new state: ");
+        Serial.print(" BRAS");
+        Serial.print (cote);
+        Serial.print(" -> new state: ");
         Serial.println(state);
+        Serial.print("after transition ");
+        Serial.println(transition);
 
         reset_time_out();
         in_state_func();
@@ -466,17 +502,18 @@ void Bras::run(){
     if (period_run.is_over())
     {
         period_run.reset();
-        if (state == ATTENTE_ACTIF && trigger_attente_on){
-                trigger_attente_on = false;
-                trigger(trigger_attente);
-            }
-
-
         if (state == ATTENTE_ACTIF && coul_to_be_on){
                 coul_to_be_on = false;
                 next_coul = next_coul_to_be;
                 next_coul_on = true;
             }
+
+
+        if (state == ATTENTE_ACTIF && trigger_attente_on){
+                trigger_attente_on = false;
+                trigger(trigger_attente);
+            }
+
 
         if ((state == PRISE_VERT || state == PRISE_LAT) && next_coul_on)
             {
@@ -572,7 +609,7 @@ void Bras::in_state_func()
     switch (state)
     {
         case RANGE_DEPART :
-            scn(); 
+            scr(); 
             a0();
             spb();
             pf();
@@ -591,6 +628,13 @@ void Bras::in_state_func()
             spb();
             pf();
             break;
+         case GO_ATTENTE :
+            scn(); 
+            a1();
+            spb();
+            pf();
+            break;
+
         case ATTENTE_ACTIF :
             scn(); 
             a1();
@@ -623,13 +667,15 @@ void Bras::in_state_func()
             po();
             break;
         case RANGE_PRISE :
-            scr(); 
+            set_time_out(300, TIME_OUT);
+            scl(); 
             a0();
             spb();
             po();
             break;
         case LACHE :
-            scr(); 
+            set_time_out(300, TIME_OUT);
+            scl(); 
             a0();
             spb();
             pf();
@@ -640,13 +686,23 @@ void Bras::in_state_func()
             spb();
             po();
             break;
+
+        case MONTE_ECH_VERT :
+            sce(); 
+            a3();
+            spv();
+            po();
+            break;
+       
         case RETOURNE_ECH :
+            call_for_help();
             sce(); 
             a3();
             spr();
             po();
             break;
         case REPLACE_APRES_ECH :
+            set_time_out(300, TIME_OUT);
             scn(); 
             a3();
             spb();
@@ -681,10 +737,10 @@ void Bras::in_state_func()
     }
 }
 
-void Bras::set_autre_bras(Bras * autre_bras_)
-{
-  autre_bras = autre_bras_; 
-}
+//void Bras::set_autre_bras(Bras * autre_bras_)
+//{
+//  autre_bras = autre_bras_; 
+//}
 
 void Bras::stop()
 {
@@ -715,10 +771,49 @@ void Bras::desactive_ir()
 
 void Bras::call_for_help()
 {
-    autre_bras->set_to_be_done(T_CALL_FOR_HELP);
+    trigger_autre_bras(T_CALL_FOR_HELP);
+    //autre_bras->set_to_be_done(T_CALL_FOR_HELP);
+}
+
+void Bras::prise_copain()
+{
+
+    trigger_autre_bras(T_PRISE_COPAIN);
+    //autre_bras->trigger(T_PRISE_COPAIN);
 }
 
 void Bras::set_couleur(int couleur_)
   {
     couleur = couleur_;
   }
+
+void Bras::set_to_be_next_coul(bool macoul)
+{
+    next_coul_to_be = macoul;
+    coul_to_be_on = true;
+}
+
+void Bras::set_next_coul(bool macoul)
+{
+    next_coul = macoul;
+    next_coul_on = true;
+}
+
+void Bras::trigger_autre_bras(int trigger)
+{
+   trigger_autre_on = true;
+   trigger_autre = trigger;
+}
+
+bool Bras::is_trigger_autre_on()
+{
+    return trigger_autre_on;
+}
+
+int Bras::get_trigger_autre()
+{
+    trigger_autre_on = false;
+    return trigger_autre;
+}
+
+	

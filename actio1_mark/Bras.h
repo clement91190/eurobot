@@ -61,7 +61,6 @@ class Bras
         SwitchAnalog ir;
         int pin_pompe;
         int cote;
-        Bras* autre_bras;
         int couleur;
 
         //state machine
@@ -79,6 +78,11 @@ class Bras
         bool next_coul_on;
         bool next_coul;
         bool next_coul_to_be;
+
+        //trigger autre bras
+        bool trigger_autre_on;
+        int trigger_autre;
+
 
 
     public:
@@ -101,6 +105,7 @@ class Bras
         void spv(); // vertical
 
         void scr(); //ranger
+        void scl(); //ranger
         void scv(); //prise verticale
         void scn(); //prise normale
         void sce(); // echange
@@ -115,6 +120,7 @@ class Bras
         void active_ir();
         void desactive_ir();
         void call_for_help();
+        void prise_copain();
 
         void set_to_be_next_coul(bool macoul);
         void set_next_coul(bool macoul);
@@ -124,6 +130,10 @@ class Bras
         void reset_time_out();
         bool is_time_out();
         void in_state_func();
+
+        void trigger_autre_bras(int trigger);
+        bool is_trigger_autre_on();
+        int get_trigger_autre();
 };
 
 
@@ -133,6 +143,7 @@ class Bras
 #define INT_RANGE 1
 #define INT2_RANGE 2
 
+#define GO_ATTENTE 24
 #define ATTENTE_ACTIF 10
 #define DESCENTE_LAT 11
 #define DESCENTE_POMPE_LAT 12
@@ -147,6 +158,7 @@ class Bras
 #define SEND_MINE 20
 #define SENDMASTER_PRET 21
 #define PRISE_VERT 22
+#define MONTE_ECH_VERT 25
 
 #define PRISE_COPAIN 23
 
@@ -156,16 +168,15 @@ class Bras
 #define T_RANGE 1 
 #define T_ACTIF_NOMINAL 2 
 
-#define T_PRISE_VERTICAL 3
-#define T_COUL_NOT_OK 4
-#define T_COUL_NOT_OK_MASTER 5
-#define T_COUL_OK_MASTER 6
-#define T_COUL_OK 7
-#define T_MON_IR 8
+#define T_COUL_NOT_OK 3
+#define T_COUL_NOT_OK_MASTER 4
+#define T_COUL_OK_MASTER 5
+#define T_COUL_OK 6
+#define T_MON_IR 7
 #define T_ASC_ARRIVE 8
 #define T_ASC_PRESQUE_ARRIVE 9
 #define T_BUMP_HAUT 10
-#define T_CAPT_PRESSION_ON 11
+#define T_CAPT_PRESSION_ON 11 // ou master commande
 #define T_PRISE_COPAIN 12
 #define T_CALL_FOR_HELP 13 
 #define T_PRISE_VERT 14

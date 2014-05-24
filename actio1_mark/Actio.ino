@@ -13,13 +13,14 @@ void setup()
   attachInterrupt(PIN_COULEUR_G, inc_pulse_color_g, RISING);
   io = new IO();
   com = new OrdersRaspberry(io);
-  Serial.println("#ACTIO2 READY");
+  Serial.println("#ACTIO READY");
 
 }
 
 
 
 void loop(){
+
     com->run();
     io->run();
     delay(1);
