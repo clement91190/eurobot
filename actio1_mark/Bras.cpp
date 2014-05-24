@@ -1,11 +1,13 @@
-#include "IO.h"
+#include "Bras.h"
 
-Ascenseur::Ascenseur():
-    pin_cmd_mot(PIN_MOT_CMD_ASC), pin_dir_mot(PIN_MOT_DIR_ASC),
-    bumper_asc_haut(PIN_BUMPER_ASC_HAUT), bumper_asc_bas(PIN_BUMPER_ASC_BAS)
+Ascenseur::Ascenseur(int pin_step, int pin_dir, int pin_bumper, int signe):
+    pap(1, pin_step, pin_dir);
+    bumper_asc_haut(pin_bumper), recal_up(false)
 {
-    bumper_asc_bas.reverse();
     bumper_asc_haut.reverse();
+    pap.setMaxSpeed(3000);
+    pap.setAcceleration(200);
+  
 }
 
 bool Ascenseur::is_up()
@@ -13,148 +15,268 @@ bool Ascenseur::is_up()
     return bumper_asc_haut.is_on();    
 }
 
-bool Ascenseur::is_low()
-{
-    return bumper_asc_bas.is_on();
-}
-
 void Ascenseur::monte()
 {
-    start_asserv(HAUT);
+    recal_up = true;
 }
 
-void Ascenseur::descend(){
-    start_asserv(BAS);
-}
-void Ascenseur::start_asserv(int target_)
+bool run()
 {
-    target = target_;
-    in_asserv = true;
+    if (recal_up)
+    {
+        if (is_up())
+        {
+            pap.setCurrentPosition(0);
+            pap.moveTo(0);
+            return true;
+        }
+        else
+        {
+            pap.move(-10 * signe);
+            return false;
+        }
+    }
+
+    bool fini;
+    fini = pap.run();
+    if (fini && recal_up_to_be)
+    {
+
+    recal_up_to_be = false;
+        if (!is_up())
+        {
+            recal_up = true;
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
+    }
 }
+
+void is_near()
+{
+    return abs(asc.distanceToGo <= NEAR);
+}
+
+void go_to(float pos_cm){
+    recal_up = false;
+    if (pos_cm == 0.)
+    {
+        recal_up_to_be = true;
+    }
+    asc.moveTo(signe * int(RAPPORTCM * pos_cm / MICROSTEPPING));
+}
+
 
 void Ascenseur::write_debug()
 {
     Serial.print(" bumper haut: ");
     Serial.println(bumper_asc_haut.is_on());
 
-     Serial.print(" bumper  bas: ");
-    Serial.println(bumper_asc_bas.is_on());
+    Serial.println(" PAP :");
+    Serial.print( "current pos : ")
+    Serial.print(asc.currentPosition());
 
-    Serial.print(" tic odo: ");
-    Serial.println(tic_odo);
-
-
+    Serial.print( " target pos : ")
+    Serial.print(asc.targetPosition());
+    
+    Serial.print( "recal haut ? ")
+    Seria.println( recal_up);
 }
 
-void Ascenseur::run()
+
+
+//BRAS
+//
+
+Bras::Bras(int cote_):
 {
-    if (in_asserv)
+
+    cote = cote_
+    if (cote == GAUCHE)
     {
-        if (target == HAUT)
-        {
-            if (bumper_asc_haut.is_on())
-            {
-                in_asserv = false;
-                send_zeros();
-            }
-            //else if (tic_odo < TIC_HAUT)
-            //{
-           //     send_monte();
-            //}
-           else
-            {
-                send_monte();
-            }
-                
-        }
-        else if (target == BAS)
-        {
-          /*if (tic_odo > TIC_BAS)
-            {
-                send_desc();
-            }*/
-          if (bumper_asc_bas.is_on())
-            {
-                Serial.println("ASS FINI");
-                send_zeros();
-                in_asserv = false;
-            }
-          else
-            {
-                send_desc();
-            }
-        }
-        else 
-        {
-            if (tic_odo > target + 10)
-            {
-                send_monte(); 
-            }
-            else if (tic_odo < target - 10 )
-            {
-                send_desc();
-            }
-            else if (tic_odo < target)
-            {
-                send_maintien_p();
-            }
-            else if (tic_odo >= target)
-            {
-                send_zeros();
-            }
-        }
+        servo_rot.attach(PIN_SERVO_ROT_G);
+        servo_retourne.attach(PIN_SERVO_RETOURNE_G);
+        asc = Ascenseur(PIN_PAP_STEP_G, PIN_PAP_DIR_G, PIN_BUMPER_ASC_H_G) ;
+        color_sensor(&pulse_color_g);
+        ir = SwitchAnalog(PIN_IR_G, SEUIL_IR_G)
+        pin_pompe = PIN_POMPE_G;
+        pinMode(pin_pompe, OUTPUT);
+    }
+    else
+    {
+        servo_rot.attach(PIN_SERVO_ROT_D);
+        servo_retourne.attach(PIN_SERVO_RETOURNE_D);
+        asc = Ascenseur(PIN_PAP_STEP_D, PIN_PAP_DIR_D, PIN_BUMPER_ASC_H_D) ;
+        color_sensor(&pulse_color_d);
+        ir = SwitchAnalog(PIN_IR_C, SEUIL_IR_D)
+        pin_pompe = PIN_POMPE_D;
+        pinMode(pin_pompe, OUTPUT);
+    }
+
+    scn();
+    pf();
+    asc.monte();
+    while(!asc.run()){
+        delay(1);
+    }
+    scr();
+ }
+
+void Bras::po()
+{
+    digitalWrite(pin_pompe, LOW);
+}
+
+void Bras::pf()
+{
+    digitalWrite(pin_pompe, LOW);
+}
+
+void Bras::a0() // asc  haut = ranger
+{
+    asc.go_to(ASC0);
+}
+
+
+void Bras::a1() // asc  haut = ranger
+{
+    asc.go_to(ASC1);
+}
+
+
+void Bras::a2() // asc  haut = ranger
+{
+    asc.go_to(ASC2);
+}
+
+
+void Bras::a3() // asc  haut = ranger
+{
+    asc.go_to(ASC3);
+}
+
+
+void Bras::a4() // asc  haut = ranger
+{
+    asc.go_to(ASC4);
+}
+
+void Bras::spb()
+{
+    if (cote == GAUCHE)
+    {
+        servo_retourne.writeMicroseconds(500); 
+    }
+    else
+    {
+        servo_retourne.writeMicroseconds(2050); 
     }
 }
 
-void Ascenseur::send_monte()
+
+void Bras::spv()
 {
-    digitalWrite(PIN_MOT_DIR_ASC, 0);
-    analogWrite(PIN_MOT_CMD_ASC, 250);
+    if (cote == GAUCHE)
+    {
+        servo_retourne.writeMicroseconds(1400); 
+    }
+    else
+    {
+        servo_retourne.writeMicroseconds(1300); 
+    }
+
 }
 
-void Ascenseur::send_maintien_p()
+
+void Bras::spr()
 {
-    digitalWrite(PIN_MOT_DIR_ASC, 0);
-    analogWrite(PIN_MOT_CMD_ASC, 1);
+    if (cote == GAUCHE)
+    {
+        servo_retourne.writeMicroseconds(2200); 
+    }
+    else
+    {
+        servo_retourne.writeMicroseconds(500); 
+    }
 }
 
-void Ascenseur::send_desc()
+void Bras::scr()
 {
-    digitalWrite(PIN_MOT_DIR_ASC, 1);
-    analogWrite(PIN_MOT_CMD_ASC, 100);
+    if (cote == GAUCHE)
+    {
+        servo_retourne.writeMicroseconds(2200); 
+    }
+    else
+    {
+        servo_retourne.writeMicroseconds(600); 
+    }
 }
 
-void Ascenseur::send_zeros()
+
+void Bras::scv()
 {
-    digitalWrite(PIN_MOT_DIR_ASC, 0);
-    analogWrite(PIN_MOT_CMD_ASC, 0);
+    if (cote == GAUCHE)
+    {
+        servo_retourne.writeMicroseconds(700); 
+    }
+    else
+    {
+        servo_retourne.writeMicroseconds(2200); 
+    }
 }
 
-//PINCE
-//
 
-Pince::Pince():
-    ir_feu(PIN_IR), time_out_on(false), state(INT_RANGE), period_run(50)
+void Bras::scn()
 {
-    asc.monte();
-    asc.run();
-    delay(2000);
-    servo_pince_g.attach(PIN_SERVO_PINCE_G);
-    servo_pince_d.attach(PIN_SERVO_PINCE_D);
-    servo_pince_rot.attach(PIN_SERVO_PINCE_ROT);
-    ir_feu.reverse();
-    in_state_func();
-    trigger(RANGE);
- }
+    if (cote == GAUCHE)
+    {
+        servo_retourne.writeMicroseconds(1000); 
+    }
+    else
+    {
+        servo_retourne.writeMicroseconds(1800); 
+    }
+}
 
-void Pince::write_debug()
+
+void Bras::sce()
+{
+    if (cote == GAUCHE)
+    {
+        servo_retourne.writeMicroseconds(750); 
+    }
+    else
+    {
+        servo_retourne.writeMicroseconds(2050); 
+    }
+}
+
+
+void Bras::sct()
+{
+    scn();
+}
+
+
+
+void Bras::write_debug()
  {
     asc.write_debug();
+
     Serial.print("IR ");
-    Serial.println(ir_feu.is_on());
-    col.write_debug();
+    Serial.println(ir.is_on());
+
+    Serial.print("pression ");
+    Serial.println(pression.is_on());
+    
+    color_sensor.write_debug();
  }
-void Pince::trigger(int transition)
+
+void Bras::trigger(int transition)
+
 {
  // add things here for MAE
  //
@@ -172,156 +294,135 @@ void Pince::trigger(int transition)
     old_state = state;
    switch(state)
     {
+        
         case RANGE_DEPART :
-           if (transition == TAPE)
+           if (transition == T_ACTIF_NOMINAL)
            {
-            state = TAPE_VERTICAL;
-           }
-           else if (transition == T_BAS)
-           {
-            state = INTERMEDIAIRE_SORTIE;
+            state = INT_RANGE2;
            }
            break;
-        case TAPE_VERTICAL :
-            if (transition == RANGE)
-            {
-                state = RANGE_DEPART;
-            }
-            else if (transition == T_BAS)
-            {
-                state = INTERMEDIAIRE_SORTIE;
-            }
-            break;
-        case INTERMEDIAIRE_SORTIE :
-            if (transition == TAPE)
-                {
-                    state = TAPE_VERTICAL;
-                }
-            else if (transition == T_BAS)
-                {
-                    state = HORIZ_VERT;
-                }
-            else if (transition == RANGE)
-                {
-                    state = RANGE_DEPART;
-                }
-            break;
-        case HORIZ_VERT :
-            if (transition == T_ACTIF_FEU || transition == T_ACTIF_TORCHE)
-                {
-                    state = NOMINAL_VIDE;
-                }
-            break;
-        case NOMINAL_VIDE : 
-            if (transition == T_ACTIF_FEU)
-            {
-                state = ACTIF_FEU;
-            }
-            else if (transition == T_ACTIF_TORCHE)
-            {
-                state = ACTIF_TORCHE;
-            
-            }
-            break;
-            
-        case ACTIF_TORCHE :
-            if (transition == T_IR)
-            {
-                state = PRISE_TORCHE;
-            }
-            break;
-
-        case PRISE_TORCHE : 
-            if (transition == POSE)
-            {
-                state = NOMINAL_VIDE;
-            }
-            break;
-        case ACTIF_FEU :
-            if (transition == T_IR)
-            {
-                state = PRISE_FEU;
-            }
-            break;
-
-        case PRISE_FEU:
-            if (transition == TIME_OUT)
-            {
-                state = MONTE_COOL;
-            }
-            break;
-        case MONTE_COOL:
-            if (transition == TIME_OUT)
-            {
-                state = MONTE_COOL2;
-            }
-            break;
-        case MONTE_COOL2 :
-            if (transition == COOL_OK)
-            {
-                state = WAIT_COOL_OK;
-            }
-            else if (transition == COOL_NOT_OK)
-            {
-                state = RETOURNE_COOL_N;
-            }
-            break;
-        case WAIT_COOL_OK :
-            if (transition == POSE)
-                {
-                   state = HORIZ_VERT;
-                }
-            break;
-        case RETOURNE_COOL_N :
-            if (transition == TIME_OUT)
-            {
-                state = DESCEND_COOL_N;
-            }
-            break;
-        case DESCEND_COOL_N :
-            if (transition == POSE)
-                {
-                    state = POSE_COOL_N;
-                }
-            break;
-        case POSE_COOL_N :
-            if (transition == TIME_OUT)
-            {
-                state = INT1_COOL_N;
-            }
-            break;
-        case INT1_COOL_N :
-            if (transition == TIME_OUT)
-            {
-                state = INT2_COOL_N;
-            }
-            break;
-        case INT2_COOL_N :
-            if (transition == TIME_OUT)
-            {
-                state = INT3_COOL_N;
-            }
-            break;
-        case INT3_COOL_N :
-            if (transition == TIME_OUT)
-            {
-                state = HORIZ_VERT;
-            }
-            break;
         case INT_RANGE :
             if (transition == T_BUMP_HAUT)
+           {
+            state = INT_RANGE2;
+           }
+            break;
+        case INT_RANGE2 :
+            if (transition == T_RANGE)
+           {
+            state = RANGE_DEPART;
+           }
+            else (transition == T_ACTIF_NOMINAL)
             {
-                state = INT2_RANGE; 
+                state = ATTENTE_ACTIF; 
             }
             break;
-        case INT2_RANGE :
-            if (transition == RANGE || transition == TAPE)
+        case ATTENTE_ACTIF :
+            if (transition == T_MON_IR)
+           {
+            state = DESCENTE_LAT;
+           }
+            break;
+
+        case DESCENTE_LAT :
+            if (transition == T_ASC_PRESQUE_ARRIVE)
+           {
+            state = DESCENTE_POMPE_LAT;
+           }
+            break;
+
+
+        case DESCENTE_POMPE_LAT :
+            if (transition == T_ASC_ARRIVE) // ou pression ? 
+           {
+            state = PRISE_LAT;
+           }
+            break;
+
+        case PRISE_LAT :
+             if (transition == T_COOL_OK) // ou pression ? 
+           {
+            state = MONTE;
+           }
+             else if (transition == T_COOL_NOT_OK)
+           {
+            state = MONTE_ECH;
+           }
+            break;
+
+        case MONTE :
+            if (transition == T_BUMP_HAUT) // ou pression ? 
+           {
+            state = RANGE_PRISE;
+           }
+            break;
+        case RANGE_PRISE :
+           if (transition == TIME_OUT) // ou pression ? 
+           {
+            state = LACHE;
+           }
+           break;
+        
+        case LACHE :
+            if (transition == TIME_OUT) // ou pression ? 
+           {
+            state = INT_RANGE;
+           }
+            break;
+        case MONTE_ECH :
+            if (transition == T_ASC_PRESQUE_ARRIVE) // ou pression ? 
+           {
+            state = RETOURNE_ECH;
+           }
+            break;
+        case RETOURNE_ECH :
+            if (transition == T_PRISE_COPAIN) // ou pression ? 
+           {
+            state = REPLACE_APRES_ECH;
+           }
+            break;
+        case REPLACE_APRES_ECH :
+            if (transition == TIME_OUT) // ou pression ? 
+           {
+            state = ATTENTE_ACTIF; //si faut rebumper metttre INT_RANGE
+           }
+            break;
+
+        case SEND_MINE :
+            if (transition == T_ASC_PRESQUE_ARRIVE) 
+           {
+            state = SENDMASTER_PRET; 
+           }
+            break;
+
+        case SENDMASTER_PRET :
+            if (transition == T_CAPT_PRESSION_ON) // peut etre declenchee par le master 
+           {
+            state = PRISE_VERT; 
+           }
+            break;
+        
+        case PRISE_VERT :
+            if (transition == T_COOL_OK_MASTER) // peut etre declenchee par le master 
+           {
+            state = MONTE; 
+           }
+            else if (transition == T_COOL_NOT_OK_MASTER)
             {
-                state = INTERMEDIAIRE_SORTIE; 
+            state = MONTE_ECH;
             }
             break;
+
+        case PRISE_COPAIN :
+            if (transition == T_ASC_ARRIVE)
+             {
+                state = MONTE; 
+             }
+            break;
+
+       
     }
-   if (state >= 10 && (transition == RANGE || transition == TAPE))
+if (state >= 10 && (transition == RANGE || transition == TAPE))
    {
     state = INT_RANGE;
    }
@@ -335,51 +436,13 @@ void Pince::trigger(int transition)
     }
 }
 
-void Pince::run(){
+void Bras::run(){
     col.run();
-    
-    if (period_run.is_over())
-    {
-        period_run.reset();
-        asc.run();
-        if (asc.is_up())
-            {
-                trigger(T_BUMP_HAUT);
-            }
-        if (is_time_out())
-        {
-            trigger(trigger_to_be);
-        }
-        if (ir_feu.is_off())
-        {
-            trigger(T_IR);
-        }
-        if (couleur == ROUGE)
-        {
-            if (col.is_red())
-            {
-                trigger(COOL_OK);
-            }
-            else if (col.is_yellow())
-            {
-                trigger(COOL_NOT_OK);
-            }
-        }
-        else
-        {
-            if (col.is_yellow())
-            {
-                trigger(COOL_OK);
-            }
-            else if (col.is_red())
-            {
-                trigger(COOL_NOT_OK);
-            }
-        }
-    }
+    pince
+   
 }
 
-void Pince::set_time_out(int dt_, int trigger)
+void Bras::set_time_out(int dt_, int trigger)
 {
     t_over = millis() + dt_;
     time_out_on = true;
@@ -388,13 +451,13 @@ void Pince::set_time_out(int dt_, int trigger)
     Serial.println(trigger);
 }
 
-void Pince::reset_time_out()
+void Bras::reset_time_out()
 {
     time_out_on = false;
 }
 
 
-bool Pince::is_time_out()
+bool Bras::is_time_out()
 {
    if (time_out_on && t_over < millis())
    {
@@ -404,161 +467,115 @@ bool Pince::is_time_out()
    return false;
 }
 
-void Pince::slr()
-{
-    servo_pince_g.writeMicroseconds(1420); //rangement
-    servo_pince_d.writeMicroseconds(1580); //rangement
-}
-
-void Pince::slt()
-{
-    servo_pince_g.writeMicroseconds(1900); //rangement
-    servo_pince_d.writeMicroseconds(1580); //rangement
-}
-void Pince::slo()
-{
-    servo_pince_g.writeMicroseconds(1800); //saisie
-    servo_pince_d.writeMicroseconds(1200); //saisie
-}
-
-void Pince::slf()
-{
-    servo_pince_g.writeMicroseconds(2200); //saisie
-    servo_pince_d.writeMicroseconds(800); //saisie
-}
-
-void Pince::scv() //position de depart
-{
-    servo_pince_rot.writeMicroseconds(1340); //vertical
-}
-void Pince::scn()
-{
-    servo_pince_rot.writeMicroseconds(2140); //vertical
-}
-
-void Pince::scr()
-{
-    servo_pince_rot.writeMicroseconds(560); //vertical
-}
-
-void Pince::a0()
-{
-    asc.descend();
-}
-
-void Pince::a1()
-{
-    asc.monte();
-}
-
-void Pince::in_state_func()
+void Bras::in_state_func()
 {
     switch (state)
     {
         case RANGE_DEPART :
-            a1();
-            scv();
-            slr();
-            break;
-        case TAPE_VERTICAL :
-            a1();
-            scv();
-            slt();
-            break;
-        case INTERMEDIAIRE_SORTIE :
-            set_time_out(400, trigger_to_be);
-            a1();
-            slo();
-            scv();
-            break;
-        case HORIZ_VERT :
-            a1();
-            slo();
-            scn();
-            break;
-        case NOMINAL_VIDE : 
-            set_time_out(500, trigger_to_be);
+            scn(); 
             a0();
-            slo();
-            scn();
-            break;
-        case ACTIF_TORCHE :
-            a0();
-            slo();
-            scn();
-            break;
-        case PRISE_TORCHE : 
-            a0();
-            slf();
-            scn();
-            break;
-        case ACTIF_FEU :
-            a0();
-            slo();
-            scn();
-            break;
-        case PRISE_FEU :
-            set_time_out(500, TIME_OUT);
-            a0();
-            slf();
-            scn();
-            break;
-        case WAIT_COOL_OK :
-            break;
-        case MONTE_COOL :
-            set_time_out(500, TIME_OUT);
-            a1();
-            slf();
-            scn();
-            break;
-        case MONTE_COOL2 :
-            a1();
-            slf();
-            scn();
-            break;
-        case RETOURNE_COOL_N :
-            set_time_out(500, TIME_OUT);
-            a1();
-            slf();
-            scr();
-            break;
-        case DESCEND_COOL_N :
-            a0();
-            slf();
-            scr();
-            break;
-        case POSE_COOL_N :
-            set_time_out(500, TIME_OUT);
-            a0();
-            slo();
-            scr();
-            break;
-        case INT1_COOL_N : 
-            set_time_out(500, TIME_OUT);
-            a1();
-            slo();
-            scr();
-            break;
-        case INT2_COOL_N : 
-            set_time_out(500, TIME_OUT);
-            a1();
-            slf();
-            scr();
-            break;
-        case INT3_COOL_N :
-            set_time_out(500, TIME_OUT);
-            a1();
-            slf();
-            scn();
+            spb();
+            pf();
             break;
         case INT_RANGE :
-            a1();
-            slo();
+            //va bumper
+            scn(); 
+            a0();
+            spb();
+            pf();
             break;
-        case INT2_RANGE :
-            set_time_out(10, trigger_to_be);
+        case INT_RANGE2 :
+            scn(); 
+            a0();
+            spb();
+            pf();
+            break;
+        case ATTENTE_ACTIF :
+            scn(); 
             a1();
-            slo();
+            spb();
+            pf();
+            break;
+
+        case DESCENTE_LAT :
+            scn(); 
+            a4();
+            spb();
+            pf();
+            break;
+        case DESCENTE_POMPE_LAT :
+            scn(); 
+            a4();
+            spb();
+            po();
+            break;
+        case PRISE_LAT :
+            scn(); 
+            a4();
+            spb();
+            po();
+            break;
+        case MONTE :
+            scn(); 
+            a0();
+            spb();
+            po();
+            break;
+        case RANGE_PRISE :
+            scr(); 
+            a0();
+            spb();
+            po();
+            break;
+        case LACHE :
+            scr(); 
+            a0();
+            spb();
+            pf();
+            break;
+        case MONTE_ECH :
+            scn(); 
+            a3();
+            spb();
+            po();
+            break;
+        case RETOURNE_ECH :
+            sce(); 
+            a3();
+            spr();
+            pf();
+            break;
+        case REPLACE_APRES_ECH :
+            scn(); 
+            a3();
+            spb();
+            po();
+            break;
+
+        case SEND_MINE :
+            scv(); 
+            a4();
+            spv();
+            po();
+            break;
+        case SENDMASTER_PRET :
+            scv(); 
+            a4();
+            spv();
+            p1();
+            break;
+        case PRISE_VERT :
+            scv(); 
+            a4();
+            spv();
+            p1();
+            break;
+
+        case PRISE_COPAIN :
+            a2(); 
+            sce();
+            spb();
+            p1();
             break;
     }
 }

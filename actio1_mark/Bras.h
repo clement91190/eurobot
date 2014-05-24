@@ -4,147 +4,134 @@
 #include <Period.h>
 #include "Arduino.h"
 #include <Servo.h>
+#include <AccelStepper.h>
 #include "interrupts.h"
 #include "pins.h"
 #include <Switch.h>
+#include <SwitchAnalog.h>
 #include <ColorSensor.h>
 
-#define HAUT -1
-#define BAS 0
-#define TIC_HAUT 100
-#define TIC_BAS 0
+
+#define NEAR 10 //distance to target in steps
+#define GAUCHE -1 
+#define DROITE 1 
+#define MICROSTEPPING 2
+#define RAPPORTCM 28.571
+#define SEUIL_IR_G 220
+#define SEUIL_IR_D 220
+#define SEUIL_IR_C 200
 
 class Ascenseur
 {
     private:
-        int pin_cmd_mot;
-        int pin_dir_mot;
-        Switch bumper_asc_bas;
+        AccelStepper pap;
         Switch bumper_asc_haut;
-        bool in_asserv;
-        int target;
+        bool recal_up;
+        bool recal_up_to_be;
 
     public:
-        Ascenseur();
-        bool is_up();
-        bool is_low();
-        void start_asserv(int target_);
-        void monte(); //A1
-        void descend(); //A0
-        void run();
-        void send_monte();  
-        void send_maintien_p();
-        void send_zeros();
-        void send_desc();
+        Ascenseur(int pin_step, int pin_dir, int pin_bumper)
+        is_up();
+        monte();
+        go_to(float pos_cm);
         void write_debug();
+        bool run();
+}
+
+//position de l'ascenseur
+#define ASC0 0. 
+#define ASC1 4.  
+#define ASC2 7.
+#define ASC3 19
+#define ASC4 22.8
+
+
+class Bras
+{
+    private:
+        Ascenseur asc;
+        Servo servo_rot;
+        Servo servo_retourne;
+        ColorSensor color_sensor;
+        SwitchAnalog pression; // ? 
+        SwitchAnalog ir;
+        int pin_pompe;
+        int cote;
+
+    public:
+        Bras(int cote);
+        void run();
+        void trigger(int transition);
+        void write_debug();
+        void set_autre_bras(Bras* autre_bras);
+
+        //all movement methods
+
+        void a0(); // asc  haut = ranger
+        void a1(); // attente
+        void a2(); // echange_haut
+        void a3(); // echange_bas
+        void a4(); // chooppe bas
+    
+        void spb(); //bas
+        void spr(); //retourne
+        void spv(); // vertical
+
+        void scr(); //ranger
+        void scv(); //prise verticale
+        void scn(); //prise normale
+        void sce(); // echange
+        void sct(); //torche = prise normale ?
+        
+        void po(); //pompe ouverte
+        void pf(); //pompe fermee
+
 };
 
 
 // STATES OF MAE
 //
 #define RANGE_DEPART 0
-#define TAPE_VERTICAL 1
-#define INTERMEDIAIRE_SORTIE 2
-#define INT_RANGE 3
-#define INT2_RANGE 4
+#define INT_RANGE 1
+#define INT2_RANGE 2
+#define ATTENTE_ACTIF 3
 
-#define HORIZ_VERT 10
-#define NOMINAL_VIDE 11 
-#define ACTIF_TORCHE 12
-#define PRISE_TORCHE 13
-#define ACTIF_FEU 14
-#define PRISE_FEU 15
-#define WAIT_COOL_OK 16
-#define MONTE_COOL 17
-#define MONTE_COOL2 24
-#define RETOURNE_COOL_N 18
-#define DESCEND_COOL_N 19
-#define POSE_COOL_N 20
-#define INT1_COOL_N 21 
-#define INT2_COOL_N 22 
-#define INT3_COOL_N 23
+#define DESCENTE_LAT 4
+#define DESCENTE_POMPE_LAT 4
+#define PRISE_LAT 5
+#define MONTE_ECH 6
+#define RETOURNE_ECH 7
+#define REPLACE_APRES_ECH 8
+#define MONTE 9
+#define RANGE_PRISE 10
+#define LACHE 11
+
+#define SEND_MINE 11
+#define SENDMASTER_PRET 12
+#define PRISE_VERT 14
+
+#define PRISE_COPAIN 15
+
 
 //transition
 #define TIME_OUT 0
-#define POSE 1 
-#define COOL_NOT_OK 2
-#define COOL_OK 3
-#define T_BAS 4
-#define T_IR 5
-#define TAPE 6
-#define RANGE 7 
-#define T_ACTIF_FEU 8  
-#define T_ACTIF_TORCHE 9
-#define T_BUMP_HAUT 10
+#define T_RANGE 1 
+#define T_ACTIF_NOMINAL 2 
+
+#define T_PRISE_VERTICAL 3
+#define T_COOL_NOT_OK 4
+#define T_COOL_NOT_OK_MASTER 4
+#define T_COOL_OK_MASTER 5
+#define T_MON_IR 6
+#define T_ASC_ARRIVE 7
+#define T_ASC_PRESQUE_ARRIVE 8
+#define T_BUMP_HAUT 9
+#define T_CAPT_PRESSION_ON 10 
+#define T_PRISE_COPAIN 11 
+//#define POSE 1 
 
 
 #define ROUGE 0
 #define JAUNE 0
 
-class Pince
-{
-    private:
-        Servo servo_pince_g;
-        Servo servo_pince_d;
-        Servo servo_pince_rot;
-        Switch ir_feu; 
-        Ascenseur asc;
-        ColorSensor col;
-        long t_over;
-        bool time_out_on;
-        int trigger_to_be;
-        int state;
-        int couleur;
-        Period period_run;
-    public:
-        Pince();
-
-        void slo(); // servo lateral ouvert
-        void slr(); // serve lateral ranger
-        void slf(); // servo lateral ferme
-        void slt(); // servo lateral tape
-
-        void scv(); //servo central vertical
-        void scn(); // servo central normal
-        void scr(); // servo central retourne
-
-        void a0();
-        void a1();
-
-        void run();
-        void in_state_func();
-        void trigger(int transition);
-        void set_time_out(int dt_, int trigger);
-        void reset_time_out();
-        bool is_time_out();
-        void write_debug();
-
-
-
-};
-
-class IO
-/** (x,y,cap) objects **/
-{
-    private:
-        Servo servo_fresque_g;
-        Servo servo_fresque_d;
-        Servo servo_filet_g;
-        Servo servo_filet_d;
-        Pince pince;
-        int couleur;
-
-    public:
-        IO();
-        void poser_fresque();
-        void ranger_servo_fresque();
-        void envoi_filet();
-        void ranger_servo_filet();
-        void write_debug();
-
-        void run();
-        void trigger(int transition);
-
-};
-
-#
+#endif
