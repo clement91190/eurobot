@@ -1,8 +1,8 @@
 #include "Bras.h"
 
-Ascenseur::Ascenseur(int pin_step, int pin_dir, int pin_bumper, int signe):
-    pap(1, pin_step, pin_dir);
-    bumper_asc_haut(pin_bumper), recal_up(false)
+Ascenseur::Ascenseur(int pin_step, int pin_dir, int pin_bumper, int signe_):
+    pap(1, pin_step, pin_dir),
+    bumper_asc_haut(pin_bumper), recal_up(false), signe(signe_)
 {
     bumper_asc_haut.reverse();
     pap.setMaxSpeed(3000);
@@ -65,7 +65,7 @@ bool Ascenseur::run()
 
 bool Ascenseur::is_near()
 {
-    return (abs(asc.distanceToGo()) <= NEAR);
+    return (abs(pap.distanceToGo()) <= NEAR);
 }
 
 void Ascenseur::go_to(float pos_cm){
@@ -74,7 +74,7 @@ void Ascenseur::go_to(float pos_cm){
     {
         recal_up_to_be = true;
     }
-    asc.moveTo(signe * int(RAPPORTCM * pos_cm / MICROSTEPPING));
+    pap.moveTo(signe * int(RAPPORTCM * pos_cm / MICROSTEPPING));
 }
 
 
@@ -84,14 +84,14 @@ void Ascenseur::write_debug()
     Serial.println(bumper_asc_haut.is_on());
 
     Serial.println(" PAP :");
-    Serial.print( "current pos : ")
-    Serial.print(asc.currentPosition());
+    Serial.print( "current pos : ");
+    Serial.print(pap.currentPosition());
 
-    Serial.print( " target pos : ")
-    Serial.print(asc.targetPosition());
+    Serial.print( " target pos : ");
+    Serial.print(pap.targetPosition());
     
-    Serial.print( "recal haut ? ")
-    Seria.println( recal_up);
+    Serial.print( "recal haut ? ");
+    Serial.println( recal_up);
 }
 
 
@@ -99,17 +99,24 @@ void Ascenseur::write_debug()
 //BRAS
 //
 
-Bras::Bras(int cote_): period_run(50), time_out_on(false), state(RANGE_DEPART)
+Bras::Bras(int cote_,
+        int pin_pap_step,
+        int pin_pap_dir,
+        int pin_bump_asc,
+        int pin_ir,
+        int seuil_ir,
+        long* pulse_color): 
+    period_run(50),
+    cote(cote_),
+    time_out_on(false), state(RANGE_DEPART), coul_to_be_on(false), next_coul_on(false),
+    asc(pin_pap_step, pin_pap_dir, pin_bump_asc, cote_),
+    ir(pin_ir, seuil_ir),
+    col(pulse_color)
 {
-
-    cote = cote;_
     if (cote == GAUCHE)
     {
         servo_rot.attach(PIN_SERVO_ROT_G);
         servo_retourne.attach(PIN_SERVO_RETOURNE_G);
-        asc = Ascenseur(PIN_PAP_STEP_G, PIN_PAP_DIR_G, PIN_BUMPER_ASC_H_G) ;
-        color_sensor(&pulse_color_g);
-        ir = SwitchAnalog(PIN_IR_G, SEUIL_IR_G)
         pin_pompe = PIN_POMPE_G;
         pinMode(pin_pompe, OUTPUT);
     }
@@ -117,9 +124,6 @@ Bras::Bras(int cote_): period_run(50), time_out_on(false), state(RANGE_DEPART)
     {
         servo_rot.attach(PIN_SERVO_ROT_D);
         servo_retourne.attach(PIN_SERVO_RETOURNE_D);
-        asc = Ascenseur(PIN_PAP_STEP_D, PIN_PAP_DIR_D, PIN_BUMPER_ASC_H_D) ;
-        color_sensor(&pulse_color_d);
-        ir = SwitchAnalog(PIN_IR_C, SEUIL_IR_D)
         pin_pompe = PIN_POMPE_D;
         pinMode(pin_pompe, OUTPUT);
     }
@@ -277,10 +281,10 @@ void Bras::write_debug()
     Serial.print("IR ");
     Serial.println(ir.is_on());
 
-    Serial.print("pression ");
-    Serial.println(pression.is_on());
+    //Serial.print("pression ");
+    //Serial.println(pression.is_on());
     
-    color_sensor.write_debug();
+    col.write_debug();
  }
 
 void Bras::trigger(int transition)
@@ -290,7 +294,7 @@ void Bras::trigger(int transition)
  //
  //
  //
-     if (transition == T_RANGE|| transition == T_ACTIF_NOMINAL || transition == T_ACTIF_TORCHE || transition == POSE)
+     if (transition == T_RANGE|| transition == T_ACTIF_NOMINAL )
     {
          Serial.print("new trigger to be ");
          Serial.println(transition);
@@ -320,7 +324,7 @@ void Bras::trigger(int transition)
            {
             state = RANGE_DEPART;
            }
-            else (transition == T_ACTIF_NOMINAL)
+            else if (transition == T_ACTIF_NOMINAL)
             {
                 state = ATTENTE_ACTIF; 
             }
@@ -346,7 +350,6 @@ void Bras::trigger(int transition)
             state = DESCENTE_POMPE_LAT;
            }
             break;
-
 
         case DESCENTE_POMPE_LAT :
             if (transition == T_ASC_ARRIVE) // ou pression ? 
@@ -438,7 +441,7 @@ void Bras::trigger(int transition)
 
        
     }
-if (state >= 10 && (transition == RANGE || transition == TAPE))
+if (state >= 10 && (transition == T_RANGE))
    {
     state = INT_RANGE;
    }
@@ -456,7 +459,7 @@ void Bras::run(){
     col.run();
     if (asc.run())
     {
-        trigger(T_ASC_ARRIVE)
+        trigger(T_ASC_ARRIVE);
     }
 
     
@@ -471,7 +474,7 @@ void Bras::run(){
 
         if (state == ATTENTE_ACTIF && coul_to_be_on){
                 coul_to_be_on = false;
-                next_coul = next_coul_to_be
+                next_coul = next_coul_to_be;
                 next_coul_on = true;
             }
 
@@ -480,11 +483,11 @@ void Bras::run(){
                 next_coul_on = false;
                 if (next_coul)
                     {
-                        trigger(T_COUL_OK_MASTER)
+                        trigger(T_COUL_OK_MASTER);
                     }
                else
                {
-                        trigger(T_COUL_NOT_OK_MASTER)
+                        trigger(T_COUL_NOT_OK_MASTER);
                }
         
         }
@@ -509,7 +512,7 @@ void Bras::run(){
 
         if (asc.is_near())
         {
-           trigger(T_ASC_PRESQUE_ARRIVE)
+           trigger(T_ASC_PRESQUE_ARRIVE);
         }
         if (couleur == ROUGE)
         {
@@ -581,7 +584,8 @@ void Bras::in_state_func()
             spb();
             pf();
             break;
-        case INT_RANGE2 :
+        case INT2_RANGE :
+            set_time_out(400, trigger_to_be);
             scn(); 
             a0();
             spb();
@@ -640,39 +644,39 @@ void Bras::in_state_func()
             sce(); 
             a3();
             spr();
-            pf();
+            po();
             break;
         case REPLACE_APRES_ECH :
             scn(); 
             a3();
             spb();
-            po();
+            pf();
             break;
 
         case SEND_MINE :
             scv(); 
             a4();
             spv();
-            po();
+            pf();
             break;
         case SENDMASTER_PRET :
             scv(); 
             a4();
             spv();
-            p1();
+            po();
             break;
         case PRISE_VERT :
             scv(); 
             a4();
             spv();
-            p1();
+            po();
             break;
 
         case PRISE_COPAIN :
             a2(); 
             sce();
             spb();
-            p1();
+            po();
             break;
     }
 }
@@ -688,7 +692,7 @@ void Bras::stop()
    asc.stop();
 }
 
-void Bras::is_in_attente():
+bool Bras::is_in_attente()
 {
     return state == ATTENTE_ACTIF; 
 }
@@ -713,3 +717,8 @@ void Bras::call_for_help()
 {
     autre_bras->set_to_be_done(T_CALL_FOR_HELP);
 }
+
+void Bras::set_couleur(int couleur_)
+  {
+    couleur = couleur_;
+  }

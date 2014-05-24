@@ -12,7 +12,8 @@
 #include <ColorSensor.h>
 
 
-#define NEAR 10 //distance to target in steps
+#define NEAR 10
+//distance to target in steps
 #define GAUCHE -1 
 #define DROITE 1 
 #define MICROSTEPPING 2
@@ -28,17 +29,18 @@ class Ascenseur
         Switch bumper_asc_haut;
         bool recal_up;
         bool recal_up_to_be;
+        int signe;
 
     public:
-        Ascenseur(int pin_step, int pin_dir, int pin_bumper)
-        is_up();
-        monte();
-        go_to(float pos_cm);
+        Ascenseur(int pin_step, int pin_dir, int pin_bumper, int signe);
+        bool is_up();
+        void monte();
+        void go_to(float pos_cm);
         bool is_near();
         void write_debug();
         bool run();
         void stop();
-}
+};
 
 //position de l'ascenseur
 #define ASC0 0. 
@@ -54,12 +56,13 @@ class Bras
         Ascenseur asc;
         Servo servo_rot;
         Servo servo_retourne;
-        ColorSensor color_sensor;
-        SwitchAnalog pression; // ? 
+        ColorSensor col;
+        //SwitchAnalog pression; // ? 
         SwitchAnalog ir;
         int pin_pompe;
         int cote;
         Bras* autre_bras;
+        int couleur;
 
         //state machine
         int state;
@@ -75,11 +78,11 @@ class Bras
         bool coul_to_be_on; // next time in attente -> next_coul<- next_coul_to_be
         bool next_coul_on;
         bool next_coul;
-        bool next_coul_to_be
+        bool next_coul_to_be;
 
 
     public:
-        Bras(int cote);
+        Bras(int cote_, int pin_pap_step, int pin_pap_dir, int pin_bump_asc, int pin_ir, int seuil_ir, long* pulse_color);
         void run();
         void trigger(int transition);
         void write_debug();
@@ -114,7 +117,13 @@ class Bras
         void call_for_help();
 
         void set_to_be_next_coul(bool macoul);
-        void next_coul(bool macoul);
+        void set_next_coul(bool macoul);
+		void set_time_out(int, int);
+        void set_couleur(int couleur_);
+
+        void reset_time_out();
+        bool is_time_out();
+        void in_state_func();
 };
 
 
@@ -123,23 +132,23 @@ class Bras
 #define RANGE_DEPART 0
 #define INT_RANGE 1
 #define INT2_RANGE 2
-#define ATTENTE_ACTIF 3
 
-#define DESCENTE_LAT 4
-#define DESCENTE_POMPE_LAT 4
-#define PRISE_LAT 5
-#define MONTE_ECH 6
-#define RETOURNE_ECH 7
-#define REPLACE_APRES_ECH 8
-#define MONTE 9
-#define RANGE_PRISE 10
-#define LACHE 11
+#define ATTENTE_ACTIF 10
+#define DESCENTE_LAT 11
+#define DESCENTE_POMPE_LAT 12
+#define PRISE_LAT 13
+#define MONTE_ECH 14
+#define RETOURNE_ECH 15
+#define REPLACE_APRES_ECH 16
+#define MONTE 17
+#define RANGE_PRISE 18
+#define LACHE 19
 
-#define SEND_MINE 11
-#define SENDMASTER_PRET 12
-#define PRISE_VERT 14
+#define SEND_MINE 20
+#define SENDMASTER_PRET 21
+#define PRISE_VERT 22
 
-#define PRISE_COPAIN 15
+#define PRISE_COPAIN 23
 
 
 //transition

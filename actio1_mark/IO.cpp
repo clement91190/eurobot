@@ -1,10 +1,12 @@
 #include "IO.h"
 
-IO::IO():brasg(GAUCHE), brasd(DROITE)
+IO::IO():
+    brasg(GAUCHE , PIN_PAP_STEP_G, PIN_PAP_DIR_G, PIN_BUMPER_ASC_H_G, PIN_IR_G, SEUIL_IR_G, &pulse_color_g),
+    brasd(DROITE , PIN_PAP_STEP_D, PIN_PAP_DIR_D, PIN_BUMPER_ASC_H_D, PIN_IR_D, SEUIL_IR_D, &pulse_color_d),
+    ir_central(PIN_IR_C, SEUIL_IR_C)
 {
     brasg.set_autre_bras(&brasd);
     brasd.set_autre_bras(&brasg);
-    ir_central = SwitchAnalog(PIN_IR_C, SEUIL_IR_C);
     
 }
 
@@ -40,12 +42,12 @@ void IO::prise_centre(bool ma_coul)
   if (brasg.is_in_attente())
   {
     brasg.trigger(T_PRISE_VERT);
-    brasg.next_coul(ma_coul);
+    brasg.set_next_coul(ma_coul);
   }
   else if (brasd.is_in_attente())
   {
     brasd.trigger(T_PRISE_VERT);
-    brasg.next_coul(ma_coul);
+    brasg.set_next_coul(ma_coul);
   }
   else
   {
