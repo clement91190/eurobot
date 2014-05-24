@@ -1,43 +1,40 @@
-#ifndef PINS_H
-#define PINS_H
-
-//servo
-#define PIN_SERVO_ROT_G 10
-#define PIN_SERVO_ROT_D 11
-#define PIN_SERVO_RETOURNE_G 12
-#define PIN_SERVO_RETOURNE_D 13
-
-//capteur couleur
-#define PIN_COULEUR_D 0 // interrupt = pin2
-#define PIN_COULEUR_G 1 // interrupt = pin3
-
-//Pompe
-#define PIN_POMPE_D 4
-#define PIN_POMPE_G 5
-
-// capteur pression
-//
-#define PIN_PRESSION_G A5
-#define PIN_PRESSION_D A6
-
-// capteur IR
-#define PIN_IR_G A0
-#define PIN_IR_C A1
-#define PIN_IR_D A2
-
-//bumper Asc
-#define PIN_BUMPER_ASC_H_G A3
-#define PIN_BUMPER_ASC_H_D A4
-
-//PAP
-
-#define PIN_PAP_STEP_G 7
-#define PIN_PAP_DIR_G 6
-#define PIN_PAP_STEP_D 9
-#define PIN_PAP_DIR_D 8
-
 // prgramme de test  Mark zero Slave
 
+#include <Servo.h>
+#include <Stepper.h>
+#include <AccelStepper.h>
+
+int DEBUG = 0;
+
+
+
+// bumpers Asc
+const int Pin_AN_BumperAsc_G = A3;
+const int Pin_AN_BumperAsc_D = A4;
+int state_BumperAsc_G = 0;
+int state_BumperAsc_D = 0;
+
+// Relais pompe
+const int Pin_DI_Pompe_G = 5;
+const int Pin_DI_Pompe_D = 4;
+
+// Capteur Pression
+const int Pin_AN_Pression_G = A5;
+const int Pin_AN_Pression_D = A6;
+const int seuil_PRESSION = 0;
+int state_Pression_G = 0;
+int state_Pression_D = 0;
+
+// a verifffffffffffff
+// capteur couleur
+const int Pin_Di_Couleur_G = 3;
+const int Pin_Di_Couleur_D = 2;
+
+// moteur Pas a Pas
+const int Pin_Di_Papa_G_STEP = 7;
+const int Pin_Di_Papa_G_DIR = 6;
+const int Pin_Di_Papa_D_STEP = 9;
+const int Pin_Di_Papa_D_DIR = 8;
 const int nb_Step = 200; //nombre de step pour une rotation de moteur
 AccelStepper  Ascenseur_G(1, Pin_Di_Papa_G_STEP, Pin_Di_Papa_G_DIR);
 AccelStepper  Ascenseur_D(1, Pin_Di_Papa_D_STEP, Pin_Di_Papa_D_DIR);
@@ -53,6 +50,11 @@ int state_IRD = 0;
 const int seuilIR_lateral = 220; //inf
 const int seuilIR_middle = 200;
 
+//Servos Bras
+const int Pin_Di_BRAS_G_Hz = 10;
+const int Pin_Di_BRAS_G_Piv = 12;
+const int Pin_Di_BRAS_D_Hz = 11;
+const int Pin_Di_BRAS_D_Piv = 13;
 Servo BRAS_G_Hz;
 Servo BRAS_G_Piv;
 Servo BRAS_D_Hz;
@@ -438,5 +440,3 @@ unsigned long get_tsl_freq_G() {
   return(freq);
 }
  
-
-#endif
