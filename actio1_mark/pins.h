@@ -1,34 +1,42 @@
 #ifndef PINS_H
 #define PINS_H
 
-
-//pin alloc codeur
-#define PIN_ODO_INC  0//0 // == pin 2
-#define PIN_ODO_DIR  13 //12
-
-//pin alloc moteur
-
-#define PIN_MOT_DIR_ASC 4 // 9
-#define PIN_MOT_CMD_ASC 5 // 10
+#define ROUGE 0
+#define JAUNE 1
 
 //servo
-#define PIN_SERVO_PINCE_ROT 6
-#define PIN_SERVO_PINCE_G 7
-#define PIN_SERVO_PINCE_D 8
-#define PIN_SERVO_FRESQUE_G 11
-#define PIN_SERVO_FRESQUE_D 12
-#define PIN_SERVO_FILET_G 9
-#define PIN_SERVO_FILET_D 10
+#define PIN_SERVO_ROT_G 10
+#define PIN_SERVO_ROT_D 11
+#define PIN_SERVO_RETOURNE_G 12
+#define PIN_SERVO_RETOURNE_D 13
 
 //capteur couleur
-#define PIN_COULEUR 1 // interrupt = pin3
+#define PIN_COULEUR_D 0 // interrupt = pin2
+#define PIN_COULEUR_G 1 // interrupt = pin3
+
+//Pompe
+#define PIN_POMPE_D 4
+#define PIN_POMPE_G 5
+
+// capteur pression
+//
+#define PIN_PRESSION_G A5
+#define PIN_PRESSION_D A6
 
 // capteur IR
-#define PIN_IR A0
+#define PIN_IR_G A0
+#define PIN_IR_C A1
+#define PIN_IR_D A2
 
 //bumper Asc
-#define PIN_BUMPER_ASC_HAUT A3
-#define PIN_BUMPER_ASC_BAS A2
+#define PIN_BUMPER_ASC_H_G A3
+#define PIN_BUMPER_ASC_H_D A4
 
+//PAP
+
+#define PIN_PAP_STEP_G 7
+#define PIN_PAP_DIR_G 6
+#define PIN_PAP_STEP_D 9
+#define PIN_PAP_DIR_D 8
 
 #endif
