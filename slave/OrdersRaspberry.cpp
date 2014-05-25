@@ -122,6 +122,7 @@ void OrdersRaspberry::executeinstr()
         case 1: //Recal
             Serial.println("GET X Y CAP: ");
             slave->get_control()->write_real_coords();
+            
             break;
 
         case 2: //Recal
@@ -203,9 +204,16 @@ void OrdersRaspberry::executeinstr()
         case 8: //Reprendre
             Serial.println("Reprendre");
           //  slave->set<REPRENDRE>();
+          slave->debuggDistanceInit();
             break;
 
         case 9:
+			Serial.print("distance gain gauche : ");
+			Serial.println(slave->debuggDistance_g());
+			Serial.print("distance gain droit : ");
+			Serial.println(slave->debuggDistance_d());
+			
+			//slave->get_control()->debuggDistance_d();
             /*
             stream>> x >> y >> cap;
             Serial.println("setXYCap");

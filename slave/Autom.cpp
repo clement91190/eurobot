@@ -1,25 +1,75 @@
 #include "Autom.h"
 /* Autom implementation*/
 
+#define GAIN_ODO_G_PMI 0.3390043
+#define GAIN_ODO_D_PMI 0.3381305
+#define GAIN_ODO_inter_PMI 0.0131697
+
+#define GAIN_ODO_G_MARK 0.357
+#define GAIN_ODO_D_MARK 0.357
+#define GAIN_ODO_inter_MARK 0.004299
+
+
 Autom::Autom():
     real_coord(),
     period_update_coords(10),
     control(),
     period_pid_loop(40),
 #ifdef PMI
-    gain_inter_odos(0.01221554616), //0.011971135478867 //0.01309
-    gain_odo_g(0.353412),	//0.357
-    gain_odo_d(0.35250146), //0.351618 //0.357
+    gain_inter_odos(GAIN_ODO_inter_PMI), //0.011971135478867 //0.01309
+    gain_odo_g(GAIN_ODO_G_PMI),	//0.357
+    gain_odo_d(GAIN_ODO_D_PMI), //0.351618 //0.357
+    camera(),
 #else
-    gain_inter_odos(0.004299), //0.01309
-    gain_odo_g(0.357),	
-    gain_odo_d(0.357),
+    gain_inter_odos(GAIN_ODO_inter_MARK), //0.01309
+    gain_odo_g(GAIN_ODO_G_MARK),	
+    gain_odo_d(GAIN_ODO_D_MARK),
 #endif
     last_ticG(0),
-    last_ticD(0)
+    last_ticD(0),
+    distance_g(0),
+    distance_d(0)
    {
     send_cmd();
    }
+   
+   
+   Camera::Camera()
+   {
+	   #ifdef PMI
+			camera.attach(PIN_SERVO_CAM);
+			inclinaison_par_terre();
+	   #else
+			//placer la camera du gros si ca marche
+			//camera.attach(PIN_SERVO_CAM);
+	   #endif
+   }
+   
+   void Camera::inclinaison_frontale()
+   {
+	   #ifdef PMI
+			camera.writeMicroseconds(1950);
+	   #else
+	   
+	   #endif
+   }
+   void Camera::inclinaison_mediane()
+   {
+	   #ifdef PMI
+			camera.writeMicroseconds(1575);
+	   #else
+	   
+	   #endif
+   }
+    void Camera::inclinaison_par_terre()
+   {
+	   #ifdef PMI
+			camera.writeMicroseconds(1200);
+	   #else
+	   
+	   #endif
+   }
+   
 
 void Autom::update_cap(){
     /* attention ici, faudra tester la precision*/
@@ -34,7 +84,13 @@ void Autom::update_coords(){
     int delta_ticG = ticG; //- last_ticG;
     int delta_ticD = ticD; //  - last_ticD;
     reset_tics_odos();
-    float d = (delta_ticG * gain_odo_g + delta_ticD * gain_odo_d) * 0.5;   
+    float d = (delta_ticG * gain_odo_g + delta_ticD * gain_odo_d) * 0.5;
+    
+    //pour test et debug de gain 
+    distance_d += delta_ticD * gain_odo_d;
+    distance_g += delta_ticG * gain_odo_g;
+    
+        
     real_coord.forward_translation(d);
     /* maybe add a delta cond on distance to avoid noise ? */
     last_ticD = ticD;
@@ -135,5 +191,22 @@ void Autom::setxycap(Coord new_coord)
 {
     real_coord = new_coord;
     get_control()->setxycap(new_coord);
+}
+
+void Autom::debuggDistanceInit()
+{
+	distance_g = 0;
+	distance_d = 0;
+}
+
+
+float Autom::debuggDistance_g()
+{
+	return distance_g;
+}
+
+float Autom::debuggDistance_d()
+{
+	return distance_d;
 }
 

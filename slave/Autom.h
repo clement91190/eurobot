@@ -4,14 +4,31 @@
 
 #include "Period.h"
 #include "Arduino.h"
+#include <Servo.h>
 #include "interrupts.h"
 #include "pins.h"
 #include "Coord.h"
 #include "ControlLoop.h"
 
+
+class Camera
+{
+	private:
+		Servo camera;
+		
+	public:
+		Camera();
+		void inclinaison_frontale();
+		void inclinaison_mediane();
+		void inclinaison_par_terre();
+		int inclinaison();
+};
+
+
 class Autom
 {
     private:
+		Camera camera;
         Coord real_coord;
         ControlLoop control;
         Period period_update_coords; /* loop to update the position of the robot*/
@@ -21,10 +38,14 @@ class Autom
         float gain_inter_odos; /* 1 / dist inter odos */
         int last_ticG;
         int last_ticD;
+        
+        float distance_g;
+        float distance_d;
 
     public:
         Autom();
         Coord get_real_coord();
+        Camera camera_control();
         void send_cmd(); 
         void write_cmd(int cmd_g, int cmd_d, bool fw_g, bool fw_d);
         void update_cap();
@@ -34,6 +55,10 @@ class Autom
         void stop();
         void setxycap(Coord real_coord);
         ControlLoop* get_control();
+        
+        float debuggDistance_g();
+		float debuggDistance_d();
+		void debuggDistanceInit();
         
 };
 
