@@ -45,7 +45,7 @@ class Autom
     public:
         Autom();
         Coord get_real_coord();
-        Camera camera_control();
+        Camera* camera_control();
         void send_cmd(); 
         void write_cmd(int cmd_g, int cmd_d, bool fw_g, bool fw_d);
         void update_cap();

@@ -174,6 +174,11 @@ ControlLoop* Autom::get_control(){
     return &control;
 }
 
+Camera* Autom::camera_control()
+{
+	return &camera;
+}
+
 
 void write_serial_strat()
 {
