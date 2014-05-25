@@ -1,13 +1,20 @@
 #include "Autom.h"
 /* Autom implementation*/
 
-#define GAIN_ODO_D_PMI 0.3333333
-#define GAIN_ODO_G_PMI 0.3431709
-#define GAIN_ODO_inter_PMI 0.0131697
 
-#define GAIN_ODO_G_MARK 0.357
-#define GAIN_ODO_D_MARK 0.357
-#define GAIN_ODO_inter_MARK 0.004299
+#ifdef PMI
+
+#define GAIN_ODO_D 0.3333333
+#define GAIN_ODO_G 0.3431709
+#define GAIN_ODO_inter 0.0131697
+
+#else
+
+#define GAIN_ODO_G 0.357
+#define GAIN_ODO_D 0.357
+#define GAIN_ODO_inter 0.004299
+
+#endif
 
 
 Autom::Autom():
@@ -15,16 +22,10 @@ Autom::Autom():
     period_update_coords(10),
     control(),
     period_pid_loop(40),
-#ifdef PMI
-    gain_inter_odos(GAIN_ODO_inter_PMI), //0.011971135478867 //0.01309
-    gain_odo_g(GAIN_ODO_G_PMI),	//0.357
-    gain_odo_d(GAIN_ODO_D_PMI), //0.351618 //0.357
-    camera(),
-#else
-    gain_inter_odos(GAIN_ODO_inter_MARK), //0.01309
-    gain_odo_g(GAIN_ODO_G_MARK),	
-    gain_odo_d(GAIN_ODO_D_MARK),
-#endif
+    gain_inter_odos(GAIN_ODO_inter), //0.011971135478867 //0.01309
+    gain_odo_g(GAIN_ODO_G),	//0.357
+    gain_odo_d(GAIN_ODO_D), //0.351618 //0.357
+    //camera(),
     last_ticG(0),
     last_ticD(0),
     distance_g(0),
@@ -34,44 +35,7 @@ Autom::Autom():
    {
     send_cmd();
    }
-   
-   
-   Camera::Camera()
-   {
-	   #ifdef PMI
-			//camera.attach(PIN_SERVO_CAM);
-			//inclinaison_par_terre();
-	   #else
-			//placer la camera du gros si ca marche
-			//camera.attach(PIN_SERVO_CAM);
-	   #endif
-   }
-   
-   void Camera::inclinaison_frontale()
-   {
-	   #ifdef PMI
-			camera.writeMicroseconds(1950);
-	   #else
-	   
-	   #endif
-   }
-   void Camera::inclinaison_mediane()
-   {
-	   #ifdef PMI
-			camera.writeMicroseconds(1575);
-	   #else
-	   
-	   #endif
-   }
-    void Camera::inclinaison_par_terre()
-   {
-	   #ifdef PMI
-			camera.writeMicroseconds(1200);
-	   #else
-	   
-	   #endif
-   }
-   
+     
 
 void Autom::update_cap(){
     /* attention ici, faudra tester la precision*/
@@ -176,12 +140,12 @@ void Autom::run(){
 ControlLoop* Autom::get_control(){
     return &control;
 }
-
+/*
 Camera* Autom::camera_control()
 {
 	return &camera;
 }
-
+*/
 
 void write_serial_strat()
 {

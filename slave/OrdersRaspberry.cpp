@@ -100,7 +100,7 @@ void OrdersRaspberry::executeinstr()
         Serial.println("debug");
         slave->get_control()->write_debug();
         break;
-        
+   /*     
     case 'C' :
     //ordre de type camera control
 		switch (ind)
@@ -120,7 +120,7 @@ void OrdersRaspberry::executeinstr()
 				slave->camera_control()->inclinaison_frontale();
 			break;
 		}
-        break;
+        break;*/
 
     case 'S' :
         //Vitesse vit;
