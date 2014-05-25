@@ -225,7 +225,9 @@ void OrdersRaspberry::executeinstr()
         case 8: //Reprendre
             Serial.println("Reprendre");
           //  slave->set<REPRENDRE>();
+           Serial.println("Reinit");
           slave->debuggDistanceInit();
+          slave->debuggTicInit();
             break;
 
         case 9:
@@ -233,6 +235,10 @@ void OrdersRaspberry::executeinstr()
 			Serial.println(slave->debuggDistance_g());
 			Serial.print("distance gain droit : ");
 			Serial.println(slave->debuggDistance_d());
+			Serial.print("Tic total droit : ");
+			Serial.println(slave->debuggTic_d());
+			Serial.print("Tic total gauche : ");
+			Serial.println(slave->debuggTic_g());
 			
 			//slave->get_control()->debuggDistance_d();
             /*

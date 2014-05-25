@@ -39,6 +39,9 @@ class Autom
         int last_ticG;
         int last_ticD;
         
+        
+        int tic_total_g;
+        int tic_total_d;
         float distance_g;
         float distance_d;
 
@@ -58,7 +61,10 @@ class Autom
         
         float debuggDistance_g();
 		float debuggDistance_d();
+		int debuggTic_g();
+		int debuggTic_d();
 		void debuggDistanceInit();
+		void debuggTicInit();
         
 };
 

@@ -1,8 +1,8 @@
 #include "Autom.h"
 /* Autom implementation*/
 
-#define GAIN_ODO_G_PMI 0.3390043
-#define GAIN_ODO_D_PMI 0.3381305
+#define GAIN_ODO_D_PMI 0.3333333
+#define GAIN_ODO_G_PMI 0.3431709
 #define GAIN_ODO_inter_PMI 0.0131697
 
 #define GAIN_ODO_G_MARK 0.357
@@ -28,7 +28,9 @@ Autom::Autom():
     last_ticG(0),
     last_ticD(0),
     distance_g(0),
-    distance_d(0)
+    distance_d(0),
+    tic_total_g(0),
+    tic_total_d(0)
    {
     send_cmd();
    }
@@ -37,8 +39,8 @@ Autom::Autom():
    Camera::Camera()
    {
 	   #ifdef PMI
-			camera.attach(PIN_SERVO_CAM);
-			inclinaison_par_terre();
+			//camera.attach(PIN_SERVO_CAM);
+			//inclinaison_par_terre();
 	   #else
 			//placer la camera du gros si ca marche
 			//camera.attach(PIN_SERVO_CAM);
@@ -89,7 +91,8 @@ void Autom::update_coords(){
     //pour test et debug de gain 
     distance_d += delta_ticD * gain_odo_d;
     distance_g += delta_ticG * gain_odo_g;
-    
+    tic_total_g += delta_ticG;
+    tic_total_d += delta_ticD;
         
     real_coord.forward_translation(d);
     /* maybe add a delta cond on distance to avoid noise ? */
@@ -214,4 +217,17 @@ float Autom::debuggDistance_d()
 {
 	return distance_d;
 }
+int Autom::debuggTic_g()
+{
+	return tic_total_g;
+}
 
+int Autom::debuggTic_d()
+{
+	return tic_total_d;
+}
+void Autom::debuggTicInit()
+{
+	tic_total_d = 0;
+	tic_total_g = 0;
+}
