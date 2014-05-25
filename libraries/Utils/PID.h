@@ -49,6 +49,7 @@ class PID
         void reinit();
         void setMinMax(int v);
         float get_target();
+        void write_debug();
 
 };
 #endif

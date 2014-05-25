@@ -165,6 +165,19 @@ void Autom::setxycap(Coord new_coord)
     get_control()->setxycap(new_coord);
 }
 
+
+void Autom::setxycap_no_x(int y, float cap)
+{
+    real_coord = Coord(real_coord.get_x(), y, cap);
+    get_control()->setxycap(real_coord);
+}
+
+void Autom::setxycap_no_y(int x, float cap)
+{
+    real_coord = Coord(x, real_coord.get_y(), cap);
+    get_control()->setxycap(real_coord);
+}
+
 void Autom::debuggDistanceInit()
 {
 	distance_g = 0;
@@ -195,3 +208,14 @@ void Autom::debuggTicInit()
 	tic_total_d = 0;
 	tic_total_g = 0;
 }
+
+void Autom::setTuningCap(float Kp, float Ki, float Kd )
+{
+    get_control()->setTuningCap(Kp, Ki, Kd);
+}
+
+void Autom::setTuningDep(float Kp, float Ki, float Kd )
+{
+    get_control()->setTuningDep(Kp, Ki, Kd);
+}
+      

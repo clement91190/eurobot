@@ -43,6 +43,10 @@ class Autom
         void run();
         void stop();
         void setxycap(Coord real_coord);
+        void setxycap_no_x(int y, float cap);
+        void setxycap_no_y(int x, float cap);
+        void setTuningCap(float Kp, float Ki, float Kd );
+        void setTuningDep(float Kp, float Ki, float Kd );
         ControlLoop* get_control();
         
         float debuggDistance_g();
