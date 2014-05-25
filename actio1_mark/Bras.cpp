@@ -142,7 +142,7 @@ Bras::Bras(int cote_,
 
 void Bras::po()
 {
-    digitalWrite(pin_pompe, HIGH);
+    digitalWrite(pin_pompe, LOW);
 }
 
 void Bras::pf()

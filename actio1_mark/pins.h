@@ -15,8 +15,8 @@
 #define PIN_COULEUR_G 1 // interrupt = pin3
 
 //Pompe
-#define PIN_POMPE_D 4
-#define PIN_POMPE_G 5
+#define PIN_POMPE_D 5
+#define PIN_POMPE_G 4
 
 // capteur pression
 //

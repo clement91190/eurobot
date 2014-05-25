@@ -45,7 +45,7 @@ class Ascenseur
 //position de l'ascenseur
 #define ASC0 0. 
 #define ASC1 4.  
-#define ASC2 7.
+#define ASC2 9.4
 #define ASC3 19
 #define ASC4 22.8
 

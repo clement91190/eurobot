@@ -17,12 +17,29 @@ void IO::run()
     brasd.run();
     if (brasd.is_trigger_autre_on())
     {
-        brasg.trigger(brasd.get_trigger_autre());
+        int transition = brasd.get_trigger_autre();
+        if (transition == T_PRISE_COPAIN)
+        {
+            brasg.set_time_out(600, transition) ;
+        }
+        else
+        {
+            brasg.trigger(transition);
+        }
+
     }
 
     if (brasg.is_trigger_autre_on())
     {
-        brasd.trigger(brasg.get_trigger_autre());
+        int transition = brasg.get_trigger_autre();
+        if (transition == T_PRISE_COPAIN)
+        {
+            brasd.set_time_out(600, transition) ;
+        }
+        else
+        {
+            brasd.trigger(transition);
+        }
     }
 }
 
