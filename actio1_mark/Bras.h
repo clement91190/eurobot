@@ -37,6 +37,7 @@ class Ascenseur
         void monte();
         void go_to(float pos_cm);
         bool is_near();
+        bool is_arrive();
         void write_debug();
         bool run();
         void stop();
@@ -45,7 +46,7 @@ class Ascenseur
 //position de l'ascenseur
 #define ASC0 0. 
 #define ASC1 4.  
-#define ASC2 9.4
+#define ASC2 8.6
 #define ASC3 19
 #define ASC4 22.8
 
@@ -152,6 +153,7 @@ class Bras
 #define RETOURNE_ECH 15
 #define REPLACE_APRES_ECH 16
 #define MONTE 17
+#define MONTE_VERT 26
 #define RANGE_PRISE 18
 #define LACHE 19
 

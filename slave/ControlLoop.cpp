@@ -322,6 +322,17 @@ void ControlLoop::check_adversary()
 }
 
 
+void ControlLoop::setTuningCap(float Kp, float Ki, float Kd )
+{
+    pidcap.setTuning(Kp, Ki, Kd);
+}
+
+void ControlLoop::setTuningDep(float Kp, float Ki, float Kd )
+{
+    piddep.setTuning(Kp, Ki, Kd);
+}
+     
+
 void ControlLoop::setxycap(Coord new_coord)
 {
     real_coord = Coord(new_coord);
@@ -341,6 +352,13 @@ void ControlLoop::write_real_coords()
 
 void ControlLoop::write_debug()
 {
+    Serial.println("GAIN CAP");
+    pidcap.write_debug();
+
+    Serial.println("GAIN DEP");
+    piddep.write_debug();
+
+
     Serial.print("SonarG");
     sonarg.write_debug();
 #ifndef PMI

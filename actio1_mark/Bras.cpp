@@ -64,6 +64,11 @@ bool Ascenseur::run()
     }
 }
 
+bool Ascenseur::is_arrive()
+{
+    return (abs(pap.distanceToGo()) == 0);
+}
+
 bool Ascenseur::is_near()
 {
     return (abs(pap.distanceToGo()) <= NEAR);
@@ -392,7 +397,13 @@ void Bras::trigger(int transition)
             state = MONTE_ECH;
            }
             break;
-
+        case MONTE_VERT :
+            if (transition == TIME_OUT) // ou pression ? 
+           {
+            state = MONTE;
+           }
+            break;
+ 
         case MONTE :
             if (transition == T_BUMP_HAUT) // ou pression ? 
            {
@@ -448,7 +459,7 @@ void Bras::trigger(int transition)
         case PRISE_VERT :
             if (transition == T_COUL_OK_MASTER) // peut etre declenchee par le master 
            {
-            state = MONTE; 
+            state = MONTE_VERT; 
            }
             else if (transition == T_COUL_NOT_OK_MASTER)
             {
@@ -464,7 +475,7 @@ void Bras::trigger(int transition)
             break;
      
         case PRISE_COPAIN :
-            if (transition == T_ASC_PRESQUE_ARRIVE)
+            if (transition == T_ASC_ARRIVE)
              {
                 prise_copain();
                 state = MONTE; 
@@ -546,7 +557,10 @@ void Bras::run(){
         {
             trigger(trigger_to_be);
         }
-
+        if (asc.is_arrive())
+        {
+           trigger(T_ASC_ARRIVE);
+        }
         if (asc.is_near())
         {
            trigger(T_ASC_PRESQUE_ARRIVE);
@@ -660,6 +674,13 @@ void Bras::in_state_func()
             spb();
             po();
             break;
+        case MONTE_VERT :
+            set_time_out(500, TIME_OUT);
+            scn(); 
+            a0();
+            spv();
+            po();
+            break;
         case MONTE :
             scn(); 
             a0();
@@ -667,7 +688,7 @@ void Bras::in_state_func()
             po();
             break;
         case RANGE_PRISE :
-            set_time_out(300, TIME_OUT);
+            set_time_out(2000, TIME_OUT);
             scl(); 
             a0();
             spb();
@@ -690,7 +711,7 @@ void Bras::in_state_func()
         case MONTE_ECH_VERT :
             sce(); 
             a3();
-            spv();
+            spr();
             po();
             break;
        
@@ -795,6 +816,10 @@ void Bras::set_to_be_next_coul(bool macoul)
 
 void Bras::set_next_coul(bool macoul)
 {
+    Serial.print("setting color to be ");
+    Serial.print(macoul);
+    Serial.print("   on Bras ");
+    Serial.println(cote);
     next_coul = macoul;
     next_coul_on = true;
 }

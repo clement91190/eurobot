@@ -104,6 +104,9 @@ class ControlLoop
         void write_debug();
         void set_speed(int speed);
         void recaler();
+        void setTuningCap(float Kp, float Ki, float Kd );
+        void setTuningDep(float Kp, float Ki, float Kd );
+       
 };
 
 

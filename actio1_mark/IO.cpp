@@ -77,7 +77,7 @@ void IO::prise_centre(bool ma_coul)
   else if (brasd.is_in_attente())
   {
     brasd.trigger(T_PRISE_VERT);
-    brasg.set_next_coul(ma_coul);
+    brasd.set_next_coul(ma_coul);
     bras_prise = DROITE;
   }
   else

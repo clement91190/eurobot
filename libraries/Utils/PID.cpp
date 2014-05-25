@@ -167,3 +167,14 @@ float PID::get_target()
     {
         return target;
     }
+
+void PID::write_debug()
+{
+    Serial.println("KP, KI ,KV");
+    Serial.print(Kp);
+    Serial.print ( "  ");
+    Serial.print(Ki);
+    Serial.print ( "  ");
+    Serial.println(Kd);
+
+}
