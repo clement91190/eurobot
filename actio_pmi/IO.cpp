@@ -109,7 +109,7 @@ void Ascenseur::run()
 void Ascenseur::send_monte()
 {
     digitalWrite(PIN_MOT_DIR_ASC, 0);
-    analogWrite(PIN_MOT_CMD_ASC, 250);
+    analogWrite(PIN_MOT_CMD_ASC, 255);
 }
 
 void Ascenseur::send_maintien_p()
@@ -121,7 +121,7 @@ void Ascenseur::send_maintien_p()
 void Ascenseur::send_desc()
 {
     digitalWrite(PIN_MOT_DIR_ASC, 1);
-    analogWrite(PIN_MOT_CMD_ASC, 100);
+    analogWrite(PIN_MOT_CMD_ASC, -250);
 }
 
 void Ascenseur::send_zeros()
@@ -406,25 +406,27 @@ bool Pince::is_time_out()
 
 void Pince::slr()
 {
-    servo_pince_g.writeMicroseconds(1420); //rangement
-    servo_pince_d.writeMicroseconds(1580); //rangement
+	servo_pince_g.writeMicroseconds(960); //rangement
+    servo_pince_d.writeMicroseconds(2100); //rangement
 }
-
+//pince en mode tape
 void Pince::slt()
 {
-    servo_pince_g.writeMicroseconds(1900); //rangement
-    servo_pince_d.writeMicroseconds(1580); //rangement
-}
-void Pince::slo()
-{
-    servo_pince_g.writeMicroseconds(1800); //saisie
-    servo_pince_d.writeMicroseconds(1200); //saisie
+    servo_pince_g.writeMicroseconds(1440); //rangement
+    servo_pince_d.writeMicroseconds(2100); //rangement
 }
 
+//pince ouverte
+void Pince::slo()
+{
+    servo_pince_g.writeMicroseconds(1420); //moissbat
+    servo_pince_d.writeMicroseconds(1540); //moissbat
+}
+//pince fermee
 void Pince::slf()
 {
-    servo_pince_g.writeMicroseconds(2200); //saisie
-    servo_pince_d.writeMicroseconds(800); //saisie
+    servo_pince_g.writeMicroseconds(1840); //saisie
+    servo_pince_d.writeMicroseconds(1120); //saisie
 }
 
 void Pince::scv() //position de depart

@@ -7,6 +7,10 @@
 #include "interrupts.h"
 #include "pins.h"
 
+#define SEUIL_ROUGE 3000//sup a
+#define SEUIL_JAUNE 1300//inf a
+
+
 class ColorSensor 
 {
     private:
