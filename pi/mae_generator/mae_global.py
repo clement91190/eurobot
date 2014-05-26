@@ -1,6 +1,6 @@
 from mae_generator.mae import MAE, MAEState, InitState, OutState, State, debugger
 #from com_state_factory import ComStateFactory
-from mae_generator.pre_start import MAEPrestart
+import mission_control
 from utils.coord import Coord
 from mission_control.mission import ChoixMissionState, MissionChoiceInit
 
@@ -9,7 +9,12 @@ class MAEGlobal(MAE):
     def __init__(self, com_state_factory, slave_manager, robot_state):
         MAE.__init__(self)
         self.robot_state = robot_state
-        pre_start = MAEState(MAEPrestart(com_state_factory), "pre_start")
+
+        if self.robot_state.robot == "debile":
+            pre_start = MAEState(mission_control.debile.MAEPrestart(com_state_factory), "pre_start debile")
+        else:
+            pre_start = MAEState(mission_control.mark.MAEPrestart(com_state_factory), "pre_start mark")
+
         game = self.game = MAEState(MAEGame(com_state_factory, slave_manager, robot_state), "game")
         end = State("end")
         self.state_list = [pre_start, game, end]
@@ -25,7 +30,11 @@ class MAEGame(MAE):
         self.slave_manager = slave_manager
         self.robot_state = robot_state
         #state
-        rush = MAEState(MAERush(com_state_factory), "rush")
+        if self.robot_state.robot == "debile":
+            rush = MAEState(MAERushDebile(com_state_factory), "rush")
+        else:
+            rush = MAEState(MAERushMark(com_state_factory), "rush")
+
         self.choix_mission = choix_mission = ChoixMissionState(robot_state)
         self.mae_dep = mae_dep = MAEDepMission(slave_manager)
         self.deplacement_mission = deplacement_mission = MAEState(mae_dep, "deplacement_mission")
@@ -56,7 +65,7 @@ class MAEGame(MAE):
             self.choix_mission)
 
 
-class MAERush(MAE):
+class MAERushDebile(MAE):
     def __init__(self, com_state_factory):
         MAE.__init__(self)
         self.sf = com_state_factory
@@ -72,6 +81,29 @@ class MAERush(MAE):
         avance_triangle1.add_bloc_transition(out)
         avance_triangle1.add_advd_transition(out)
         self.state_list = [init, speed_change, avance_triangle1, out]
+        self.reinit_state()
+
+
+class MAERushMark(MAE):
+    def __init__(self, com_state_factory):
+        MAE.__init__(self)
+        self.sf = com_state_factory
+
+        init = InitState()
+        speed_change = self.sf.get_setspeed(1)
+        avance_sortie = self.sf.get_bf_fw(Coord(500))
+        tourne = self.sf.get_bf_cap(Coord(0, 0, 120))
+        rush = self.sf.get_bf_fw(Coord(500))
+        out = OutState("end_rush")
+        
+        init.add_instant_transition(speed_change)
+        speed_change.add_instant_transition(avance_sortie)
+        avance_sortie.add_afini(tourne)
+        tourne.add_afini_transition(rush)
+        rush.add_afini_transition(out)
+        rush.add_bloc_transition(out)
+        rush.add_advd_transition(out)
+        self.state_list = [init, speed_change, avance_sortie, tourne, rush, out]
         self.reinit_state()
 
 

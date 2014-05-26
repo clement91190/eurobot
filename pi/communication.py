@@ -138,15 +138,11 @@ class Communication:
             if s_line[1] == "STRAT":
                 self.robot_state.strat = [int(v) for v in s_line[2:]]
             elif s_line[1] == "COUL":
-                if int(s_line[2]):
-                    self.robot_state.coul = "rouge" 
-                else:
-                    self.robot_state.coul = "jaune" 
+                self.robot_state.set_couleur(int(s_line[2]))
             elif s_line[1] == "ADVD":
-                self.robot_state.adversary_detected(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])))
-
+                self.robot_state.adversary_detected(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])).couleur_relative())
             elif s_line[1] == "COORD":
-                self.robot_state.set_last_position(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])))
+                self.robot_state.set_last_position(Coord(int(s_line[2]), int(s_line[3]), float(s_line[4])).couleur_relative())
         else:
             print "[CRAP]", s_line
 

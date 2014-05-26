@@ -1,4 +1,4 @@
-from utils.coord import Coord
+from utils import coord
 from communication import Communication, PipoCommunication 
 from com_state_factory import ComStateFactory
 from mae_generator.mae_global import MAEGlobal
@@ -22,7 +22,7 @@ class bcolors:
 class RobotState:
     """ class to store all the data regarding the state of the robot ( and the other robot) + its environment """
     def __init__(self, robot="mark", pipo=False):
-        self.position = Coord()
+        self.position = coord.Coord()
         self.d_dos_cdg = 100 
         self.strat = []
         self.coul = "rouge"
@@ -114,6 +114,13 @@ class RobotState:
         for t, mis in self.missions.items():
             mis.to_do()
         self.missions[self.current_mission].success()
+
+    def set_couleur(self, coul):
+        coord.couleur = coul
+        if coul:
+            self.coul = "jaune"
+        else:
+            self.coul = "rouge"
 
 
 def get_d_dos_cdg(robot="mark"):

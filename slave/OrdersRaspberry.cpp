@@ -160,7 +160,7 @@ void OrdersRaspberry::executeinstr()
             }
             else
             {
-                if (atoi(x.c_str())== -1)
+                if (atoi(y.c_str())== -1)
                 {
                     Serial.println("recal x -> y unknown");
                     slave->setxycap_no_y(atoi(x.c_str()), 3.14 * atoi(cap.c_str())/ 180.0);
