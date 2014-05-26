@@ -574,8 +574,8 @@ IO::IO():pince()
 	pinMode(PIN_ODO_DIR,INPUT);
     servo_fresque_g.attach(PIN_SERVO_FRESQUE_G);
     servo_fresque_d.attach(PIN_SERVO_FRESQUE_D);
-    //ranger_servo_fresque();
-    poser_fresque();
+    ranger_servo_fresque();
+    //poser_fresque();
 
     servo_filet_g.attach(PIN_SERVO_FILET_G);
     servo_filet_d.attach(PIN_SERVO_FILET_D);

@@ -26,28 +26,16 @@
 
 #ifdef PMI
 
-<<<<<<< HEAD
-#define GAIN_KP_DEP 1.1 * 0.66 
-#define GAIN_KI_DEP 0. //0.35
-#define GAIN_KD_DEP 0. //10. //95 //0.25 //0.2
-=======
-#define GAIN_KP_DEP 3  
-#define GAIN_KI_DEP 0.15 //0.35
-#define GAIN_KD_DEP 0.1 //10. //95 //0.25 //0.2
->>>>>>> 51e4cdf4a1e396afa65bd339663f79bffa149575
+#define GAIN_KP_DEP 3 * 0.66 
+#define GAIN_KI_DEP 0.15 * 0.66 //0.35
+#define GAIN_KD_DEP 0.1 * 0.66//10. //95 //0.25 //0.2
 #define NEAR_ERROR_DEP 70.0
 #define DONE_ERROR_DEP  10.0
 
 
-<<<<<<< HEAD
-#define GAIN_KP_CAP 160.0 * 0.66 //Ku = 260
-#define GAIN_KI_CAP 0. //52.0 //70.0
-#define GAIN_KD_CAP 0.5 * 0.66 //18.0 //40.0
-=======
-#define GAIN_KP_CAP 250.0  //Ku = 260
-#define GAIN_KI_CAP 3 //52.0 //70.0
-#define GAIN_KD_CAP 5 //18.0 //40.0
->>>>>>> 51e4cdf4a1e396afa65bd339663f79bffa149575
+#define GAIN_KP_CAP 250.0 * 0.66  //Ku = 260
+#define GAIN_KI_CAP 3 * 0.66 //52.0 //70.0
+#define GAIN_KD_CAP 5 * 0.66 //18.0 //40.0
 #define NEAR_ERROR_CAP 8.0 * 3.14 / 180.0 
 #define DONE_ERROR_CAP  4.0 * 3.14 / 180.0 
 
