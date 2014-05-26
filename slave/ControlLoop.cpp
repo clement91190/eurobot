@@ -48,8 +48,14 @@ void ControlLoop::set_speed(int speed)
             break;
 
         case FAST:
-            piddep.setMinMax(150);
+        #ifdef PMI
+			piddep.setMinMax(150);
             pidcap.setMinMax(150);
+		#else
+			piddep.setMinMax(200);
+            pidcap.setMinMax(200);
+		#endif
+            
             break;
     }
 }
