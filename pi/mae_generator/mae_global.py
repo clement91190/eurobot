@@ -18,7 +18,7 @@ class MAEGlobal(MAE):
         pre_start = MAEState(MAEPrestart(com_state_factory), "pre_start" + self.robot_state.robot)
 
         game = self.game = MAEState(MAEGame(com_state_factory, slave_manager, robot_state), "game")
-        end = State("end")
+        end = com_state_factory.get_stop(self.robot_state.robot)
         self.state_list = [init, pre_start, game, end]
         init.add_instant_transition(pre_start)
         pre_start.transitions["START"] = game

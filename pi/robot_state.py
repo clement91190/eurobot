@@ -7,7 +7,7 @@ import time
 
 
 from mission_control.debile import mission_fresque, mission_prise_torche_adv
-from mission_control.debile import mission_test
+from mission_control.debile import mission_test, tir_filet
 
 
 class bcolors:
@@ -58,7 +58,8 @@ class RobotState:
         pass
 
     def init_mission_pmi(self):
-        self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
+        #self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
+        self.missions["m_filet"] = tir_filet.get_mission(self.com_state_factory)
         #self.missions["m_test1"] = mission_test.get_mission(self.com_state_factory, 1)
         #self.missions["m_test2"] = mission_test.get_mission(self.com_state_factory, 2)
 

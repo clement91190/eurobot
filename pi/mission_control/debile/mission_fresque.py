@@ -15,7 +15,7 @@ class MAEFRESQUE(MAE):
         #states
         init = InitState()
         recaly = self.sf.get_recaler()
-        set_y0 = self.sf.get_setxycap(Coord(0, 102, 90)) 
+        set_y0 = self.sf.get_setxycap(Coord(-1, 102, 90)) 
         pose_fresque = self.sf.get_pmi_fresque_out()
         avance = self.sf.get_bf_fw(Coord(100))
         rentre_fresque = self.sf.get_pmi_fresque_in()

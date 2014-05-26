@@ -1,6 +1,25 @@
 from mae_generator.mae import State
 
 
+class SendStopDebileState(State):
+    def __init__(self, com):
+        State.__init__(self, "END ALL ACTIONS")
+        self.com = com
+
+    def in_code(self):
+        self.com.send_actio1("S")
+
+
+class SendStopMarkState(State):
+    def __init__(self, com):
+        State.__init__(self, "END ALL ACTIONS")
+        self.com = com
+
+    def in_code(self):
+        self.com.send_actio1("S")
+        self.com.send_actio2("S")
+
+
 class SendSlaveState(State):
     def __init__(self, message, com, count=0):
         State.__init__(self, "{} slave:".format(count) + message)
@@ -230,11 +249,12 @@ class ComStateFactory:
             self.count += 1
             return SendActio2MarkState("P5", self.com, self.count) 
 
-    def get_stop_mark(self):
-        pass  # TODO
-
-    def get_stop_debile(self):
-        pass  # TODO
+    def get_stop(self, robot):
+        if robot == "debile":
+            return SendStopDebileState(self.com)
+        else:
+            return SendStopMarkState(self.com)
+         
 
 
 
