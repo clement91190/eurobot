@@ -22,7 +22,7 @@ float Sonar::get_dist(){
     {
         Serial.println("warning check sonar connection");
     }
-    return 10 + (sensorValue / 800.0) * 900. ; //divide by max sensor value, multiply by 900 mm
+    return 10 + (sensorValue / 580.0) * 900. ; //divide by max sensor value, multiply by 900 mm
 
 
 #endif

@@ -1,7 +1,6 @@
 from mission_control.mission import Mission, SuccessOut, FailOut
 from utils.coord import Coord
 from mae_generator.mae import MAE, InitState, debugger
-import robot_state
 
 
 def get_mission(com_state_factory):
@@ -16,7 +15,7 @@ class MAEFRESQUE(MAE):
         #states
         init = InitState()
         recaly = self.sf.get_recaler()
-        set_y0 = self.sf.get_setxycap(Coord(0, robot_state.get_d_dos_cdg("debile"), 90)) 
+        set_y0 = self.sf.get_setxycap(Coord(0, 102, 90)) 
         pose_fresque = self.sf.get_pmi_fresque_out()
         avance = self.sf.get_bf_fw(Coord(100))
         rentre_fresque = self.sf.get_pmi_fresque_in()

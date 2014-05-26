@@ -62,7 +62,7 @@ class MAESquare(MAE):
         self.state_list[4].transitions["AFINI"] = self.state_list[5]
         self.state_list[5].transitions["AFINI"] = self.state_list[6]
         self.state_list[6].transitions["AFINI"] = self.state_list[7]
-        self.state_list[7].transitions["AFINI"] = self.state_list[-1]
+        self.state_list[7].transitions["AFINI"] = self.state_list[0]
         self.reinit_state()
 
 
@@ -75,6 +75,7 @@ def main():
     print serr.readline()
     raw_input()	    
     serr.write('S3 0\n')
+    serr.write('S7 0\n')
     print "coucou"
     while True:
         mae.verbose = True
