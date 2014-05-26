@@ -314,9 +314,12 @@ void ControlLoop::check_adversary()
         set_BF(STOP, Coord());
     }
     else if (sonard.adv_detected())
+    {
         write_real_coords();
         sonard.write_adv_coord();
         set_BF(STOP, Coord());
+       }
+
 #else
     if (sonarg.adv_detected()){
         write_real_coords();
