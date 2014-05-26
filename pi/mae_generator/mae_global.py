@@ -9,15 +9,19 @@ class MAEGlobal(MAE):
     def __init__(self, com_state_factory, slave_manager, robot_state):
         MAE.__init__(self)
         self.robot_state = robot_state
+        init = InitState()
 
         if self.robot_state.robot == "debile":
-            pre_start = MAEState(mission_control.debile.MAEPrestart(com_state_factory), "pre_start debile")
+            from mission_control.debile.pre_start import MAEPrestart
         else:
-            pre_start = MAEState(mission_control.mark.MAEPrestart(com_state_factory), "pre_start mark")
+            from mission_control.mark.pre_start import MAEPrestart
+
+        pre_start = MAEState(MAEPrestart(com_state_factory), "pre_start" + self.robot_state.robot)
 
         game = self.game = MAEState(MAEGame(com_state_factory, slave_manager, robot_state), "game")
         end = State("end")
-        self.state_list = [pre_start, game, end]
+        self.state_list = [init, pre_start, game, end]
+        init.add_instant_transition(pre_start)
         pre_start.transitions["START"] = game
         game.add_time_out_transition(90000, end)
         self.reinit_state()
