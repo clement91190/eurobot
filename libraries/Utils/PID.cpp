@@ -17,8 +17,8 @@ PID::PID(bool type_cap_, float Kp_, float Ki_, float Kd_, float near_error_value
     I_sum(0.),
     target(0.),
     Kp(Kp_),  //Ku = 5.75
-    Kd(Ki_),
-    Ki(Kd_),
+    Kd(Kd_),
+    Ki(Ki_),
     near_error_value(near_error_value_),
     done_error_value(done_error_value_),
     minV(-255),
