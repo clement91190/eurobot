@@ -52,8 +52,8 @@ void ControlLoop::set_speed(int speed)
 			piddep.setMinMax(150);
             pidcap.setMinMax(150);
 		#else
-			piddep.setMinMax(200);
-            pidcap.setMinMax(200);
+			piddep.setMinMax(150);
+            pidcap.setMinMax(150);
 		#endif
             
             break;
