@@ -1,6 +1,5 @@
 from mae_generator.mae import MAE, MAEState, InitState, OutState, State, debugger
 #from com_state_factory import ComStateFactory
-import mission_control
 from utils.coord import Coord
 from mission_control.mission import ChoixMissionState, MissionChoiceInit
 
@@ -76,10 +75,12 @@ class MAERushDebile(MAE):
 
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
+        tape = self.sf.get_pmi_tape()
         avance_triangle1 = self.sf.get_bf_fw(Coord(800))
         out = OutState("end_rush")
         
-        init.add_instant_transition(speed_change)
+        init.add_instant_transition(tape)
+        tape.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_triangle1)
         avance_triangle1.add_afini_transition(out)
         avance_triangle1.add_bloc_transition(out)
