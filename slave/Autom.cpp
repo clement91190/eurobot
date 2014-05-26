@@ -10,9 +10,9 @@
 
 #else
 
-#define GAIN_ODO_G 0.357
-#define GAIN_ODO_D 0.357
-#define GAIN_ODO_inter 0.004299
+#define GAIN_ODO_G 0.343878955
+#define GAIN_ODO_D 0.339673913
+#define GAIN_ODO_inter 0.004597475
 
 #endif
 

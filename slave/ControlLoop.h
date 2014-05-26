@@ -48,7 +48,7 @@
 #define DONE_ERROR_DEP  10.0
 
 
-#define GAIN_KP_CAP 160.0  //Ku = 260
+#define GAIN_KP_CAP 300  //Ku = 260
 #define GAIN_KI_CAP 0. //52.0 //70.0
 #define GAIN_KD_CAP 0.5 //18.0 //40.0
 #define NEAR_ERROR_CAP 8.0 * 3.14 / 180.0 
@@ -77,7 +77,7 @@ class ControlLoop
         bool fw_d;
         int count_not_moving;
         Coord late_pos; // to check how much we moved lately
-        Sonar sonarg;
+        Sonar sonarg; //et le droit ??
 #ifndef PMI        
         Sonar sonard;
 #endif
