@@ -64,7 +64,7 @@ class RobotState:
         self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
         self.missions["m_arbre1"].prioritize(10.)
         self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
-        self.missions["m_mammouths2"].prioritize(20.)
+        self.missions["m_mammouths"].prioritize(20.)
 
 
 
