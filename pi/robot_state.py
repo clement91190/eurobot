@@ -117,15 +117,15 @@ class RobotState:
 
     def mission_done(self):
         print "#### MISSION DONE ###"
-        for t, mis in self.missions.items():
-            mis.to_do()
+        #for t, mis in self.missions.items():
+        #    mis.to_do()
         self.missions[self.current_mission].success()
 
     def mission_failed(self):
         print "#### MISSION DONE ###"
-        for t, mis in self.missions.items():
-            mis.to_do()
-        self.missions[self.current_mission].success()
+        #for t, mis in self.missions.items():
+        #    mis.to_do()
+        self.missions[self.current_mission].penalize(5.)
 
     def set_couleur(self, coul):
         coord.couleur = coul
