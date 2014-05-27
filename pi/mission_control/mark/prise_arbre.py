@@ -5,7 +5,7 @@ from mae_generator.mae import MAE, InitState, debugger
 
 def get_mission(com_state_factory, num_arbre = 1):
     if num_arbre == 1:
-        return Mission(" arbre 1", Coord(1300, 400, 180), MAEARBRE(com_state_factory))
+        return Mission(" arbre 1", Coord(1200, 1300, 180), MAEARBRE(com_state_factory))
 
 
 class MAEARBRE(MAE):
