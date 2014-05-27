@@ -41,11 +41,11 @@
 
 #else
 
-#define GAIN_KP_DEP 2.0 * 0.66 
-#define GAIN_KI_DEP 0.1 * 0.66 //0.35
-#define GAIN_KD_DEP 0.1 * 0.66 //10. //95 //0.25 //0.2
+#define GAIN_KP_DEP 0.75 
+#define GAIN_KI_DEP 0.03 
+#define GAIN_KD_DEP 0.06 
 #define NEAR_ERROR_DEP 70.0
-#define DONE_ERROR_DEP  10.0
+#define DONE_ERROR_DEP  20.0
 
 
 #define GAIN_KP_CAP 300  //Ku = 260
