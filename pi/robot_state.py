@@ -9,6 +9,8 @@ import time
 from mission_control.debile import mission_fresque, mission_prise_torche_adv
 from mission_control.debile import mission_test, tir_filet
 
+from mission_control.mark import prise_arbre, vidange_torches
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -57,9 +59,9 @@ class RobotState:
 
     def init_mission_mark(self):
         """ definition of the missions"""
-        self.missions["m_torche"] = tir_filet.get_mission(self.com_state_factory)
+        self.missions["m_torche"] = vidange_torches.get_mission(self.com_state_factory)
         self.missions["m_torche"].prioritize(2.)
-        self.missions["m_arbre1"] = tir_filet.get_mission(self.com_state_factory)
+        self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
         self.missions["m_arbre1"].prioritize(10.)
 
     def init_mission_pmi(self):

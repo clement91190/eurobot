@@ -28,7 +28,7 @@ class MAEARBRE(MAE):
         #transitions
         init.add_instant_transition(mi_ouvre)
         mi_ouvre.add_instant_transition(recule)
-        recule.add_bloc_transition(ouvre)
+        recule.add_afini_transition(ouvre)
         ouvre.add_time_out_transition(500, avance)
         avance.add_afini_transition(replis_mi)
         avance.add_bloc_transition(replis_mi)
