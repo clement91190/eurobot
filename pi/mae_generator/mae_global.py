@@ -103,7 +103,7 @@ class MAERushMark(MAE):
         
         init.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_sortie)
-        avance_sortie.add_afini(tourne)
+        avance_sortie.add_afini_transition(tourne)
         tourne.add_afini_transition(rush)
         rush.add_afini_transition(out)
         rush.add_bloc_transition(out)

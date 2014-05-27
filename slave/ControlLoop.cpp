@@ -20,7 +20,7 @@ ControlLoop::ControlLoop():
 #endif
 
     fw_g(true){
-    piddep.setMinMax(100);
+    set_speed(SLOW);
     //sonarg.turn_off();
     //
 };
@@ -38,8 +38,13 @@ void ControlLoop::set_speed(int speed)
 {
     switch(speed){
         case SLOW:
-            piddep.setMinMax(42);
+       #ifdef PMI
+			piddep.setMinMax(42);
             pidcap.setMinMax(42);
+		#else
+			piddep.setMinMax(60);
+            pidcap.setMinMax(60);
+		#endif
             break;
 
         case MEDIUM:
@@ -269,11 +274,11 @@ void ControlLoop::check_blockage()
    Vector dep = Vector(real_coord, late_pos);
    if (abs(cmd_dep) + abs(cmd_cap) < 40){
     return;}
-   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.05)
+   if (dep.norm() < 10.0 && abs(real_coord.get_cap() - late_pos.get_cap()) < 0.005)
    {
-        //Serial.println(abs(real_coord.get_cap() - late_pos.get_cap()));
         count_not_moving += 1;
-        Serial.println("INC BLOC COUNT");
+        Serial.print("INC BLOC COUNT ");
+        Serial.println(100. * abs(real_coord.get_cap() - late_pos.get_cap()));
         
    }
    else{

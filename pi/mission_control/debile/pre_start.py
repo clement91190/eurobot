@@ -12,7 +12,7 @@ class MAEPrestart(MAE):
         #state
         wait = InitState()
         recaly = self.sf.get_recaler()
-        set_y0 = self.sf.get_setxycap(Coord(1300, d_dos_cdg, 90)) 
+        set_y0 = self.sf.get_setxycap(Coord(1300, 300 + d_dos_cdg, 90)) 
         avance_plac_y = self.sf.get_bf_fw(Coord(250))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 180))
         recalx = self.sf.get_recaler()

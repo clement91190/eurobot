@@ -6,32 +6,28 @@ None
 weird reading... check connection
 None
 weird reading... check connection
-None
-weird reading... check connection
-None
-weird reading... check connection
-None
-weird reading... check connection
-None
-weird reading... check connection
-None
-weird reading... check connection
-new trigger to be 7
-
-weird reading... check connection
 COUCOU rush
-[93m [MAE] Transition from init to pre_startdebile [0m
-[91m [READ DATA] * COUL 1
+[93m [MAE] Transition from init to pre_startmark [0m
+[91m [READ DATA] * COUL 0
 [0m
-[91m [READ DATA] * STRAT 0 0
+COUCOU rush
+[91m [READ DATA] * STRAT 1 1
 [0m
-[CRAP] ['new', 'state:', '4']
-[CRAP] ['time_out', 'for', 'trigger', '7']
-[CRAP] ['new', 'trigger', 'to', 'be', '7']
-[CRAP] ['new', 'state:', '2']
-[CRAP] ['time_out', 'for', 'trigger', '7']
-[CRAP] ['new', 'trigger', 'to', 'be', '7']
-[CRAP] ['new', 'state:', '0']
+[CRAP] ['BRAS-1', '->', 'new', 'state:', '2']
+[CRAP] ['after', 'transition', '10']
+[CRAP] ['time_out', 'for', 'trigger', '1']
+[CRAP] ['BRAS1', '->', 'new', 'state:', '2']
+[CRAP] ['after', 'transition', '10']
+[CRAP] ['time_out', 'for', 'trigger', '1']
+[CRAP] ['new', 'trigger', 'to', 'be', '1']
+[CRAP] ['BRAS-1', '->', 'new', 'state:', '0']
+[CRAP] ['after', 'transition', '1']
+[CRAP] ['new', 'trigger', 'to', 'be', '1']
+[CRAP] ['BRAS1', '->', 'new', 'state:', '0']
+[CRAP] ['after', 'transition', '1']
+[CRAP] ['init', 'IO']
+[CRAP] ['init', 'COM']
+[93m [MAE] Transition from init to pre_startmark [0m
 [92m [READ TRANS] # STARTIN
 [0m
 [93m [MAE] Transition from init to 4 slave:S2 [0m
@@ -42,126 +38,120 @@ COUCOU rush
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@2']
 [CRAP] ['Recalage']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 0 0 0.49
+[91m [READ DATA] * COORD 0 0 359.91
 [0m
 [CRAP] ['theorique-1000', '0', '0.00']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -156 -1 2.47
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.49']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.35']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.24']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.17']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.12']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.08']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.06']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.04']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.03']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.02']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[91m [READ DATA] * COORD -75 0 1.39
 [0m
 [CRAP] ['theorique-1000', '0', '0.00']
 [92m [READ TRANS] # BLOC
 [0m
-[93m [MAE] Transition from 4 slave:S2 to 5 slave:S0 1300 100 90 [0m
-[95m [SEND ->  slave  ] S0 1300 100 90 [0m
+[93m [MAE] Transition from 4 slave:S2 to 5 slave:S0 1415 400 180 [0m
+[95m [SEND ->  slave  ] S0 1415 400 180 [0m
+[95m [SEND ->  slave  ] S1 [0m
+[93m [MAE] Transition from 5 slave:S0 1415 400 180 to 6 slave:S4 30 [0m
+[95m [SEND ->  slave  ] S4 30 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['STOP']
-[93m [MAE] Transition from 5 slave:S0 1300 100 90 to 6 slave:S4 250 [0m
-[95m [SEND ->  slave  ] S4 250 [0m
-[95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S0', '1300', '100', '90', 'serial_count', '14']
+[CRAP] ['Enregistre', ':', 'S0', '1415', '400', '180', 'serial_count', '15']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@0']
-[CRAP] ['SET', 'X', 'Y', 'CAP', ':1300']
-[91m [READ DATA] * COORD 1300 100 89.95
+[CRAP] ['SET', 'X', 'Y', 'CAP', ':1415']
+[91m [READ DATA] * COORD 1415 400 179.91
 [0m
-[CRAP] ['theorique1300', '100', '89.95']
-[CRAP] ['1300', '100', '90']
+[CRAP] ['theorique1415', '400', '179.91']
+[CRAP] ['1415', '400', '180']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1300 100 89.95
+[91m [READ DATA] * COORD 1415 400 180.09
 [0m
-[CRAP] ['theorique1300', '100', '89.95']
+[CRAP] ['theorique1415', '400', '179.91']
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '250', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '30', 'serial_count', '5']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['250', '0']
+[CRAP] ['30', '0']
+[CRAP] ['LAST', 'ERROR']
+[CRAP] ['-30.00']
+[CRAP] ['LAST', 'ERROR']
+[CRAP] ['-0.00']
+[91m [READ DATA] * COORD 1415 400 180.09
+[0m
+[CRAP] ['theorique1385', '400', '179.91']
+[92m [READ TRANS] # NEAR
+[0m
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1300 100 89.95
+[91m [READ DATA] * COORD 1415 400 180.09
 [0m
-[CRAP] ['theorique1300', '349', '89.95']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['-66.16']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.01']
-[91m [READ DATA] * COORD 1301 283 90.38
+[CRAP] ['theorique1385', '400', '179.91']
+[91m [READ DATA] * COORD 1383 400 179.17
 [0m
-[CRAP] ['theorique1300', '349', '89.95']
-[92m [READ TRANS] # NEAR
-[0m
-[91m [READ DATA] * COORD 1302 351 89.04
-[0m
-[CRAP] ['theorique1300', '349', '89.95']
+[CRAP] ['theorique1385', '400', '179.91']
 [92m [READ TRANS] # AFINI
 [0m
-[93m [MAE] Transition from 6 slave:S4 250 to 7 slave:S3 180 [0m
-[95m [SEND ->  slave  ] S3 180 [0m
+[93m [MAE] Transition from 6 slave:S4 30 to 7 slave:S3 90 [0m
+[95m [SEND ->  slave  ] S3 90 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '180', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S3', '90', 'serial_count', '5']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '180']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['err', 'BFCap', '90']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.02']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1302 350 88.79
+[91m [READ DATA] * COORD 1383 400 179.17
 [0m
-[CRAP] ['theorique1300', '349', '179.91']
+[CRAP] ['theorique1385', '400', '89.95']
 [CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.10']
-[91m [READ DATA] * COORD 1305 347 173.97
+[CRAP] ['-0.13']
+[91m [READ DATA] * COORD 1361 415 97.12
 [0m
-[CRAP] ['theorique1300', '349', '179.91']
+[CRAP] ['theorique1385', '400', '89.95']
 [92m [READ TRANS] # NEAR
 [0m
-[91m [READ DATA] * COORD 1306 347 176.67
+[91m [READ DATA] * COORD 1361 419 92.06
 [0m
-[CRAP] ['theorique1300', '349', '179.91']
+[CRAP] ['theorique1385', '400', '89.95']
 [92m [READ TRANS] # AFINI
 [0m
-[93m [MAE] Transition from 7 slave:S3 180 to 8 slave:S2 [0m
+[93m [MAE] Transition from 7 slave:S3 90 to 8 slave:S2 [0m
 [95m [SEND ->  slave  ] S2 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
@@ -169,112 +159,76 @@ COUCOU rush
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@2']
 [CRAP] ['Recalage']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.04']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.03']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1306 347 176.91
+[91m [READ DATA] * COORD 1361 419 91.97
 [0m
-[CRAP] ['theorique2300', '348', '179.91']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD 1901 354 181.60
+[CRAP] ['theorique1384', '-599', '89.95']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.35']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.35']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.46']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.43']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.21']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.15']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.11']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.07']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.05']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.04']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.03']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.02']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[91m [READ DATA] * COORD 1368 -46 91.09
 [0m
-[CRAP] ['theorique2300', '348', '179.91']
+[CRAP] ['theorique1384', '-599', '89.95']
 [92m [READ TRANS] # BLOC
 [0m
-[93m [MAE] Transition from 8 slave:S2 to 9 slave:S0 1400 -1 180 [0m
-[95m [SEND ->  slave  ] S0 1400 -1 180 [0m
+[93m [MAE] Transition from 8 slave:S2 to 9 slave:S0 -1 85 90 [0m
+[95m [SEND ->  slave  ] S0 -1 85 90 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['STOP']
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S0', '1400', '-1', '180', 'serial_count', '14']
+[CRAP] ['Enregistre', ':', 'S0', '-1', '85', '90', 'serial_count', '11']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@0']
-[CRAP] ['SET', 'X', 'Y', 'CAP', ':1400']
-[CRAP] ['recal', 'x', '->', 'y', 'unknown']
-[91m [READ DATA] * COORD 1400 354 179.91
+[CRAP] ['SET', 'X', 'Y', 'CAP', ':-1']
+[CRAP] ['recal', 'y', '->', 'x', 'unknown']
+[91m [READ DATA] * COORD 1368 85 89.95
 [0m
-[CRAP] ['theorique1400', '354', '179.91']
-[CRAP] ['1400', '-1', '180']
+[CRAP] ['theorique1368', '85', '89.95']
+[CRAP] ['-1', '85', '90']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1399 354 179.66
+[91m [READ DATA] * COORD 1368 85 89.95
 [0m
-[CRAP] ['theorique1400', '354', '179.91']
+[CRAP] ['theorique1368', '85', '89.95']
 [92m [READ TRANS] # START
 [0m
-[93m [MAE] Transition from 9 slave:S0 1400 -1 180 to out [0m
-[93m [MAE] Transition from pre_startdebile to game [0m
-[93m [MAE] Transition from init to 11 actio_pmi:P1 [0m
-[95m [SEND ->  actio1  ] P1 [0m
-[93m [MAE] Transition from 11 actio_pmi:P1 to 10 slave:S7 1 [0m
+[93m [MAE] Transition from 9 slave:S0 -1 85 90 to out [0m
+[93m [MAE] Transition from pre_startmark to game [0m
+[93m [MAE] Transition from init to 10 slave:S7 1 [0m
 [95m [SEND ->  slave  ] S7 1 [0m
 [95m [SEND ->  slave  ] S1 [0m
-[93m [MAE] Transition from 10 slave:S7 1 to 12 slave:S4 1200 [0m
-[95m [SEND ->  slave  ] S4 1200 [0m
+[93m [MAE] Transition from 10 slave:S7 1 to 11 slave:S4 500 [0m
+[95m [SEND ->  slave  ] S4 500 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'P1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'P@1']
-[CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S7', '1', 'serial_count', '4']
-[CRAP] ['PINCE', '->', 'TAPE']
-[CRAP] ['new', 'trigger', 'to', 'be', '6']
 [CRAP] ['coucou']
-[CRAP] ['new', 'state:', '1']
 [CRAP] ['ordre', 'ind', '=', 'S@7']
 [CRAP] ['Set', 'speed']
 [CRAP] ['speed', '1']
@@ -283,3193 +237,621 @@ COUCOU rush
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1399 354 180.15
+[91m [READ DATA] * COORD 1368 85 89.95
 [0m
-[CRAP] ['theorique1400', '354', '179.91']
+[CRAP] ['theorique1368', '85', '89.95']
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '1200', 'serial_count', '7']
+[CRAP] ['Enregistre', ':', 'S4', '500', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['1200', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['500', '0']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1398 354 180.64
+[91m [READ DATA] * COORD 1368 85 89.95
 [0m
-[CRAP] ['theorique200', '356', '179.91']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['theorique1368', '584', '89.95']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.25']
 [CRAP] ['LAST', 'ERROR']
-[CRAP] ['-67.06']
+[CRAP] ['-66.40']
 [CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.00']
-[91m [READ DATA] * COORD 267 359 181.89
+[CRAP] ['0.01']
+[91m [READ DATA] * COORD 1368 518 89.40
 [0m
-[CRAP] ['theorique200', '356', '179.91']
+[CRAP] ['theorique1368', '584', '89.95']
 [92m [READ TRANS] # NEAR
 [0m
-[91m [READ DATA] * COORD 196 358 180.30
+[91m [READ DATA] * COORD 1369 593 90.54
 [0m
-[CRAP] ['theorique200', '356', '179.91']
+[CRAP] ['theorique1368', '584', '89.95']
 [92m [READ TRANS] # AFINI
 [0m
-[93m [MAE] Transition from 12 slave:S4 1200 to end_rush [0m
+[93m [MAE] Transition from 11 slave:S4 500 to 12 slave:S3 120 [0m
+[95m [SEND ->  slave  ] S3 120 [0m
+[95m [SEND ->  slave  ] S1 [0m
+[CRAP] ['Fin', 'de', 'ligne']
+[CRAP] ['Enregistre', ':', 'S3', '120', 'serial_count', '6']
+[CRAP] ['coucou']
+[CRAP] ['ordre', 'ind', '=', 'S@3']
+[CRAP] ['err', 'BFCap', '120']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.11']
+[CRAP] ['Fin', 'de', 'ligne']
+[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
+[CRAP] ['coucou']
+[CRAP] ['ordre', 'ind', '=', 'S@1']
+[CRAP] ['GET', 'X', 'Y', 'CAP:']
+[91m [READ DATA] * COORD 1369 593 90.63
+[0m
+[CRAP] ['theorique1368', '584', '119.94']
+[CRAP] ['LAST', 'ERROR']
+[CRAP] ['0.12']
+[91m [READ DATA] * COORD 1369 594 112.86
+[0m
+[CRAP] ['theorique1368', '584', '119.94']
+[92m [READ TRANS] # NEAR
+[0m
+[91m [READ DATA] * COORD 1368 595 117.01
+[0m
+[CRAP] ['theorique1368', '584', '119.94']
+[92m [READ TRANS] # AFINI
+[0m
+[93m [MAE] Transition from 12 slave:S3 120 to 13 slave:S4 500 [0m
+[95m [SEND ->  slave  ] S4 500 [0m
+[95m [SEND ->  slave  ] S1 [0m
+[CRAP] ['Fin', 'de', 'ligne']
+[CRAP] ['Enregistre', ':', 'S4', '500', 'serial_count', '6']
+[CRAP] ['coucou']
+[CRAP] ['ordre', 'ind', '=', 'S@4']
+[CRAP] ['BFAvance']
+[CRAP] ['500', '0']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.00']
+[91m [READ DATA] * COORD 1368 595 117.10
+[0m
+[CRAP] ['theorique1119', '1018', '119.94']
+[91m [READ DATA] * ADVD 113 -340 286.48
+[0m
+ADVERSARY AT (1013 850 0)
+[92m [READ TRANS] # ADVD
+[0m
+[93m [MAE] Transition from 13 slave:S4 500 to end_rush [0m
 [93m [MAE] Transition from rush to ChoixMission [0m
-A * PATHFINDER   (1304, 358, -0.30000000000001137)   ->  (2500, 450, 90)
-[(16, 5)]
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2868, 595, 117.1)   ->  (2500, 450, 90)
+[]
 mission scores 
-{'m_filet': (True, 1.0)}
+{'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1304, 358, -0.30000000000001137)   ->  (2500, 450, 90)
-[(16, 5)]
-[ (-196 358 25.6284188782),  (100 500 -3.17983011986),  (1000 450 90)]
-3
+A * PATHFINDER   (2868, 595, 117.1)   ->  (2500, 450, 90)
+[]
+[ (1368 595 -158.49448158),  (1000 450 90)]
+2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[93m [MAE] Transition from init to go to (100 500 -3.17983011986) [0m
-[93m [MAE] Transition from init to 14 slave:S3 155 [0m
-[95m [SEND ->  slave  ] S3 155 [0m
-[95m [SEND ->  slave  ] S1 [0m
+[CRAP] ['STOP']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.11']
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '155', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
+[CRAP] ['coucou']
+[93m [MAE] Transition from init to final go to (1000 450 90) [0m
+[CRAP] ['ordre', 'ind', '=', 'S@1']
+[CRAP] ['GET', 'X', 'Y', 'CAP:']
+[91m [READ DATA] * COORD 1368 595 117.10
+[0m
+[93m [MAE] Transition from init to 15 slave:S3 -158 [0m
+[95m [SEND ->  slave  ] S3 -158 [0m
+[95m [SEND ->  slave  ] S1 [0m
+[CRAP] ['theorique1119', '1018', '119.94']
+[CRAP] ['Fin', 'de', 'ligne']
+[CRAP] ['Enregistre', ':', 'S3', '-158', 'serial_count', '7']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '155']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['err', 'BFCap', '-158']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 196 358 179.81
+[91m [READ DATA] * COORD 1346 632 120.97
 [0m
-[CRAP] ['theorique200', '356', '154.92']
+[CRAP] ['theorique1119', '1018', '202.08']
 [CRAP] ['LAST', 'ERROR']
-[CRAP] ['-0.09']
-[91m [READ DATA] * COORD 195 358 160.23
+[CRAP] ['0.12']
+[91m [READ DATA] * COORD 1337 632 194.96
 [0m
-[CRAP] ['theorique200', '356', '154.92']
+[CRAP] ['theorique1119', '1018', '202.08']
 [92m [READ TRANS] # NEAR
 [0m
-[93m [MAE] Transition from 14 slave:S3 155 to 15 slave:S4 328 [0m
-[95m [SEND ->  slave  ] S4 328 [0m
+[93m [MAE] Transition from 15 slave:S3 -158 to 16 slave:S4 395 [0m
+[95m [SEND ->  slave  ] S4 395 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '328', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '395', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['328', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['395', '0']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 195 358 157.05
+[91m [READ DATA] * COORD 1335 631 198.76
 [0m
-[CRAP] ['theorique-97', '495', '154.92']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD 14 446 144.47
+[CRAP] ['theorique753', '869', '202.08']
+[91m [READ DATA] * COORD 981 758 156.66
 [0m
-[CRAP] ['theorique-97', '495', '154.92']
-[92m [READ TRANS] # BLOC
+[CRAP] ['theorique753', '869', '202.08']
+[91m [READ DATA] * ADVD 150 463 -286.48
 [0m
-[93m [MAE] Transition from go to (100 500 -3.17983011986) to end_evitement [0m
+ADVERSARY AT (1026 392 0)
+[92m [READ TRANS] # ADVD
+[0m
+[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
 [93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1486, 446, 35.53)   ->  (2500, 450, 90)
-[(16, 5)]
+1401193761.64 (1026 392 0)
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2481, 758, 156.66)   ->  (2500, 450, 90)
+[]
 mission scores 
-{'m_filet': (True, 1.0)}
+{'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1486, 446, 35.53)   ->  (2500, 450, 90)
-[(16, 5)]
-[ (-14 446 25.3461759419),  (100 500 -3.17983011986),  (1000 450 90)]
-3
+A * PATHFINDER   (2481, 758, 156.66)   ->  (2500, 450, 90)
+[]
+[ (981 758 -86.4699933121),  (1000 450 90)]
+2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
 [CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (100 500 -3.17983011986) [0m
-[93m [MAE] Transition from init to 20 slave:S3 155 [0m
-[95m [SEND ->  slave  ] S3 155 [0m
+[93m [MAE] Transition from init to final go to (1000 450 90) [0m
+[93m [MAE] Transition from init to 18 slave:S3 -86 [0m
+[95m [SEND ->  slave  ] S3 -86 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '155', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S3', '-86', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '155']
+[CRAP] ['err', 'BFCap', '-86']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 15 445 144.23
+[91m [READ DATA] * COORD 959 767 158.82
 [0m
-[CRAP] ['theorique-97', '495', '154.92']
+[CRAP] ['theorique753', '869', '274.04']
 [CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.08']
-[91m [READ DATA] * COORD 15 445 150.35
+[CRAP] ['0.13']
+[91m [READ DATA] * COORD 960 783 266.62
 [0m
-[CRAP] ['theorique-97', '495', '154.92']
+[CRAP] ['theorique753', '869', '274.04']
 [92m [READ TRANS] # NEAR
 [0m
-[93m [MAE] Transition from 20 slave:S3 155 to 21 slave:S4 126 [0m
-[95m [SEND ->  slave  ] S4 126 [0m
+[93m [MAE] Transition from 18 slave:S3 -86 to 19 slave:S4 308 [0m
+[95m [SEND ->  slave  ] S4 308 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '126', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '308', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['126', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['308', '0']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 20 443 155.99
+[91m [READ DATA] * COORD 960 790 269.06
 [0m
-[CRAP] ['theorique-211', '549', '154.92']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD 7 449 148.86
+[CRAP] ['theorique774', '562', '274.04']
+[91m [READ DATA] * COORD 892 675 219.57
 [0m
-[CRAP] ['theorique-211', '549', '154.92']
-[92m [READ TRANS] # BLOC
+[CRAP] ['theorique774', '562', '274.04']
+[91m [READ DATA] * ADVD 120 -362 286.48
 [0m
-[93m [MAE] Transition from go to (100 500 -3.17983011986) to end_evitement [0m
+ADVERSARY AT (1030 877 0)
+[92m [READ TRANS] # ADVD
+[0m
+[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
 [93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1493, 449, 31.139999999999986)   ->  (2500, 450, 90)
-[(16, 5)]
+1401193764.87 (1030 877 0)
+1401193761.64 (1026 392 0)
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2392, 675, 219.57)   ->  (2500, 450, 90)
+[]
 mission scores 
-{'m_filet': (True, 1.0)}
+{'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1493, 449, 31.139999999999986)   ->  (2500, 450, 90)
-[(16, 5)]
-[ (-7 449 25.4841269904),  (100 500 -3.17983011986),  (1000 450 90)]
-3
+A * PATHFINDER   (2392, 675, 219.57)   ->  (2500, 450, 90)
+[]
+[ (892 675 -64.3589941757),  (1000 450 90)]
+2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
 [CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (100 500 -3.17983011986) [0m
-[93m [MAE] Transition from init to 26 slave:S3 155 [0m
-[95m [SEND ->  slave  ] S3 155 [0m
+[93m [MAE] Transition from init to final go to (1000 450 90) [0m
+[93m [MAE] Transition from init to 21 slave:S3 -64 [0m
+[95m [SEND ->  slave  ] S3 -64 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '155', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S3', '-64', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '155']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.10']
-[91m [READ DATA] * COORD 7 449 149.11
-[0m
-[CRAP] ['theorique-211', '549', '154.92']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 26 slave:S3 155 to 27 slave:S4 118 [0m
-[95m [SEND ->  slave  ] S4 118 [0m
-[95m [SEND ->  slave  ] S1 [0m
+[CRAP] ['err', 'BFCap', '-64']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.07']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.16']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 7 449 149.11
+[91m [READ DATA] * COORD 879 664 220.38
 [0m
-[CRAP] ['theorique-211', '549', '154.92']
+[CRAP] ['theorique774', '562', '296.03']
+[CRAP] ['LAST', 'ERROR']
+[CRAP] ['0.12']
+[91m [READ DATA] * COORD 884 678 289.24
+[0m
+[CRAP] ['theorique774', '562', '296.03']
+[92m [READ TRANS] # NEAR
+[0m
+[93m [MAE] Transition from 21 slave:S3 -64 to 22 slave:S4 249 [0m
+[95m [SEND ->  slave  ] S4 249 [0m
+[95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '118', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '249', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['118', '0']
+[CRAP] ['249', '0']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 7 449 154.25
+[91m [READ DATA] * COORD 885 675 293.30
 [0m
-[CRAP] ['theorique-318', '599', '154.92']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD 0 452 152.77
+[CRAP] ['theorique884', '338', '296.03']
+[91m [READ DATA] * COORD 894 575 266.60
 [0m
-[CRAP] ['theorique-318', '599', '154.92']
-[92m [READ TRANS] # BLOC
+[CRAP] ['theorique884', '338', '296.03']
+[91m [READ DATA] * ADVD 141 -434 286.48
 [0m
-[93m [MAE] Transition from go to (100 500 -3.17983011986) to end_evitement [0m
+ADVERSARY AT (1318 459 0)
+[92m [READ TRANS] # ADVD
+[0m
+[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
 [93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1500, 452, 27.22999999999999)   ->  (2500, 450, 90)
-[(16, 5)]
+1401193767.1 (1318 459 0)
+1401193764.87 (1030 877 0)
+1401193761.64 (1026 392 0)
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2394, 575, 266.6)   ->  (2500, 450, 90)
+[]
 mission scores 
-{'m_filet': (True, 1.0)}
+{'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1500, 452, 27.22999999999999)   ->  (2500, 450, 90)
-[(16, 5)]
-[ (0 452 25.6410058243),  (100 500 -3.17983011986),  (1000 450 90)]
-3
+A * PATHFINDER   (2394, 575, 266.6)   ->  (2500, 450, 90)
+[]
+[ (894 575 -49.7020554233),  (1000 450 90)]
+2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
 [CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (100 500 -3.17983011986) [0m
-[93m [MAE] Transition from init to 32 slave:S3 155 [0m
-[95m [SEND ->  slave  ] S3 155 [0m
+[93m [MAE] Transition from init to final go to (1000 450 90) [0m
+[93m [MAE] Transition from init to 24 slave:S3 -49 [0m
+[95m [SEND ->  slave  ] S3 -49 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '155', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S3', '-49', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '155']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.06']
-[91m [READ DATA] * COORD 1 452 151.54
-[0m
-[CRAP] ['theorique-318', '599', '154.92']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 32 slave:S3 155 to 33 slave:S4 110 [0m
-[95m [SEND ->  slave  ] S4 110 [0m
-[95m [SEND ->  slave  ] S1 [0m
+[CRAP] ['err', 'BFCap', '-49']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1 452 151.54
+[91m [READ DATA] * COORD 893 556 268.67
 [0m
-[CRAP] ['theorique-318', '599', '154.92']
+[CRAP] ['theorique884', '338', '311.02']
+[CRAP] ['LAST', 'ERROR']
+[CRAP] ['0.11']
+[91m [READ DATA] * COORD 890 565 304.45
+[0m
+[CRAP] ['theorique884', '338', '311.02']
+[92m [READ TRANS] # NEAR
+[0m
+[93m [MAE] Transition from 24 slave:S3 -49 to 25 slave:S4 163 [0m
+[95m [SEND ->  slave  ] S4 163 [0m
+[95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '110', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '163', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['110', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['163', '0']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD 1 452 154.97
+[91m [READ DATA] * COORD 888 567 307.98
 [0m
-[CRAP] ['theorique-417', '645', '154.92']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -5 455 151.29
+[CRAP] ['theorique991', '215', '311.02']
+[91m [READ DATA] * COORD 919 492 284.63
 [0m
-[CRAP] ['theorique-417', '645', '154.92']
-[92m [READ TRANS] # BLOC
+[CRAP] ['theorique991', '215', '311.02']
+[91m [READ DATA] * ADVD 142 437 -286.48
 [0m
-[93m [MAE] Transition from go to (100 500 -3.17983011986) to end_evitement [0m
+ADVERSARY AT (532 464 0)
+[92m [READ TRANS] # ADVD
+[0m
+[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
 [93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1505, 455, 28.710000000000008)   ->  (2500, 450, 90)
-[(16, 5)]
+1401193768.73 (532 464 0)
+1401193767.1 (1318 459 0)
+1401193764.87 (1030 877 0)
+1401193761.64 (1026 392 0)
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2419, 492, 284.63)   ->  (2500, 450, 90)
+[]
 mission scores 
-{'m_filet': (True, 1.0)}
+{'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1505, 455, 28.710000000000008)   ->  (2500, 450, 90)
-[(16, 5)]
-[ (5 455 25.3461759419),  (100 500 -3.17983011986),  (1000 450 90)]
-3
+A * PATHFINDER   (2419, 492, 284.63)   ->  (2500, 450, 90)
+[]
+[ (919 492 -27.4075754378),  (1000 450 90)]
+2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
 [CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (100 500 -3.17983011986) [0m
-[93m [MAE] Transition from init to 38 slave:S3 155 [0m
-[95m [SEND ->  slave  ] S3 155 [0m
+[93m [MAE] Transition from init to final go to (1000 450 90) [0m
+[93m [MAE] Transition from init to 27 slave:S3 -27 [0m
+[95m [SEND ->  slave  ] S3 -27 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '155', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S3', '-27', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '155']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.06']
-[91m [READ DATA] * COORD -4 455 151.29
-[0m
-[CRAP] ['theorique-417', '645', '154.92']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 38 slave:S3 155 to 39 slave:S4 105 [0m
-[95m [SEND ->  slave  ] S4 105 [0m
-[95m [SEND ->  slave  ] S1 [0m
+[CRAP] ['err', 'BFCap', '-27']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.11']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -4 455 151.29
+[91m [READ DATA] * COORD 924 475 285.44
 [0m
-[CRAP] ['theorique-417', '645', '154.92']
+[CRAP] ['theorique991', '215', '333.01']
+[CRAP] ['LAST', 'ERROR']
+[CRAP] ['0.11']
+[91m [READ DATA] * COORD 918 483 326.64
+[0m
+[CRAP] ['theorique991', '215', '333.01']
+[92m [READ TRANS] # NEAR
+[0m
+[93m [MAE] Transition from 27 slave:S3 -27 to 28 slave:S4 91 [0m
+[95m [SEND ->  slave  ] S4 91 [0m
+[95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '105', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '91', 'serial_count', '5']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['105', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['91', '0']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -4 455 154.96
+[91m [READ DATA] * COORD 916 484 330.44
 [0m
-[CRAP] ['theorique-512', '690', '154.92']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -14 459 151.76
+[CRAP] ['theorique1072', '174', '333.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.44']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.31']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.11']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.07']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.05']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.07']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.05']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.15']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.10']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.07']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.05']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.15']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.10']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.07']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.05']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.15']
+[91m [READ DATA] * COORD 979 403 291.27
 [0m
-[CRAP] ['theorique-512', '690', '154.92']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (100 500 -3.17983011986) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1514, 459, 28.24000000000001)   ->  (2500, 450, 90)
-[(16, 5)]
-mission scores 
-{'m_filet': (True, 1.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1514, 459, 28.24000000000001)   ->  (2500, 450, 90)
-[(16, 5)]
-[ (14 459 25.4892005563),  (100 500 -3.17983011986),  (1000 450 90)]
-3
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (100 500 -3.17983011986) [0m
-[93m [MAE] Transition from init to 44 slave:S3 155 [0m
-[95m [SEND ->  slave  ] S3 155 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '155', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '155']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.06']
-[91m [READ DATA] * COORD -13 459 151.52
-[0m
-[CRAP] ['theorique-512', '690', '154.92']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 44 slave:S3 155 to 45 slave:S4 95 [0m
-[95m [SEND ->  slave  ] S4 95 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -13 459 151.52
-[0m
-[CRAP] ['theorique-512', '690', '154.92']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '95', 'serial_count', '5']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['95', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -13 459 153.96
-[0m
-[CRAP] ['theorique-598', '730', '154.92']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -26 465 151.00
-[0m
-[CRAP] ['theorique-598', '730', '154.92']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (100 500 -3.17983011986) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1526, 465, 29.0)   ->  (2500, 450, 90)
-[(16, 5)]
-mission scores 
-{'m_filet': (True, 1.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1526, 465, 29.0)   ->  (2500, 450, 90)
-[(16, 5)]
-[ (26 465 25.3128838019),  (100 500 -3.17983011986),  (1000 450 90)]
-3
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (100 500 -3.17983011986) [0m
-[93m [MAE] Transition from init to 50 slave:S3 155 [0m
-[95m [SEND ->  slave  ] S3 155 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '155', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '155']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.06']
-[91m [READ DATA] * COORD -25 465 151.25
-[0m
-[CRAP] ['theorique-598', '730', '154.92']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 50 slave:S3 155 to 51 slave:S4 81 [0m
-[95m [SEND ->  slave  ] S4 81 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -25 465 151.25
-[0m
-[CRAP] ['theorique-598', '730', '154.92']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '81', 'serial_count', '5']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['81', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -25 464 155.41
-[0m
-[CRAP] ['theorique-672', '764', '154.92']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -314 584 144.11
-[0m
-[CRAP] ['theorique-672', '764', '154.92']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (100 500 -3.17983011986) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1814, 584, 35.889999999999986)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1814, 584, 35.889999999999986)   ->  (2500, 450, 90)
-[]
-[ (314 584 -11.052714092),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 56 slave:S3 191 [0m
-[95m [SEND ->  slave  ] S3 191 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '191', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '191']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -312 582 143.62
-[0m
-[CRAP] ['theorique-672', '764', '190.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -290 570 160.55
-[0m
-[CRAP] ['theorique-672', '764', '190.90']
+[CRAP] ['theorique1072', '174', '333.01']
 [92m [READ TRANS] # BLOC
 [0m
 [93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
 [93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1790, 570, 19.44999999999999)   ->  (2500, 450, 90)
+1401193768.73 (532 464 0)
+1401193767.1 (1318 459 0)
+1401193764.87 (1030 877 0)
+1401193761.64 (1026 392 0)
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2479, 403, 291.27)   ->  (2500, 450, 90)
 []
 mission scores 
 {'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1790, 570, 19.44999999999999)   ->  (2500, 450, 90)
+A * PATHFINDER   (2479, 403, 291.27)   ->  (2500, 450, 90)
 []
-[ (290 570 -9.59313426273),  (1000 450 90)]
+[ (979 403 65.9245017449),  (1000 450 90)]
 2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
 [CRAP] ['STOP']
 [93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 59 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
+[93m [MAE] Transition from init to 30 slave:S3 65 [0m
+[95m [SEND ->  slave  ] S3 65 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S3', '65', 'serial_count', '5']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['err', 'BFCap', '65']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.04']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.03']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -289 570 159.33
+[91m [READ DATA] * COORD 978 404 291.18
 [0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -291 570 160.55
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1791, 570, 19.44999999999999)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1791, 570, 19.44999999999999)   ->  (2500, 450, 90)
-[]
-[ (291 570 -9.60641279924),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 62 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -289 570 159.82
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -291 570 161.04
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1791, 570, 18.960000000000008)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1791, 570, 18.960000000000008)   ->  (2500, 450, 90)
-[]
-[ (291 570 -9.60641279924),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 65 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -289 570 160.31
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -291 570 161.77
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1791, 570, 18.22999999999999)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1791, 570, 18.22999999999999)   ->  (2500, 450, 90)
-[]
-[ (291 570 -9.60641279924),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 68 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -289 570 160.31
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -290 570 161.04
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1790, 570, 18.960000000000008)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1790, 570, 18.960000000000008)   ->  (2500, 450, 90)
-[]
-[ (290 570 -9.59313426273),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 71 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -289 570 160.31
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -290 570 161.28
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1790, 570, 18.72)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1790, 570, 18.72)   ->  (2500, 450, 90)
-[]
-[ (290 570 -9.59313426273),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 74 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -289 570 160.55
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -290 570 161.53
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1790, 570, 18.47)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1790, 570, 18.47)   ->  (2500, 450, 90)
-[]
-[ (290 570 -9.59313426273),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 77 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -288 569 161.04
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -289 570 162.27
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1789, 570, 17.72999999999999)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1789, 570, 17.72999999999999)   ->  (2500, 450, 90)
-[]
-[ (289 570 -9.57989204201),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 80 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -288 569 160.80
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -290 570 162.51
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1790, 570, 17.49000000000001)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1790, 570, 17.49000000000001)   ->  (2500, 450, 90)
-[]
-[ (290 570 -9.59313426273),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 83 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -288 569 162.02
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -289 569 164.96
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-A * PATHFINDER   (1789, 569, 15.039999999999992)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1789, 569, 15.039999999999992)   ->  (2500, 450, 90)
-[]
-[ (289 569 -9.50152113886),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 86 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -288 569 162.76
-[0m
-[CRAP] ['theorique-672', '764', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['theorique1072', '174', '64.97']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.35']
 [CRAP] ['LAST', 'ERROR']
 [CRAP] ['0.14']
-[91m [READ DATA] * COORD -266 567 181.15
+[91m [READ DATA] * COORD 1056 481 57.00
 [0m
-[CRAP] ['theorique-672', '764', '188.90']
+[CRAP] ['theorique1072', '174', '64.97']
 [92m [READ TRANS] # NEAR
 [0m
-[93m [MAE] Transition from 86 slave:S3 189 to 87 slave:S4 720 [0m
-[95m [SEND ->  slave  ] S4 720 [0m
+[93m [MAE] Transition from 30 slave:S3 65 to 31 slave:S4 51 [0m
+[95m [SEND ->  slave  ] S4 51 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '720', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '51', 'serial_count', '5']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['720', '0']
-[91m [READ DATA] * COORD -262 567 185.07
+[CRAP] ['51', '0']
+[CRAP] ['Fin', 'de', 'ligne']
+[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
+[CRAP] ['coucou']
+[CRAP] ['ordre', 'ind', '=', 'S@1']
+[CRAP] ['GET', 'X', 'Y', 'CAP:']
+[91m [READ DATA] * COORD 1058 484 58.44
 [0m
-[CRAP] ['theorique-1383', '653', '188.90']
-[91m [READ DATA] * ADVD 300 0 0.00
+[CRAP] ['theorique1093', '220', '64.97']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.36']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.25']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.18']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.12']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.09']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.06']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.04']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.03']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.02']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.01']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.11']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.07']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.05']
+[91m [READ DATA] * COORD 1039 386 97.07
 [0m
-ADVERSARY AT (-36 593 0)
-[92m [READ TRANS] # ADVD
+[CRAP] ['theorique1093', '220', '64.97']
+[92m [READ TRANS] # BLOC
 [0m
 [93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
 [93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1762, 567, -5.069999999999993)   ->  (2500, 450, 90)
+1401193768.73 (532 464 0)
+1401193767.1 (1318 459 0)
+1401193764.87 (1030 877 0)
+1401193761.64 (1026 392 0)
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2539, 386, 97.07)   ->  (2500, 450, 90)
 []
 mission scores 
 {'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1762, 567, -5.069999999999993)   ->  (2500, 450, 90)
+A * PATHFINDER   (2539, 386, 97.07)   ->  (2500, 450, 90)
 []
-[ (262 567 -9.00850374203),  (1000 450 90)]
+[ (1039 386 121.357085224),  (1000 450 90)]
 2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
 [CRAP] ['STOP']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
 [93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -262 567 185.07
-[0m
-[93m [MAE] Transition from init to 89 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
+[93m [MAE] Transition from init to 33 slave:S3 121 [0m
+[95m [SEND ->  slave  ] S3 121 [0m
 [95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['theorique-1383', '653', '188.90']
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S3', '121', 'serial_count', '6']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
+[CRAP] ['err', 'BFCap', '121']
 [CRAP] ['Fin', 'de', 'ligne']
 [CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@1']
 [CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -273 567 176.00
+[91m [READ DATA] * COORD 1039 394 93.54
 [0m
-[CRAP] ['theorique-1383', '653', '188.90']
+[CRAP] ['theorique1093', '220', '120.94']
 [CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.12']
-[91m [READ DATA] * COORD -267 568 181.88
+[CRAP] ['0.14']
+[91m [READ DATA] * COORD 1032 420 112.95
 [0m
-[CRAP] ['theorique-1383', '653', '188.90']
+[CRAP] ['theorique1093', '220', '120.94']
 [92m [READ TRANS] # NEAR
 [0m
-[93m [MAE] Transition from 89 slave:S3 189 to 90 slave:S4 747 [0m
-[95m [SEND ->  slave  ] S4 747 [0m
+[93m [MAE] Transition from 33 slave:S3 121 to 34 slave:S4 74 [0m
+[95m [SEND ->  slave  ] S4 74 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '747', 'serial_count', '6']
+[CRAP] ['Enregistre', ':', 'S4', '74', 'serial_count', '5']
 [CRAP] ['coucou']
 [CRAP] ['ordre', 'ind', '=', 'S@4']
 [CRAP] ['BFAvance']
-[CRAP] ['747', '0']
-[91m [READ DATA] * COORD -262 568 185.81
+[CRAP] ['74', '0']
+[CRAP] ['Fin', 'de', 'ligne']
+[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
+[CRAP] ['coucou']
+[CRAP] ['ordre', 'ind', '=', 'S@1']
+[CRAP] ['GET', 'X', 'Y', 'CAP:']
+[91m [READ DATA] * COORD 1032 421 113.59
 [0m
-[CRAP] ['theorique-2121', '537', '188.90']
-[91m [READ DATA] * ADVD 300 0 0.00
+[CRAP] ['theorique1055', '284', '120.94']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.39']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.39']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.38']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.27']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.19']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.35']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.25']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.28']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.20']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.25']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.17']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.12']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.09']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.06']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.04']
+[CRAP] ['INC', 'BLOC', 'COUNT', '0.03']
+[91m [READ DATA] * COORD 1041 386 98.15
 [0m
-ADVERSARY AT (-36 598 0)
-[92m [READ TRANS] # ADVD
+[CRAP] ['theorique1055', '284', '120.94']
+[92m [READ TRANS] # BLOC
 [0m
 [93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
 [93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1762, 568, -5.810000000000002)   ->  (2500, 450, 90)
+1401193768.73 (532 464 0)
+1401193767.1 (1318 459 0)
+1401193764.87 (1030 877 0)
+1401193761.64 (1026 392 0)
+1401193758.04 (1013 850 0)
+A * PATHFINDER   (2541, 386, 98.15)   ->  (2500, 450, 90)
 []
 mission scores 
 {'m_filet': (True, 2.0)}
 [93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1762, 568, -5.810000000000002)   ->  (2500, 450, 90)
+A * PATHFINDER   (2541, 386, 98.15)   ->  (2500, 450, 90)
 []
-[ (262 568 -9.0842209247),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -262 568 185.81
-[0m
-[93m [MAE] Transition from init to 92 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['theorique-2121', '537', '188.90']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -276 569 173.79
-[0m
-[CRAP] ['theorique-2121', '537', '188.90']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.12']
-[91m [READ DATA] * COORD -268 569 182.13
-[0m
-[CRAP] ['theorique-2121', '537', '188.90']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 92 slave:S3 189 to 93 slave:S4 747 [0m
-[95m [SEND ->  slave  ] S4 747 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '747', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['747', '0']
-[91m [READ DATA] * COORD -263 569 185.56
-[0m
-[CRAP] ['theorique-2859', '422', '188.90']
-[91m [READ DATA] * ADVD 300 0 0.00
-[0m
-ADVERSARY AT (-35 598 0)
-[92m [READ TRANS] # ADVD
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1763, 569, -5.560000000000002)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1763, 569, -5.560000000000002)   ->  (2500, 450, 90)
-[]
-[ (263 569 -9.17212364822),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -263 569 185.56
-[0m
-[93m [MAE] Transition from init to 95 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['theorique-2859', '422', '188.90']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -275 570 175.02
-[0m
-[CRAP] ['theorique-2859', '422', '188.90']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.12']
-[91m [READ DATA] * COORD -270 570 181.88
-[0m
-[CRAP] ['theorique-2859', '422', '188.90']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 95 slave:S3 189 to 96 slave:S4 746 [0m
-[95m [SEND ->  slave  ] S4 746 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '746', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['746', '0']
-[91m [READ DATA] * COORD -262 571 186.54
-[0m
-[CRAP] ['theorique-3596', '306', '188.90']
-[91m [READ DATA] * ADVD 300 0 0.00
-[0m
-ADVERSARY AT (-36 605 0)
-[92m [READ TRANS] # ADVD
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1762, 571, -6.539999999999992)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1762, 571, -6.539999999999992)   ->  (2500, 450, 90)
-[]
-[ (262 571 -9.31117959221),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -262 571 186.54
-[0m
-[93m [MAE] Transition from init to 98 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['theorique-3596', '306', '188.90']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -273 571 175.75
-[0m
-[CRAP] ['theorique-3596', '306', '188.90']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.10']
-[91m [READ DATA] * COORD -268 571 183.35
-[0m
-[CRAP] ['theorique-3596', '306', '188.90']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 98 slave:S3 189 to 99 slave:S4 747 [0m
-[95m [SEND ->  slave  ] S4 747 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '747', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['747', '0']
-[91m [READ DATA] * COORD -259 572 187.52
-[0m
-[CRAP] ['theorique-4334', '191', '188.90']
-[91m [READ DATA] * ADVD 300 0 0.00
-[0m
-ADVERSARY AT (-38 611 0)
-[92m [READ TRANS] # ADVD
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1759, 572, -7.52000000000001)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1759, 572, -7.52000000000001)   ->  (2500, 450, 90)
-[]
-[ (259 572 -9.34943662388),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -259 572 187.52
-[0m
-[CRAP] ['theorique-4334', '191', '188.90']
-[93m [MAE] Transition from init to 101 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.13']
-[91m [READ DATA] * COORD -265 572 181.64
-[0m
-[CRAP] ['theorique-4334', '191', '188.90']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 101 slave:S3 189 to 102 slave:S4 750 [0m
-[95m [SEND ->  slave  ] S4 750 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -265 572 181.64
-[0m
-[CRAP] ['theorique-4334', '191', '188.90']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '750', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['750', '0']
-[91m [READ DATA] * COORD -260 572 187.03
-[0m
-[CRAP] ['theorique-5075', '75', '188.90']
-[91m [READ DATA] * ADVD 300 0 0.00
-[0m
-ADVERSARY AT (-37 608 0)
-[92m [READ TRANS] # ADVD
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1760, 572, -7.030000000000001)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1760, 572, -7.030000000000001)   ->  (2500, 450, 90)
-[]
-[ (260 572 -9.36184746751),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -260 572 187.03
-[0m
-[93m [MAE] Transition from init to 104 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['theorique-5075', '75', '188.90']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.10']
-[91m [READ DATA] * COORD -263 572 183.11
-[0m
-[CRAP] ['theorique-5075', '75', '188.90']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 104 slave:S3 189 to 105 slave:S4 749 [0m
-[95m [SEND ->  slave  ] S4 749 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -263 572 183.11
-[0m
-[CRAP] ['theorique-5075', '75', '188.90']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '749', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['749', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -258 573 188.51
-[0m
-[CRAP] ['theorique-5815', '-40', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -267 572 178.70
-[0m
-[CRAP] ['theorique-5815', '-40', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1767, 572, 1.3000000000000114)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1767, 572, 1.3000000000000114)   ->  (2500, 450, 90)
-[]
-[ (267 572 -9.44964615082),  (1000 450 90)]
+[ (1041 386 122.644640135),  (1000 450 90)]
 2
 [93m [MAE] Transition from ChoixMission to deplacement_mission [0m
 [CRAP] ['STOP']
 [93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 107 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
+[93m [MAE] Transition from init to 36 slave:S3 122 [0m
+[95m [SEND ->  slave  ] S3 122 [0m
 [95m [SEND ->  slave  ] S1 [0m
 [CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -269 572 174.54
-[0m
-[CRAP] ['theorique-5815', '-40', '188.90']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.13']
-[91m [READ DATA] * COORD -264 572 181.40
-[0m
-[CRAP] ['theorique-5815', '-40', '188.90']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 107 slave:S3 189 to 108 slave:S4 743 [0m
-[95m [SEND ->  slave  ] S4 743 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '743', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['743', '0']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -259 573 190.46
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -313 559 177.15
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1813, 559, 2.8499999999999943)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1813, 559, 2.8499999999999943)   ->  (2500, 450, 90)
-[]
-[ (313 559 -9.01544856471),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 110 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -313 559 177.15
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -313 559 177.15
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1813, 559, 2.8499999999999943)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1813, 559, 2.8499999999999943)   ->  (2500, 450, 90)
-[]
-[ (313 559 -9.01544856471),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 113 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -313 559 176.91
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -313 559 176.91
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1813, 559, 3.0900000000000034)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1813, 559, 3.0900000000000034)   ->  (2500, 450, 90)
-[]
-[ (313 559 -9.01544856471),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 116 slave:S3 189 [0m
-[95m [SEND ->  slave  ] S3 189 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '189', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '189']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -313 559 176.91
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -311 559 178.13
-[0m
-[CRAP] ['theorique-6549', '-155', '188.90']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1811, 559, 1.8700000000000045)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1811, 559, 1.8700000000000045)   ->  (2500, 450, 90)
-[]
-[ (311 559 -8.9897068885),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 119 slave:S3 188 [0m
-[95m [SEND ->  slave  ] S3 188 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '188', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '188']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['0.05']
-[91m [READ DATA] * COORD -301 559 185.25
-[0m
-[CRAP] ['theorique-6549', '-155', '187.90']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 119 slave:S3 188 to 120 slave:S4 697 [0m
-[95m [SEND ->  slave  ] S4 697 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -301 559 185.25
-[0m
-[CRAP] ['theorique-6549', '-155', '187.90']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '697', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['697', '0']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -284 566 205.35
-[0m
-[CRAP] ['theorique-7239', '-251', '187.90']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -396 532 194.13
-[0m
-[CRAP] ['theorique-7239', '-251', '187.90']
-[91m [READ DATA] * ADVD 300 0 0.00
-[0m
-ADVERSARY AT (105 605 0)
-[92m [READ TRANS] # ADVD
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1896, 532, -14.129999999999995)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1896, 532, -14.129999999999995)   ->  (2500, 450, 90)
-[]
-[ (396 532 -7.73129826442),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 122 slave:S3 187 [0m
-[95m [SEND ->  slave  ] S3 187 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '187', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '187']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -418 524 201.68
-[0m
-[CRAP] ['theorique-7239', '-251', '186.91']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['-0.13']
-[91m [READ DATA] * COORD -418 525 194.59
-[0m
-[CRAP] ['theorique-7239', '-251', '186.91']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 122 slave:S3 187 to 123 slave:S4 609 [0m
-[95m [SEND ->  slave  ] S4 609 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '609', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['609', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -418 525 194.83
-[0m
-[CRAP] ['theorique-7844', '-324', '186.91']
-[91m [READ DATA] * COORD -455 519 188.65
-[0m
-[CRAP] ['theorique-7844', '-324', '186.91']
-[91m [READ DATA] * ADVD 300 0 0.00
-[0m
-ADVERSARY AT (158 564 0)
-[92m [READ TRANS] # ADVD
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (1955, 519, -8.650000000000006)   ->  (2500, 450, 90)
-[]
-mission scores 
-{'m_filet': (True, 2.0)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (1955, 519, -8.650000000000006)   ->  (2500, 450, 90)
-[]
-[ (455 519 -7.21557180671),  (1000 450 90)]
-2
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to final go to (1000 450 90) [0m
-[93m [MAE] Transition from init to 125 slave:S3 187 [0m
-[95m [SEND ->  slave  ] S3 187 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '187', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '187']
-[CRAP] ['LAST', 'ERROR']
-[CRAP] ['-0.09']
-[91m [READ DATA] * COORD -476 515 192.28
-[0m
-[CRAP] ['theorique-7844', '-324', '186.91']
-[92m [READ TRANS] # NEAR
-[0m
-[93m [MAE] Transition from 125 slave:S3 187 to 126 slave:S4 549 [0m
-[95m [SEND ->  slave  ] S4 549 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -476 515 192.28
-[0m
-[CRAP] ['theorique-7844', '-324', '186.91']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S4', '549', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@4']
-[CRAP] ['BFAvance']
-[CRAP] ['549', '0']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -472 516 190.82
-[0m
-[CRAP] ['theorique-8389', '-390', '186.91']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -752 471 202.08
-[0m
-[CRAP] ['theorique-8389', '-390', '186.91']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from final go to (1000 450 90) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2252, 471, -22.080000000000013)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2252, 471, -22.080000000000013)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (752 471 -126.218837266),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 128 slave:S3 306 [0m
-[95m [SEND ->  slave  ] S3 306 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '306', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '306']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -748 473 200.87
-[0m
-[CRAP] ['theorique-8389', '-390', '305.84']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -745 474 199.89
-[0m
-[CRAP] ['theorique-8389', '-390', '305.84']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2245, 474, -19.889999999999986)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2245, 474, -19.889999999999986)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (745 474 -121.304123496),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 137 slave:S3 301 [0m
-[95m [SEND ->  slave  ] S3 301 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '301', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '301']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -743 474 199.16
-[0m
-[CRAP] ['theorique-8389', '-390', '300.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -739 476 197.95
-[0m
-[CRAP] ['theorique-8389', '-390', '300.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2239, 476, -17.94999999999999)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2239, 476, -17.94999999999999)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (739 476 -117.164985057),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 146 slave:S3 297 [0m
-[95m [SEND ->  slave  ] S3 297 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '297', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '297']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -738 476 197.46
-[0m
-[CRAP] ['theorique-8389', '-390', '296.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '296.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (735 477 -114.44395478),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 155 slave:S3 294 [0m
-[95m [SEND ->  slave  ] S3 294 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '294', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '294']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (735 477 -114.44395478),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 164 slave:S3 294 [0m
-[95m [SEND ->  slave  ] S3 294 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '294', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '294']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (735 477 -114.44395478),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 173 slave:S3 294 [0m
-[95m [SEND ->  slave  ] S3 294 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '294', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '294']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2235, 477, -18.930000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (735 477 -114.44395478),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 182 slave:S3 294 [0m
-[95m [SEND ->  slave  ] S3 294 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '294', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '294']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -735 477 198.93
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -735 477 199.18
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2235, 477, -19.180000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2235, 477, -19.180000000000007)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (735 477 -114.44395478),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 191 slave:S3 294 [0m
-[95m [SEND ->  slave  ] S3 294 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '294', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '294']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 201.39
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '293.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 200 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 209 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 218 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 227 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 236 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 245 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 254 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 263 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 272 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 281 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[92m [READ TRANS] # BLOC
-[0m
-[93m [MAE] Transition from go to (700 400 45.0) to end_evitement [0m
-[93m [MAE] Transition from deplacement_mission to ChoixMission [0m
-1401129298.15 (158 564 0)
-1401129297.14 (105 605 0)
-1401129288.41 (-37 608 0)
-1401129287.69 (-38 611 0)
-1401129286.93 (-36 605 0)
-1401129286.17 (-35 598 0)
-1401129285.38 (-36 598 0)
-1401129284.61 (-36 593 0)
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-mission scores 
-{'m_filet': (True, 0.6666666666666666)}
-[93m ------------------- Mission Choice: m_filet   ----------------  [0m
-A * PATHFINDER   (2230, 479, -20.900000000000006)   ->  (2500, 450, 90)
-[(22, 4), (23, 5)]
-[ (730 479 -110.794114956),  (700 400 45.0),  (800 500 -14.0362434679),  (1000 450 90)]
-4
-[93m [MAE] Transition from ChoixMission to deplacement_mission [0m
-[CRAP] ['STOP']
-[93m [MAE] Transition from init to go to (700 400 45.0) [0m
-[93m [MAE] Transition from init to 290 slave:S3 290 [0m
-[95m [SEND ->  slave  ] S3 290 [0m
-[95m [SEND ->  slave  ] S1 [0m
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S3', '290', 'serial_count', '6']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@3']
-[CRAP] ['err', 'BFCap', '290']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['Fin', 'de', 'ligne']
-[CRAP] ['Enregistre', ':', 'S1', 'serial_count', '2']
-[CRAP] ['coucou']
-[CRAP] ['ordre', 'ind', '=', 'S@1']
-[CRAP] ['GET', 'X', 'Y', 'CAP:']
-[91m [READ DATA] * COORD -730 479 200.90
-[0m
-[CRAP] ['theorique-8389', '-390', '289.85']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']
-[CRAP] ['INC', 'BLOC', 'COUNT']

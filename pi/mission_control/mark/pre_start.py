@@ -12,15 +12,15 @@ class MAEPrestart(MAE):
         #state
         wait = InitState()
         recalx = self.sf.get_recaler()
-        set_x0 = self.sf.get_setxycap(Coord(d_dos_cdg, 400, 90)) 
-        avance_plac_x = self.sf.get_bf_fw(Coord(50))
+        set_x0 = self.sf.get_setxycap(Coord(1500 - d_dos_cdg, 400, 180)) 
+        avance_plac_x = self.sf.get_bf_fw(Coord(30))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 90))
         recaly = self.sf.get_recaler()
-        set_y0 = self.sf.get_setxycap(Coord(-1, d_dos_cdg, 180))  # TODO change this with real state of the robot 
+        set_y0 = self.sf.get_setxycap(Coord(-1, d_dos_cdg, 90))  # TODO change this with real state of the robot 
         out = OutState()
 
         #transitions
-        wait.add_transition("STARTIN", recaly)
+        wait.add_transition("STARTIN", recalx)
         recalx.add_bloc_transition(set_x0)
         set_x0.add_instant_transition(avance_plac_x)
         avance_plac_x.add_afini_transition(tourne)

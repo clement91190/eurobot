@@ -36,10 +36,12 @@ class RobotState:
             self.com = Communication(self, robot)
         else:
             self.com = PipoCommunication()
+        self.init_post_coul()
 
+    def init_post_coul(self):
         self.com_state_factory = ComStateFactory(self.com)
  
-        if robot == "mark":
+        if self.robot == "mark":
             self.init_mission_mark()
         else:
             self.init_mission_pmi()
@@ -55,6 +57,7 @@ class RobotState:
 
     def init_mission_mark(self):
         """ definition of the missions"""
+        self.missions["m_filet"] = tir_filet.get_mission(self.com_state_factory)
         pass
 
     def init_mission_pmi(self):
@@ -122,6 +125,7 @@ class RobotState:
             self.coul = "jaune"
         else:
             self.coul = "rouge"
+        self.init_post_coul()
 
 
 def get_d_dos_cdg(robot="mark"):
