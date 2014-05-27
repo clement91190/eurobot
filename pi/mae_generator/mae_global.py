@@ -96,9 +96,9 @@ class MAERushMark(MAE):
 
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
-        avance_sortie = self.sf.get_bf_fw(Coord(500))
+        avance_sortie = self.sf.get_bf_fw(Coord(400))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 120))
-        rush = self.sf.get_bf_fw(Coord(500))
+        rush = self.sf.get_bf_fw(Coord(700))
         out = OutState("end_rush")
         
         init.add_instant_transition(speed_change)

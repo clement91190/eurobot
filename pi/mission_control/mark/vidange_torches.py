@@ -4,7 +4,7 @@ from mae_generator.mae import MAE, InitState, debugger
 
 
 def get_mission(com_state_factory):
-    return Mission(" vidange torche ", Coord(750, 1400, -90), MAEVidangeTorche(com_state_factory))
+    return Mission(" vidange torche ", Coord(720, 1400, -90), MAEVidangeTorche(com_state_factory))
 
 
 class MAEVidangeTorche(MAE):
@@ -14,7 +14,7 @@ class MAEVidangeTorche(MAE):
 
         #states
         init = InitState()
-        avance = self.sf.get_bf_fw(Coord(100))
+        avance = self.sf.get_bf_fw(Coord(150))
         out = SuccessOut()
         out2 = FailOut()
 
