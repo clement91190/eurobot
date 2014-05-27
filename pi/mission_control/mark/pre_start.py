@@ -29,7 +29,7 @@ class MAEPrestart(MAE):
         set_y0.add_transition("START", out)
 
         self.state_list = [
-            wait, recaly, set_x0, avance_plac_x, tourne, recaly, set_y0, out]
+            wait, recalx, set_x0, avance_plac_x, tourne, recaly, set_y0, out]
         self.reinit_state()
 
  

@@ -9,7 +9,7 @@ import time
 from mission_control.debile import mission_fresque, mission_prise_torche_adv
 from mission_control.debile import mission_test, tir_filet
 
-from mission_control.mark import prise_arbre, vidange_torches
+from mission_control.mark import prise_arbre, vidange_torches, tir_mamouths
 
 
 class bcolors:
@@ -63,6 +63,10 @@ class RobotState:
         self.missions["m_torche"].prioritize(2.)
         self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
         self.missions["m_arbre1"].prioritize(10.)
+        self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
+        self.missions["m_mammouths2"].prioritize(20.)
+
+
 
     def init_mission_pmi(self):
         #self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
