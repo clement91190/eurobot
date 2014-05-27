@@ -310,15 +310,15 @@ void ControlLoop::check_adversary()
 
 #ifndef PMI
 
-    if (sonarg.adv_detected()){
-        if (sonard.adv_detected()){
+    if (sonarg.adv_detected(real_coord)){
+        if (sonard.adv_detected(real_coord)){
             sonarg.mean_adv(sonard.get_adv());
         }
         write_real_coords();
         sonarg.write_adv_coord();
         set_BF(STOP, Coord());
     }
-    else if (sonard.adv_detected())
+    else if (sonard.adv_detected(real_coord))
     {
         write_real_coords();
         sonard.write_adv_coord();
@@ -326,7 +326,7 @@ void ControlLoop::check_adversary()
        }
 
 #else
-    if (sonarg.adv_detected()){
+    if (sonarg.adv_detected(real_coord)){
         write_real_coords();
         sonarg.write_adv_coord();
         set_BF(STOP, Coord());

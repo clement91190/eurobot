@@ -3,38 +3,44 @@ from utils.coord import Coord
 from mae_generator.mae import MAE, InitState, debugger
 
 
-def get_mission(com_state_factory):
-    raise NotImplementedError(" mission non codee")
-    #return Mission(" fresques ", Coord(0, 200, 90), MAEFRESQUE(com_state_factory))
+def get_mission(com_state_factory, num_arbre = 1):
+    if num_arbre == 1:
+        return Mission(" arbre 1", Coord(1300, 400, 180), MAEARBRE(com_state_factory))
 
 
-class MAEFRESQUE(MAE):
+class MAEARBRE(MAE):
     def __init__(self, com_state_factory):
         MAE.__init__(self)
         self.sf = com_state_factory
 
         #states
         init = InitState()
-        #recaly = self.sf.get_recaler()
-        #set_y0 = self.sf.get_setxycap(Coord(0, robot_state.get_d_dos_cdg("debile"), 90)) 
-        #pose_fresque = self.sf.get_pmi_fresque_out()
-        #avance = self.sf.get_bf_fw(Coord(100))
-        #rentre_fresque = self.sf.get_pmi_fresque_in()
-        #out = SuccessOut()
-        #out2 = FailOut()
+        mi_ouvre = self.sf.get_mark_rateau_mi()
+        recule = self.sf.get_bf_fw(Coord(-100))
+        ouvre = self.sf.get_mark_rateau_haut()
+        avance = self.sf.get_bf_fw(Coord(150))
+        replis_mi = self.sf.get_mark_rateau_mi()
+        reouvre = self.sf.get_mark_rateau_haut()
+        replis = self.sf.get_mark_rateau_bas()
+        out = SuccessOut()
+        out2 = FailOut()
 
         #transitions
-        #init.add_instant_transition(recaly)
-        #recaly.add_bloc_transition(set_y0)
-        #set_y0.add_instant_transition(pose_fresque)
-        #pose_fresque.add_time_out_transition(500, avance)
-        #avance.add_afini_transition(rentre_fresque)
-        #avance.add_bloc_transition(rentre_fresque)
+        init.add_instant_transition(mi_ouvre)
+        mi_ouvre.add_instant_transition(recule)
+        recule.add_bloc_transition(ouvre)
+        ouvre.add_time_out_transition(500, avance)
+        avance.add_afini_transition(replis_mi)
+        avance.add_bloc_transition(replis_mi)
+        avance.add_advd_transition(replis_mi)
+        replis_mi.add_time_out_transition(300, reouvre)
+        reouvre.add_time_out_transition(300, replis)
+        replis.add_time_out_transition(300, out)
         #avance.add_advd_transition(rentre_fresque)
         #rentre_fresque.add_instant_transition(out)
 
         self.state_list = [ 
-         #   init, recaly, set_y0, pose_fresque, avance, rentre_fresque, out, out2i
+            init, mi_ouvre, recule, ouvre, avance, replis_mi, reouvre, replis, out, out2
          ]
         self.reinit_state()
 
@@ -43,7 +49,7 @@ if __name__ == "__main__":
     from com_state_factory import ComStateFactory
     from communication import PipoCommunication
     com = PipoCommunication()
-    #mae = MAEFRESQUE(ComStateFactory(com))
+    mae = MAEARBRE(ComStateFactory(com))
     com.set_global_mae(mae)
     #mae = MAEGlobal()
     debugger(mae)

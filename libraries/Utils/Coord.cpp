@@ -33,6 +33,10 @@ void Coord::set_x_y_cap(float x_, float y_, float cap_){
 
 bool Coord::is_on_map(){
     // check if the detected thing is on the map...
+    if (x < 0 || x > 3000 || y < 0 || y > 1000)
+    {
+        return false;
+    }
     return true;
 }
 

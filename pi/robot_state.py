@@ -57,8 +57,10 @@ class RobotState:
 
     def init_mission_mark(self):
         """ definition of the missions"""
-        self.missions["m_filet"] = tir_filet.get_mission(self.com_state_factory)
-        pass
+        self.missions["m_torche"] = tir_filet.get_mission(self.com_state_factory)
+        self.missions["m_torche"].prioritize(2.)
+        self.missions["m_arbre1"] = tir_filet.get_mission(self.com_state_factory)
+        self.missions["m_arbre1"].prioritize(10.)
 
     def init_mission_pmi(self):
         #self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
@@ -97,7 +99,7 @@ class RobotState:
 
     def adversary_detected(self, adv):
         """ adv is the local coordinate of the adversary (ie vector from robot) """
-        global_coords = self.last_position.add_vector(adv) 
+        global_coords = adv  # self.last_position.add_vector(adv) 
         print  "ADVERSARY AT", global_coords
         self.adversary_detection.insert(0, (time.time(), global_coords))
 

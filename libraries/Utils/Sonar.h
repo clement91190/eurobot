@@ -16,7 +16,7 @@ class Sonar
    public:
         Sonar(int pin_, Coord dir_);
         float get_dist();
-        bool adv_detected();
+        bool adv_detected(Coord pos_robot);
         bool mean_adv(Coord adv);
         Coord get_adv();
         void write_adv_coord();
