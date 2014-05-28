@@ -4,7 +4,7 @@ from mae_generator.mae import MAE, InitState, debugger
 
 
 def get_mission(com_state_factory):
-    return Mission(" fresques ", Coord(0, 200, 90), MAEFRESQUE(com_state_factory))
+    return Mission(" fresques ", Coord(0, 250, 90), MAEFRESQUE(com_state_factory))
 
 
 class MAEFRESQUE(MAE):

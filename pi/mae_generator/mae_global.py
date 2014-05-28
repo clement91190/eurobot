@@ -74,7 +74,7 @@ class MAERushDebile(MAE):
         self.sf = com_state_factory
 
         init = InitState()
-        speed_change = self.sf.get_setspeed(2)
+        speed_change = self.sf.get_setspeed(1)
         tape = self.sf.get_pmi_tape()
         avance_triangle1 = self.sf.get_bf_fw(Coord(1200))
         out = OutState("end_rush")
