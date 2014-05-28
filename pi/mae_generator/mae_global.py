@@ -78,14 +78,15 @@ class MAERushDebile(MAE):
         tape = self.sf.get_pmi_tape()
         avance_triangle1 = self.sf.get_bf_fw(Coord(1200))
         out = OutState("end_rush")
+        pipo = State("pipo_sto")
         
         init.add_instant_transition(tape)
         tape.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_triangle1)
         avance_triangle1.add_afini_transition(out)
         avance_triangle1.add_bloc_transition(out)
-        avance_triangle1.add_advd_transition(out)
-        self.state_list = [init, speed_change, avance_triangle1, out]
+        avance_triangle1.add_advd_transition(pipo)
+        self.state_list = [init, speed_change, avance_triangle1, pipo, out]
         self.reinit_state()
 
 

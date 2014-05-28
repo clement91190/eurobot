@@ -90,7 +90,7 @@ class SlaveManager:
         sub_states.append(OutState("end_deplacement"))
         sub_states[-3].add_out_transition('out', sub_states[-1])
         for s in sub_states[:-2]:
-            s.add_advd_transition(sub_states[-2])
+            # s.add_advd_transition(sub_states[-2])  evitement stop final
             s.add_bloc_transition(sub_states[-2])
 
         sub_states[0].add_instant_transition(sub_states[1])
