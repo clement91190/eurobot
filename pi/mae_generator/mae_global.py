@@ -96,20 +96,23 @@ class MAERushMark(MAE):
         self.sf = com_state_factory
 
         init = InitState()
+        wait = State("wait")
         speed_change = self.sf.get_setspeed(1)
         avance_sortie = self.sf.get_bf_fw(Coord(350))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 120))
         rush = self.sf.get_bf_fw(Coord(700))
         out = OutState("end_rush")
+        pipo = State("pipo_sto")
         
-        init.add_instant_transition(speed_change)
+        init.add_instant_transition(wait)
+        wait.add_time_out_transition(3000, speed_change) 
         speed_change.add_instant_transition(avance_sortie)
         avance_sortie.add_afini_transition(tourne)
         tourne.add_afini_transition(rush)
         rush.add_afini_transition(out)
         rush.add_bloc_transition(out)
-        rush.add_advd_transition(out)
-        self.state_list = [init, speed_change, avance_sortie, tourne, rush, out]
+        rush.add_advd_transition(pipo)
+        self.state_list = [init, wait, speed_change, avance_sortie, tourne, rush, pipo, out]
         self.reinit_state()
 
 
