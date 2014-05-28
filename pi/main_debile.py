@@ -1,5 +1,6 @@
 from robot_state import RobotState
 import sys
+import time
 
 
 class Tee(object):
@@ -10,7 +11,7 @@ class Tee(object):
         for f in self.files:
             f.write(obj)
 
-f = open('log.txt', 'w')
+f = open('log{}.txt'.format(int(time.time())), 'w')
 #original = sys.stdout
 sys.stdout = Tee(sys.stdout, f)
 

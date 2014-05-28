@@ -4,7 +4,7 @@ from mae_generator.mae import MAE, InitState, debugger
 
 
 def get_mission(com_state_factory):
-    return Mission(" PRISE torche ", Coord(-500, 1000, 135), MAEPriseTorche(com_state_factory))
+    return Mission(" PRISE torche ", Coord(-400, 900, 135), MAEPriseTorche(com_state_factory))
 
 
 class MAEPriseTorche(MAE):
