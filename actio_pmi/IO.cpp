@@ -590,8 +590,8 @@ void IO::poser_fresque()
 
 void IO::ranger_servo_fresque()
 {
-    servo_fresque_g.writeMicroseconds(1900);
-    servo_fresque_d.writeMicroseconds(1100);
+    servo_fresque_g.writeMicroseconds(1880);
+    servo_fresque_d.writeMicroseconds(1160);
 }
 
 

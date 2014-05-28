@@ -36,8 +36,6 @@ class MAEARBRE(MAE):
         replis_mi.add_time_out_transition(300, reouvre)
         reouvre.add_time_out_transition(300, replis)
         replis.add_time_out_transition(300, out)
-        #avance.add_advd_transition(rentre_fresque)
-        #rentre_fresque.add_instant_transition(out)
 
         self.state_list = [ 
             init, mi_ouvre, recule, ouvre, avance, replis_mi, reouvre, replis, out, out2
