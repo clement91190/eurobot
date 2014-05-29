@@ -76,16 +76,34 @@ class MAERushDebile(MAE):
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
         tape = self.sf.get_pmi_tape()
-        avance_triangle1 = self.sf.get_bf_fw(Coord(2200))
+        avance_triangle1 = self.sf.get_bf_fw(Coord(2150))
+        recule_un_peu = self.sf.get_bf_fw(Coord(-200))
+        prise_ma_coul = self.sf.get_pmi_actif_feu()
+        avance_choppe = self.sf.get_bf_fw(Coord(250))
         out = OutState("end_rush")
         pre_out = self.sf.get_setspeed(1)
         
         init.add_instant_transition(tape)
         tape.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_triangle1)
-        avance_triangle1.add_afini_transition(pre_out)
+        avance_triangle1.add_afini_transition(recule_un_peu)
         avance_triangle1.add_bloc_transition(pre_out)
         avance_triangle1.add_advd_transition(pre_out)
+
+        recule_un_peu.add_afini_transition(prise_ma_coul)
+        recule_un_peu.add_bloc_transition(pre_out)
+        recule_un_peu.add_advd_transition(pre_out)
+
+        prise_ma_coul.add_time_out_transition(avance_choppe)
+
+        avance_choppe.add_afini_transition(pre_out)
+        avance_choppe.add_bloc_transition(pre_out)
+        avance_choppe.add_advd_transition(pre_out)
+      
+        
+        recule_un_peu.a
+
+
         pre_out.add_instant_transition(out)
         self.state_list = [init, speed_change, avance_triangle1, pre_out, out]
         self.reinit_state()

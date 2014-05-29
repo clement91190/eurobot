@@ -103,9 +103,12 @@ class ComStateFactory:
             self.count += 1
             return SendActioPMIState("P2", self.com, self.count) 
 
-    def get_pmi_actif_feu(self):
+    def get_pmi_actif_feu(self, retourne=False):
             self.count += 1
-            return SendActioPMIState("P3", self.com, self.count) 
+            if retourne:
+                return SendActioPMIState("P3 1", self.com, self.count) 
+            else:
+                return SendActioPMIState("P3 0", self.com, self.count) 
 
     def get_pmi_actif_torche(self):
             self.count += 1

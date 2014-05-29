@@ -52,6 +52,9 @@ class State():
     def add_afini_transition(self, new_state):
         self.add_transition("AFINI", new_state)
 
+    def add_prise_transition(self, new_state):
+        self.add_transition("PRISE", new_state)
+
     def add_instant_transition(self, new_state):
         self.add_transition("", new_state)
 

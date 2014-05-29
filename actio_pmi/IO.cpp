@@ -251,7 +251,7 @@ void Pince::trigger(int transition)
             }
             break;
         case MONTE_COOL:
-            if (transition == TIME_OUT)
+            if (transition == TIME_OUT || transition == T_BUMP_HAUT)
             {
                 state = MONTE_COOL2;
             }
@@ -503,6 +503,7 @@ void Pince::in_state_func()
             scn();
             break;
         case PRISE_TORCHE : 
+            Serial.println('# PRISE');
             a0();
             slf();
             scn();
@@ -513,6 +514,7 @@ void Pince::in_state_func()
             scn();
             break;
         case PRISE_FEU :
+            Serial.println('# PRISE');
             set_time_out(500, TIME_OUT);
             a0();
             slf();
@@ -521,7 +523,7 @@ void Pince::in_state_func()
         case WAIT_COOL_OK :
             break;
         case MONTE_COOL :
-            set_time_out(500, TIME_OUT);
+            set_time_out(800, TIME_OUT);
             a1();
             slf();
             scn();

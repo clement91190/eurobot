@@ -161,7 +161,7 @@ class Communication:
         s_line = line.split()
         if s_line[0] == "#":
             print bcolors.OKGREEN, "[READ TRANS]",  line, bcolors.ENDC
-            if s_line[1] in ["BLOC", "AFINI", "ADVD", "NEAR", "START", "STARTIN"]:
+            if s_line[1] in ["BLOC", "AFINI", "ADVD", "NEAR", "START", "STARTIN", "PRISE"]:
                 self.global_mae.trigger(s_line[1])
             else:
                 print "unkown transition", line
