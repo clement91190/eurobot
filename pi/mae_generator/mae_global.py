@@ -123,15 +123,24 @@ class MAERushMark(MAE):
         avance_sortie = self.sf.get_bf_fw(Coord(350))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 120))
         rush = self.sf.get_bf_fw(Coord(700))
+
+        tempo_evit = State("tempo_evit")
+        reavance = self.sf.get_bf_fw(Coord(300))
         out = OutState("end_rush")
         
         init.add_instant_transition(wait)
-        wait.add_time_out_transition(1000, speed_change) 
+        wait.add_time_out_transition(2000, speed_change) 
         speed_change.add_instant_transition(avance_sortie)
         
         avance_sortie.add_afini_transition(tourne)
         avance_sortie.add_bloc_transition(tourne)
-        avance_sortie.add_advd_transition(tourne)
+        avance_sortie.add_advd_transition(tempo_evit)
+
+        tempo_evit.add_time_out_transition(3000, reavance) 
+
+        reavance.add_afini_transition(tourne)
+        reavance.add_bloc_transition(tourne)
+        reavance.add_advd_transition(tourne)
 
         tourne.add_afini_transition(rush)
         rush.add_afini_transition(out)
