@@ -3,7 +3,8 @@ Apres le match 1:
 - Slave settings
 - gestion du blocage -> toujours sortir sur une bfcap integrer a l' a*  ...
 - demarage gros (reglage time_out, exit strategie si detection)
-- 
+- mission de vidange de la torche (+ nettoyage, depose foyer.) 
+
 
 
 -> changer angle du sonar.
