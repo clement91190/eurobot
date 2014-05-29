@@ -4,7 +4,7 @@ from mae_generator.mae import MAE, InitState, debugger
 
 
 def get_mission(com_state_factory):
-    return Mission(" PRISE torche ", Coord(-400, 900, 135), MAEPriseTorche(com_state_factory))
+    return Mission(" PRISE torche ", Coord(-300, 800, 135), MAEPriseTorche(com_state_factory))
 
 
 class MAEPriseTorche(MAE):
@@ -17,7 +17,7 @@ class MAEPriseTorche(MAE):
         baisse_pince = self.sf.get_pmi_bas()
         active_prise_torche = self.sf.get_pmi_actif_torche()
 # rajoute transition from actionneur
-        avance = self.sf.get_bf_fw(Coord(200))
+        avance = self.sf.get_bf_fw(Coord(300))
         out = SuccessOut()
         out2 = FailOut()
 
