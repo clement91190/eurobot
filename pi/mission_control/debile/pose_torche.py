@@ -27,8 +27,8 @@ class MAEPoseTorche(MAE):
         avance.add_afini_transition(pose)
         avance.add_bloc_transition(pose)
         pose.add_time_out_transition(300, recule) 
-        avance.add_afini_transition(out)
-        avance.add_bloc_transition(out)
+        recule.add_afini_transition(out)
+        recule.add_bloc_transition(out)
 
         self.state_list = [ 
             init, avance, pose, recule, out, out2]
