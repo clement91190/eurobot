@@ -7,7 +7,7 @@ class MAEPrestart(MAE):
     def __init__(self, com_state_factory):
         MAE.__init__(self)
         self.sf = com_state_factory
-        d_dos_cdg = 85  # distance entre le dos et le centre de gravite du robot
+        d_dos_cdg = 105 # distance entre le dos et le centre de gravite du robot
        
         #state
         wait = InitState()
