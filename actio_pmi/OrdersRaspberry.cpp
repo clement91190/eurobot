@@ -131,6 +131,17 @@ void OrdersRaspberry::executeinstr()
 
         case 3: //recal
             Serial.println("PINCE -> ACTIF FEU");
+            stream >> x;
+            Serial.print(" not same color as me ? ");
+            Serial.println(atoi(x.c_str()));
+            if (atoi(x.c_str()) == 0)
+            {
+                io->def_coul_feu(0);
+            }
+            else
+            {
+                io->def_coul_feu(1);
+            }
             io->trigger(T_ACTIF_FEU);
             // pince prete a chopper le totem 
             // des que l'ir le voit

@@ -354,6 +354,18 @@ void Pince::run(){
         {
             trigger(T_IR);
         }
+        if (state ==  MONTE_COOL2 )
+        {
+            if (coul_feu)
+            {
+                trigger(COOL_OK);
+            }
+            else
+            {
+                trigger(COOL_NOT_OK);
+            }
+        }
+        /*
         if (couleur == ROUGE)
         {
             if (col.is_red())
@@ -367,6 +379,7 @@ void Pince::run(){
         }
         else
         {
+           
             if (col.is_yellow())
             {
                 trigger(COOL_OK);
@@ -375,7 +388,7 @@ void Pince::run(){
             {
                 trigger(COOL_NOT_OK);
             }
-        }
+        } */
     }
 }
 
@@ -620,4 +633,14 @@ void IO::trigger(int transition)
 void IO::write_debug()
 {
     pince.write_debug();
+}
+
+void Pince::def_coul_feu(int coul)
+{
+    coul_feu = coul; 
+}
+
+void IO::def_coul_feu(int coul)
+{
+    pince.def_coul_feu(coul);
 }

@@ -95,6 +95,7 @@ class Pince
         int trigger_to_be;
         int state;
         int couleur;
+        int coul_feu;
         Period period_run;
     public:
         Pince();
@@ -118,6 +119,7 @@ class Pince
         void reset_time_out();
         bool is_time_out();
         void write_debug();
+        void def_coul_feu(int coul);
 
 
 
@@ -144,6 +146,7 @@ class IO
 
         void run();
         void trigger(int transition);
+        void def_coul_feu(int coul);
 
 };
 
