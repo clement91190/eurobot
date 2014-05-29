@@ -18,17 +18,19 @@ class MAEPriseTorche(MAE):
         active_prise_torche = self.sf.get_pmi_actif_torche()
 # rajoute transition from actionneur
         avance = self.sf.get_bf_fw(Coord(300))
+        pre_fail = self.sf.get_pmi_tape()
         out = SuccessOut()
         out2 = FailOut()
 
         #transitions
         init.add_instant_transition(baisse_pince)
         baisse_pince.add_time_out_transition(500, active_prise_torche)
-        active_prise_torche.add_instant_transition(avance)
+        active_prise_torche.add_time_out_transition(500, avance)
 
-        avance.add_advd_transition(out2)
+        avance.add_advd_transition(pre_fail)
         avance.add_afini_transition(out)
-        avance.add_bloc_transition(out2)
+        avance.add_bloc_transition(pre_fail)
+        pre_fail.add_instant_transition(out)  # out2 pas de reprise de la mission
 
         self.state_list = [ 
             init, baisse_pince, active_prise_torche, avance, out, out2]
