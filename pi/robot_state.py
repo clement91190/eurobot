@@ -72,8 +72,8 @@ class RobotState:
         #prise torche 
         #pose torche
         #pose fresque
-        self.missions["m_torche_adv"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
-        self.missions["m_torche_adv"].prioritize(10.)
+        #self.missions["m_torche_adv"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
+        #self.missions["m_torche_adv"].prioritize(10.)
         #tir filet
         #self.missions["m_pousse_feu_loin"] = pousse_feu.get_mission(self.com_state_factory)
         #self.missions["m_pousse_feu_loin"].prioritize(7.)
@@ -81,8 +81,8 @@ class RobotState:
         self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
         self.missions["m_fresque"].prioritize(6.)
 
-        self.missions["m_pose_torche"] = pose_torche.get_mission(self.com_state_factory)
-        self.missions["m_pose_torche"].prioritize(4.)
+        #self.missions["m_pose_torche"] = pose_torche.get_mission(self.com_state_factory)
+        #self.missions["m_pose_torche"].prioritize(4.)
     
         #todo change priority after some time.
         self.missions["m_tir"] = tir_filet.get_mission(self.com_state_factory)
