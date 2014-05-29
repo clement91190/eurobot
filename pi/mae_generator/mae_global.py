@@ -34,7 +34,7 @@ class MAEGame(MAE):
         self.robot_state = robot_state
         #state
         if self.robot_state.robot == "debile":
-            rush = MAEState(MAERushDebile(com_state_factory), "rush")
+            rush = MAEState(MAERushDebile(robot_state), "rush")
         else:
             rush = MAEState(MAERushMark(com_state_factory), "rush")
 
@@ -69,9 +69,10 @@ class MAEGame(MAE):
 
 
 class MAERushDebile(MAE):
-    def __init__(self, com_state_factory):
+    def __init__(self, robot_state):
         MAE.__init__(self)
-        self.sf = com_state_factory
+        self.sf = robot_state.com_state_factory
+        self.sf
 
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
@@ -94,15 +95,13 @@ class MAERushDebile(MAE):
         recule_un_peu.add_bloc_transition(pre_out)
         recule_un_peu.add_advd_transition(pre_out)
 
-        prise_ma_coul.add_time_out_transition(avance_choppe)
+        prise_ma_coul.add_time_out_transition(800, avance_choppe)
 
         avance_choppe.add_afini_transition(pre_out)
+        avance_choppe.add_prise_transition(pre_out)
         avance_choppe.add_bloc_transition(pre_out)
         avance_choppe.add_advd_transition(pre_out)
       
-        
-        recule_un_peu.a
-
 
         pre_out.add_instant_transition(out)
         self.state_list = [init, speed_change, avance_triangle1, pre_out, out]

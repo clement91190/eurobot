@@ -106,6 +106,7 @@ void OrdersRaspberry::executeinstr()
         io->trigger(RANGE);
         break;
 
+
     case 'P' :
         //Vitesse vit;
         // ordre de type Slave
@@ -160,6 +161,11 @@ void OrdersRaspberry::executeinstr()
             // pince prete a chopper le totem 
             // des que l'ir le voit
             break;
+
+        //case 6:
+         //   Serial.println("PINCE -> Prise ? ");
+          //  io->a_pris_qqchose();
+          
        }
         return;
     case 'F' :

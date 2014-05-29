@@ -148,6 +148,7 @@ class IO
         void trigger(int transition);
         void def_coul_feu(int coul);
 
+
 };
 
 #endif

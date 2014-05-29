@@ -6,8 +6,13 @@ from slave_manager import SlaveManager
 import time
 
 
-from mission_control.debile import mission_fresque, mission_prise_torche_adv
-from mission_control.debile import mission_test, tir_filet, pousse_feu, pose_torche
+from mission_control.debile import mission_fresque
+from mission_control.debile import mission_prise_torche_adv
+#from mission_control.debile import mission_test,
+from mission_control.debile import tir_filet
+#from mission_control.debile import pousse_feu
+from mission_control.debile import pose_torche
+from mission_control.debile import pose_feu_foyer
 
 from mission_control.mark import prise_arbre, vidange_torches, tir_mamouths
 
@@ -38,6 +43,7 @@ class RobotState:
             self.com = Communication(self, robot)
         else:
             self.com = PipoCommunication()
+            self.com = self.com.set_robot_state(self)
         self.init_post_coul()
 
     def init_post_coul(self):
@@ -76,7 +82,10 @@ class RobotState:
         #self.missions["m_torche_adv"].prioritize(10.)
         #tir filet
         #self.missions["m_pousse_feu_loin"] = pousse_feu.get_mission(self.com_state_factory)
-        #self.missions["m_pousse_feu_loin"].prioritize(7.)
+        self.missions["m_pose_foyer"] = mission_fresque.get_mission(self.com_state_factory)
+        self.missions["m_pose_foyer"].prioritize(0.)
+
+       #self.missions["m_pousse_feu_loin"].prioritize(7.)
        
         self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
         self.missions["m_fresque"].prioritize(6.)
@@ -144,6 +153,13 @@ class RobotState:
         #    mis.to_do()
         self.missions[self.current_mission].success()
         #self.missions[self.current_mission].penalize(5.)
+
+    def prise(self):
+        print "yo prise la "
+        if "m_pose_foyer" in self.missions.keys():
+            print " active mission pose_foyer "
+            self.missions["m_pose_foyer"].to_do()
+            self.missions["m_pose_foyer"].prioritize(10)
 
     def set_couleur(self, coul):
         coord.couleur = coul

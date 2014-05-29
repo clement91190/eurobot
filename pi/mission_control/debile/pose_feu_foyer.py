@@ -3,39 +3,35 @@ from utils.coord import Coord
 from mae_generator.mae import MAE, InitState, debugger
 
 
-def get_mission(com_state_factory):
-    raise NotImplementedError(" mission non codee")
-    #return Mission(" fresques ", Coord(0, 200, 90), MAEFRESQUE(com_state_factory))
+def get_mission(com_state_factory, ind=1):
+    return Mission(" Pose torche ", Coord(-300, 1050, 90), MAEPoseFeu(com_state_factory))
 
 
-class MAEFRESQUE(MAE):
+class MAEPoseFeu(MAE):
     def __init__(self, com_state_factory):
         MAE.__init__(self)
         self.sf = com_state_factory
 
         #states
         init = InitState()
-        #recaly = self.sf.get_recaler()
-        #set_y0 = self.sf.get_setxycap(Coord(0, robot_state.get_d_dos_cdg("debile"), 90)) 
-        #pose_fresque = self.sf.get_pmi_fresque_out()
-        #avance = self.sf.get_bf_fw(Coord(100))
-        #rentre_fresque = self.sf.get_pmi_fresque_in()
-        #out = SuccessOut()
-        #out2 = FailOut()
+        avance = self.sf.get_bf_fw(Coord(200))
+        pose = self.sf.get_pmi_pose()
+        recule = self.sf.get_bf_fw(Coord(-150))
+# rajoute transition from actionneur
+        out = SuccessOut()
+        out2 = FailOut()
 
         #transitions
-        #init.add_instant_transition(recaly)
-        #recaly.add_bloc_transition(set_y0)
-        #set_y0.add_instant_transition(pose_fresque)
-        #pose_fresque.add_time_out_transition(500, avance)
-        #avance.add_afini_transition(rentre_fresque)
-        #avance.add_bloc_transition(rentre_fresque)
-        #avance.add_advd_transition(rentre_fresque)
-        #rentre_fresque.add_instant_transition(out)
+        init.add_instant_transition(avance)
+        avance.add_advd_transition(pose)
+        avance.add_afini_transition(pose)
+        avance.add_bloc_transition(pose)
+        pose.add_time_out_transition(300, recule) 
+        recule.add_afini_transition(out)
+        recule.add_bloc_transition(out)
 
         self.state_list = [ 
-         #   init, recaly, set_y0, pose_fresque, avance, rentre_fresque, out, out2i
-         ]
+            init, avance, pose, recule, out, out2]
         self.reinit_state()
 
 
@@ -43,12 +39,10 @@ if __name__ == "__main__":
     from com_state_factory import ComStateFactory
     from communication import PipoCommunication
     com = PipoCommunication()
-    #mae = MAEFRESQUE(ComStateFactory(com))
+    mae = MAEPoseFeu(ComStateFactory(com))
     com.set_global_mae(mae)
     #mae = MAEGlobal()
     debugger(mae)
-
-
 
 
 

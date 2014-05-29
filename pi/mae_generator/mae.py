@@ -220,6 +220,7 @@ def debugger(mae):
         mae.run()
         transition = raw_input()
         mae.trigger(transition)
+
         
     
 

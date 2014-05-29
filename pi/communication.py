@@ -162,6 +162,8 @@ class Communication:
         if s_line[0] == "#":
             print bcolors.OKGREEN, "[READ TRANS]",  line, bcolors.ENDC
             if s_line[1] in ["BLOC", "AFINI", "ADVD", "NEAR", "START", "STARTIN", "PRISE"]:
+                if s_line[1] == "PRISE":
+                    self.robot_state.prise()
                 self.global_mae.trigger(s_line[1])
             else:
                 print "unkown transition", line
@@ -211,13 +213,21 @@ class PipoCommunication:
     """ for debugging purposes, simulate communication """
     def __init__(self):
         print "WARNING PIPO COM"
+        print "cretin"
 
     def set_global_mae(self, global_mae):
         self.global_mae = global_mae
+
+    def set_robot_state(self, robot_state):
+        self.robot_state = robot_state
  
     def run(self):
+        print "again"
         time.sleep(0.1)
         t = raw_input()
+        print t
+        if t == "PRISE":
+            self.robot_state.prise()
         if t != "":
             self.global_mae.trigger(t)
 
