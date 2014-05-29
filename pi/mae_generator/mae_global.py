@@ -122,9 +122,13 @@ class MAERushMark(MAE):
         out = OutState("end_rush")
         
         init.add_instant_transition(wait)
-        wait.add_time_out_transition(3000, speed_change) 
+        wait.add_time_out_transition(1000, speed_change) 
         speed_change.add_instant_transition(avance_sortie)
+        
         avance_sortie.add_afini_transition(tourne)
+        avance_sortie.add_bloc_transition(tourne)
+        avance_sortie.add_advd_transition(tourne)
+
         tourne.add_afini_transition(rush)
         rush.add_afini_transition(out)
         rush.add_bloc_transition(out)

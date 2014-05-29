@@ -15,8 +15,8 @@ ControlLoop::ControlLoop():
 #ifdef PMI
     sonarg(PIN_AN_SONARG, Coord(0., 0., 0.)),
 #else
-    sonarg(PIN_AN_SONARG, Coord(10., 10., 5.)),
-    sonard(PIN_AN_SONARD, Coord(10., -10., -5.)),
+    sonarg(PIN_AN_SONARG, Coord(100., -100., 0.)),
+    sonard(PIN_AN_SONARD, Coord(100., 100., 0.)),
 #endif
 
     fw_g(true){

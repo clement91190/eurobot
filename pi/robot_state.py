@@ -65,10 +65,10 @@ class RobotState:
 
     def init_mission_mark(self):
         """ definition of the missions"""
-        self.missions["m_torche"] = vidange_torches.get_mission(self.com_state_factory)
-        self.missions["m_torche"].prioritize(2.)
-        self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
-        self.missions["m_arbre1"].prioritize(10.)
+        #self.missions["m_torche"] = vidange_torches.get_mission(self.com_state_factory)
+        #self.missions["m_torche"].prioritize(2.)
+        #self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
+        #self.missions["m_arbre1"].prioritize(10.)
         self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
         self.missions["m_mammouths"].prioritize(20.)
 

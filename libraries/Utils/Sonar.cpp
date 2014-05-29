@@ -22,7 +22,7 @@ float Sonar::get_dist(){
     {
         Serial.println("warning check sonar connection");
     }
-    return 10 + (sensorValue / 580.0) * 900. ; //divide by max sensor value, multiply by 900 mm
+    return 100 + (sensorValue / 580.0) * 900. ; //divide by max sensor value, multiply by 900 mm
 
 
 #endif
@@ -36,8 +36,8 @@ bool Sonar::adv_detected(Coord pos_robot){
         adv = Coord(dir);
         adv.forward_translation(d) ;
         adv = Coord(
-            adv.get_x() * cos(pos_robot.get_cap()) + adv.get_y() * sin(pos_robot.get_cap()),
-            adv.get_y() * cos(pos_robot.get_cap()) + adv.get_x() * sin(pos_robot.get_cap()),
+            pos_robot.get_x() + adv.get_x() * cos(pos_robot.get_cap()) + adv.get_y() * sin(pos_robot.get_cap()),
+            pos_robot.get_y() + adv.get_y() * cos(pos_robot.get_cap()) + adv.get_x() * sin(pos_robot.get_cap()),
             pos_robot.get_cap());
 
         return adv.is_on_map();
