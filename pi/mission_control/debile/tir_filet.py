@@ -5,7 +5,7 @@ from mae_generator.mae import MAE, InitState, debugger
 
 def get_mission(com_state_factory):
     #raise NotImplementedError(" mission non codee")
-    return Mission(" fresques ", Coord(1000, 450, 90), MAETirFilet(com_state_factory))
+    return Mission(" fresques ", Coord(750, 450, 90), MAETirFilet(com_state_factory))
 
 """ special mission to shoot the net, no out of this mission ! """
 
