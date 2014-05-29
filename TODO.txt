@@ -1,7 +1,9 @@
-- finish the communication Class (Serial)
-- plugin the 2 PID loops. 
-- implement a python script for updating and testing gains
-- connect the raspberry pi, + wifi to the slave board + buck + hub
+
+Apres le match 1:
+- Slave settings
+- gestion du blocage -> toujours sortir sur une bfcap integrer a l' a*  ...
+- demarage gros (reglage time_out, exit strategie si detection)
+- 
 
 
-
+-> changer angle du sonar.
