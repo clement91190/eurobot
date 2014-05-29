@@ -219,3 +219,9 @@ void Autom::setTuningDep(float Kp, float Ki, float Kd )
     get_control()->setTuningDep(Kp, Ki, Kd);
 }
       
+
+void Autom::turn_on_evit()
+{
+    get_control()->turn_on_evit();
+}
+

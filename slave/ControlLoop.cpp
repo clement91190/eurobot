@@ -12,6 +12,7 @@ ControlLoop::ControlLoop():
     target_position(),
     count_not_moving(0),
     late_pos(),
+    detect_on(false),
 #ifdef PMI
     sonarg(PIN_AN_SONARG, Coord(0., 0., 0.)),
 #else
@@ -244,7 +245,7 @@ void ControlLoop::run(Coord real_coord_){
     compute_pids();
     compute_cmds();
 
-    if (bf_type == BFFW)
+    if (bf_type == BFFW && detect_on)
     {
         check_adversary();
     }
@@ -364,6 +365,11 @@ void ControlLoop::write_real_coords()
 
 }
 
+void ControlLoop::turn_on_evit()
+{
+   detect_on = true; 
+
+}
 void ControlLoop::write_debug()
 {
     Serial.println("GAIN CAP");

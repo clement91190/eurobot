@@ -77,34 +77,38 @@ class MAERushDebile(MAE):
         init = InitState()
         speed_change = self.sf.get_setspeed(1)
         tape = self.sf.get_pmi_tape()
-        avance_triangle1 = self.sf.get_bf_fw(Coord(2150))
+        #avance_triangle1 = self.sf.get_bf_fw(Coord(2150))
+        avance_triangle1 = self.sf.get_bf_fw(Coord(1300))
         recule_un_peu = self.sf.get_bf_fw(Coord(-200))
-        prise_ma_coul = self.sf.get_pmi_actif_feu()
-        avance_choppe = self.sf.get_bf_fw(Coord(250))
+
+       # prise_ma_coul = self.sf.get_pmi_actif_feu()
+        #descend_pince = self.sf. get_pmi_bas()
+        #avance_choppe = self.sf.get_bf_fw(Coord(250))
         out = OutState("end_rush")
         pre_out = self.sf.get_setspeed(1)
         
         init.add_instant_transition(tape)
         tape.add_instant_transition(speed_change)
         speed_change.add_instant_transition(avance_triangle1)
-        avance_triangle1.add_afini_transition(recule_un_peu)
-        avance_triangle1.add_bloc_transition(pre_out)
+        avance_triangle1.add_afini_transition(pre_out)
+        #avance_triangle1.add_afini_transition(recule_un_peu)
+        avance_triangle1.add_bloc_transition(recule_un_peu)
         avance_triangle1.add_advd_transition(pre_out)
 
-        recule_un_peu.add_afini_transition(prise_ma_coul)
+        recule_un_peu.add_afini_transition(pre_out)
         recule_un_peu.add_bloc_transition(pre_out)
-        recule_un_peu.add_advd_transition(pre_out)
 
-        prise_ma_coul.add_time_out_transition(800, avance_choppe)
+        #descend_pince.add_time_out_transition(500, prise_ma_coul)
+        #prise_ma_coul.add_time_out_transition(800, avance_choppe)
 
-        avance_choppe.add_afini_transition(pre_out)
-        avance_choppe.add_prise_transition(pre_out)
-        avance_choppe.add_bloc_transition(pre_out)
-        avance_choppe.add_advd_transition(pre_out)
+        #avance_choppe.add_afini_transition(pre_out)
+        #avance_choppe.add_prise_transition(pre_out)
+        #avance_choppe.add_bloc_transition(pre_out)
+        #avance_choppe.add_advd_transition(pre_out)
       
-
         pre_out.add_instant_transition(out)
-        self.state_list = [init, speed_change, avance_triangle1, pre_out, out]
+        #self.state_list = [init, speed_change, avance_triangle1, pre_out, recule_un_peu, avance_choppe, out]
+        self.state_list = [init, speed_change, avance_triangle1, pre_out, recule_un_peu, out]
         self.reinit_state()
 
 
@@ -114,7 +118,7 @@ class MAERushMark(MAE):
         self.sf = com_state_factory
 
         init = InitState()
-        wait = State("wait")
+        wait = self.sf.get_mark_go_attente()
         speed_change = self.sf.get_setspeed(1)
         avance_sortie = self.sf.get_bf_fw(Coord(350))
         tourne = self.sf.get_bf_cap(Coord(0, 0, 120))
@@ -203,7 +207,7 @@ class MAEMission(MAE):
 
 if __name__ == "__main__":
     from robot_state import RobotState
-    robot = RobotState("debile", pipo=True)
+    robot = RobotState("mark", pipo=True)
     #mae = robot.mae.game.mae.mae_dep  # MAEGAME
     mae = robot.mae  # MAEGlobal
     #mae = robot.mae.game.mae.mission_state.mae  # MAEMISSION

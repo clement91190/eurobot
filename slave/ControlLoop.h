@@ -65,6 +65,7 @@ class ControlLoop
         Coord real_coord;
         Coord target_position;
         Vector dir;
+        bool detect_on;
         int bf_type; // see define 
         int asserv_state; // see define in PID -> FAR, NEAR
         PID pidcap;
@@ -106,6 +107,7 @@ class ControlLoop
         void recaler();
         void setTuningCap(float Kp, float Ki, float Kd );
         void setTuningDep(float Kp, float Ki, float Kd );
+        void turn_on_evit();
        
 };
 

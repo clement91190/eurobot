@@ -322,10 +322,10 @@ IO::IO(): pile_gauche(GAUCHE), pile_droite(DROITE)
     
     tacle_gauche_fermeture();
     tacle_droite_fermeture();
-    //canon_droite_enclenche();
-    //canon_gauche_enclenche();
-    canon_droite_tir();
-    canon_gauche_tir();
+    canon_droite_enclenche();
+    canon_gauche_enclenche();
+    //canon_droite_tir();
+    //canon_gauche_tir();
     benne_centrale_close();
     benne_rateau_bas();
 

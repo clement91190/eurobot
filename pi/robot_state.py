@@ -43,7 +43,7 @@ class RobotState:
             self.com = Communication(self, robot)
         else:
             self.com = PipoCommunication()
-            self.com = self.com.set_robot_state(self)
+            #self.com = self.com.set_robot_state(self)
         self.init_post_coul()
 
     def init_post_coul(self):
@@ -67,8 +67,8 @@ class RobotState:
         """ definition of the missions"""
         #self.missions["m_torche"] = vidange_torches.get_mission(self.com_state_factory)
         #self.missions["m_torche"].prioritize(2.)
-        #self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
-        #self.missions["m_arbre1"].prioritize(10.)
+        self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
+        self.missions["m_arbre1"].prioritize(10.)
         self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
         self.missions["m_mammouths"].prioritize(20.)
 

@@ -1,6 +1,6 @@
 from mission_control.mission import Mission, SuccessOut, FailOut
 from utils.coord import Coord
-from mae_generator.mae import MAE, InitState, debugger
+from mae_generator.mae import MAE, InitState, State, debugger
 
 
 def get_mission(com_state_factory, num_arbre=1):
@@ -16,6 +16,7 @@ class MAEARBRE(MAE):
         #states
         init = InitState()
         mi_ouvre = self.sf.get_mark_rateau_mi()
+        pipo = State("pipo")
         recule = self.sf.get_bf_fw(Coord(-100))
         ouvre = self.sf.get_mark_rateau_haut()
         avance = self.sf.get_bf_fw(Coord(150))
@@ -26,7 +27,8 @@ class MAEARBRE(MAE):
         out2 = FailOut()
 
         #transitions
-        init.add_instant_transition(mi_ouvre)
+        init.add_instant_transition(pipo)
+        
         mi_ouvre.add_instant_transition(recule)
         recule.add_afini_transition(ouvre)
         ouvre.add_time_out_transition(500, avance)
@@ -38,7 +40,7 @@ class MAEARBRE(MAE):
         replis.add_time_out_transition(300, out)
 
         self.state_list = [ 
-            init, mi_ouvre, recule, ouvre, avance, replis_mi, reouvre, replis, out, out2
+            init, pipo,  mi_ouvre, recule, ouvre, avance, replis_mi, reouvre, replis, out, out2
          ]
         self.reinit_state()
 

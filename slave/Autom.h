@@ -47,6 +47,7 @@ class Autom
         void setxycap_no_y(int x, float cap);
         void setTuningCap(float Kp, float Ki, float Kd );
         void setTuningDep(float Kp, float Ki, float Kd );
+        void turn_on_evit();
         ControlLoop* get_control();
         
         float debuggDistance_g();

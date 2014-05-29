@@ -14,6 +14,7 @@
 Autom* slave;
 OrdersRaspberry* com;
 int state;
+int led_on;
 long timer;
 
 void print_tic_odo()
@@ -44,6 +45,8 @@ void setup()
   write_serial_strat();
   state = ALLUMAGE; 
   timer = 0;
+  pinMode(13, OUTPUT); 
+   led_on = 0;
 }
 
 void loop(){
@@ -63,6 +66,20 @@ void loop(){
    //int sensorValue = analogRead(A5);
    //Serial.print(int(sensorValue * 300.0 / 1023 + 100.0));
    //Serial.println( " mm");
+
+    led_on += 1;
+   if (led_on == 250)
+{
+         digitalWrite(13, HIGH);
+    }
+    if (led_on == 500 && millis() < 10000)
+     {
+        
+         digitalWrite(13, LOW);
+         led_on = 0; 
+        }
+
+
    if (state == ALLUMAGE && digitalRead(PIN_AN_START) == 0)
     {
         state = STARTMIS;
@@ -72,7 +89,9 @@ void loop(){
     {
         state = GAME ;
         Serial.println("# START");
+        slave->turn_on_evit();
         timer = millis(); 
+
     }
 
     if (state == END || (state == GAME && timer > 90000 + millis()))
