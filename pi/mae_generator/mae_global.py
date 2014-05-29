@@ -207,7 +207,7 @@ class MAEMission(MAE):
 
 if __name__ == "__main__":
     from robot_state import RobotState
-    robot = RobotState("mark", pipo=True)
+    robot = RobotState("debile", pipo=True)
     #mae = robot.mae.game.mae.mae_dep  # MAEGAME
     mae = robot.mae  # MAEGlobal
     #mae = robot.mae.game.mae.mission_state.mae  # MAEMISSION
