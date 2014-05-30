@@ -77,7 +77,7 @@ class RobotState:
         self.missions["m_feu0"] = prise_feu.get_mission(self.com_state_factory, 0)
         self.missions["m_feu0"].prioritize(12.)
 
-        self.missions["m_feu1"] = prise_feu.get_mission(self.com_state_factory, 0)
+        self.missions["m_feu1"] = prise_feu.get_mission(self.com_state_factory, 1)
         self.missions["m_feu1"].prioritize(8.)
 
     def init_mission_pmi(self):

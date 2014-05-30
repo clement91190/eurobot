@@ -27,7 +27,7 @@ class FeuVertical(MAE):
 
         #transitions
         init.add_instant_transition(prise_centre)
-        prise_centre.add_time_out_transition(2000, set_speed)
+        prise_centre.add_time_out_transition(6000, set_speed)
         set_speed.add_instant_transition(avance)
         avance.add_afini_transition(range)
         avance.add_bloc_transition(range)
