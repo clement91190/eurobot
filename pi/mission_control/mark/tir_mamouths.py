@@ -14,7 +14,7 @@ class MAETirMammouths(MAE):
 
         #states
         init = InitState()
-        if coord.couleur == 0:
+        if coord.couleur == 1:
             tir1 = self.sf.get_mark_tir_canon_d()
             tir2 = self.sf.get_mark_tir_canon_g()
             repos1 = self.sf.get_mark_repos_canon_d()
