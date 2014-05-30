@@ -35,7 +35,7 @@ class RobotState:
         self.coul = "rouge"
         self.adversary_detection = []
         self.last_position = (0, 0, 0)
-        self.debut_game = time.time + 3600
+        self.debut_game = time.time() + 3600
 
         self.missions = {}
         self.current_mission = None
