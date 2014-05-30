@@ -1,3 +1,11 @@
+Apres le match 2:
+- petit robot asserv ( fin d'asserv)
+- tir reglages. (loic)
+- regler premier triangle.
+- reculer avant de monter.
+- waypoint troisieme triangle 
+- check vidange, (mission pose foyer.)
+
 
 Apres le match 1:
 - Slave settings
