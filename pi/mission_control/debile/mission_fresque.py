@@ -26,7 +26,7 @@ class MAEFRESQUE(MAE):
         init.add_instant_transition(recaly)
         recaly.add_bloc_transition(set_y0)
         set_y0.add_instant_transition(pose_fresque)
-        pose_fresque.add_time_out_transition(500, avance)
+        pose_fresque.add_time_out_transition(30000, avance)
         avance.add_afini_transition(rentre_fresque)
         avance.add_bloc_transition(rentre_fresque)
         avance.add_advd_transition(rentre_fresque)

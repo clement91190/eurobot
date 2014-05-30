@@ -155,9 +155,12 @@ class ComStateFactory:
             self.count += 1
             return SendActio1MarkState("B4", self.com, self.count) 
 
-    def get_mark_confirme_prise(self):
+    def get_mark_confirme_prise(self, ma_couleur=True):
             self.count += 1
-            return SendActio1MarkState("B5", self.com, self.count) 
+            if ma_couleur:
+                return SendActio1MarkState("B5 1", self.com, self.count) 
+            else:
+                return SendActio1MarkState("B5 0", self.com, self.count) 
 #actio2
 
     def get_mark_ferme_tacled(self):

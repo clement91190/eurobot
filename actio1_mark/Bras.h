@@ -48,7 +48,7 @@ class Ascenseur
 #define ASC1 4.  
 #define ASC2 8.6
 #define ASC3 19
-#define ASC4 22.8
+#define ASC4 23.5
 
 
 class Bras
@@ -60,11 +60,12 @@ class Bras
         ColorSensor col;
         //SwitchAnalog pression; // ? 
         bool pression_on;
-        double pression
+        double pression;
         SwitchAnalog ir;
         int pin_pompe;
         int cote;
         int couleur;
+        int pin_pression;
 
         //state machine
         int state;
@@ -89,12 +90,14 @@ class Bras
 
 
     public:
-        Bras(int cote_, int pin_pap_step, int pin_pap_dir, int pin_bump_asc, int pin_ir, int seuil_ir, long* pulse_color, int pin_pression);
+        Bras(int cote_, int pin_pap_step, int pin_pap_dir, int pin_bump_asc, int pin_ir, int seuil_ir, long* pulse_color, int pin_pression_);
         void run();
         void trigger(int transition);
         void write_debug();
         void set_autre_bras(Bras* autre_bras_);
 
+        void read_pression();
+        bool is_pression_on();
         //all movement methods
 
         void a0(); // asc  haut = ranger

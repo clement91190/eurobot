@@ -14,7 +14,7 @@ from mission_control.debile import tir_filet
 from mission_control.debile import pose_torche
 from mission_control.debile import pose_feu_foyer
 
-from mission_control.mark import prise_arbre, vidange_torches, tir_mamouths
+from mission_control.mark import prise_arbre, prise_feu, vidange_torches, tir_mamouths
 
 
 class bcolors:
@@ -73,6 +73,13 @@ class RobotState:
         self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
         self.missions["m_mammouths"].prioritize(20.)
 
+        self.missions["m_feu0"] = prise_feu.get_mission(self.com_state_factory, 0)
+        self.missions["m_feu0"].prioritize(12.)
+
+        self.missions["m_feu1"] = prise_feu.get_mission(self.com_state_factory, 0)
+        self.missions["m_feu1"].prioritize(8.)
+
+
 
 
     def init_mission_pmi(self):
@@ -81,20 +88,20 @@ class RobotState:
         #prise torche 
         #pose torche
         #pose fresque
-        self.missions["m_torche_adv"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
-        self.missions["m_torche_adv"].prioritize(10.)
+        #self.missions["m_torche_adv"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
+        #self.missions["m_torche_adv"].prioritize(10.)
         #tir filet
         #self.missions["m_pousse_feu_loin"] = pousse_feu.get_mission(self.com_state_factory)
-        self.missions["m_pose_foyer"] = mission_fresque.get_mission(self.com_state_factory)
-        self.missions["m_pose_foyer"].prioritize(0.)
+        #self.missions["m_pose_foyer"] = mission_fresque.get_mission(self.com_state_factory)
+        #self.missions["m_pose_foyer"].prioritize(0.)
 
        #self.missions["m_pousse_feu_loin"].prioritize(7.)
        
         self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
         self.missions["m_fresque"].prioritize(6.)
 
-        self.missions["m_pose_torche"] = pose_torche.get_mission(self.com_state_factory)
-        self.missions["m_pose_torche"].prioritize(4.)
+        #self.missions["m_pose_torche"] = pose_torche.get_mission(self.com_state_factory)
+        #self.missions["m_pose_torche"].prioritize(4.)
     
         #todo change priority after some time.
         self.missions["m_tir"] = tir_filet.get_mission(self.com_state_factory)
