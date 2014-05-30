@@ -16,6 +16,8 @@ class MAEPoseTorche(MAE):
         init = InitState()
         avance = self.sf.get_bf_fw(Coord(200))
         pose = self.sf.get_pmi_pose()
+        tape = self.sf.get_pmi_tape()
+
         recule = self.sf.get_bf_fw(Coord(-150))
 # rajoute transition from actionneur
         out = SuccessOut()
