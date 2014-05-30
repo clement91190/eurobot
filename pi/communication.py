@@ -164,6 +164,9 @@ class Communication:
             if s_line[1] in ["BLOC", "AFINI", "ADVD", "NEAR", "START", "STARTIN", "PRISE"]:
                 if s_line[1] == "PRISE":
                     self.robot_state.prise()
+                if s_line[1] == "START":
+                    self.robot_state.start_game()
+         
                 self.global_mae.trigger(s_line[1])
             else:
                 print "unkown transition", line

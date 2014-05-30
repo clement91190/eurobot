@@ -111,13 +111,15 @@ Bras::Bras(int cote_,
         int pin_bump_asc,
         int pin_ir,
         int seuil_ir,
-        long* pulse_color): 
+        long* pulse_color,
+        int pin_pression): 
     period_run(50),
     cote(cote_),
     time_out_on(false), state(INT_RANGE), coul_to_be_on(false), next_coul_on(false),
     asc(pin_pap_step, pin_pap_dir, pin_bump_asc, cote_),
     ir(pin_ir, seuil_ir), mon_ir_actif(false), trigger_to_be(T_RANGE),
     col(pulse_color), trigger_autre_on(false), couleur(ROUGE), trigger_attente_on(false)
+    pression_on(false)
 {
     if (cote == GAUCHE)
     {
@@ -144,6 +146,18 @@ Bras::Bras(int cote_,
     //    delay(1);
     //}
  }
+
+void Bras::read_pression()
+{
+    pression =  (analogRead(pin_pression) / 1024.  + 0.095)/9;
+    pression_on = pression < 0.8;
+}
+
+void Bras::is_pression_on()
+{
+    return pression_on;
+}
+
 
 void Bras::po()
 {
@@ -507,6 +521,10 @@ void Bras::run(){
     if (asc.run())
     {
         trigger(T_ASC_ARRIVE);
+    }
+    if (is_pression_on())
+    {
+        trigger(T_CAPT_PRESSION_ON);
     }
 
     

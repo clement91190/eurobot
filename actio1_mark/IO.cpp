@@ -1,8 +1,8 @@
 #include "IO.h"
 
 IO::IO():
-    brasg(GAUCHE , PIN_PAP_STEP_G, PIN_PAP_DIR_G, PIN_BUMPER_ASC_H_G, PIN_IR_G, SEUIL_IR_G, &pulse_color_g),
-    brasd(DROITE , PIN_PAP_STEP_D, PIN_PAP_DIR_D, PIN_BUMPER_ASC_H_D, PIN_IR_D, SEUIL_IR_D, &pulse_color_d),
+    brasg(GAUCHE , PIN_PAP_STEP_G, PIN_PAP_DIR_G, PIN_BUMPER_ASC_H_G, PIN_IR_G, SEUIL_IR_G, &pulse_color_g, PIN_PRESSION_G),
+    brasd(DROITE , PIN_PAP_STEP_D, PIN_PAP_DIR_D, PIN_BUMPER_ASC_H_D, PIN_IR_D, SEUIL_IR_D, &pulse_color_d, PIN_PRESSION_D),
     ir_central(PIN_IR_C, SEUIL_IR_C), couleur(0)
 {
     //brasg.set_autre_bras(&brasd);

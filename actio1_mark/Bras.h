@@ -59,6 +59,8 @@ class Bras
         Servo servo_retourne;
         ColorSensor col;
         //SwitchAnalog pression; // ? 
+        bool pression_on;
+        double pression
         SwitchAnalog ir;
         int pin_pompe;
         int cote;
@@ -87,7 +89,7 @@ class Bras
 
 
     public:
-        Bras(int cote_, int pin_pap_step, int pin_pap_dir, int pin_bump_asc, int pin_ir, int seuil_ir, long* pulse_color);
+        Bras(int cote_, int pin_pap_step, int pin_pap_dir, int pin_bump_asc, int pin_ir, int seuil_ir, long* pulse_color, int pin_pression);
         void run();
         void trigger(int transition);
         void write_debug();

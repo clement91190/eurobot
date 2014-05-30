@@ -67,10 +67,12 @@ class RobotState:
         """ definition of the missions"""
         #self.missions["m_torche"] = vidange_torches.get_mission(self.com_state_factory)
         #self.missions["m_torche"].prioritize(2.)
-        self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
-        self.missions["m_arbre1"].prioritize(10.)
+        #self.missions["m_arbre1"] = prise_arbre.get_mission(self.com_state_factory)
+        #self.missions["m_arbre1"].prioritize(10.)
         self.missions["m_mammouths"] = tir_mamouths.get_mission(self.com_state_factory)
         self.missions["m_mammouths"].prioritize(20.)
+
+
 
     def init_mission_pmi(self):
 
@@ -78,8 +80,8 @@ class RobotState:
         #prise torche 
         #pose torche
         #pose fresque
-        #self.missions["m_torche_adv"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
-        #self.missions["m_torche_adv"].prioritize(10.)
+        self.missions["m_torche_adv"] = mission_prise_torche_adv.get_mission(self.com_state_factory)
+        self.missions["m_torche_adv"].prioritize(10.)
         #tir filet
         #self.missions["m_pousse_feu_loin"] = pousse_feu.get_mission(self.com_state_factory)
         self.missions["m_pose_foyer"] = mission_fresque.get_mission(self.com_state_factory)
@@ -90,14 +92,14 @@ class RobotState:
         self.missions["m_fresque"] = mission_fresque.get_mission(self.com_state_factory)
         self.missions["m_fresque"].prioritize(6.)
 
-        #self.missions["m_pose_torche"] = pose_torche.get_mission(self.com_state_factory)
-        #self.missions["m_pose_torche"].prioritize(4.)
+        self.missions["m_pose_torche"] = pose_torche.get_mission(self.com_state_factory)
+        self.missions["m_pose_torche"].prioritize(4.)
     
         #todo change priority after some time.
         self.missions["m_tir"] = tir_filet.get_mission(self.com_state_factory)
         self.missions["m_tir"].prioritize(2.)
 
-        #self.missions["m_test1"] = mission_test.get_mission(self.com_state_factory, 1)
+        #self.missions["m_testr"] = mission_test.get_mission(self.com_state_factory, 1)
         #self.missions["m_test2"] = mission_test.get_mission(self.com_state_factory, 2)
 
     def set_last_position(self, position):
@@ -135,8 +137,19 @@ class RobotState:
         print  "ADVERSARY AT", global_coords
         self.adversary_detection.insert(0, (time.time(), global_coords))
 
+    def run(self):
+        if time.time() - self.debut_game >= 65:
+            try:
+                self.missions["m_tir"].proritize(8000)
+            except:
+                pass
+
+    def start_game(self):
+        self.debut_game = time.time()
+
     def start(self):
         while True:
+            self.run()
             self.mae.run()
             self.com.run()
             time.sleep(0.0005) 
